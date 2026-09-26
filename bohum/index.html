@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>같은 보장, 다른 조건 | 보장 점검 상담</title>
+<meta name="description" content="가입된 보험의 보장 내용을 설계사가 직접 확인해 드리는 보장 점검 상담 신청 페이지입니다.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="../config.js"></script>
+<style>
+/* 메타 광고 전용 랜딩 — 심의 안 받음(대표님 2026-09-26). 설계사 이름·등록번호·대리점 등 대표님 정보 넣지 않는다.
+   문구는 업무광고 금지표현 기준(insurance-ad-compliance)으로 점검. 보험사·상품명 비특정. */
+:root{--ink:#1d2433;--muted:#5d6575;--line:#e2e5ea;--bg:#f5f6f8;--navy:#1f3a5f;--navy-d:#152a46;--accent:#e8f0f8;
+ --warn:#b4451f;--ok:#1f7a4d;--err:#b3261e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+ line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased;padding-bottom:76px}
+.wrap{max-width:560px;margin:0 auto;background:#fff;min-height:100vh}
+section{padding:36px 22px}
+.hero{background:var(--navy);color:#fff;padding:44px 22px 40px}
+.hero .eb{font-size:14px;color:#b9cbe0;font-weight:600}
+.hero h1{font-size:34px;line-height:1.3;margin-top:10px;font-weight:800;letter-spacing:-.5px}
+.hero p{margin-top:16px;font-size:17px;color:#dfe8f2}
+.btn{display:block;width:100%;text-align:center;background:#fff;color:var(--navy);font-weight:800;font-size:18px;
+ border:0;border-radius:8px;padding:17px;margin-top:26px;cursor:pointer;font-family:inherit;text-decoration:none}
+h2{font-size:24px;line-height:1.35;letter-spacing:-.3px}
+.sub{color:var(--muted);font-size:15px;margin-top:6px}
+.list{list-style:none;margin-top:18px;display:grid;gap:10px}
+.list li{background:var(--bg);border-radius:10px;padding:16px 16px 16px 44px;position:relative;font-size:16px;font-weight:600}
+.list li::before{content:"✓";position:absolute;left:16px;top:15px;color:var(--navy);font-weight:900}
+.steps{display:grid;gap:12px;margin-top:18px}
+.step{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:16px}
+.step b{flex:0 0 auto;background:var(--navy);color:#fff;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-size:14px}
+.step p{font-size:16px}.step small{display:block;color:var(--muted);font-size:14px}
+.form{background:var(--accent)}
+form{display:grid;gap:14px;margin-top:18px}
+label{display:grid;gap:6px;font-weight:700;font-size:14px}
+input,select{border:1.5px solid var(--line);border-radius:8px;padding:14px;font-size:16px;font-family:inherit;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:none;border-color:var(--navy)}
+label.agree{display:flex;gap:8px;align-items:flex-start;font-weight:600;cursor:pointer}
+label.agree input{width:18px;height:18px;margin-top:3px;accent-color:var(--navy);flex:0 0 auto}
+details{font-size:13px;color:var(--muted);background:#fff;border-radius:8px;padding:10px 12px}
+details summary{cursor:pointer;font-weight:600}
+details ul{margin:8px 0 0 18px}
+form button{background:var(--navy);color:#fff;border:0;border-radius:8px;padding:17px;font-size:17px;font-weight:800;cursor:pointer;font-family:inherit}
+form button:disabled{opacity:.6}
+.msg{font-size:14px;font-weight:600;min-height:1em}.msg.ok{color:var(--ok)}.msg.err{color:var(--err)}
+.alt{text-align:center;font-size:14px;color:var(--muted);margin-top:14px}
+.alt a{color:var(--navy);font-weight:700}
+.notice{background:#fafafa;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.notice p+p{margin-top:8px}
+.notice .warn{color:var(--warn)}
+.notice .must{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);color:var(--ink)}
+.notice a{text-decoration:underline}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px}
+.bar a{display:block;max-width:528px;margin:0 auto;background:var(--navy);color:#fff;text-align:center;border-radius:8px;
+ padding:15px;font-weight:800;font-size:17px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eb">보장 점검 상담</div>
+  <h1>지금 내 보험,<br>무엇이 보장되는지<br>알고 계신가요?</h1>
+  <p>가입된 보험의 보장 내용을 설계사가 직접 읽고, 중복되거나 빠진 보장이 있는지 확인해 드립니다.</p>
+  <a class="btn" href="#apply">보장 점검 상담 신청</a>
+</header>
+
+<section>
+  <h2>이런 궁금증이 있다면</h2>
+  <ul class="list">
+    <li>보험이 여러 개인데 무엇이 어떻게 보장되는지 헷갈리는 분</li>
+    <li>갱신형 보험의 보험료 구조가 궁금한 분</li>
+    <li>간병·수술·입원 보장이 지금 보험에 있는지 알고 싶은 분</li>
+    <li>가족 보험의 보장 내용을 한 번에 확인하고 싶은 분</li>
+  </ul>
+</section>
+
+<section style="padding-top:0">
+  <h2>상담은 이렇게 진행됩니다</h2>
+  <div class="steps">
+    <div class="step"><b>1</b><p>상담 신청<small>이름과 연락처만 남겨 주세요</small></p></div>
+    <div class="step"><b>2</b><p>설계사 연락<small>편하신 시간에 전화로 상담합니다</small></p></div>
+    <div class="step"><b>3</b><p>보장 설명<small>가입된 보험의 보장 내용을 설명해 드립니다.<br>가입 여부는 설명을 들으신 뒤 직접 결정하시면 됩니다.</small></p></div>
+  </div>
+</section>
+
+<section class="form" id="apply">
+  <h2>보장 점검 상담 신청</h2>
+  <p class="sub">신청은 24시간 접수되며, 확인 후 연락드립니다.</p>
+  <form id="f" novalidate>
+    <label>이름<input name="name" autocomplete="name" placeholder="홍길동"></label>
+    <label>휴대폰번호<input name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000"></label>
+    <label>궁금한 보장 (선택)
+      <select name="topic">
+        <option value="">선택 안 함</option>
+        <option>전체 보장 점검</option>
+        <option>간병</option>
+        <option>수술·입원</option>
+        <option>가족 보험 정리</option>
+        <option>기타</option>
+      </select>
+    </label>
+    <label class="agree"><input type="checkbox" name="agree"><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+    <details open><summary>동의 내용</summary>
+      <ul>
+        <li>수집 항목: 이름, 휴대폰번호 (궁금한 보장, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
+        <li>이용 목적: 보장 점검 상담 및 보험상품 안내</li>
+        <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
+        <li>신청 내용은 해외 메신저(텔레그램) 서버로 전송·보관됩니다.</li>
+        <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
+      </ul>
+      <p style="margin-top:6px"><a href="../privacy.html">개인정보처리방침 전문 보기</a></p>
+    </details>
+    <button type="submit">상담 신청하기</button>
+    <div class="msg" id="msg"></div>
+  </form>
+  <p class="alt">카카오톡으로 문의하시려면 <a href="https://open.kakao.com/o/sV05EIti" target="_blank" rel="noopener">오픈채팅 상담</a></p>
+</section>
+
+<footer class="notice">
+  <section>
+    <p class="warn">보험회사 상품별, 성별, 연령, 직업 등에 따라 가입가능한 담보와 가입금액, 보험료 등은 달라질 수 있습니다.</p>
+    <p class="warn">보험사 및 상품별로 상이할 수 있으므로, 관련한 세부사항은 반드시 해당 약관을 참조하시기 바랍니다.</p>
+    <p class="warn">본 내용은 모집종사자 개인의 의견이며, 계약 체결에 따른 이익 또는 손실은 보험계약자 등에게 귀속됩니다.</p>
+    <p class="warn">[보험계약자가 기존 보험계약을 해지하고 새로운 보험계약을 체결하는 과정에서 ① 질병이력, 연령증가 등으로 가입이 거절되거나 보험료가 인상될 수 있습니다. ② 가입 상품에 따라 새로운 면책기간 적용 및 보장 제한 등 기타 불이익이 발생할 수 있습니다]</p>
+    <div class="must">
+      <p style="margin-top:8px"><a href="../privacy.html">개인정보처리방침</a></p>
+    </div>
+  </section>
+</footer>
+</div>
+
+<div class="bar"><a href="#apply">보장 점검 상담 신청</a></div>
+
+<script>
+(function(){
+  var f=document.getElementById("f"), msg=document.getElementById("msg");
+  function say(t,c){msg.textContent=t;msg.className="msg "+(c||"");}
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var name=(f.elements["name"].value||"").trim(), phone=(f.elements["phone"].value||"").trim();
+    var digits=phone.replace(/[^0-9]/g,""), topic=f.elements["topic"].value;
+    if(name.length<2){say("이름을 정확히 입력해 주세요.","err");f.elements["name"].focus();return;}
+    if(digits.length<10||digits.length>11){say("휴대폰번호를 정확히 입력해 주세요.","err");f.elements["phone"].focus();return;}
+    if(!f.elements["agree"].checked){say("개인정보 수집·이용에 동의해 주세요.","err");return;}
+    var cfg=window.TG||{};
+    if(!cfg.relay){say("접수 설정이 완료되지 않았습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");return;}
+    var text="\u{1F514} [보험 보장점검] 상담 신청\n\n이름: "+name+"\n연락처: "+phone
+      +(topic?("\n궁금한 보장: "+topic):"")+"\n페이지: "+location.href
+      +"\n개인정보 동의: 예\n시각: "+new Date().toLocaleString("ko-KR");
+    var btn=f.querySelector("button"); btn.disabled=true; say("접수 중입니다...");
+    fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},
+      body:JSON.stringify({type:"lead",text:text})})
+    .then(function(r){return r.json();}).then(function(d){
+      if(d&&d.ok){f.reset();say("상담 신청이 접수되었습니다. 곧 연락드리겠습니다.","ok");}
+      else say("전송에 실패했습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");
+      btn.disabled=false;
+    }).catch(function(){say("전송에 실패했습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");btn.disabled=false;});
+  });
+})();
+</script>
+</body>
+</html>
