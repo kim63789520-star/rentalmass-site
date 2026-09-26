@@ -148,8 +148,10 @@ form button:disabled{opacity:.6}
     if(!f.elements["agree"].checked){say("개인정보 수집·이용에 동의해 주세요.","err");return;}
     var cfg=window.TG||{};
     if(!cfg.relay){say("접수 설정이 완료되지 않았습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");return;}
+    function q(k){var m=location.search.match(new RegExp("[?&]"+k+"=([^&]*)"));return m?decodeURIComponent(m[1].replace(/\+/g," ")):"";}
+    var src=[q("utm_source"),q("utm_campaign"),q("utm_content")].filter(Boolean).join(" / ")||"직접";
     var text="\u{1F514} [보험 보장점검] 상담 신청\n\n이름: "+name+"\n연락처: "+phone
-      +(topic?("\n궁금한 보장: "+topic):"")+"\n페이지: "+location.href
+      +(topic?("\n궁금한 보장: "+topic):"")+"\n유입: "+src+"\n페이지: "+location.origin+location.pathname
       +"\n개인정보 동의: 예\n시각: "+new Date().toLocaleString("ko-KR");
     var btn=f.querySelector("button"); btn.disabled=true; say("접수 중입니다...");
     fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},
