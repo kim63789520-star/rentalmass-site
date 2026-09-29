@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>가전결합 멤버십 | 최신 가전 렌탈 결합상품</title>
+<meta name="description" content="가전결합 멤버십(선불식 할부거래 결합상품). TV·냉장고·세탁기 등 최신 가전 190여 종을 렌탈로 사용합니다. 만기 200회 완납·행사·부가서비스 미사용·만기 익월 이후 해약 신청 조건을 모두 충족하면 납입금이 환급됩니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/maru-buri.css">
+<style>
+
+/* 쇼룸 톤 — 흰 바탕 + 네이비 한 색. 제목만 마루부리(세리프), 나머지는 프리텐다드 */
+:root{
+  --paper:#ffffff; --mist:#f2f4f6; --line:#dde1e6;
+  --ink:#1a2332; --muted:#5b6573; --navy:#193c49; --navy-deep:#122d37; --on-navy:#cfdee1;
+  --ok:#1f7a4d; --err:#b3261e;
+  --bg:var(--mist); --accent:var(--navy);
+  --serif:"MaruBuriBold","MaruBuri","Noto Serif KR",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);padding-top:62px;padding-bottom:84px;word-break:keep-all;overflow-wrap:break-word;
+  font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;padding:14px 24px;font-weight:700;
+  font-size:15px;border:1.5px solid transparent;cursor:pointer;transition:background .15s,color .15s;white-space:nowrap;font-family:inherit}
+.btn-primary,.btn-dark{background:var(--navy);color:#fff}
+.btn-primary:hover,.btn-dark:hover{background:var(--navy-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+.btn-ghost:hover{background:var(--mist)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--navy)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.logo{display:flex;align-items:baseline;gap:10px;color:#fff}
+.logo b{font-family:var(--serif);font-weight:400;font-size:21px}
+.logo span{font-size:13px;color:var(--on-navy)}
+.nav-links{display:flex;gap:26px;color:var(--on-navy);font-size:15px;font-weight:500}
+.nav-links a:hover{color:#fff}
+.nav-cta .btn{padding:9px 16px;font-size:14px;background:#fff;color:var(--navy)}
+.nav-cta .btn:hover{background:var(--mist)}
+@media(max-width:820px){.nav-links{display:none}}
+section{padding:72px 0;scroll-margin-top:72px}
+.sec-head{max-width:680px;margin:0 0 36px}
+.sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.2vw,36px);line-height:1.3;margin:0 0 10px;color:var(--ink)}
+.sec-head p{color:var(--muted);font-size:16px;margin:0}
+/* 환급 조건 — 네이비 띠 */
+.refund-band{background:var(--navy);color:#fff}
+.refund-band h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1.3;margin:0 0 10px}
+.refund-band .rlead{color:var(--on-navy);margin:0 0 32px;font-size:16px}
+.refund-band .rlead b{color:#fff}
+.conds{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.conds li{border-top:1px solid rgba(255,255,255,.3);padding-top:16px}
+.conds .n{color:var(--on-navy);font-size:13px;margin-bottom:6px}
+.conds b{display:block;font-size:18px;margin-bottom:4px}
+.conds span{font-size:14px;color:var(--on-navy)}
+.refund-band .allthree{margin:32px 0 0;font-size:14px;color:var(--on-navy)}
+.refund-band .allthree em{color:#fff;font-style:normal;font-weight:700}
+@media(max-width:820px){.conds{grid-template-columns:1fr;gap:20px}}
+/* 가입 전 확인 */
+.notice{background:var(--paper);padding-top:24px}
+.notice-inner{border-top:2px solid var(--ink);padding-top:22px}
+.notice h3{margin:0 0 12px;font-size:17px;color:var(--ink);font-weight:800}
+.notice ul{margin:0;padding-left:20px;color:var(--muted);font-size:14px;line-height:1.9}
+.notice ul li b{color:var(--ink)}
+footer{background:var(--navy-deep);color:var(--on-navy);padding:40px 0 48px;font-size:13px}
+footer .disc{margin-top:18px;color:#8d9ab0;font-size:12px;line-height:1.7;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
+.foot-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.foot-biz .fb-name{color:#fff;font-size:18px;font-weight:800}
+.foot-biz .fb-name span{font-size:13px;font-weight:500;color:var(--on-navy);margin-left:6px}
+.foot-biz .fb-line{margin-top:8px;line-height:1.8}
+.foot-biz .fb-copy{margin-top:14px;color:#8d9ab0}
+.foot-cs{text-align:right;min-width:210px}
+.foot-cs .cs-title{color:var(--on-navy);font-size:13px}
+.foot-cs .cs-num{color:#fff;font-size:24px;font-weight:800;margin:2px 0 8px;font-variant-numeric:tabular-nums}
+.foot-cs .cs-sub{font-size:12.5px}
+@media(max-width:640px){.foot-cs{text-align:left}}
+/* 상담 신청 */
+.consult{background:var(--paper)}
+.consult-card{display:grid;grid-template-columns:1.05fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.consult-card .cs-left{padding:44px 40px;color:#fff;background:var(--navy)}
+.consult-card .cs-left h2{font-family:var(--serif);font-weight:400;color:#fff;font-size:30px;margin:0 0 12px}
+.consult-card .cs-left p{color:var(--on-navy);font-size:15px;margin:0 0 24px}
+.cs-hours{font-size:13px;color:var(--on-navy)}
+.cs-form{padding:44px 40px;display:flex;flex-direction:column;gap:16px;background:var(--paper)}
+.cs-form label{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:700;color:var(--ink)}
+.cs-form input{border:1.5px solid var(--line);border-radius:6px;padding:14px 16px;font-size:16px;font-family:inherit;color:var(--ink)}
+.cs-form input:focus{outline:none;border-color:var(--navy)}
+.cs-form button{margin-top:6px;background:var(--navy);color:#fff;border:0;border-radius:6px;padding:18px;font-size:17px;
+  font-weight:800;cursor:pointer;transition:background .15s;font-family:inherit}
+.cs-form button:hover{background:var(--navy-deep)}
+.cs-form button:disabled{opacity:.6;cursor:default}
+.cs-msg{margin:2px 0 0;font-size:14px;font-weight:700;min-height:20px}
+.cs-msg.ok{color:var(--ok)}
+.cs-msg.err{color:var(--err)}
+.cs-form label.cs-agree{flex-direction:row;align-items:flex-start;gap:8px;font-size:14px;font-weight:600;cursor:pointer}
+.cs-form .cs-agree input{flex:0 0 auto;width:18px;height:18px;margin:2px 0 0;padding:0;accent-color:var(--navy)}
+.cs-policy{margin-top:-8px;font-size:12.5px;color:var(--muted)}
+.cs-policy summary{cursor:pointer;text-decoration:underline;padding-left:26px}
+.pv-block{margin-top:10px}
+.pv-h{display:block;color:var(--ink);font-size:13px}
+.pv-block ul{margin:4px 0 0;padding-left:18px;line-height:1.7}
+.pv-link{margin:10px 0 0}
+.pv-link a,.fb-pp{text-decoration:underline}
+.fb-pp{color:#fff;font-weight:700}
+/* 하단바 신청 시 동의 창 */
+.cm-back{position:fixed;inset:0;z-index:300;background:rgba(10,20,35,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.cm-back[hidden]{display:none}
+.cm-box{background:#fff;border-radius:8px;max-width:520px;width:100%;max-height:92vh;overflow:auto;padding:22px 20px}
+.cm-box h3{margin:0 0 12px;font-size:18px;color:var(--ink)}
+.cm-notice{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 14px 12px;max-height:38vh;overflow:auto;margin-bottom:12px}
+.cm-agree{display:flex;gap:8px;align-items:flex-start;font-size:14px;font-weight:600;color:var(--ink);margin:10px 0;cursor:pointer}
+.cm-agree input{width:18px;height:18px;margin:2px 0 0;flex:0 0 auto;accent-color:var(--navy)}
+.cm-btns{display:flex;gap:8px;margin-top:16px}
+.cm-btns button{flex:1;border-radius:6px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;border:1.5px solid var(--navy)}
+.cm-cancel{background:#fff;color:var(--navy)}
+.cm-ok{background:var(--navy);color:#fff}
+@media(max-width:760px){.consult-card{grid-template-columns:1fr}.consult-card .cs-left,.cs-form{padding:30px 22px}}
+/* 전화(초록) · 카카오(노랑) 상담 버튼 */
+.cs-alt{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.alt-btn{display:flex;align-items:center;gap:14px;border-radius:8px;padding:14px 18px;transition:background .15s}
+.alt-btn svg{width:28px;height:28px;flex:0 0 28px}
+.alt-btn span{display:flex;flex-direction:column;line-height:1.25}
+.alt-btn span b{font-size:17px;font-weight:800}
+.alt-btn span i{font-style:normal;font-size:13px;margin-top:3px}
+.alt-call{background:#19b25b;color:#fff}
+.alt-call:hover{background:#149a4d}
+.alt-kakao{background:#FEE500;color:#3C1E1E}
+.alt-kakao:hover{background:#f0d800}
+/* 플로팅 빠른상담 버튼 (데스크톱 왼쪽 · 모바일 오른쪽) */
+.floatbtns{position:fixed;left:16px;bottom:104px;z-index:80;display:flex;flex-direction:column;gap:10px}
+.fb{display:flex;flex-direction:column;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;
+  box-shadow:0 4px 14px rgba(0,0,0,.22);font-size:10.5px;font-weight:800;line-height:1.15;text-align:center}
+.fb svg{width:24px;height:24px;margin-bottom:2px}
+.fb-kakao{background:#FEE500;color:#3C1E1E}
+.fb-call{background:#19b25b;color:#fff}
+/* 하단 고정 상담바 */
+.leadbar{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--navy);border-top:1px solid rgba(255,255,255,.15)}
+.lb-inner{display:flex;align-items:center;gap:16px;padding:12px 20px}
+.lb-title{display:flex;align-items:center;gap:10px;color:#fff;white-space:nowrap}
+.lb-title svg{width:24px;height:24px;color:var(--on-navy)}
+.lb-title span{display:flex;flex-direction:column;line-height:1.2}
+.lb-title b{font-size:16px;font-weight:800}
+.lb-title i{font-style:normal;font-size:12px;color:var(--on-navy);margin-top:2px}
+.lb-form{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.lb-form input{flex:1;min-width:0;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;border-radius:6px;padding:12px 14px;font-size:16px;font-family:inherit}
+.lb-form input::placeholder{color:#9aa7bb}
+.lb-form input:focus{outline:none;border-color:#fff}
+.lb-form button{flex:0 0 auto;background:#fff;color:var(--navy);border:0;border-radius:6px;padding:13px 24px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s}
+.lb-form button:hover{background:var(--mist)}
+.lb-form button:disabled{opacity:.6}
+@media(max-width:820px){.lb-title span i{display:none}.lb-title b{font-size:14px}}
+@media(max-width:640px){
+  .lb-inner{gap:8px;padding:8px 10px}
+  .lb-title{display:none}
+  .lb-long{display:none}
+  .lb-form{gap:6px}
+  .lb-form input{padding:11px 10px}
+  .lb-form button{padding:11px 14px;font-size:14px}
+  .floatbtns{bottom:82px;left:auto;right:10px;gap:8px}
+  .fb{width:54px;height:54px;font-size:9.5px}
+  .fb svg{width:20px;height:20px}
+  body{padding-bottom:76px}
+  section{padding:52px 0}
+}
+/* 접수 결과 토스트 */
+.tg-toast{position:fixed;top:78px;left:50%;transform:translate(-50%,-12px);z-index:400;background:var(--navy);color:#fff;
+  padding:13px 20px;border-radius:6px;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:.3s;max-width:92vw;text-align:center}
+.tg-toast.show{opacity:1;transform:translate(-50%,0)}
+.tg-toast.ok{background:var(--ok)}
+.tg-toast.err{background:var(--err)}
+
+
+/* 메인: 가전 쇼룸과 상담 동선을 한 화면에 배치 */
+:root{--mint:#a9e8d4;--mint-ink:#123d34}
+header{background:#fff;border-bottom:1px solid var(--line)}
+.logo{color:var(--navy)}
+.logo b{font-family:inherit;font-weight:800;letter-spacing:-1px}
+.logo span,.nav-links{color:var(--muted)}
+.nav-links{gap:20px;font-size:14px}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta .btn{background:var(--navy);color:#fff}
+.nav-cta .btn:hover{background:var(--navy-deep)}
+.hero{background:var(--navy);color:#fff;padding:52px 0 32px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:54px;align-items:center}
+.hero-text{min-width:0}
+.hero-intro{display:flex;align-items:center;gap:10px;font-size:14px;color:#d7e8eb;margin:0 0 22px}
+.hero-intro:before{content:"";width:24px;height:2px;background:var(--mint)}
+.hero h1{font-family:inherit;font-weight:750;font-size:clamp(36px,4.4vw,59px);letter-spacing:-2.7px;line-height:1.2;margin:0 0 22px;color:#fff}
+.hero h1 span{display:block}
+.hero p.lead{font-size:17px;line-height:1.85;color:#d7e8eb;margin:0 0 26px;max-width:27em}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+.hero-cta .btn{min-height:54px;padding:14px 22px;border-radius:8px}
+.hero-cta .btn-primary{background:var(--mint);color:var(--mint-ink)}
+.hero-cta .btn-primary:hover{background:#c5f2e4}
+.hero-cta .btn-ghost{border-color:#8ba7ae;color:#fff}
+.hero-cta .btn-ghost:hover{background:#28515e}
+.hero a:focus-visible{outline-color:var(--mint)}
+.hero-visual a:focus-visible{outline-color:#225846}
+.hero-contact{margin:16px 0 0;font-size:13px;color:#c0d5db}
+.hero-contact a{color:#fff;text-underline-offset:4px;text-decoration:underline}
+.hero-visual{min-width:0;background:#f0f5f3;border-radius:24px;padding:24px;color:var(--ink)}
+.showroom-head{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#48615c}
+.showroom-head strong{font-size:15px;color:#24453c}
+.hv-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:8px;padding:12px 0 18px}
+.hv-main img{grid-column:1/-1;width:100%;height:auto;aspect-ratio:1.7;object-fit:cover;mix-blend-mode:multiply}
+.hv-main strong{font-size:18px;letter-spacing:-.4px}
+.hv-main small{display:block;color:#63736c;font-size:12px;margin-top:2px}
+.hv-detail{font-size:12px;color:#37584e;text-decoration:underline;text-underline-offset:3px}
+.hv-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid #d4ded8;padding-top:16px}
+.hv-card{display:block;min-width:0;color:inherit}
+.hv-card img{width:100%;height:88px;object-fit:contain;mix-blend-mode:multiply;transition:transform .2s}
+.hv-card span{display:block;margin-top:8px;font-size:12px;text-align:center;color:#344d44;line-height:1.4}
+.hv-card:hover img{transform:translateY(-4px)}
+.hv-card:hover span,.hv-main:hover strong{text-decoration:underline}
+.hero-terms{display:flex;gap:18px;align-items:flex-start;margin:28px 0 0;padding-top:20px;border-top:1px solid #45636c;font-size:12px;color:#cfdee1;line-height:1.75}
+.hero-terms b{flex:0 0 auto;color:#fff;font-size:13px}
+.hero-terms p{margin:0;max-width:76em}
+.membership-summary{background:#f0f5f3;border-bottom:1px solid #dce5df}
+.summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding-top:23px;padding-bottom:23px}
+.summary-item{padding:0 28px;border-left:1px solid #cedbd4}
+.summary-item:first-child{padding-left:0;border-left:0}
+.summary-item span{display:block;font-size:13px;color:#5a7169}
+.summary-item strong{display:block;margin:2px 0;font-size:22px;color:#24453c;letter-spacing:-.5px}
+.summary-item small{display:block;font-size:12px;color:#5a7169}
+.sec-head h2{font-family:inherit;font-weight:750;letter-spacing:-1.2px}
+.best .sec-head{max-width:none;display:flex;align-items:end;justify-content:space-between;gap:24px}
+.best .sec-head p{font-size:15px}
+.section-link{flex-shrink:0;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:5px}
+.best .imgbox{border-radius:16px;background:#f2f5f4}
+.best .pcard .body{padding:18px 4px 0}
+.best .pcard .name{font-size:17px}
+.best .pcard .foot b{color:#225846}
+.consult{background:#f0f5f3}
+.consult-card{border-radius:18px;border-color:#dce5df}
+.consult-card .cs-left{background:var(--navy)}
+.consult-card .cs-left h2{font-family:inherit;font-weight:750;letter-spacing:-1px;font-size:32px}
+.consult-card .cs-left p{line-height:1.85}
+.cs-form button{background:#225846}
+.cs-form button:hover{background:#183f33}
+.leadbar{background:#fff;border-top:1px solid #dce5df;box-shadow:0 -4px 24px #193c4910}
+.lb-title{color:var(--ink)}
+.lb-title svg,.lb-title i{color:var(--muted)}
+.lb-form input{background:#f4f7f6;color:var(--ink);border-color:#dce5df}
+.lb-form input::placeholder{color:#65776e}
+.lb-form input:focus{border-color:#225846}
+.lb-form button{background:#225846;color:#fff}
+.lb-form button:hover{background:#183f33}
+@media(max-width:1050px){.nav-links{gap:12px;font-size:12px}.logo span{display:none}.hero-grid{gap:28px}}
+@media(max-width:820px){
+  .hero{padding:34px 0 26px}
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:30px}
+  .hero h1{font-size:44px;letter-spacing:-2px}
+  .hero p.lead{max-width:32em}
+  .hero-visual{max-width:560px;width:100%;justify-self:center}
+  .hero-terms{gap:8px;flex-direction:column;font-size:12px}
+  .summary-item{padding:0 16px}
+  .summary-item strong{font-size:18px}
+  .best .sec-head{display:block}
+  .section-link{display:inline-block;margin-top:16px}
+}
+@media(max-width:520px){
+  .hero h1{font-size:40px;letter-spacing:-1.8px}
+  .hero-intro{margin-bottom:18px;font-size:13px}
+  .hero p.lead{font-size:15px;margin-bottom:22px}
+  .hero-cta{display:grid;grid-template-columns:1.2fr 1fr;gap:8px}
+  .hero-cta .btn{padding:13px 8px;font-size:14px}
+  .hero-contact{font-size:12px}
+  .hero-visual{padding:18px;border-radius:18px}
+  .hv-main img{height:auto}
+  .hv-main strong{font-size:16px}
+  .hv-card img{height:74px}
+  .hv-card span{font-size:11px}
+  .summary-grid{grid-template-columns:1fr;padding-top:8px;padding-bottom:8px}
+  .summary-item,.summary-item:first-child{padding:14px 0;border-left:0;display:grid;grid-template-columns:1fr 1.2fr;gap:0 12px;align-items:center}
+  .summary-item+.summary-item{border-top:1px solid #d4ded8}
+  .summary-item strong{grid-column:2;grid-row:1;font-size:20px}
+  .summary-item small{grid-column:2;font-size:11px}
+  .best .pcard .name{font-size:14px}
+  .consult-card .cs-left h2{font-size:27px}
+}
+@media(prefers-reduced-motion:reduce){.hv-card img{transition:none}}
+/* 구좌 — 카드 대신 표처럼 */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.tier{position:relative;padding:40px 24px 22px;border-right:1px solid var(--line)}
+.tier:last-child{border-right:0}
+.tier.feature{background:var(--mist)}
+.tier .badge{position:absolute;top:14px;left:24px;font-size:13px;font-weight:700;color:var(--navy)}
+.tier h3{font-size:18px;font-weight:800;color:var(--ink);margin:0}
+.tier .price{font-size:36px;font-weight:800;color:var(--ink);margin:10px 0 2px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tier .price small{font-size:15px;font-weight:500;color:var(--muted);margin-left:2px}
+.tier .sub{color:var(--muted);font-size:14px;margin-bottom:16px}
+.tier ul{list-style:none;padding:0;margin:0;font-size:14.5px}
+.tier ul li{padding:9px 0;border-top:1px solid var(--line)}
+.tiers-note{color:var(--muted);font-size:13px;margin:18px 0 0}
+.tiers-note a{color:var(--navy);font-weight:700;text-decoration:underline}
+@media(max-width:820px){.tiers{grid-template-columns:1fr}.tier{border-right:0;border-bottom:1px solid var(--line);padding:22px 4px}.tier.feature{padding:40px 16px 22px}.tier.feature .badge{left:16px}}
+/* 결합 구조 — 실제 순서라 번호를 쓴다 */
+.struct{background:var(--mist)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px;counter-reset:s}
+.step{border-top:2px solid var(--navy);padding-top:14px}
+.step:before{counter-increment:s;content:counter(s);display:block;font-family:var(--serif);font-size:34px;line-height:1;color:var(--navy);margin-bottom:12px}
+.step h4{margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)}
+.step p{margin:0;font-size:14.5px;color:var(--muted)}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr;gap:28px 20px}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+/* 상품 카드 */
+.best{background:var(--paper)}
+.best-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 20px}
+@media(max-width:960px){.best-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}}
+.catalog{background:var(--paper);border-top:1px solid var(--line)}
+.controls{position:sticky;top:62px;z-index:30;background:var(--mist);border:1px solid var(--line);border-radius:8px;padding:16px 18px 14px;margin-bottom:8px}
+.search{width:100%;display:flex;gap:10px;margin-bottom:12px}
+.search input{flex:1;min-width:0;border:1.5px solid var(--ink);border-radius:6px;padding:13px 16px;font-size:16px;background:#fff;font-family:inherit}
+.search input:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(25,60,73,.12)}
+.search select{border:1.5px solid var(--line);border-radius:6px;padding:0 14px;font-size:14px;background:#fff;font-family:inherit;cursor:pointer;color:var(--ink)}
+.filter-row{display:flex;align-items:flex-start;gap:12px;margin-top:10px}
+.filter-label{flex:0 0 60px;font-size:14px;font-weight:800;color:var(--ink);padding-top:10px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;flex:1;min-width:0}
+.chip{border:1.5px solid #c9d0d9;background:#fff;color:var(--ink);border-radius:6px;padding:8px 12px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.chip:hover{border-color:var(--navy);color:var(--navy)}
+.chip.on,.chip.on:hover{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 2px 8px rgba(25,60,73,.3)}
+.gcount{color:var(--muted);font-size:14px;margin:14px 0 18px}
+.gcount b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 20px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:24px 12px}
+  .controls{padding:12px 12px 10px}
+  .filter-row{gap:10px;margin-top:8px}
+  .filter-label{flex:0 0 54px;font-size:13px;padding-top:8px}
+  .search{gap:8px}
+  .search select{padding:0 8px;font-size:13px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;padding:8px 13px;font-size:14px}
+  .pcard .name{font-size:14px}
+}
+.pcard{display:flex;flex-direction:column;color:inherit}
+.pcard .imgbox{position:relative;aspect-ratio:1/1;background:var(--mist);border-radius:6px;display:flex;align-items:center;justify-content:center;padding:16px}
+.pcard .imgbox img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+.pcard .noimg{color:#a3abb6;font-size:13px}
+.pcard .body{padding:12px 2px 0;display:flex;flex-direction:column;flex:1}
+.pcard .gj{font-size:12.5px;color:var(--muted);margin-bottom:2px}
+.pcard .brand{font-size:13px;color:var(--muted)}
+.pcard .name{font-size:15px;font-weight:700;color:var(--ink);line-height:1.4;margin:2px 0 2px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:42px}
+.pcard:hover .name{text-decoration:underline}
+.pcard .model{font-size:12px;color:#8a929e;margin-bottom:10px;word-break:break-all}
+.pcard .foot{margin-top:auto;font-size:13px;color:var(--muted)}
+.pcard .foot b{font-size:17px;color:var(--ink);font-weight:800;margin-left:4px;font-variant-numeric:tabular-nums}
+.more{text-align:center;margin-top:40px}
+.more .btn{background:transparent;color:var(--navy);border-color:var(--navy);padding:13px 40px}
+.more .btn:hover{background:var(--mist)}
+.best-badge{position:absolute;top:10px;left:10px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;padding:3px 8px;border-radius:3px}
+/* 고객 후기 */
+.reviews{background:var(--paper)}
+.rv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 20px}
+@media(max-width:960px){.rv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.rv-grid{grid-template-columns:1fr}}
+.rv-photo{position:relative;aspect-ratio:4/3;background:var(--mist);border-radius:6px;overflow:hidden}
+.rv-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.rv-noimg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#a3abb6;font-size:13px}
+.rv-sample{position:absolute;top:10px;left:10px;background:var(--err);color:#fff;font-size:11px;font-weight:800;padding:4px 9px;border-radius:3px}
+.rv-body{padding:14px 2px 0}
+.rv-cat{font-size:13px;color:var(--muted)}
+.rv-body h3{margin:2px 0 8px;font-size:16px;font-weight:800;color:var(--ink)}
+.rv-body p{margin:0 0 10px;font-size:14px;color:var(--ink);line-height:1.75}
+.rv-name{font-size:13px;color:var(--muted)}
+.rv-disc{margin:28px 0 0;font-size:12px;color:var(--muted);line-height:1.7}
+/* 이런 분들이 많이 선택 */
+.usecase{background:var(--mist)}
+.uc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+@media(max-width:700px){.uc-grid{grid-template-columns:1fr}}
+.uc-card{border-top:1px solid var(--line);padding:20px 0 22px}
+.uc-card h3{margin:0 0 6px;font-size:17px;font-weight:800;color:var(--ink)}
+.uc-card p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.7}
+/* FAQ */
+.faq{background:var(--paper)}
+.faq-list{max-width:820px;border-top:2px solid var(--ink)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 4px;font-size:16px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:22px;font-weight:300;color:var(--navy);transition:transform .2s;flex:0 0 auto}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-a{padding:0 4px 22px;font-size:15px;color:var(--muted);line-height:1.8;max-width:44em}
+.faq-a b{color:var(--ink)}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><b>가전 멤버십</b><span>가전 렌탈 결합상품</span></a>
+    <nav class="nav-links">
+      <a href="index.html#best">추천 가전</a>
+      <a href="index.html#tiers">구좌 안내</a>
+      <a href="index.html#how">결합 구조</a>
+      <a href="index.html#refund">환급 조건</a>
+      <a href="index.html#catalog">가전 보기</a>
+      <a href="index.html#faq">자주 묻는 질문</a>
+    </nav>
+    <div class="nav-cta"><a class="btn btn-primary" href="#consult">상담 신청</a></div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+  <div class="hero-grid">
+  <div class="hero-text">
+    <p class="hero-intro">가전결합 멤버십</p>
+    <h1><span>가전은 지금 바꾸고,</span><span>납입금은 만기에 돌려받고.</span></h1>
+    <p class="lead">TV·냉장고·세탁기 등 190여 종을 렌탈로 먼저 쓰고, 만기 200회 완납·행사·부가서비스 미사용·만기 익월 이후 해약 신청, 세 조건을 모두 채우면 납입금을 환급받습니다.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#consult">나에게 맞는 가전 상담</a>
+      <a class="btn btn-ghost" href="#catalog">가전 먼저 둘러보기</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="showroom-head"><strong>우리 집 가전 미리보기</strong><span>추천 가전 4종</span></div>
+    <a class="hv-main" href="view.html?id=130519"><img src="img/130519.jpg" alt="LG 나노셀 AI TV 75인치" loading="eager" fetchpriority="high" width="400" height="212"><div><strong>거실을 채우는 75인치</strong><small>LG 나노셀 AI TV</small></div><span class="hv-detail">제품 보기</span></a>
+    <div class="hv-strip">
+      <a class="hv-card" href="view.html?id=139437"><img src="img/139437.jpg" alt="LG 스탠바이미2 + 스피커" loading="eager" width="120" height="88"><span>스탠바이미2 + 스피커</span></a>
+      <a class="hv-card" href="view.html?id=144306"><img src="img/144306.jpg" alt="로보락 S9 MaxV Ultra" loading="eager" width="120" height="88"><span>로보락 S9 MaxV Ultra</span></a>
+      <a class="hv-card" href="view.html?id=132751"><img src="img/132751.jpg" alt="LG 시네빔 쇼츠 빔프로젝터" loading="eager" width="120" height="88"><span>LG 시네빔 쇼츠</span></a>
+    </div>
+  </div>
+  </div>
+  <div class="hero-terms"><b>가입 전 확인</b><p>가전 렌탈과 멤버십이 결합된 선불식 할부거래 상품입니다. 만기 200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약 신청, 세 조건을 모두 충족하면 납입금 100% 환급이 적용됩니다. 렌탈 의무기간 60개월 중 해지 시 남은 렌탈료를 일시불로 부담합니다.</p></div>
+  </div>
+</div>
+<div class="membership-summary">
+  <div class="wrap summary-grid">
+    <div class="summary-item"><span>1구좌 월 납입금</span><strong>29,900원</strong><small>200회 · 총 598만원 / 가전별 구좌 상이</small></div>
+    <div class="summary-item"><span>취향에 맞게 고르는</span><strong>가전 190여 종</strong><small>TV · 냉장고 · 세탁기 · 생활가전</small></div>
+    <div class="summary-item"><span>가입 전에 꼼꼼하게</span><strong>1:1 맞춤 상담</strong><small>가전 선택부터 납입·환급 조건까지</small></div>
+  </div>
+</div>
+
+<section class="best" id="best">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>어떤 가전으로 바꿔볼까요?</h2><p>추천 가전부터 살펴보고, 원하는 구성으로 상담하세요.</p></div><a class="section-link" href="#catalog">전체 가전 둘러보기</a></div>
+    <div class="best-grid" id="bestGrid"></div>
+  </div>
+</section>
+
+
+<section class="consult" id="consult">
+  <div class="wrap">
+    <div class="consult-card">
+      <div class="cs-left">
+        <h2>상담 신청</h2>
+        <p>이름과 연락처만 남겨주시면, 어떤 가전이 맞을지 구좌·환급 조건까지 1:1로 안내해 드립니다.</p>
+        
+      </div>
+      <form class="cs-form tg-consult" id="consultForm" novalidate>
+        <label>이름
+          <input type="text" name="name" autocomplete="name" placeholder="성함을 입력해 주세요" required>
+        </label>
+        <label>핸드폰번호
+          <input type="tel" name="phone" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000" required>
+        </label>
+        <input type="hidden" name="product" id="cfProduct">
+        <label class="cs-agree"><input type="checkbox" name="agree"><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+        <details class="cs-policy" id="privacy"><summary>동의 내용 보기</summary><div class="pv-block"><b class="pv-h">개인정보 수집·이용 (필수)</b><ul><li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li><li>이용 목적: 가전결합 멤버십 상담 연락</li><li>보유 기간: 접수일로부터 90일 보관 후 파기</li><li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li></ul></div><p class="pv-link"><a href="../privacy.html">개인정보처리방침 전문 보기</a></p></details>
+        <button type="submit">상담 신청하기</button>
+        <p class="cs-msg" id="cfMsg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<section id="tiers">
+  <div class="wrap">
+    <div class="sec-head">
+      
+      <h2>구좌별 월 납입금</h2>
+      <p>가전 구성 폭에 따라 세 가지 구좌 중 선택합니다. 렌탈 기간(60개월) 동안은 출금이 멤버십 납입금과 렌탈료 두 건으로 나뉘지만, 합계는 아래 월 납입금과 같습니다.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <h3>1구좌</h3><div class="price">29,900<small>원 / 월</small></div>
+        <div class="sub">200회(16년 8개월) 완납 시 총 납입금 598만원</div>
+        <ul><li>보급형·소형 가전 중심 구성</li><li>가전 렌탈 60개월</li><li>만기 200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약 시 납입금 100% 환급*</li></ul>
+      </div>
+      <div class="tier feature">
+        <div class="badge">추천</div>
+        <h3>2구좌</h3><div class="price">59,800<small>원 / 월</small></div>
+        <div class="sub">200회(16년 8개월) 완납 시 총 납입금 1,196만원</div>
+        <ul><li>프리미엄 대형 가전까지 선택 폭 확대</li><li>가전 렌탈 60개월</li><li>만기 200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약 시 납입금 100% 환급*</li></ul>
+      </div>
+      <div class="tier">
+        <h3>3구좌</h3><div class="price">89,700<small>원 / 월</small></div>
+        <div class="sub">200회(16년 8개월) 완납 시 총 납입금 1,794만원</div>
+        <ul><li>상위 라인 가전·세트 구성 가능</li><li>가전 렌탈 60개월</li><li>만기 200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약 시 납입금 100% 환급*</li></ul>
+      </div>
+    </div>
+    <p class="tiers-note">
+      * 환급은 아래 <a href="#refund">환급 조건</a> 세 가지를 모두 충족할 때 적용됩니다. 구체적 계약 조건은 상담 및 계약서에서 확인하세요.
+    </p>
+  </div>
+</section>
+
+<section class="struct" id="how">
+  <div class="wrap">
+    <div class="sec-head"><h2>어떻게 이런 구조가 되나요</h2>
+      <p>가전 렌탈과 멤버십이 하나로 묶인 선불식 할부거래 상품입니다.</p></div>
+    <ol class="steps">
+      <li class="step"><h4>가전 선택</h4><p>원하는 가전을 고르고 구좌(월 납입금)를 정합니다.</p></li>
+      <li class="step"><h4>렌탈 사용</h4><p>가전은 60개월 렌탈로 바로 설치·사용합니다. 이 기간 소유권은 렌탈사에 유보됩니다.</p></li>
+      <li class="step"><h4>매달 납입</h4><p>정해진 월 납입금을 만기 200회(16년 8개월)까지 납부합니다.</p></li>
+      <li class="step"><h4>만기 환급</h4><p>만기 200회 완납, 행사·부가서비스 미사용, 만기 익월 이후 해약 신청. 세 조건을 모두 충족하면 납입금을 100% 환급받습니다.</p></li>
+    </ol>
+  </div>
+</section>
+
+
+<section id="refund" class="refund-band">
+  <div class="wrap">
+    <h2>납입금 100% 환급, 세 가지 조건</h2>
+    <p class="rlead">환급은 아래 조건을 <b>모두</b> 충족할 때 적용됩니다. 하나라도 빠지면 환급 대상이 아닙니다.</p>
+    <ol class="conds">
+      <li><div class="n">조건 1</div><b>행사·부가서비스 미사용</b><span>여행 등 멤버십 행사·부가서비스를 사용하지 않아야 합니다.</span></li>
+      <li><div class="n">조건 2</div><b>만기 200회 완납</b><span>정해진 200회 납입을 중단 없이 마쳐야 합니다.</span></li>
+      <li><div class="n">조건 3</div><b>만기 익월 이후 해약 신청</b><span>만기가 지난 다음 달 이후 해약을 신청해야 합니다.</span></li>
+    </ol>
+    <p class="allthree">환급 범위는 렌탈 몫을 포함한 <em>납입금 전액</em>입니다. 가전 비용은 총 납입금 안에서 배분되는 몫이며 별도로 추가되지 않습니다.</p>
+  </div>
+</section>
+
+
+<section class="catalog" id="catalog">
+  <div class="wrap">
+    <div class="sec-head"><h2>선택 가능한 가전 190여 종</h2>
+      <p>카테고리·구좌로 좁히거나 모델명으로 검색하세요. 카드를 누르면 상세 페이지로 이동합니다.</p></div>
+    <div class="controls">
+      <div class="search">
+        <input id="q" type="search" placeholder="브랜드·제품·모델명 검색 (예: 삼성 냉장고, KU85)">
+        <select id="sortsel">
+          <option value="def">추천순</option>
+          <option value="low">월 납입금 낮은순</option>
+          <option value="high">월 납입금 높은순</option>
+        </select>
+      </div>
+      <div class="filter-row"><span class="filter-label">가전 종류</span><div class="chips" id="catchips"></div></div>
+      <div class="filter-row"><span class="filter-label">구좌</span><div class="chips" id="gjchips"></div></div>
+    </div>
+    <div class="gcount" id="gcount"></div>
+    <div class="grid" id="grid"></div>
+    <div class="more"><button class="btn btn-dark" id="moreBtn">더 보기</button></div>
+  </div>
+</section>
+
+<section class="usecase" id="usecase"><div class="wrap"><div class="sec-head"><h2>이런 분들께 맞습니다</h2><p>목돈 부담 없이 필요한 가전을 갖추고, 만기에 조건(만기 200회 완납·행사·부가서비스 미사용·만기 익월 이후 해약 신청)을 모두 채우면 납입금을 돌려받는 구조를 찾는 분들께 맞습니다.</p></div><div class="uc-grid"><div class="uc-card"><h3>혼수·신혼 준비</h3><p>TV·냉장고·세탁기 등 여러 가전을 한 번에 갖춰야 하는데, 목돈을 한 번에 쓰기는 부담스러운 분</p></div><div class="uc-card"><h3>이사·새집 입주</h3><p>새 집 구조와 취향에 맞춘 최신 가전을 바로 설치해 쓰고 싶은 분</p></div><div class="uc-card"><h3>목돈 대신 월 납입</h3><p>큰돈을 한 번에 쓰지 않고, 매달 정해진 금액(구좌별 월 납입금)으로 나눠 관리하고 싶은 분</p></div><div class="uc-card"><h3>오래 쓰며 환급까지</h3><p>한 가전을 오래 쓸 계획이라, 만기까지 납입하고 조건(만기 200회 완납·행사·부가서비스 미사용·만기 익월 이후 해약 신청)을 모두 채워 납입금을 돌려받고 싶은 분</p></div></div></div></section>
+<section class="faq" id="faq"><div class="wrap"><div class="sec-head"><h2>자주 묻는 질문</h2><p>가입 전에 자주 물어보시는 내용을 정리했습니다.</p></div><div class="faq-list"><details class="faq-item"><summary>정말 납입금을 100% 돌려받나요?</summary><div class="faq-a">세 가지 조건을 <b>모두</b> 충족하면 그동안 낸 납입금을 100% 환급받습니다. ① 행사·부가서비스 미사용 ② 만기 200회 완납 ③ 만기 익월 이후 해약 신청. 하나라도 빠지면 환급 대상이 아닙니다. 예금·투자 상품이 아니며 원금 보장이나 이자 수익을 제공하지 않습니다.</div></details><details class="faq-item"><summary>렌탈료가 따로 더 나가나요?</summary><div class="faq-a">아니요. 렌탈 기간(60개월) 동안은 출금이 멤버십 납입금과 가전 렌탈료 두 건으로 나뉘지만, 두 건을 합한 금액이 구좌별 월 납입금(1구좌 29,900원 · 2구좌 59,800원 · 3구좌 89,700원)과 같습니다. 61회차부터는 한 건으로 출금됩니다. 이 금액 외에 렌탈료가 더 나가지는 않습니다.</div></details><details class="faq-item"><summary>가전은 언제, 어떻게 설치되나요?</summary><div class="faq-a">상담과 계약이 끝나면 배송·설치가 진행됩니다. 제품별로 일정이 달라, 정확한 배송·설치 시점은 상담 때 안내해 드립니다.</div></details><details class="faq-item"><summary>중간에 해지하면 어떻게 되나요?</summary><div class="faq-a">만기(200회) 전에 해지하면 환급 조건을 충족하지 못해 납입금 100% 환급 대상이 아닙니다. 특히 가전 렌탈 60개월 의무납입기간 중에 해지하면 남은 렌탈료를 일시불로 부담해야 합니다. 기납입금 처리와 위약 조건은 계약서를 기준으로 합니다. 또한 가전은 렌탈 60개월 동안 소유권이 렌탈사에 유보되어 기간 중 임의 재판매가 불가하며, 납입을 중단하면 채권추심과 신용도에 영향을 줄 수 있습니다.</div></details><details class="faq-item"><summary>멤버십 서비스도 포함인가요?</summary><div class="faq-a">네, 선불식 할부거래 결합상품으로 멤버십 행사·부가서비스가 함께 들어 있습니다. 다만 이 서비스를 사용하면 만기 납입금 환급 대상에서 제외됩니다. 자세한 계약 성격은 상담 때 안내해 드립니다.</div></details><details class="faq-item"><summary>안전한가요? 원금은 보장되나요?</summary><div class="faq-a">선수금의 50%가 공제조합을 통해 보전됩니다(할부거래법). 다만 예금자보호 대상 금융상품은 아니며 '100% 안전'이나 원금 보장을 뜻하지는 않습니다. 실제 계약 조건은 계약서를 기준으로 합니다.</div></details></div></div></section>
+
+
+<section class="notice">
+  <div class="wrap">
+    <div class="notice-inner">
+      <h3>가입 전 꼭 확인하세요</h3>
+      <ul>
+        <li><b>선불식 할부거래 상품입니다.</b> 예·적금이나 금융투자 상품이 아니며, 원금 보장이나 이자 수익을 제공하지 않습니다.</li>
+        <li><b>지급 보증</b> — 공제조합을 통해 선수금의 50%가 보전됩니다. "100% 안전"이 아닌, 법정 보전 범위입니다.</li>
+        <li><b>가전 소유권</b> — 렌탈 60개월 동안 소유권은 렌탈사에 유보됩니다. 60개월 의무납입기간 중 해지하면 남은 렌탈료를 일시불로 부담해야 합니다. 기간 중 임의 재판매는 불가하며, 납입 중단 시 채권추심 및 신용도에 영향을 줄 수 있습니다.</li>
+        <li><b>환급 조건</b> — 행사·부가서비스 미사용 + 만기 200회 완납 + 만기 익월 이후 해약 신청, 세 가지를 모두 충족해야 납입금 100% 환급이 적용됩니다.</li>
+        <li>제품 이미지·구성·색상은 실제와 다를 수 있으며, 재고 상황에 따라 변경될 수 있습니다. 정확한 계약 조건은 계약서를 기준으로 합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<footer><div class="wrap"><div class="foot-biz"><div class="fb-name">가전 멤버십</div><div class="fb-line"><a class="fb-pp" href="../privacy.html">개인정보처리방침</a></div></div><div class="disc">
+      본 페이지는 가전결합 멤버십(선불식 할부거래 결합상품)의 정보 제공용입니다.
+      선수금은 공제조합을 통해 50% 범위에서 보전되며, 본 상품은 예금자보호 대상 금융상품이 아닙니다.
+      가전은 렌탈(60개월 의무납입, 소유권 유보) 방식으로 기간 중 해지 시 남은 렌탈료를 일시불로 부담해야 하며, 만기 200회 완납·행사·부가서비스 미사용·만기 익월 이후 해약 신청 조건을 모두 충족할 때 납입금 100% 환급이 적용됩니다.
+      실제 계약 조건·수수료·위약금은 계약서를 기준으로 합니다.
+    </div></div></footer>
+
+
+
+<div class="cm-back" id="consentModal" hidden role="dialog" aria-modal="true" aria-labelledby="cmTitle">
+  <div class="cm-box">
+    <h3 id="cmTitle">상담 신청 전 동의가 필요합니다</h3>
+    <div class="cm-notice"><div class="pv-block"><b class="pv-h">개인정보 수집·이용 (필수)</b><ul><li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li><li>이용 목적: 가전결합 멤버십 상담 연락</li><li>보유 기간: 접수일로부터 90일 보관 후 파기</li><li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li></ul></div><p class="pv-link"><a href="../privacy.html">개인정보처리방침 전문 보기</a></p></div>
+    <label class="cm-agree"><input type="checkbox" id="cmA1"><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+    <div class="cm-btns"><button type="button" class="cm-cancel" id="cmCancel">취소</button><button type="button" class="cm-ok" id="cmOk">동의하고 신청하기</button></div>
+  </div>
+</div>
+<div class="leadbar">
+  <div class="wrap lb-inner">
+    <div class="lb-title">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+      <span><b>상담 신청 24시간 접수</b><i>이름·연락처만 남기세요</i></span>
+    </div>
+    <form class="lb-form tg-consult" novalidate>
+      <input type="text" name="name" placeholder="이름" autocomplete="name" required>
+      <input type="tel" name="phone" placeholder="연락처 (- 없이)" inputmode="numeric" autocomplete="tel" required>
+      <input type="hidden" name="product">
+      <button type="submit"><span class="lb-long">상담 </span>신청하기</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+const PRODUCTS = [{"id": "130519", "brand": "LG", "title": "나노셀 AI TV 75인치", "full": "[LG] 나노셀 AI TV 75인치", "model": "75NA1C90AK", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/130519.jpg", "best": true, "editors": []}, {"id": "139437", "brand": "LG", "title": "스탠바이미2 + 스탠바이미 스피커", "full": "[LG] 스탠바이미2 + 스탠바이미 스피커", "model": "27LX6TPGA.AKXT7SC", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/139437.jpg", "best": true, "editors": []}, {"id": "144306", "brand": "로보락", "title": "S9 MaxV Ultra 로봇청소기", "full": "[로보락] S9 MaxV Ultra 로봇청소기", "model": "S9 MaxV Ultra", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144306.jpg", "best": true, "editors": []}, {"id": "132751", "brand": "LG", "title": "시네빔 쇼츠 초단초점 빔프로젝터", "full": "[LG] 시네빔 쇼츠 초단초점 빔프로젝터", "model": "PU615U", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/132751.jpg", "best": true, "editors": []}, {"id": "149721", "brand": "엡손", "title": "라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터", "full": "[엡손] 라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터", "model": "EF-73", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149721.jpg", "best": false, "editors": []}, {"id": "143716", "brand": "삼성", "title": "크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)", "full": "[삼성] 크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)", "model": "KU75UH8000FXKR+LS32FM703U-1WB", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/143716.jpg", "best": false, "editors": []}, {"id": "143711", "brand": "삼성", "title": "크리스탈 UHD TV 85인치 + 5.0채널 사운드바", "full": "[삼성] 크리스탈 UHD TV 85인치 + 5.0채널 사운드바", "model": "KU85UH8000FXKR+HW-S60D/KR", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/143711.jpg", "best": false, "editors": []}, {"id": "110439", "brand": "라클라우드", "title": "그랑블 스윙 기능성 패브릭 4인 코너형 소파 (아이보리)", "full": "[라클라우드] 그랑블 스윙 기능성 패브릭 4인 코너형 소파 (아이보리)", "model": "그랑블 코너형 4인_IV", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110439.jpg", "best": false, "editors": []}, {"id": "111274", "brand": "오키멧", "title": "단잠 모션베드 Q (프리미엄 유로라텍스)", "full": "[오키멧] 단잠 모션베드 Q (프리미엄 유로라텍스)", "model": "단잠 Q_프리미엄 유로라텍스", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/111274.jpg", "best": false, "editors": []}, {"id": "110459", "brand": "라클라우드", "title": "라르테 프리미엄 침대 프레임+매트리스 세트 (K) (그레이)", "full": "[라클라우드] 라르테 프리미엄 침대 프레임+매트리스 세트 (K) (그레이)", "model": "라르테 침대세트(K) (그레이)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110459.jpg", "best": false, "editors": []}, {"id": "110469", "brand": "라클라우드", "title": "라르테 프리미엄 침대 프레임+매트리스 세트 (LK) (그레이)", "full": "[라클라우드] 라르테 프리미엄 침대 프레임+매트리스 세트 (LK) (그레이)", "model": "라르테 침대세트(LK) (그레이)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110469.jpg", "best": false, "editors": []}, {"id": "110474", "brand": "라클라우드", "title": "라르테 프리미엄 침대 프레임+매트리스 세트 (LK) (아이보리)", "full": "[라클라우드] 라르테 프리미엄 침대 프레임+매트리스 세트 (LK) (아이보리)", "model": "라르테 침대세트(LK) (아이보리)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110474.jpg", "best": false, "editors": []}, {"id": "110484", "brand": "라클라우드", "title": "루즈노 프리미엄 침대 프레임+매트리스 세트 (K) (아이보리)", "full": "[라클라우드] 루즈노 프리미엄 침대 프레임+매트리스 세트 (K) (아이보리)", "model": "루즈노 침대세트(K) (아이보리)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110484.jpg", "best": false, "editors": []}, {"id": "110489", "brand": "라클라우드", "title": "루즈노 프리미엄 침대 프레임+매트리스 세트 (LK) (라이트그레이)", "full": "[라클라우드] 루즈노 프리미엄 침대 프레임+매트리스 세트 (LK) (라이트그레이)", "model": "루즈노 침대세트(LK) (라이트그레이)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110489.jpg", "best": false, "editors": []}, {"id": "110494", "brand": "라클라우드", "title": "루즈노 프리미엄 침대 프레임+매트리스 세트 (LK) (아이보리)", "full": "[라클라우드] 루즈노 프리미엄 침대 프레임+매트리스 세트 (LK) (아이보리)", "model": "루즈노 침대세트(LK) (아이보리)", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/110494.jpg", "best": false, "editors": []}, {"id": "150331", "brand": "헨지디자인", "title": "마인 6인 포세린 벤치형 식탁 1800 세트 (의자3+벤치1)", "full": "[헨지디자인] 마인 6인 포세린 벤치형 식탁 1800 세트 (의자3+벤치1)", "model": "마인 6인 1800 식탁 벤치형 SET", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/150331.jpg", "best": false, "editors": []}, {"id": "148926", "brand": "헨지디자인", "title": "아르벨 스윙 패브릭 4인용 소파 + 스툴 (베이지)", "full": "[헨지디자인] 아르벨 스윙 패브릭 4인용 소파 + 스툴 (베이지)", "model": "아르벨 4인용 소파", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148926.jpg", "best": false, "editors": []}, {"id": "148931", "brand": "헨지디자인", "title": "에그 스윙 패브릭 4인용 소파 (라이트 그레이)", "full": "[헨지디자인] 에그 스윙 패브릭 4인용 소파 (라이트 그레이)", "model": "에그 4인용 소파", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148931.jpg", "best": false, "editors": []}, {"id": "148936", "brand": "헨지디자인", "title": "에그 스윙 패브릭 4인용 코너형 소파 (라이트 그레이)", "full": "[헨지디자인] 에그 스윙 패브릭 4인용 코너형 소파 (라이트 그레이)", "model": "에그 4인용 코너형 소파", "cat": "가구/침대", "cid": "003", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148936.jpg", "best": false, "editors": []}, {"id": "114984", "brand": "코지마", "title": "안마의자 코지더블 (베이지)", "full": "[코지마] 안마의자 코지더블 (베이지)", "model": "CMC-A309", "cat": "건강/뷰티", "cid": "005", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/114984.jpg", "best": false, "editors": []}, {"id": "149738", "brand": "세라젬", "title": "의료침대 마스터 V5 (라떼 베이지)", "full": "[세라젬] 의료침대 마스터 V5 (라떼 베이지)", "model": "V5_라떼베이지", "cat": "건강/뷰티", "cid": "005", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149738.jpg", "best": false, "editors": []}, {"id": "149733", "brand": "세라젬", "title": "의료침대 마스터 V5 (모카 브라운)", "full": "[세라젬] 의료침대 마스터 V5 (모카 브라운)", "model": "V5_모카브라운", "cat": "건강/뷰티", "cid": "005", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149733.jpg", "best": false, "editors": []}, {"id": "149799", "brand": "LG", "title": "휘센 AI 오브제컬렉션 쿨 1시리즈 2in1 에어컨 18평형+6평형 (에센스 화이트) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "full": "[LG] 휘센 AI 오브제컬렉션 쿨 1시리즈 2in1 에어컨 18평형+6평형 (에센스 화이트) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "model": "FQ18GC1EK2+AS065PWHA", "cat": "계절/환경", "cid": "002", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149799.jpg", "best": false, "editors": []}, {"id": "148937", "brand": "캐리어", "title": "에어로 18단 스탠드 냉난방기 23평형 (코지화이트)", "full": "[캐리어] 에어로 18단 스탠드 냉난방기 23평형 (코지화이트)", "model": "RSQD233XAWWSD", "cat": "냉난방기", "cid": "075", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148937.jpg", "best": false, "editors": []}, {"id": "145378", "brand": "LG", "title": "휘센 오브제컬렉션 쿨 사계절에어컨 1시리즈 스탠드 냉난방기 16평형 (에센스 화이트)", "full": "[LG] 휘센 오브제컬렉션 쿨 사계절에어컨 1시리즈 스탠드 냉난방기 16평형 (에센스 화이트)", "model": "FW16FC1EA1", "cat": "냉난방기", "cid": "075", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/145378.jpg", "best": false, "editors": []}, {"id": "126066", "brand": "LG", "title": "디오스 AI 오브제컬렉션 김치톡톡 김치냉장고 491L (오브제컬렉션 베이지)", "full": "[LG] 디오스 AI 오브제컬렉션 김치톡톡 김치냉장고 491L (오브제컬렉션 베이지)", "model": "Z490MEEF11", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/126066.jpg", "best": false, "editors": []}, {"id": "144348", "brand": "LG", "title": "디오스 AI 오브제컬렉션 노크온 냉장고 870L (오브제컬렉션 베이지/베이지)", "full": "[LG] 디오스 AI 오브제컬렉션 노크온 냉장고 870L (오브제컬렉션 베이지/베이지)", "model": "T876MEE312", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/144348.jpg", "best": false, "editors": []}, {"id": "130504", "brand": "삼성", "title": "비스포크 AI 4도어 냉장고 902L (에센셜 다크메탈)", "full": "[삼성] 비스포크 AI 4도어 냉장고 902L (에센셜 다크메탈)", "model": "RM70F90M1DD", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/130504.jpg", "best": false, "editors": []}, {"id": "130509", "brand": "삼성", "title": "비스포크 AI 4도어 냉장고 902L (에센셜 베이지)", "full": "[삼성] 비스포크 AI 4도어 냉장고 902L (에센셜 베이지)", "model": "RM70F90M1GD", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/130509.jpg", "best": false, "editors": []}, {"id": "130499", "brand": "삼성", "title": "비스포크 AI 4도어 냉장고 902L (에센셜 화이트/에센셜 베이지)", "full": "[삼성] 비스포크 AI 4도어 냉장고 902L (에센셜 화이트/에센셜 베이지)", "model": "RM70F90M2ZG", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/130499.jpg", "best": false, "editors": []}, {"id": "150094", "brand": "삼성", "title": "비스포크 AI 김치플러스 4도어 키친핏 MAX 김치냉장고 420L (새틴 화이트)", "full": "[삼성] 비스포크 AI 김치플러스 4도어 키친핏 MAX 김치냉장고 420L (새틴 화이트)", "model": "RK70F42F2X", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/150094.jpg", "best": false, "editors": []}, {"id": "150099", "brand": "삼성", "title": "비스포크 AI 김치플러스 4도어 키친핏 MAX 김치냉장고 420L (새틴화이트/새틴베이지)", "full": "[삼성] 비스포크 AI 김치플러스 4도어 키친핏 MAX 김치냉장고 420L (새틴화이트/새틴베이지)", "model": "RK70F42F2XJ", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/150099.jpg", "best": false, "editors": []}, {"id": "149716", "brand": "LG", "title": "오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)", "full": "[LG] 오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)", "model": "N95THO", "cat": "생활가전", "cid": "001", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149716.jpg", "best": false, "editors": []}, {"id": "130474", "brand": "LG", "title": "코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)", "full": "[LG] 코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)", "model": "B95AWBH+AS195DWWA", "cat": "생활가전", "cid": "001", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/130474.jpg", "best": false, "editors": []}, {"id": "148180", "brand": "삼성", "title": "AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)", "full": "[삼성] AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)", "model": "WF25DG8250BV2T", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148180.jpg", "best": false, "editors": []}, {"id": "148185", "brand": "삼성", "title": "그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)", "full": "[삼성] 그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)", "model": "WF25DG8250BW2T", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148185.jpg", "best": false, "editors": []}, {"id": "139415", "brand": "LG", "title": "오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)", "full": "[LG] 오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)", "model": "SC5MBR80S", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/139415.jpg", "best": false, "editors": []}, {"id": "148170", "brand": "LG", "title": "트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)", "full": "[LG] 트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)", "model": "RD25GSG", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148170.jpg", "best": false, "editors": []}, {"id": "148175", "brand": "LG", "title": "트롬 AI 오브제컬렉션 건조기 25kg (네이처 베이지)", "full": "[LG] 트롬 AI 오브제컬렉션 건조기 25kg (네이처 베이지)", "model": "RD25ESE", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/148175.jpg", "best": false, "editors": []}, {"id": "127229", "brand": "LG", "title": "트롬 AI 오브제컬렉션 세탁기 25kg + 미니워시 4kg (네이처 그린)", "full": "[LG] 트롬 AI 오브제컬렉션 세탁기 25kg + 미니워시 4kg (네이처 그린)", "model": "FX25GFGX", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/127229.jpg", "best": false, "editors": []}, {"id": "127234", "brand": "LG", "title": "트롬 AI 오브제컬렉션 세탁기 25kg + 미니워시 4kg (네이처 베이지)", "full": "[LG] 트롬 AI 오브제컬렉션 세탁기 25kg + 미니워시 4kg (네이처 베이지)", "model": "FX25EFEX", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/127234.jpg", "best": false, "editors": []}, {"id": "139427", "brand": "LG", "title": "트롬 오브제컬렉션 세탁기 21kg + 건조기 19kg (화이트)", "full": "[LG] 트롬 오브제컬렉션 세탁기 21kg + 건조기 19kg (화이트)", "model": "FG21WNR+RG19WN", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/139427.jpg", "best": false, "editors": []}, {"id": "106949", "brand": "삼성", "title": "비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)", "full": "[삼성] 비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)", "model": "AF70F17D11GRS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/106949.jpg", "best": false, "editors": []}, {"id": "138014", "brand": "삼성", "title": "비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)", "full": "[삼성] 비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)", "model": "AF70F17D11BRS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/138014.jpg", "best": false, "editors": []}, {"id": "138004", "brand": "삼성", "title": "비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)", "full": "[삼성] 비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)", "model": "AF70F17D11WRS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/138004.jpg", "best": false, "editors": []}, {"id": "138024", "brand": "삼성", "title": "비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)", "full": "[삼성] 비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)", "model": "AF70F19D11GS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/138024.jpg", "best": false, "editors": []}, {"id": "138019", "brand": "삼성", "title": "비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)", "full": "[삼성] 비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)", "model": "AF70F19D11BS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/138019.jpg", "best": false, "editors": []}, {"id": "138009", "brand": "삼성", "title": "비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)", "full": "[삼성] 비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)", "model": "AF70F19D11WS", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/138009.jpg", "best": false, "editors": []}, {"id": "149794", "brand": "LG", "title": "휘센 AI 오브제컬렉션 위너 1시리즈 2in1 에어컨 18평형+6평형 (크림 화이트) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "full": "[LG] 휘센 AI 오브제컬렉션 위너 1시리즈 2in1 에어컨 18평형+6평형 (크림 화이트) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "model": "FQ18GW1HN2+AS065PWHA", "cat": "에어컨", "cid": "043", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/149794.jpg", "best": false, "editors": []}, {"id": "107779", "brand": "닥터커피", "title": "전자동 에스프레소 커피머신 F11", "full": "[닥터커피] 전자동 에스프레소 커피머신 F11", "model": "F11", "cat": "주방가전", "cid": "006", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/107779.jpg", "best": false, "editors": []}, {"id": "107814", "brand": "인켈", "title": "UHD 스마트 TV 75인치 (블랙)", "full": "[인켈] UHD 스마트 TV 75인치 (블랙)", "model": "SQG750SW", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107814.jpg", "best": false, "editors": []}, {"id": "107819", "brand": "인켈", "title": "UHD 스마트 TV 86인치 (블랙)", "full": "[인켈] UHD 스마트 TV 86인치 (블랙)", "model": "SQG860SW", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107819.jpg", "best": false, "editors": []}, {"id": "148245", "brand": "LG", "title": "스탠바이미2 MAX 32인치", "full": "[LG] 스탠바이미2 MAX 32인치", "model": "32LX6BPGA", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148245.jpg", "best": false, "editors": []}, {"id": "149726", "brand": "엡손", "title": "일반투사 라이프스튜디오 플렉스 빔프로젝터", "full": "[엡손] 일반투사 라이프스튜디오 플렉스 빔프로젝터", "model": "EF-72", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/149726.jpg", "best": false, "editors": []}, {"id": "143721", "brand": "삼성", "title": "크리스탈 UHD TV 65인치 + 5.0채널 사운드바", "full": "[삼성] 크리스탈 UHD TV 65인치 + 5.0채널 사운드바", "model": "KU65UH8000FXKR+HW-S60D/KR", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/143721.jpg", "best": false, "editors": []}, {"id": "143736", "brand": "삼성", "title": "크리스탈 UHD TV 75인치", "full": "[삼성] 크리스탈 UHD TV 75인치", "model": "KU75UH8000FXKR", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/143736.jpg", "best": false, "editors": []}, {"id": "110449", "brand": "라클라우드", "title": "그랑블 스윙 기능성 패브릭 소파 3인용 (아이보리)", "full": "[라클라우드] 그랑블 스윙 기능성 패브릭 소파 3인용 (아이보리)", "model": "그랑블 3인_IV", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/110449.jpg", "best": false, "editors": []}, {"id": "150336", "brand": "헨지디자인", "title": "세라토 4인 식탁 벤치형 세트 (의자2+벤치1)", "full": "[헨지디자인] 세라토 4인 식탁 벤치형 세트 (의자2+벤치1)", "model": "세라토 4인 식탁 벤치형 SET", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/150336.jpg", "best": false, "editors": []}, {"id": "110559", "brand": "라클라우드", "title": "시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 브라운)", "full": "[라클라우드] 시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 브라운)", "model": "시에스타 침대세트(SS) (네추럴 브라운)", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/110559.jpg", "best": false, "editors": []}, {"id": "110564", "brand": "라클라우드", "title": "시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 오크)", "full": "[라클라우드] 시에스타 호텔식 침대 프레임+매트리스 세트 (SS) (네추럴 오크)", "model": "시에스타 침대세트(SS) (네추럴 오크)", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/110564.jpg", "best": false, "editors": []}, {"id": "150341", "brand": "헨지디자인", "title": "아토 세라믹 4인 세라믹 식탁 원형 세트 (의자4)", "full": "[헨지디자인] 아토 세라믹 4인 세라믹 식탁 원형 세트 (의자4)", "model": "아토식탁+의자4개", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/150341.jpg", "best": false, "editors": []}, {"id": "107839", "brand": "헨지디자인", "title": "토니 4인 세라믹 식탁 1400 벤치형 세트 (의자2+벤치)", "full": "[헨지디자인] 토니 4인 세라믹 식탁 1400 벤치형 세트 (의자2+벤치)", "model": "토니 1400 세라믹 식탁 SET", "cat": "가구/침대", "cid": "003", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107839.jpg", "best": false, "editors": []}, {"id": "107639", "brand": "에스테오", "title": "EP7 뷰티 디바이스", "full": "[에스테오] EP7 뷰티 디바이스", "model": "SE-5100", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107639.jpg", "best": false, "editors": []}, {"id": "107769", "brand": "웰모아", "title": "안마의자 아토 (딥브라운)", "full": "[웰모아] 안마의자 아토 (딥브라운)", "model": "HCW-5800", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107769.jpg", "best": false, "editors": []}, {"id": "115034", "brand": "코지마", "title": "안마의자 오블리크 (베이지)", "full": "[코지마] 안마의자 오블리크 (베이지)", "model": "CMC-A33", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/115034.jpg", "best": false, "editors": []}, {"id": "114969", "brand": "리쏘", "title": "안마의자 오스카 PT", "full": "[리쏘] 안마의자 오스카 PT", "model": "LSF-7100F", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/114969.jpg", "best": false, "editors": []}, {"id": "121856", "brand": "세라젬", "title": "안마의자 파우제 M6 싱글 (베이지)", "full": "[세라젬] 안마의자 파우제 M6 싱글 (베이지)", "model": "M6싱글_베이지", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/121856.jpg", "best": false, "editors": []}, {"id": "121861", "brand": "세라젬", "title": "안마의자 파우제 M6 싱글 (브라운)", "full": "[세라젬] 안마의자 파우제 M6 싱글 (브라운)", "model": "M6싱글_브라운", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/121861.jpg", "best": false, "editors": []}, {"id": "148160", "brand": "세라젬", "title": "웰모아 W2 안마의자 (아이보리)", "full": "[세라젬] 웰모아 W2 안마의자 (아이보리)", "model": "웰모아 W2 아이보리", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148160.jpg", "best": false, "editors": []}, {"id": "142683", "brand": "퓨라셀", "title": "퓨라셀미인 탄력미인 패키지", "full": "[퓨라셀] 퓨라셀미인 탄력미인 패키지", "model": "탄력미인", "cat": "건강/뷰티", "cid": "005", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/142683.jpg", "best": false, "editors": []}, {"id": "134711", "brand": "LG", "title": "퓨리케어 AI 오브제컬렉션 360도 M7 공기청정기 34평형 (카밍 베이지)", "full": "[LG] 퓨리케어 AI 오브제컬렉션 360도 M7 공기청정기 34평형 (카밍 베이지)", "model": "AS356NSMA", "cat": "계절/환경", "cid": "002", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/134711.jpg", "best": false, "editors": []}, {"id": "132746", "brand": "LG", "title": "퓨리케어 바스에어시스템 프리미엄 듀얼 + 퓨리케어 AI 오브제컬렉션 에어로퍼니처 공기청정기 6평형", "full": "[LG] 퓨리케어 바스에어시스템 프리미엄 듀얼 + 퓨리케어 AI 오브제컬렉션 에어로퍼니처 공기청정기 6평형", "model": "MX0120BASR+AS065PWHA", "cat": "계절/환경", "cid": "002", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/132746.jpg", "best": false, "editors": []}, {"id": "134701", "brand": "LG", "title": "퓨리케어 오브제컬렉션 하이드로타워 가습기 (샌드 베이지) + 급수비커 + 무빙휠 + 퓨리케어 360도 히트 공기청정기 15평형 (화이트)", "full": "[LG] 퓨리케어 오브제컬렉션 하이드로타워 가습기 (샌드 베이지) + 급수비커 + 무빙휠 + 퓨리케어 360도 히트 공기청정기 15평형 (화이트)", "model": "HY705RSUABM+AS156HWWC", "cat": "계절/환경", "cid": "002", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/134701.jpg", "best": false, "editors": []}, {"id": "144285", "brand": "LG", "title": "휘센 사계절 벽걸이 냉난방기 13평형 (화이트)", "full": "[LG] 휘센 사계절 벽걸이 냉난방기 13평형 (화이트)", "model": "SW13GK1WAS", "cat": "냉난방기", "cid": "075", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144285.jpg", "best": false, "editors": []}, {"id": "150359", "brand": "하이얼", "title": "4도어 냉장고 433L (스페이스 그레이) + 스탠드형 1도어 김치냉장고 150L (화이트)", "full": "[하이얼] 4도어 냉장고 433L (스페이스 그레이) + 스탠드형 1도어 김치냉장고 150L (화이트)", "model": "HRS445MNG+ARK162MNW", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/150359.jpg", "best": false, "editors": []}, {"id": "150354", "brand": "하이얼", "title": "글램글라스 4도어 냉장고 433L (글램화이트/피치핑크) + 스탠드형 1도어 김치냉장고 150L (화이트)", "full": "[하이얼] 글램글라스 4도어 냉장고 433L (글램화이트/피치핑크) + 스탠드형 1도어 김치냉장고 150L (화이트)", "model": "HRS445MNWP+ARK162MNW", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/150354.jpg", "best": false, "editors": []}, {"id": "150349", "brand": "하이얼", "title": "글램글라스 4도어 냉장고 433L (베이지/글램 화이트) + 스탠드형 1도어 김치냉장고 150L (화이트)", "full": "[하이얼] 글램글라스 4도어 냉장고 433L (베이지/글램 화이트) + 스탠드형 1도어 김치냉장고 150L (화이트)", "model": "HRS445MNEW+ARK162MNW", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/150349.jpg", "best": false, "editors": []}, {"id": "144280", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 크림 그레이/에센스 화이트)", "model": "S836MRQ112", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144280.jpg", "best": false, "editors": []}, {"id": "107714", "brand": "LG", "title": "디오스 오브제컬렉션 김치톡톡 김치냉장고 327L (프라임 실버)", "full": "[LG] 디오스 오브제컬렉션 김치톡톡 김치냉장고 327L (프라임 실버)", "model": "Z330MPSF21", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107714.jpg", "best": false, "editors": []}, {"id": "144178", "brand": "쿠쿠", "title": "미식 컬렉션 프리미엄 4도어 양문형 냉장고 477L (실버)", "full": "[쿠쿠] 미식 컬렉션 프리미엄 4도어 양문형 냉장고 477L (실버)", "model": "CRG-CNLR4820MS", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144178.jpg", "best": false, "editors": []}, {"id": "109909", "brand": "삼성", "title": "비스포크 AI 4도어 냉장고 905L (에센셜 화이트)", "full": "[삼성] 비스포크 AI 4도어 냉장고 905L (에센셜 화이트)", "model": "RM70F90R2ZD", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/109909.jpg", "best": false, "editors": []}, {"id": "109904", "brand": "삼성", "title": "비스포크 AI 냉장고 905L (에센셜 베이지)", "full": "[삼성] 비스포크 AI 냉장고 905L (에센셜 베이지)", "model": "RM70F90R2GD", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/109904.jpg", "best": false, "editors": []}, {"id": "107304", "brand": "삼성", "title": "비스포크 김치플러스 3도어 키친핏 김치냉장고 313L (코타화이트)", "full": "[삼성] 비스포크 김치플러스 3도어 키친핏 김치냉장고 313L (코타화이트)", "model": "RQ33DB74D2AP01", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107304.jpg", "best": false, "editors": []}, {"id": "130818", "brand": "삼성", "title": "비스포크 김치플러스3도어 김치냉장고 328L (에센셜 베이지)", "full": "[삼성] 비스포크 김치플러스3도어 김치냉장고 328L (에센셜 베이지)", "model": "RQ33DG71J2ET", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/130818.jpg", "best": false, "editors": []}, {"id": "149697", "brand": "삼성", "title": "비스포크 양문형 냉장고 651L (코타 화이트)", "full": "[삼성] 비스포크 양문형 냉장고 651L (코타 화이트)", "model": "RS70F65Q2Y", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/149697.jpg", "best": false, "editors": []}, {"id": "109899", "brand": "삼성", "title": "비스포크 양문형 냉장고 846L (코타 화이트)", "full": "[삼성] 비스포크 양문형 냉장고 846L (코타 화이트)", "model": "RS84DB5602CW", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/109899.jpg", "best": false, "editors": []}, {"id": "149692", "brand": "삼성", "title": "양문형 냉장고 651L (젠틀블랙)", "full": "[삼성] 양문형 냉장고 651L (젠틀블랙)", "model": "RS70F65Q2F", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/149692.jpg", "best": false, "editors": []}, {"id": "109894", "brand": "삼성", "title": "양문형 오토오픈도어 냉장고 846L (젠틀실버)", "full": "[삼성] 양문형 오토오픈도어 냉장고 846L (젠틀실버)", "model": "RS84DG5602M9", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/109894.jpg", "best": false, "editors": []}, {"id": "148230", "brand": "LG", "title": "컨버터블 패키지 오브제컬렉션 Fit & Max 냉장고 387L (오브제컬렉션 베이지)", "full": "[LG] 컨버터블 패키지 오브제컬렉션 Fit & Max 냉장고 387L (오브제컬렉션 베이지)", "model": "X324GB3S", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148230.jpg", "best": false, "editors": []}, {"id": "148225", "brand": "LG", "title": "컨버터블 패키지 오브제컬렉션 Fit&Max 좌열림 냉동고 328L (오브제컬렉션 베이지)", "full": "[LG] 컨버터블 패키지 오브제컬렉션 Fit&Max 좌열림 냉동고 328L (오브제컬렉션 베이지)", "model": "Y324GB3S", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148225.jpg", "best": false, "editors": []}, {"id": "127264", "brand": "로보락", "title": "S8 MaxV 울트라 로봇청소기 (직배수형)", "full": "[로보락] S8 MaxV 울트라 로봇청소기 (직배수형)", "model": "S8 MaxV Ultra 직배수형", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/127264.jpg", "best": false, "editors": []}, {"id": "144296", "brand": "로보락", "title": "S9 MaxV Slim 로봇청소기 (블랙)", "full": "[로보락] S9 MaxV Slim 로봇청소기 (블랙)", "model": "S9 MaxV Slim", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144296.jpg", "best": false, "editors": []}, {"id": "144301", "brand": "로보락", "title": "Saros Z70 로봇청소기 (실버)", "full": "[로보락] Saros Z70 로봇청소기 (실버)", "model": "Saros z70", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144301.jpg", "best": false, "editors": []}, {"id": "114934", "brand": "리터로봇", "title": "고양이 자동 화장실 리터로봇4 (블랙)", "full": "[리터로봇] 고양이 자동 화장실 리터로봇4 (블랙)", "model": "리터로봇4_블랙", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/114934.jpg", "best": false, "editors": []}, {"id": "115019", "brand": "리터로봇", "title": "고양이 자동 화장실 리터로봇4 (화이트)", "full": "[리터로봇] 고양이 자동 화장실 리터로봇4 (화이트)", "model": "리터로봇4_화이트", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/115019.jpg", "best": false, "editors": []}, {"id": "138034", "brand": "삼성", "title": "비스포크 AI 스팀 울트라 로봇청소기 (새틴 차콜)", "full": "[삼성] 비스포크 AI 스팀 울트라 로봇청소기 (새틴 차콜)", "model": "VR90F01AAH", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/138034.jpg", "best": false, "editors": []}, {"id": "112764", "brand": "LG", "title": "코드제로 AI 오브제컬렉션 A9 무선청소기 (카밍 베이지) + 스마트 인버터 마그네트론 전자레인지 25L (블랙)", "full": "[LG] 코드제로 AI 오브제컬렉션 A9 무선청소기 (카밍 베이지) + 스마트 인버터 마그네트론 전자레인지 25L (블랙)", "model": "AI958WA+MW25B", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/112764.jpg", "best": false, "editors": []}, {"id": "148190", "brand": "LG", "title": "코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지)", "full": "[LG] 코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지)", "model": "B95AWBH", "cat": "생활가전", "cid": "001", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148190.jpg", "best": false, "editors": []}, {"id": "139432", "brand": "LG", "title": "2026 NEW 오브제컬렉션 스타일러 대용량 (샌드 베이지)", "full": "[LG] 2026 NEW 오브제컬렉션 스타일러 대용량 (샌드 베이지)", "model": "SC5MBR43S", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/139432.jpg", "best": false, "editors": []}, {"id": "148210", "brand": "삼성", "title": "비스포크 AI 건조기 20kg (다크스틸)", "full": "[삼성] 비스포크 AI 건조기 20kg (다크스틸)", "model": "DV80H20DDS", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148210.jpg", "best": false, "editors": []}, {"id": "148215", "brand": "삼성", "title": "비스포크 AI 건조기 20kg (화이트)", "full": "[삼성] 비스포크 AI 건조기 20kg (화이트)", "model": "DV80H20DDW", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148215.jpg", "best": false, "editors": []}, {"id": "148200", "brand": "삼성", "title": "비스포크 AI 세탁기 24kg (다크스틸)", "full": "[삼성] 비스포크 AI 세탁기 24kg (다크스틸)", "model": "WF80H24BDS", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148200.jpg", "best": false, "editors": []}, {"id": "148205", "brand": "삼성", "title": "비스포크 AI 세탁기 24kg (화이트)", "full": "[삼성] 비스포크 AI 세탁기 24kg (화이트)", "model": "WF80H24BDW", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148205.jpg", "best": false, "editors": []}, {"id": "138054", "brand": "삼성", "title": "비스포크 AI 에어드레서 대용량 (클린화이트)", "full": "[삼성] 비스포크 AI 에어드레서 대용량 (클린화이트)", "model": "DF24CB9900DR", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/138054.jpg", "best": false, "editors": []}, {"id": "107359", "brand": "LG", "title": "스타일러 오브제컬렉션 슈케어 (에센스 그라파이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "full": "[LG] 스타일러 오브제컬렉션 슈케어 (에센스 그라파이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "model": "SS4RHS60E+HW300BBB", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107359.jpg", "best": false, "editors": []}, {"id": "107354", "brand": "LG", "title": "스타일러 오브제컬렉션 슈케어 (에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "full": "[LG] 스타일러 오브제컬렉션 슈케어 (에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "model": "SS4RWS60E+HW300BBB", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107354.jpg", "best": false, "editors": []}, {"id": "107124", "brand": "LG", "title": "트롬 오브제컬렉션 건조기 20kg (네이처 그린)", "full": "[LG] 트롬 오브제컬렉션 건조기 20kg (네이처 그린)", "model": "RD20GNG", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107124.jpg", "best": false, "editors": []}, {"id": "107119", "brand": "LG", "title": "트롬 오브제컬렉션 건조기 20kg (네이처 베이지)", "full": "[LG] 트롬 오브제컬렉션 건조기 20kg (네이처 베이지)", "model": "RD20ENE", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107119.jpg", "best": false, "editors": []}, {"id": "107144", "brand": "LG", "title": "트롬 오브제컬렉션 건조기 20kg (모던 스테인리스)", "full": "[LG] 트롬 오브제컬렉션 건조기 20kg (모던 스테인리스)", "model": "RD20VN", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107144.jpg", "best": false, "editors": []}, {"id": "107139", "brand": "LG", "title": "트롬 오브제컬렉션 건조기 20kg (스페이스 블랙)", "full": "[LG] 트롬 오브제컬렉션 건조기 20kg (스페이스 블랙)", "model": "RD20KN", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107139.jpg", "best": false, "editors": []}, {"id": "140046", "brand": "LG", "title": "트롬 오브제컬렉션 세탁기 24kg (네이처 그린)", "full": "[LG] 트롬 오브제컬렉션 세탁기 24kg (네이처 그린)", "model": "FX24GNGR", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/140046.jpg", "best": false, "editors": []}, {"id": "140051", "brand": "LG", "title": "트롬 오브제컬렉션 세탁기 24kg (네이처 베이지)", "full": "[LG] 트롬 오브제컬렉션 세탁기 24kg (네이처 베이지)", "model": "FX24ENER", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/140051.jpg", "best": false, "editors": []}, {"id": "148240", "brand": "LG", "title": "트롬 오브제컬렉션 세탁기 24kg (스페이스 블랙)", "full": "[LG] 트롬 오브제컬렉션 세탁기 24kg (스페이스 블랙)", "model": "FX24KNTR", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148240.jpg", "best": false, "editors": []}, {"id": "138049", "brand": "삼성", "title": "AI Q9000 2in1 에어컨 17평형+6평형 (화이트)", "full": "[삼성] AI Q9000 2in1 에어컨 17평형+6평형 (화이트)", "model": "AF60F17D11WRS", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/138049.jpg", "best": false, "editors": []}, {"id": "138044", "brand": "삼성", "title": "AI Q9000 스탠드 에어컨 19평형 (화이트/그레이)", "full": "[삼성] AI Q9000 스탠드 에어컨 19평형 (화이트/그레이)", "model": "AF60F19D11GS", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/138044.jpg", "best": false, "editors": []}, {"id": "107004", "brand": "삼성", "title": "AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)", "full": "[삼성] AI Q9000 스탠드 에어컨 19평형 (화이트/베이지)", "model": "AF60F19D11BS", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107004.jpg", "best": false, "editors": []}, {"id": "138039", "brand": "삼성", "title": "Q9000 스탠드 에어컨 19평형 (화이트)", "full": "[삼성] Q9000 스탠드 에어컨 19평형 (화이트)", "model": "AF60F19D11WS", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/138039.jpg", "best": false, "editors": []}, {"id": "148947", "brand": "캐리어", "title": "인버터 벽걸이 에어컨 16평형 (화이트)", "full": "[캐리어] 인버터 벽걸이 에어컨 16평형 (화이트)", "model": "DARB-0162GDWSD", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148947.jpg", "best": false, "editors": []}, {"id": "149731", "brand": "LG", "title": "휘센 AI 오브제컬렉션 위너 1시리즈 스탠드 에어컨 18평형 (크림 화이트)", "full": "[LG] 휘센 AI 오브제컬렉션 위너 1시리즈 스탠드 에어컨 18평형 (크림 화이트)", "model": "FQ18GW1HN1", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/149731.jpg", "best": false, "editors": []}, {"id": "149743", "brand": "LG", "title": "휘센 AI 오브제컬렉션 쿨 1시리즈 스탠드 에어컨 18평형 (에센스 화이트)", "full": "[LG] 휘센 AI 오브제컬렉션 쿨 1시리즈 스탠드 에어컨 18평형 (에센스 화이트)", "model": "FQ18GC1EK1", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/149743.jpg", "best": false, "editors": []}, {"id": "148195", "brand": "LG", "title": "휘센 벽걸이 에어컨 13평형 (화이트)", "full": "[LG] 휘센 벽걸이 에어컨 13평형 (화이트)", "model": "SQ13GK1WAS", "cat": "에어컨", "cid": "043", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148195.jpg", "best": false, "editors": []}, {"id": "127509", "brand": "삼성", "title": "Infinite AI 빌트인 인덕션 3구 (블랙)", "full": "[삼성] Infinite AI 빌트인 인덕션 3구 (블랙)", "model": "CC99F63U1DS", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/127509.jpg", "best": false, "editors": []}, {"id": "107089", "brand": "LG", "title": "디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)", "full": "[LG] 디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)", "model": "DUE6BGE", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107089.jpg", "best": false, "editors": []}, {"id": "107094", "brand": "LG", "title": "디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)", "full": "[LG] 디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)", "model": "DUE6GLE", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/107094.jpg", "best": false, "editors": []}, {"id": "127504", "brand": "삼성", "title": "비스포크 AI 식기세척기 14인용 (새틴베이지)", "full": "[삼성] 비스포크 AI 식기세척기 14인용 (새틴베이지)", "model": "DW90F79P1USBT", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/127504.jpg", "best": false, "editors": []}, {"id": "127489", "brand": "삼성", "title": "비스포크 AI 식기세척기 14인용 (코타화이트)", "full": "[삼성] 비스포크 AI 식기세척기 14인용 (코타화이트)", "model": "DW90F79F1U01T", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/127489.jpg", "best": false, "editors": []}, {"id": "144357", "brand": "쿠쿠", "title": "인스퓨어 초고온수 ZERO100S 냉온정 얼음 정수기 (화이트)", "full": "[쿠쿠] 인스퓨어 초고온수 ZERO100S 냉온정 얼음 정수기 (화이트)", "model": "CP-SS100HWS_60", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/144357.jpg", "best": false, "editors": []}, {"id": "148942", "brand": "쿠쿠", "title": "인스퓨어 초고온수 얼음 냉온정수기 (화이트)", "full": "[쿠쿠] 인스퓨어 초고온수 얼음 냉온정수기 (화이트)", "model": "CP-SS100WSV", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/148942.jpg", "best": false, "editors": []}, {"id": "139752", "brand": "LG", "title": "AI 울트라 HD TV 55인치", "full": "[LG] AI 울트라 HD TV 55인치", "model": "55UA751C", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/139752.jpg", "best": false, "editors": []}, {"id": "138079", "brand": "삼성", "title": "무빙스타일 M1 스마트 모니터 43인치 + 무빙스탠드 스탠다드 (화이트)", "full": "[삼성] 무빙스타일 M1 스마트 모니터 43인치 + 무빙스탠드 스탠다드 (화이트)", "model": "LS43FM1E3U-2WE", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/138079.jpg", "best": false, "editors": []}, {"id": "149710", "brand": "엡손", "title": "일반투사 CO-FH02 램프 빔프로젝트", "full": "[엡손] 일반투사 CO-FH02 램프 빔프로젝트", "model": "CO-FH02", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/149710.jpg", "best": false, "editors": []}, {"id": "143731", "brand": "삼성", "title": "크리스탈 UHD TV 50인치", "full": "[삼성] 크리스탈 UHD TV 50인치", "model": "KU50UH8000FXKR", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/143731.jpg", "best": false, "editors": []}, {"id": "143726", "brand": "삼성", "title": "크리스탈 UHD TV 55인치", "full": "[삼성] 크리스탈 UHD TV 55인치", "model": "KU55UH8000FXKR", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/143726.jpg", "best": false, "editors": []}, {"id": "132106", "brand": "삼성", "title": "인피니트 AI 리유저블 필터 공기청정기 10평형 (에센셜 베이지)", "full": "[삼성] 인피니트 AI 리유저블 필터 공기청정기 10평형 (에센셜 베이지)", "model": "AP90H03193EGD", "cat": "계절/환경", "cid": "002", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/132106.jpg", "best": false, "editors": []}, {"id": "132101", "brand": "삼성", "title": "인피니트 AI 리유저블 필터 공기청정기 10평형 (에센셜 블루 그레이)", "full": "[삼성] 인피니트 AI 리유저블 필터 공기청정기 10평형 (에센셜 블루 그레이)", "model": "AP90H03193UGD", "cat": "계절/환경", "cid": "002", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/132101.jpg", "best": false, "editors": []}, {"id": "107399", "brand": "LG", "title": "퓨리케어 360도 공기청정기 플러스 18.5평형 (크리미스노우) + 전자레인지 20L (블랙)", "full": "[LG] 퓨리케어 360도 공기청정기 플러스 18.5평형 (크리미스노우) + 전자레인지 20L (블랙)", "model": "AS195DWWA+MW20CDN", "cat": "계절/환경", "cid": "002", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107399.jpg", "best": false, "editors": []}, {"id": "107314", "brand": "삼성", "title": "2도어 일반냉장고 525L (메탈 스노우화이트)", "full": "[삼성] 2도어 일반냉장고 525L (메탈 스노우화이트)", "model": "RT53DG7A1CWW", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107314.jpg", "best": false, "editors": []}, {"id": "107904", "brand": "하이얼", "title": "글램글라스 스마트 콤비 2도어 냉장고 248L (화이트/베이지)", "full": "[하이얼] 글램글라스 스마트 콤비 2도어 냉장고 248L (화이트/베이지)", "model": "HRP257MDWE", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107904.jpg", "best": false, "editors": []}, {"id": "144218", "brand": "쿠쿠", "title": "미식 컬렉션 간접 냉각 시스템 스탠드형 냉동고 192L (실버)", "full": "[쿠쿠] 미식 컬렉션 간접 냉각 시스템 스탠드형 냉동고 192L (실버)", "model": "CFZ-BF2010MS", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144218.jpg", "best": false, "editors": []}, {"id": "144213", "brand": "쿠쿠", "title": "미식 컬렉션 김치냉장고 133L (실버)", "full": "[쿠쿠] 미식 컬렉션 김치냉장고 133L (실버)", "model": "CKR-AD1410MS", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144213.jpg", "best": false, "editors": []}, {"id": "126954", "brand": "하이얼", "title": "스마트 2도어 냉장고 490L", "full": "[하이얼] 스마트 2도어 냉장고 490L", "model": "HRT520MNM", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/126954.jpg", "best": false, "editors": []}, {"id": "107894", "brand": "하이얼", "title": "스탠드형 1도어 김치냉장고 150L (화이트)", "full": "[하이얼] 스탠드형 1도어 김치냉장고 150L (화이트)", "model": "ARK162MNW", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107894.jpg", "best": false, "editors": []}, {"id": "109479", "brand": "LG", "title": "일반 냉장고 507L (화이트)", "full": "[LG] 일반 냉장고 507L (화이트)", "model": "B502W33", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/109479.jpg", "best": false, "editors": []}, {"id": "115149", "brand": "레이윙", "title": "디스커버리 F14E 접이식 전기자전거 18A (팬텀블랙)", "full": "[레이윙] 디스커버리 F14E 접이식 전기자전거 18A (팬텀블랙)", "model": "F14E18_팬텀블랙", "cat": "레저/자동차", "cid": "010", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/115149.jpg", "best": false, "editors": []}, {"id": "115144", "brand": "레이윙", "title": "디스커버리 F14E 접이식 전기자전거 18A (펄화이트)", "full": "[레이윙] 디스커버리 F14E 접이식 전기자전거 18A (펄화이트)", "model": "F14E18_펄화이트", "cat": "레저/자동차", "cid": "010", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/115144.jpg", "best": false, "editors": []}, {"id": "148165", "brand": "로보락", "title": "S8 Pro Plus 로봇청소기 (화이트) + H6 무선청소기 (아이보리)", "full": "[로보락] S8 Pro Plus 로봇청소기 (화이트) + H6 무선청소기 (아이보리)", "model": "S8 PRO plus+H60", "cat": "생활가전", "cid": "001", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/148165.jpg", "best": false, "editors": []}, {"id": "115129", "brand": "로보락", "title": "아쿠아 물걸레 청소기 (화이트)", "full": "[로보락] 아쿠아 물걸레 청소기 (화이트)", "model": "F25 ACE", "cat": "생활가전", "cid": "001", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/115129.jpg", "best": false, "editors": []}, {"id": "145373", "brand": "로보락", "title": "올인원 오토엠티도크 무선 청소기 (블랙)", "full": "[로보락] 올인원 오토엠티도크 무선 청소기 (블랙)", "model": "H60 hub ultra", "cat": "생활가전", "cid": "001", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/145373.jpg", "best": false, "editors": []}, {"id": "107879", "brand": "펫말리", "title": "우드 펫드라이룸 M10", "full": "[펫말리] 우드 펫드라이룸 M10", "model": "M10", "cat": "생활가전", "cid": "001", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107879.jpg", "best": false, "editors": []}, {"id": "150389", "brand": "미닉스", "title": "PRO 플러스 미니 건조기 3.5kg + PRO 미니 식기세척기 3인용 (그레이지)", "full": "[미닉스] PRO 플러스 미니 건조기 3.5kg + PRO 미니 식기세척기 3인용 (그레이지)", "model": "MNMD-120G+MNDW-110G", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/150389.jpg", "best": false, "editors": []}, {"id": "150384", "brand": "미닉스", "title": "PRO 플러스 미니 건조기 3.5kg + 더 플렌더 MAX 음식물처리기 3L (그레이지)", "full": "[미닉스] PRO 플러스 미니 건조기 3.5kg + 더 플렌더 MAX 음식물처리기 3L (그레이지)", "model": "MNMD-120G+MNFD-200G", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/150384.jpg", "best": false, "editors": []}, {"id": "138092", "brand": "삼성", "title": "건조기 9kg (화이트)", "full": "[삼성] 건조기 9kg (화이트)", "model": "DV90TA040KE", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/138092.jpg", "best": false, "editors": []}, {"id": "130848", "brand": "삼성", "title": "그랑데 AI 세탁기 12kg (화이트)", "full": "[삼성] 그랑데 AI 세탁기 12kg (화이트)", "model": "WW12T504DTW", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/130848.jpg", "best": false, "editors": []}, {"id": "107044", "brand": "삼성", "title": "그랑데 세탁기 19kg (화이트)", "full": "[삼성] 그랑데 세탁기 19kg (화이트)", "model": "WF19T6000KW", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107044.jpg", "best": false, "editors": []}, {"id": "107034", "brand": "삼성", "title": "그랑데 통버블 세탁기 21kg (블랙 캐비어)", "full": "[삼성] 그랑데 통버블 세탁기 21kg (블랙 캐비어)", "model": "WA21A8376KV", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107034.jpg", "best": false, "editors": []}, {"id": "149715", "brand": "LG", "title": "꼬망스 플러스 세탁기 8kg (모던 스테인리스)", "full": "[LG] 꼬망스 플러스 세탁기 8kg (모던 스테인리스)", "model": "F8VVR", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/149715.jpg", "best": false, "editors": []}, {"id": "150374", "brand": "위닉스", "title": "인버터 컴팩트 건조기S 4kg (네오 화이트) + 뽀송 제습기 12L (카밍 베이지)", "full": "[위닉스] 인버터 컴팩트 건조기S 4kg (네오 화이트) + 뽀송 제습기 12L (카밍 베이지)", "model": "HS4E400-OWK+DXAE120-NEK", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/150374.jpg", "best": false, "editors": []}, {"id": "150369", "brand": "위닉스", "title": "인버터 컴팩트 건조기S 4kg (스페이스 그레이) + 뽀송 제습기 12L (카밍 베이지)", "full": "[위닉스] 인버터 컴팩트 건조기S 4kg (스페이스 그레이) + 뽀송 제습기 12L (카밍 베이지)", "model": "HS4E400-OYK+DXAE120-NEK", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/150369.jpg", "best": false, "editors": []}, {"id": "130484", "brand": "LG", "title": "통돌이 세탁기 17kg (미드 프리 실버) + 디오스 오브제컬렉션 전자레인지 (크리스탈 베이지)", "full": "[LG] 통돌이 세탁기 17kg (미드 프리 실버) + 디오스 오브제컬렉션 전자레인지 (크리스탈 베이지)", "model": "T17DX3A+MWJ25E", "cat": "세탁가전", "cid": "009", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/130484.jpg", "best": false, "editors": []}, {"id": "107309", "brand": "삼성", "title": "AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)", "full": "[삼성] AI 무풍 콤보 벽걸이 에어컨 7평형 (화이트)", "model": "AR60F07D12WS", "cat": "에어컨", "cid": "043", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107309.jpg", "best": false, "editors": []}, {"id": "115114", "brand": "위닉스", "title": "격자형 창문형 에어컨 6평형 (화이트)", "full": "[위닉스] 격자형 창문형 에어컨 6평형 (화이트)", "model": "EWNE067-PWK", "cat": "에어컨", "cid": "043", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/115114.jpg", "best": false, "editors": []}, {"id": "148952", "brand": "캐리어", "title": "인버터 벽걸이 에어컨 10평형 (화이트)", "full": "[캐리어] 인버터 벽걸이 에어컨 10평형 (화이트)", "model": "AARB-0102GDWSD", "cat": "에어컨", "cid": "043", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/148952.jpg", "best": false, "editors": []}, {"id": "107909", "brand": "하이얼", "title": "인버터 벽걸이 에어컨 8평형 (퓨어 화이트)", "full": "[하이얼] 인버터 벽걸이 에어컨 8평형 (퓨어 화이트)", "model": "HSU08QAHIW", "cat": "에어컨", "cid": "043", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107909.jpg", "best": false, "editors": []}, {"id": "139425", "brand": "LG", "title": "휘센 벽걸이 에어컨 7평형 (화이트)", "full": "[LG] 휘센 벽걸이 에어컨 7평형 (화이트)", "model": "SQ07GA3WBS", "cat": "에어컨", "cid": "043", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/139425.jpg", "best": false, "editors": []}, {"id": "150379", "brand": "미닉스", "title": "PRO 미니 식기세척기 3인용 + 더 플렌더 MAX 음식물처리기 3L (그레이지)", "full": "[미닉스] PRO 미니 식기세척기 3인용 + 더 플렌더 MAX 음식물처리기 3L (그레이지)", "model": "MNDW-110G+MNFD-200G", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/150379.jpg", "best": false, "editors": []}, {"id": "116799", "brand": "LG", "title": "디오스 빌트인 인덕션 3구", "full": "[LG] 디오스 빌트인 인덕션 3구", "model": "BEI3QEBLOE", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/116799.jpg", "best": false, "editors": []}, {"id": "138084", "brand": "삼성", "title": "비스포크 인덕션 3구 (블랙)", "full": "[삼성] 비스포크 인덕션 3구 (블랙)", "model": "NZ63DG403EFK", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/138084.jpg", "best": false, "editors": []}, {"id": "107884", "brand": "웰치", "title": "빌트인 브릿지 인덕션 3구 (화이트)", "full": "[웰치] 빌트인 브릿지 인덕션 3구 (화이트)", "model": "WEI-W7700", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/107884.jpg", "best": false, "editors": []}, {"id": "114964", "brand": "위닉스", "title": "슬림 냉온정수기 (화이트)", "full": "[위닉스] 슬림 냉온정수기 (화이트)", "model": "TS200S", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/114964.jpg", "best": false, "editors": []}, {"id": "144183", "brand": "쿠쿠", "title": "에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블그레이)", "full": "[쿠쿠] 에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블그레이)", "model": "CFD-EFF201DCNG", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144183.jpg", "best": false, "editors": []}, {"id": "144188", "brand": "쿠쿠", "title": "에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블화이트)", "full": "[쿠쿠] 에코웨일 건조분쇄형 강력건조통 음식물처리기 2L (노블화이트)", "model": "CFD-EFF201DCNW", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144188.jpg", "best": false, "editors": []}, {"id": "144208", "brand": "쿠쿠", "title": "에코웨일 건조분쇄형 음식물처리기 2.6L (노블 그레이)", "full": "[쿠쿠] 에코웨일 건조분쇄형 음식물처리기 2.6L (노블 그레이)", "model": "CFD-D301DCNG", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144208.jpg", "best": false, "editors": []}, {"id": "144203", "brand": "쿠쿠", "title": "에코웨일 건조분쇄형 음식물처리기 2.6L (노블 화이트)", "full": "[쿠쿠] 에코웨일 건조분쇄형 음식물처리기 2.6L (노블 화이트)", "model": "CFD-D301DCNW", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144203.jpg", "best": false, "editors": []}, {"id": "144198", "brand": "쿠쿠", "title": "전기분해살균 인앤아웃 식기세척기 6인용 (그레이스 핑크)", "full": "[쿠쿠] 전기분해살균 인앤아웃 식기세척기 6인용 (그레이스 핑크)", "model": "CDW-CS0620TGPE", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144198.jpg", "best": false, "editors": []}, {"id": "144223", "brand": "쿠쿠", "title": "전기분해살균 인앤아웃 식기세척기 6인용 (그레이스 화이트)", "full": "[쿠쿠] 전기분해살균 인앤아웃 식기세척기 6인용 (그레이스 화이트)", "model": "CDW-CS0620TGWE", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144223.jpg", "best": false, "editors": []}, {"id": "144193", "brand": "쿠쿠", "title": "전기분해살균 인앤아웃 식기세척기 6인용 (퓨어 화이트)", "full": "[쿠쿠] 전기분해살균 인앤아웃 식기세척기 6인용 (퓨어 화이트)", "model": "CDW-CS0620TWE", "cat": "주방가전", "cid": "006", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/144193.jpg", "best": false, "editors": []}, {"id": "uPDEZ00058_01_0001", "brand": "LG", "title": "휘센 오브제컬렉션 제습기25L", "full": "[LG] 휘센 오브제컬렉션 제습기25L", "model": "DQ256MWGA", "cat": "계절/환경", "cid": "002", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPDEZ00058_01_0001.jpg", "best": false, "editors": []}, {"id": "uPREZ03007_01_0001", "brand": "LG", "title": "디오스 김치톡톡 217L", "full": "[LG] 디오스 김치톡톡 217L", "model": "K220LW111", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPREZ03007_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01222_01_0001", "brand": "LG", "title": "스탠바이미 2 + LG 스탠바이미 스피커 27LX6TPGA.", "full": "[LG] 스탠바이미 2 + LG 스탠바이미 스피커 27LX6TPGA.", "model": "AKXT7SC", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/uPTVZ01222_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01062_01_0001", "brand": "삼성", "title": "Crystal UHD TV 50인치 벽걸이", "full": "[삼성] Crystal UHD TV 50인치 벽걸이", "model": "KU50UH8000FXKR+WMN-B05FB/KR", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPTVZ01062_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01064_01_0001", "brand": "삼성", "title": "Crystal UHD TV 55인치 벽걸이", "full": "[삼성] Crystal UHD TV 55인치 벽걸이", "model": "KU55UH8000FXKR+WMN-B05FB/KR", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPTVZ01064_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01058_01_0001", "brand": "삼성", "title": "Crystal UHD TV 65인치[벽걸이]+5.0 채널 사운드바", "full": "[삼성] Crystal UHD TV 65인치[벽걸이]+5.0 채널 사운드바", "model": "KU65UH8000FXKR+WMN-B05FB/KR+HW-S60D/KR", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/uPTVZ01058_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01066_01_0001", "brand": "삼성", "title": "Crystal UHD TV 75인치[벽걸이]", "full": "[삼성] Crystal UHD TV 75인치[벽걸이]", "model": "KU75UH8000FXKR+WMN-B16FBKR", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/uPTVZ01066_01_0001.jpg", "best": false, "editors": []}, {"id": "uPMPZ00070_01_0001", "brand": "삼성", "title": "Crystal UHD TV 75인치[벽걸이]+삼성 무빙스타일 M7 80cm (화이트)", "full": "[삼성] Crystal UHD TV 75인치[벽걸이]+삼성 무빙스타일 M7 80cm (화이트)", "model": "KU75UH8000FXKR+WMN-B16FBKR+LS32FM703U-1WB", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/uPMPZ00070_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01060_01_0001", "brand": "삼성", "title": "Crystal UHD TV 85인치[벽걸이]+5.0 채널 사운드바", "full": "[삼성] Crystal UHD TV 85인치[벽걸이]+5.0 채널 사운드바", "model": "KU85UH8000FXKR+WMN-B16FB/KR+HW-S60D/KR", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/uPTVZ01060_01_0001.jpg", "best": false, "editors": []}, {"id": "uPWDZ00241_01_0001", "brand": "삼성", "title": "BESPOKE 그랑데 AI 원바디 Top-Fit 24kg+20kg 패키지 (화이트)", "full": "[삼성] BESPOKE 그랑데 AI 원바디 Top-Fit 24kg+20kg 패키지 (화이트)", "model": "WF2420HCWWC", "cat": "세탁가전", "cid": "009", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/uPWDZ00241_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ00889_01_0001", "brand": "LG", "title": "나노셀 AI TV 75[벽걸이]", "full": "[LG] 나노셀 AI TV 75[벽걸이]", "model": "75NA1C90AKW", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/uPTVZ00889_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ00888_01_0001", "brand": "LG", "title": "나노셀 AI TV 75[스탠드]", "full": "[LG] 나노셀 AI TV 75[스탠드]", "model": "75NA1C90AKS", "cat": "TV/디지털", "cid": "008", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/uPTVZ00888_01_0001.jpg", "best": false, "editors": []}, {"id": "132681", "brand": "LG", "title": "나노셀 AI TV 86인치", "full": "[LG] 나노셀 AI TV 86인치", "model": "86NA1C90AK", "cat": "TV/디지털", "cid": "008", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/132681.jpg", "best": false, "editors": []}, {"id": "151404", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)", "model": "T876MEE012+AS720WA", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/151404.jpg", "best": false, "editors": []}, {"id": "151409", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)", "model": "T876MEE012+AS065PWHA", "cat": "냉장가전", "cid": "004", "gooja": "3구좌", "monthly": 89700, "total": "1,794만원", "thumb": "img/151409.jpg", "best": false, "editors": []}, {"id": "151424", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)", "model": "S836MQQ012+HW300BBB", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151424.jpg", "best": false, "editors": []}, {"id": "151429", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360", "model": "S836MQQ012+XO2TBE", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151429.jpg", "best": false, "editors": []}, {"id": "151434", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)", "model": "S836MQQ012+AS105GWJC", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151434.jpg", "best": false, "editors": []}, {"id": "151439", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)", "model": "S836MQQ012+AS076MWHC", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151439.jpg", "best": false, "editors": []}, {"id": "151444", "brand": "LG", "title": "디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 스마트 인버터 마그네트론 전자레인지 25L (블랙)", "full": "[LG] 디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 스마트 인버터 마그네트론 전자레인지 25L (블랙)", "model": "S836MQQ012+MW25B", "cat": "냉장가전", "cid": "004", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151444.jpg", "best": false, "editors": []}, {"id": "151414", "brand": "LG", "title": "트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)", "full": "[LG] 트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)", "model": "F17HTPR+MLJ39ER", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151414.jpg", "best": false, "editors": []}, {"id": "151419", "brand": "LG", "title": "트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)", "full": "[LG] 트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)", "model": "F17HTPR+AS720WA", "cat": "세탁가전", "cid": "009", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151419.jpg", "best": false, "editors": []}, {"id": "151399", "brand": "LG", "title": "디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)", "full": "[LG] 디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)", "model": "DFE6BGE", "cat": "주방가전", "cid": "006", "gooja": "2구좌", "monthly": 59800, "total": "1,196만원", "thumb": "img/151399.jpg", "best": false, "editors": []}, {"id": "151396", "brand": "로보락", "title": "Qrevo Curv 로봇청소기 (화이트)", "full": "[로보락] Qrevo Curv 로봇청소기 (화이트)", "model": "Qrevo Curv", "cat": "생활가전", "cid": "001", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/151396.jpg", "best": false, "editors": []}, {"id": "105999", "brand": "LG", "title": "퓨리케어 360도 공기청정기 30평형 (크리미스노우)", "full": "[LG] 퓨리케어 360도 공기청정기 30평형 (크리미스노우)", "model": "AS305DWWA", "cat": "계절/환경", "cid": "002", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/105999.jpg", "best": false, "editors": []}, {"id": "uPTVZ01221_01_0001", "brand": "LG", "title": "UHD TV 55[벽걸이]", "full": "[LG] UHD TV 55[벽걸이]", "model": "55UA751CW", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPTVZ01221_01_0001.jpg", "best": false, "editors": []}, {"id": "uPTVZ01220_01_0001", "brand": "LG", "title": "UHD TV 55[스탠드]", "full": "[LG] UHD TV 55[스탠드]", "model": "55UA751CS", "cat": "TV/디지털", "cid": "008", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPTVZ01220_01_0001.jpg", "best": false, "editors": []}, {"id": "uPREZ02624_01_0001", "brand": "삼성", "title": "김치플러스 뚜껑형 221L(그레이지)", "full": "[삼성] 김치플러스 뚜껑형 221L(그레이지)", "model": "RP22C3111EG", "cat": "냉장가전", "cid": "004", "gooja": "1구좌", "monthly": 29900, "total": "598만원", "thumb": "img/uPREZ02624_01_0001.jpg", "best": false, "editors": []}];
+const CATS = ["전체", "TV/디지털", "냉장가전", "세탁가전", "주방가전", "가구/침대", "건강/뷰티", "생활가전", "에어컨", "계절/환경", "냉난방기", "레저/자동차"];
+let state={cat:"전체", gj:"전체", q:"", sort:"def", shown:0};
+const PER=24;
+const grid=document.getElementById("grid");
+const gcount=document.getElementById("gcount");
+const moreBtn=document.getElementById("moreBtn");
+function chipHtml(list, active, group){
+  return list.map(function(c){return '<button class="chip '+(c===active?'on':'')+'" data-group="'+group+'" data-val="'+c+'">'+c+'</button>';}).join("");
+}
+document.getElementById("catchips").innerHTML=chipHtml(CATS,state.cat,"cat");
+document.getElementById("gjchips").innerHTML=chipHtml(["전체","1구좌","2구좌","3구좌"],state.gj,"gj");
+document.querySelectorAll(".chip").forEach(function(el){el.addEventListener("click",function(){
+  var g=el.dataset.group; state[g]=el.dataset.val;
+  document.querySelectorAll('.chip[data-group="'+g+'"]').forEach(function(x){x.classList.toggle("on",x.dataset.val===state[g]);});
+  render(true);
+});});
+document.getElementById("q").addEventListener("input",function(e){state.q=e.target.value.trim().toLowerCase();render(true);});
+document.getElementById("sortsel").addEventListener("change",function(e){state.sort=e.target.value;render(true);});
+moreBtn.addEventListener("click",function(){state.shown+=PER;paint();});
+function filtered(){
+  var r=PRODUCTS.filter(function(p){
+    if(state.cat!=="전체" && p.cat!==state.cat) return false;
+    if(state.gj!=="전체" && p.gooja!==state.gj) return false;
+    if(state.q){ var hay=(p.full+" "+p.model+" "+p.brand+" "+p.cat).toLowerCase(); if(hay.indexOf(state.q)<0) return false; }
+    return true;
+  });
+  if(state.sort==="low") r=r.slice().sort(function(a,b){return a.monthly-b.monthly;});
+  if(state.sort==="high") r=r.slice().sort(function(a,b){return b.monthly-a.monthly;});
+  return r;
+}
+function card(p){
+  var img=p.thumb?'<img loading="lazy" src="'+p.thumb+'" alt="'+p.full+'">':'<div class="noimg">이미지 준비중</div>';
+  return '<a class="pcard" href="view.html?id='+p.id+'">'
+    +'<div class="imgbox">'+img+(p.best?'<span class="best-badge">추천</span>':'')+'</div><div class="body">'
+    +'<span class="gj">'+p.gooja+'</span>'
+    +'<div class="brand">'+(p.brand||"&nbsp;")+'</div>'
+    +'<div class="name">'+p.title+'</div>'
+    +'<div class="model">'+p.model+'</div>'
+    +'<div class="foot">월 납입금<b>'+p.monthly.toLocaleString()+'원</b></div></div></a>';
+}
+var cur=[];
+function render(reset){ cur=filtered(); if(reset) state.shown=PER; paint(); }
+function paint(){
+  var slice=cur.slice(0,state.shown);
+  grid.innerHTML=slice.map(card).join("") || '<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0">검색 결과가 없습니다.</p>';
+  gcount.innerHTML='총 <b>'+cur.length+'</b>종'+(state.cat!=="전체"?' \u00b7 '+state.cat:"")+(state.gj!=="전체"?' \u00b7 '+state.gj:"");
+  moreBtn.style.display = state.shown<cur.length ? "inline-flex":"none";
+}
+render(true);
+var bestGrid=document.getElementById("bestGrid");
+if(bestGrid){ bestGrid.innerHTML=PRODUCTS.filter(function(p){return p.best;}).map(card).join(""); }
+</script>
+
+<script src="../config.js"></script>
+<script>
+(function(){
+  var forms=document.querySelectorAll("form.tg-consult");
+  if(!forms.length) return;
+  try{ if(window.__PRODUCT__){ document.querySelectorAll('input[name="product"]').forEach(function(el){el.value=window.__PRODUCT__;}); } }catch(e){}
+  function toast(t,type){
+    var el=document.createElement("div"); el.className="tg-toast "+(type||""); el.textContent=t;
+    document.body.appendChild(el);
+    setTimeout(function(){el.classList.add("show");},10);
+    setTimeout(function(){el.classList.remove("show"); setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); },350);},3800);
+  }
+  function localMsg(form,t,type){ var m=form.querySelector(".cs-msg"); if(m){ m.textContent=t; m.className="cs-msg"+(type?(" "+type):""); } }
+  var hc=document.querySelector(".nav-cta a"); if(hc && !document.getElementById("consult")) hc.href="index.html#consult";
+  var modal=document.getElementById("consentModal"), cmA1=document.getElementById("cmA1"), pending=null;
+  function closeModal(){ if(modal) modal.hidden=true; pending=null; }
+  function openModal(form){ pending=form; cmA1.checked=false; modal.hidden=false; cmA1.focus(); }
+  if(modal){
+    document.getElementById("cmCancel").addEventListener("click",closeModal);
+    modal.addEventListener("click",function(e){ if(e.target===modal) closeModal(); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape" && !modal.hidden) closeModal(); });
+    document.getElementById("cmOk").addEventListener("click",function(){
+      if(!cmA1.checked){ toast("개인정보 수집·이용에 동의해 주세요.","err"); return; }
+      var f=pending; closeModal(); if(f) send(f);
+    });
+  }
+  function send(form){
+    var name=(form.elements["name"].value||"").trim();
+    var phoneRaw=(form.elements["phone"].value||"").trim();
+    var cfg=(window.TG||{});
+    if(!cfg.relay){
+      toast("접수 설정이 완료되지 않았습니다. 잠시 후 다시 시도해 주세요.","err"); return;
+    }
+    var product=""; try{ product=(form.elements["product"].value||"").trim(); }catch(e){}
+    var text="\u{1F514} [가전멤버십A] 상담 신청\n\n이름: "+name+"\n연락처: "+phoneRaw
+      +(product?("\n관심상품: "+product):"")
+      +"\n유입: "+(window.srcLabel?srcLabel():"")
+      +"\n페이지: "+location.href
+      +"\n개인정보 동의: 예"
+      +"\n시각: "+new Date().toLocaleString("ko-KR");
+    var btn=form.querySelector("button[type=submit]"); if(btn) btn.disabled=true;
+    localMsg(form,"접수 중입니다...","");
+    fetch(cfg.relay,{
+      method:"POST", headers:{"Content-Type":"text/plain"},
+      body:JSON.stringify({type:"lead", text:text})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d && d.ok){ form.reset(); toast("상담 신청이 접수되었습니다. 곧 연락드리겠습니다.","ok"); localMsg(form,"상담 신청이 접수되었습니다. 곧 연락드리겠습니다.","ok"); }
+      else { toast("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.","err"); localMsg(form,"전송에 실패했습니다. 잠시 후 다시 시도해 주세요.","err"); }
+      if(btn) btn.disabled=false;
+    }).catch(function(){ toast("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.","err"); localMsg(form,"전송에 실패했습니다. 잠시 후 다시 시도해 주세요.","err"); if(btn) btn.disabled=false; });
+  }
+  forms.forEach(function(form){
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var name=(form.elements["name"].value||"").trim();
+      var phoneRaw=(form.elements["phone"].value||"").trim();
+      var digits=phoneRaw.replace(/[^0-9]/g,"");
+      if(name.length<2){ toast("이름을 입력해 주세요.","err"); localMsg(form,"이름을 정확히 입력해 주세요.","err"); form.elements["name"].focus(); return; }
+      if(digits.length<10||digits.length>11){ toast("핸드폰번호를 정확히 입력해 주세요.","err"); localMsg(form,"핸드폰번호를 정확히 입력해 주세요.","err"); form.elements["phone"].focus(); return; }
+      var a1=form.elements["agree"];
+      if(a1){
+        if(!a1.checked){ toast("개인정보 수집·이용에 동의해 주세요.","err"); localMsg(form,"개인정보 수집·이용에 동의해 주세요.","err"); a1.focus(); return; }
+        send(form);
+      } else {
+        openModal(form);
+      }
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var u=window.VISITLOG; if(!u) return;
+  var ref=document.referrer||"";
+  try{ if(ref && new URL(ref).host===location.host) return; }catch(e){}
+  var q=location.search, ad=/NaPm=|n_media=|n_query=|n_keyword=/.test(q)||/adcr\.naver|ad\.search\.naver/.test(ref);
+  fetch("https://api.ipify.org?format=json").then(function(r){return r.json();}).catch(function(){return {};}).then(function(j){
+    fetch(u,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({
+      site:location.host, page:location.pathname, q:q.slice(0,400), ref:ref.slice(0,300), ad:ad?1:0,
+      ip:(j&&j.ip)||"", ua:navigator.userAgent.slice(0,200)})}).catch(function(){});
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function q(k){var m=location.search.match(new RegExp("[?&]"+k+"=([^&]*)"));try{return m?decodeURIComponent(m[1].replace(/\+/g," ")):"";}catch(e){return m?m[1]:"";}}
+  var s=""; try{ s=sessionStorage.getItem("src")||""; }catch(e){}
+  if(!s){
+    var ref=document.referrer||"", host=""; try{ host=ref?new URL(ref).host:""; }catch(e){}
+    if(host===location.host) host="";
+    var u=[q("utm_source"),q("utm_campaign"),q("utm_content")].filter(Boolean).join(" / ");
+    var kw=q("n_keyword")||q("n_query");
+    if(u) s=u;
+    else if(kw||/NaPm=|n_media=/.test(location.search)||/adcr\.naver/.test(host)) s="네이버광고"+(kw?(" / "+kw):"");
+    else if(/blog\.naver/.test(host)) s="네이버블로그";
+    else if(/search\.naver/.test(host)) s="네이버검색";
+    else if(/instagram|facebook/.test(host)) s="인스타·페북";
+    else if(/google/.test(host)) s="구글";
+    else if(/daum|kakao/.test(host)) s="다음·카카오";
+    else s=host||"직접";
+    try{ sessionStorage.setItem("src",s); }catch(e){}
+  }
+  window.srcLabel=function(){ return s; };
+})();
+</script>
+
+</body></html>
