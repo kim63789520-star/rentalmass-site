@@ -94,7 +94,7 @@ form button:disabled{opacity:.6}
 .bar a{display:block;max-width:528px;margin:0 auto;background:var(--red);color:#fff;text-align:center;border-radius:10px;
  padding:16px;font-weight:900;font-size:18px;text-decoration:none}
 </style>
-</head>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script></head>
 <body>
 <div class="wrap">
 
@@ -220,7 +220,7 @@ form button:disabled{opacity:.6}
     fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},
       body:JSON.stringify({type:"lead",text:text})})
     .then(function(r){return r.json();}).then(function(d){
-      if(d&&d.ok){f.reset();say("상담 신청이 접수되었습니다. 곧 연락드리겠습니다.","ok");}
+      if(d&&d.ok){f.reset();if(window.fbq)fbq("track","Lead");say("상담 신청이 접수되었습니다. 곧 연락드리겠습니다.","ok");}
       else say("전송에 실패했습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");
       btn.disabled=false;
     }).catch(function(){say("전송에 실패했습니다. 카카오톡 오픈채팅으로 문의해 주세요.","err");btn.disabled=false;});
