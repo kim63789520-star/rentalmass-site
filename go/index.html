@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>가전 먼저 받는 멤버십</title>
+<meta name="description" content="낡은 가전 싹 바꾸고 낸 돈은 만기에 돌려받는 가전결합 멤버십 · 월 29,900원부터 · 고른 가전은 먼저 받고, 200회 완납하면 낸 돈은 만기에 그대로 돌려받는 가전결합 멤버십">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+html{-webkit-tap-highlight-color:transparent}
+a,button,select,summary,label{touch-action:manipulation}
+:root{--red:#e5322d;--red2:#c9221e;--navy:#14213d;--ink:#191919;--sub:#666;--line:#e6e6e6;--gray:#f5f5f3;--cream:#fff6e9;--yel:#ffd84a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#e4e4e1;color:var(--ink);font-family:"Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+.wrap{max-width:480px;margin:0 auto;background:#fff;overflow:hidden;padding-bottom:84px}
+img,video{display:block;max-width:100%}
+.cond{font-size:11px;color:#8a8a8a;letter-spacing:-.2px;margin-top:10px;line-height:1.5}
+.red{color:var(--red)}
+.mk{background:linear-gradient(transparent 60%,var(--yel) 60%)}
+section{padding:48px 20px}
+h2{font-size:28px;line-height:1.36;font-weight:900;letter-spacing:-.8px}
+.lead{font-size:16px;color:var(--sub);margin-top:10px;line-height:1.6}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+.btn{display:block;margin-top:22px;height:58px;border-radius:12px;background:var(--red);color:#fff;font-weight:900;font-size:18px;text-align:center;line-height:58px;text-decoration:none;box-shadow:0 8px 20px rgba(229,50,45,.28)}
+.top{background:var(--navy);color:#fff;text-align:center;font-size:13px;font-weight:500;padding:9px}
+/* hero */
+.hero{position:relative;background:#111}
+.hero video{width:100%;height:min(128vw,610px);object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.05) 30%,rgba(0,0,0,.78) 78%)}
+.hero .cap{position:absolute;left:20px;right:20px;bottom:112px;z-index:2;color:#fff}
+.bdg{display:inline-block;background:var(--red);font-size:13px;font-weight:700;padding:6px 11px;border-radius:5px}
+.hero h1{font-size:35px;line-height:1.28;font-weight:900;margin-top:12px;letter-spacing:-1.2px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal;color:var(--yel)}
+.hero .pr{margin-top:10px;font-size:16px;font-weight:500}
+.hero .pr b{font-size:26px;font-weight:900;color:var(--yel);letter-spacing:-.5px}
+/* lead card */
+.quick{position:relative;z-index:3;margin:-92px 14px 0;padding-bottom:6px}
+.leadbox{background:#fff;border-radius:18px;padding:20px 18px 18px;box-shadow:0 14px 38px rgba(0,0,0,.2)}
+.qt{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.qt i{font-style:normal;color:var(--red)}
+.qs{font-size:13px;color:var(--sub);margin-top:3px}
+.in2{display:grid;grid-template-columns:1fr 1.35fr;gap:8px;margin-top:14px}
+.lead-f input[type=text],.lead-f input[type=tel],.lead-f select{width:100%;height:54px;border:1px solid #bdbdbd;border-radius:10px;padding:0 13px;font-size:16px;background:#fff;color:var(--ink);font-family:inherit}
+.lead-f input:focus,.lead-f select:focus{outline:none;border:2px solid var(--navy)}
+.agree{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px}
+.agree input{width:20px;height:20px;accent-color:var(--red);flex:none}
+details.pv{margin-top:8px;font-size:12px;color:#555;background:var(--gray);border-radius:8px;padding:8px 12px}
+details.pv ul{padding-left:16px;line-height:1.6;margin-top:6px}
+.submit{position:relative;overflow:hidden;width:100%;height:60px;border:0;border-radius:12px;background:var(--red);color:#fff;font-size:19px;font-weight:900;margin-top:14px;cursor:pointer;font-family:inherit;box-shadow:0 8px 20px rgba(229,50,45,.3)}
+.submit:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);animation:sh 3s ease-in-out infinite}
+@keyframes sh{55%,100%{left:130%}}
+.submit:active{background:var(--red2)}
+.submit:disabled{opacity:.6}
+.msg{text-align:center;margin-top:10px;font-size:14px;font-weight:700}
+.msg:empty{display:none}
+.msg.err{color:var(--red)}
+.done{text-align:center;padding:18px 6px 8px}
+.done .ck{width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;font-size:34px;font-weight:900;display:grid;place-items:center;margin:0 auto;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(0)}}
+.done b{display:block;font-size:21px;font-weight:900;margin-top:14px}
+.done p{font-size:15px;color:var(--sub);margin-top:6px;line-height:1.6}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);padding:26px 14px 6px}
+.stats div{text-align:center;border-left:1px solid var(--line);padding:2px 4px}
+.stats div:first-child{border:0}
+.stats b{display:block;font-size:24px;font-weight:900;letter-spacing:-.8px;color:var(--navy)}
+.stats small{font-size:12px;color:var(--sub)}
+.stats+.cond{padding:0 20px;text-align:center}
+/* talk */
+.talk{background:var(--cream)}
+.chat{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.chat p{max-width:84%;padding:13px 16px;font-size:16px;line-height:1.5;border-radius:18px}
+.chat .l{align-self:flex-start;background:#fff;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.chat .r{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px;font-weight:500;max-width:90%}
+.chat .r b{color:var(--yel)}
+.chat .rv:nth-child(2){transition-delay:.25s}.chat .rv:nth-child(3){transition-delay:.5s}.chat .rv:nth-child(4){transition-delay:.9s}
+/* steps */
+.step{display:flex;gap:14px;margin-top:20px;align-items:center}
+.step img{width:42%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;flex:none}
+.step .n{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--red);border-radius:99px;padding:3px 10px}
+.step b{display:block;font-size:19px;font-weight:900;margin-top:6px;letter-spacing:-.5px}
+.step p{font-size:14px;color:var(--sub);line-height:1.55;margin-top:4px}
+/* life */
+.life{background:var(--gray)}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:20px}
+.mosaic figure{position:relative;border-radius:12px;overflow:hidden}
+.mosaic img{width:100%;aspect-ratio:1;object-fit:cover}
+.mosaic figcaption{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.62);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:5px}
+/* money */
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:20px;background:var(--gray);border-radius:12px;padding:4px}
+.seg button{height:46px;border:0;background:none;border-radius:9px;font:700 15px "Noto Sans KR";color:var(--sub);cursor:pointer}
+.seg button.on{background:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(20,33,61,.3)}
+.calc{border:2px solid var(--navy);border-radius:16px;margin-top:12px;overflow:hidden}
+.calc .row{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-top:1px solid var(--line);font-size:15px}
+.calc .row:first-child{border:0}
+.calc .row b{font-size:19px}
+.calc .row b small{font-size:13px;font-weight:500;color:var(--sub)}
+.calc .tot{background:var(--navy);color:#fff;padding:18px}
+.calc .tot b{font-size:34px;font-weight:900;color:var(--yel);letter-spacing:-1px}
+/* vs */
+.vs{background:var(--gray)}
+.vs .cols{display:grid;grid-template-columns:1fr 1.18fr;gap:8px;margin-top:22px;align-items:end}
+.vs .c{border-radius:14px;padding:16px 13px;background:#fff;border:1px solid var(--line)}
+.vs .c h3{font-size:14px;color:var(--sub)}
+.vs .c ul{list-style:none;margin-top:8px;font-size:14px;line-height:1.5}
+.vs .c li{padding:8px 0 8px 22px;position:relative;border-top:1px dashed var(--line)}
+.vs .c li:before{content:"✕";position:absolute;left:0;color:#b9b9b9;font-weight:900}
+.vs .me{background:var(--navy);color:#fff;border:0;box-shadow:0 14px 30px rgba(20,33,61,.3);position:relative;padding-top:22px}
+.vs .me h3{color:var(--yel)}
+.vs .me li{border-color:rgba(255,255,255,.16)}
+.vs .me li:before{content:"✓";color:var(--yel)}
+.vs .me .flag{position:absolute;top:-11px;left:13px;background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:99px}
+/* products */
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:20px -20px 0;padding:0 20px 4px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:1px solid #cfcfcf;background:#fff;border-radius:99px;padding:9px 15px;font:700 14px "Noto Sans KR";color:#555;cursor:pointer}
+.tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pane{display:none;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.pane.on{display:grid;animation:fd .35s}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}}
+.pc{border:1px solid var(--line);border-radius:12px;padding:10px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px;background:#fff}
+.pc img{aspect-ratio:1;object-fit:contain;width:100%;margin-bottom:6px}
+.pc-b{font-size:11px;color:#999;font-weight:700}
+.pc-t{font-size:13px;font-weight:500;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:35px}
+.pc-m{font-size:13px;font-weight:900;color:var(--red)}
+.brands{font-size:13px;color:var(--sub);margin-top:14px;text-align:center}
+/* must */
+.must{background:var(--gray)}
+.must h2{font-size:22px}
+.must ul{margin-top:14px;padding-left:18px;font-size:14px;line-height:1.75;color:#333}
+.must li{margin-top:4px}
+/* faq */
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{margin-top:16px;border-top:1px solid var(--ink)}
+.faq summary{list-style:none;cursor:pointer;padding:17px 28px 17px 0;font-weight:700;font-size:16px;position:relative;display:flex;gap:8px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{font-style:normal;color:var(--red);font-weight:900}
+.faq summary:after{content:"+";position:absolute;right:2px;top:12px;font-size:24px;font-weight:400;color:#999}
+.faq details[open] summary:after{content:"−"}
+.faq details p{font-size:15px;line-height:1.7;color:#444;background:var(--gray);border-radius:8px;padding:14px;margin-bottom:16px}
+/* form */
+.form{padding:0 0 48px;background:var(--navy)}
+.form .ph{position:relative}
+.form .ph img{width:100%}
+.form .ph:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,var(--navy))}
+.form .ph div{position:absolute;left:20px;right:20px;bottom:64px;z-index:2;color:#fff}
+.form .ph h2{text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.form .ph p{font-size:15px;margin-top:6px;opacity:.9}
+.form .leadbox{margin:-48px 14px 0;position:relative;z-index:3}
+.who{font-size:13px;color:#333;background:var(--gray);border-radius:8px;padding:10px 12px}
+.who b{color:var(--red)}
+.fld{margin-top:14px}
+.fld label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+.fld label small{font-weight:400;color:var(--sub)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:9;display:flex;justify-content:center;background:#fff;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .35s}
+.bar.on{transform:none}
+.bar div{max-width:456px;width:100%;display:flex;align-items:center;gap:10px}
+.bar p{font-size:12px;color:var(--sub);line-height:1.3;flex:1}.bar p b{display:block;font-size:18px;color:var(--ink);font-weight:900}
+.bar a{height:50px;padding:0 26px;border-radius:10px;background:var(--red);color:#fff;font-weight:900;font-size:16px;display:grid;place-items:center;text-decoration:none}
+
+.top{background:var(--red);font-weight:700}
+.hero h1{font-size:38px}
+.hero .cap{bottom:118px}
+.hero .sub{margin-top:10px;font-size:18px;font-weight:700;line-height:1.45}
+.hero .sub em{font-style:normal;color:var(--yel);font-size:24px;font-weight:900}
+.chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}
+.chips button{height:42px;border:1.5px solid #cfcfcf;background:#fff;border-radius:9px;font:700 13px "Noto Sans KR";color:#444;cursor:pointer;padding:0 2px;letter-spacing:-.4px}
+.chips button.on{background:var(--red);border-color:var(--red);color:#fff;box-shadow:0 4px 12px rgba(229,50,45,.3)}
+.chips button.on:after{content:attr(data-o);font-size:10px;margin-left:2px;vertical-align:top}
+.ql{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;font-size:14px;font-weight:900}
+.ql small{font-weight:500;color:var(--sub);font-size:12px}
+.age{margin-top:8px}
+.bang{background:#111;color:#fff;text-align:center;padding:46px 20px 40px}
+.bang .k{font-size:15px;color:#bbb}
+.bang h2{font-size:30px;margin-top:10px}
+.bang h2 em{font-style:normal;color:var(--yel)}
+.bang .big{font-size:58px;font-weight:900;color:var(--red);letter-spacing:-2px;line-height:1.1;margin-top:18px;text-shadow:0 0 30px rgba(229,50,45,.35)}
+.bang .big small{display:block;font-size:17px;color:#fff;letter-spacing:-.3px;margin-top:6px;font-weight:700}
+.bang .cond{color:#888}
+.bang .list{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:22px}
+.bang .list span{border:1px solid #444;border-radius:99px;padding:6px 12px;font-size:14px;font-weight:700}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script></head>
+<body><div class="wrap">
+
+<div class="top">🔥 10년 넘은 가전, 이번에 바꾸세요 · 상담만 받아도 OK</div>
+
+<header class="hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="../img/scene_hero.jpg"><source src="../img/hero.mp4" type="video/mp4"></video>
+  <div class="cap">
+    <span class="bdg">냉장고 · 세탁기 · TV · 에어컨</span>
+    <h1>낡은 가전<br><em>싹 다</em> 바꿨습니다</h1>
+    <p class="sub">LG·삼성 새 가전은 먼저 받고<br>낸 돈은 만기에 <em>100% 환급*</em></p>
+  </div>
+</header>
+
+<div class="quick">
+  <div class="leadbox">
+    <form class="lead-f" data-tag="빠른 상담" novalidate>
+      <p class="qt">받고 싶은 가전 <i>먼저 고르세요</i></p>
+      <p class="qs">고르고 번호만 남기면 월 납입·모델을 전화로 알려 드립니다</p>
+      <p class="ql">받고 싶은 가전 <small>최대 2개</small></p>
+      <div class="chips"><button type="button">냉장고</button><button type="button">김치냉장고</button><button type="button">세탁기</button><button type="button">건조기</button><button type="button">TV</button><button type="button">에어컨</button><button type="button">스타일러</button><button type="button">식기세척기</button><button type="button">로봇청소기</button><button type="button">안마의자</button></div>
+      <div class="in2"><input type="text" name="name" autocomplete="name" placeholder="이름" aria-label="이름">
+        <input type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000" aria-label="휴대폰 번호"></div>
+      <input type="hidden" name="w1" value=""><input type="hidden" name="w2" value="">
+      <select name="age" class="age" aria-label="나이"><option value="">나이를 선택해 주세요</option><option>20대</option><option>30대</option><option>40대</option><option>50대</option><option>60대</option><option>70세 이상</option></select>
+      <label class="agree"><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
+      <details class="pv"><summary>동의 내용 보기</summary><ul>
+      <li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
+      <li>이용 목적: 가전결합 멤버십 상담 연락</li>
+      <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
+      <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
+      <li><a href="../privacy.html">개인정보처리방침 전문 보기</a></li></ul></details>
+      <button class="submit" type="submit">내 가전 받기 상담 신청</button>
+      <p class="msg"></p>
+    </form>
+  </div>
+</div>
+
+<div class="stats rv" id="stats">
+  <div><b><span data-n="29900">29,900</span>원</b><small>월 납입 (1구좌)부터</small></div>
+  <div><b><span data-n="204">204</span>종</b><small>고를 수 있는 가전</small></div>
+  <div><b><span data-n="100">100</span>%</b><small>만기 환급*</small></div>
+</div>
+<p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
+
+<section class="bang">
+  <p class="k">매달 그냥 나가는 렌탈료, 아깝지 않으세요?</p>
+  <h2>이제는 <em>모으면서</em><br>가전을 받으세요</h2>
+  <p class="big">100% 환급*<small>200회 완납하면 낸 돈 그대로 돌려받습니다</small></p>
+  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
+  <div class="list"><span>냉장고</span><span>김치냉장고</span><span>세탁기</span><span>건조기</span><span>TV</span><span>에어컨</span><span>스타일러</span><span>식기세척기</span><span>로봇청소기</span><span>안마의자</span></div>
+  <a class="btn" href="#apply">내 가전 고르러 가기</a>
+</section>
+
+<section class="talk">
+  <h2>이런 고민,<br>해 보셨죠?</h2>
+  <div class="chat">
+    <p class="l rv">냉장고가 10년이 넘었는데… 바꿀 때가 됐나 봐요</p>
+    <p class="l rv">사려니 <b>목돈</b>이 한 번에 나가는 게 부담이에요</p>
+    <p class="l rv">매달 내는 돈이 그냥 사라지는 것도 아깝고요</p>
+    <p class="r rv">그럴 때 보는 게 <b>가전결합 멤버십</b>입니다.<br>가전은 먼저 받고, 납입금은 만기에 돌려받습니다*</p>
+  </div>
+  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
+</section>
+
+<section class="steps">
+  <h2>신청부터 환급까지<br><span class="red">딱 세 단계</span></h2>
+  <div class="step rv"><img src="../img/scene_call.jpg" alt="" loading="lazy"><div><span class="n">STEP 1</span><b>상담 신청</b><p>전화로 구좌와 가전을 같이 고릅니다.</p></div></div>
+  <div class="step rv"><img src="../img/scene_install.jpg" alt="" loading="lazy"><div><span class="n">STEP 2</span><b>가전 먼저 받기</b><p>고른 가전을 60개월 렌탈로 먼저 받아 씁니다.</p></div></div>
+  <div class="step rv"><img src="../img/scene_phone.jpg" alt="" loading="lazy"><div><span class="n">STEP 3</span><b>만기에 돌려받기</b><p>200회 완납하고 조건을 지키면 낸 납입금이 돌아옵니다*</p></div></div>
+  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시 · 사진은 이해를 돕기 위한 연출 이미지입니다.</p>
+</section>
+
+<section class="money" id="money">
+  <h2>내 구좌로<br>계산해 보세요</h2>
+  <p class="lead">구좌를 눌러 보세요.</p>
+  <div class="seg"><button type="button" class=on>1구좌</button><button type="button">2구좌</button><button type="button">3구좌</button></div>
+  <div class="calc">
+    <div class="row"><span>매달 납입</span><b id="cm">29,900원</b></div>
+    <div class="row"><span>납입 횟수</span><b>200회 <small>(16년 8개월)</small></b></div>
+    <div class="row"><span>고를 수 있는 가전</span><b id="cn">0종</b></div>
+    <div class="row tot"><span>만기에 돌려받는 돈</span><b><span id="ct">598</span>만원</b></div>
+  </div>
+  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시 · 만기 환급액은 총 납입금과 같습니다</p>
+  <a class="btn" href="#apply">이 조건으로 상담받기</a>
+</section>
+
+<section class="vs">
+  <h2>같은 가전,<br>받는 방법이 다릅니다</h2>
+  <div class="cols rv">
+    <div class="c"><h3>일시불로 사면</h3><ul><li>목돈이 한 번에</li><li>쓰고 나면 끝</li><li>돌려받는 돈 없음</li></ul></div>
+    <div class="c me"><span class="flag">가전결합 멤버십</span><h3>멤버십으로 받으면</h3><ul><li>월 29,900원부터 나눠서</li><li>가전은 먼저 받아 사용</li><li>200회 완납 시 납입금 100% 환급*</li></ul></div>
+  </div>
+  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
+</section>
+
+<section class="life" style="background:#fff">
+  <h2>고른 가전은 먼저 받아<br><span class="red">바로 씁니다</span></h2>
+  <div class="mosaic rv">
+    <figure><img src="../img/scene_washer.jpg" alt="" loading="lazy"><figcaption>세탁기·건조기</figcaption></figure>
+    <figure><img src="../img/scene_tv.jpg" alt="" loading="lazy"><figcaption>거실 대형 TV</figcaption></figure>
+    <figure><img src="../img/scene_sofa.jpg" alt="" loading="lazy"><figcaption>스탠바이미</figcaption></figure>
+    <figure><img src="../img/scene_robot.jpg" alt="" loading="lazy"><figcaption>로봇청소기</figcaption></figure>
+  </div>
+  <p class="cond">사진은 이해를 돕기 위한 연출 이미지입니다.</p>
+  <h2 style="margin-top:44px">어떤 가전 받으실래요?</h2>
+  <div class="tabs"><button type="button" data-t="0" class=on>TV</button><button type="button" data-t="1">냉장고</button><button type="button" data-t="2">세탁·건조</button><button type="button" data-t="3">에어컨</button><button type="button" data-t="4">주방</button><button type="button" data-t="5">청소·생활</button></div>
+  <div class="pane on" data-p="0"><a class="pc" href="#apply"><img src="../img/132681.jpg" alt="나노셀 AI TV 86인치" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">나노셀 AI TV 86인치</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/149721.jpg" alt="라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터" loading="lazy"><span class="pc-b">엡손</span><span class="pc-t">라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/143716.jpg" alt="크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/143711.jpg" alt="크리스탈 UHD TV 85인치 + 5.0채널 사운드바" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">크리스탈 UHD TV 85인치 + 5.0채널 사운드바</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/107814.jpg" alt="UHD 스마트 TV 75인치 (블랙)" loading="lazy"><span class="pc-b">인켈</span><span class="pc-t">UHD 스마트 TV 75인치 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/107819.jpg" alt="UHD 스마트 TV 86인치 (블랙)" loading="lazy"><span class="pc-b">인켈</span><span class="pc-t">UHD 스마트 TV 86인치 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="1"><a class="pc" href="#apply"><img src="../img/151404.jpg" alt="디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/151409.jpg" alt="디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/151424.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/151429.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/151434.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/151439.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="2"><a class="pc" href="#apply"><img src="../img/151414.jpg" alt="트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/151419.jpg" alt="트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/148180.jpg" alt="AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/148185.jpg" alt="그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/139415.jpg" alt="오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/148170.jpg" alt="트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)</span><span class="pc-m">3구좌 · 월 89,700원</span></a></div><div class="pane" data-p="3"><a class="pc" href="#apply"><img src="../img/106949.jpg" alt="비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/138014.jpg" alt="비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/138004.jpg" alt="비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/138024.jpg" alt="비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/138019.jpg" alt="비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/138009.jpg" alt="비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a></div><div class="pane" data-p="4"><a class="pc" href="#apply"><img src="../img/151399.jpg" alt="디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/107779.jpg" alt="전자동 에스프레소 커피머신 F11" loading="lazy"><span class="pc-b">닥터커피</span><span class="pc-t">전자동 에스프레소 커피머신 F11</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/127509.jpg" alt="Infinite AI 빌트인 인덕션 3구 (블랙)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">Infinite AI 빌트인 인덕션 3구 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/107089.jpg" alt="디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/107094.jpg" alt="디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/127504.jpg" alt="비스포크 AI 식기세척기 14인용 (새틴베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 식기세척기 14인용 (새틴베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="5"><a class="pc" href="#apply"><img src="../img/149716.jpg" alt="오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/130474.jpg" alt="코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="../img/127264.jpg" alt="S8 MaxV 울트라 로봇청소기 (직배수형)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S8 MaxV 울트라 로봇청소기 (직배수형)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/144296.jpg" alt="S9 MaxV Slim 로봇청소기 (블랙)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S9 MaxV Slim 로봇청소기 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/144306.jpg" alt="S9 MaxV Ultra 로봇청소기" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S9 MaxV Ultra 로봇청소기</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="../img/144301.jpg" alt="Saros Z70 로봇청소기 (실버)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">Saros Z70 로봇청소기 (실버)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div>
+  <p class="brands">LG · SAMSUNG · 로보락 · 쿠쿠 · 세라젬 · 다이슨 외 총 204종</p>
+  <a class="btn" href="#apply">원하는 가전 상담받기</a>
+</section>
+
+<section class="must">
+  <h2>가입 전 꼭 확인하세요</h2>
+  <ul>
+    <li><b>멤버십 + 가전 렌탈 결합상품</b>입니다.</li>
+    <li>납입은 <b>200회(16년 8개월)</b>이며, 만기 100% 환급은 <b>200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약</b> 3가지를 모두 충족할 때입니다.</li>
+    <li>가전은 <b>60개월 렌탈</b>로 먼저 받으시며, 그 기간 동안 소유권은 렌탈사에 있습니다.</li>
+    <li>60개월 안에 해지하시면 <b>남은 렌탈료를 한 번에 부담</b>하셔야 합니다.</li>
+    <li>출금은 멤버십 납입금·렌탈료 <b>2건으로 나뉘며</b>, 합계는 구좌 월 납입금과 같습니다.</li>
+    <li>중도 해약 시 환급금은 납입하신 금액보다 적을 수 있습니다.</li>
+    <li>할부거래법에 따라 공제조합을 통해 선수금의 50%가 보전되며, 100% 안전을 뜻하지는 않습니다.</li>
+  </ul>
+</section>
+
+<section class="faq">
+  <h2>자주 묻는 질문</h2>
+  <details><summary><i>Q</i>가전은 제가 고를 수 있나요?</summary><p>네. 냉장고·세탁기·TV·에어컨 등 204종 중에서 구좌별로 원하는 가전을 고르시면 됩니다.</p></details><details><summary><i>Q</i>모은 돈은 중간에 못 쓰나요?</summary><p>멤버십 서비스로 이용하실 수 있습니다. 다만 이용하시면 만기 100% 환급 조건에서는 빠집니다.</p></details><details><summary><i>Q</i>중간에 해지하면 어떻게 되나요?</summary><p>해약 환급금은 납입하신 금액보다 적을 수 있습니다. 가전 렌탈 60개월 안에 해지하시면 렌탈료 잔금을 일시불로 부담하셔야 합니다.</p></details><details><summary><i>Q</i>납입금은 안전한가요?</summary><p>할부거래법에 따라 공제조합을 통해 선수금의 50%가 보전됩니다. 100% 안전은 아니라는 점도 함께 알려드립니다.</p></details>
+</section>
+
+<section class="form" id="apply">
+  <div class="ph"><img src="../img/scene_sofa.jpg" alt="" loading="lazy"><div><h2>상담 신청</h2><p>구좌·가전은 통화하면서 같이 고르시면 됩니다</p></div></div>
+  <div class="leadbox">
+    <p class="who"><b>신청 가능</b> · 전국 · 만 25세 ~ 만 70세 미만</p>
+    <form class="lead-f" data-tag="상담 신청" novalidate>
+      <div class="fld"><label>이름</label><input type="text" name="name" autocomplete="name" placeholder="홍길동"></div>
+      <div class="fld"><label>휴대폰 번호</label><input type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000"></div>
+      <div class="fld"><label>관심 가전</label>
+        <select name="w1"><option value="">선택해 주세요</option><option>냉장고</option><option>김치냉장고</option><option>세탁기</option><option>건조기</option><option>TV</option><option>에어컨</option><option>로봇청소기</option><option>안마의자</option><option>공기청정기</option><option>청소기</option><option>상담 후 결정</option></select></div>
+      <div class="fld"><label>통화 편한 시간 <small>(선택)</small></label>
+        <select name="when"><option>아무 때나</option><option>오전 (9~12시)</option><option>오후 (12~18시)</option><option>저녁 (18시 이후)</option></select></div>
+      <label class="agree"><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
+      <details class="pv"><summary>동의 내용 보기</summary><ul>
+      <li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
+      <li>이용 목적: 가전결합 멤버십 상담 연락</li>
+      <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
+      <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
+      <li><a href="../privacy.html">개인정보처리방침 전문 보기</a></li></ul></details>
+      <button class="submit" type="submit">상담 신청하기</button>
+      <p class="msg"></p>
+    </form>
+  </div>
+</section>
+
+</div>
+<div class="bar" id="bar"><div><p>낡은 가전 바꾸기<b>월 29,900원부터</b></p><a href="#apply">가전 고르기</a></div></div>
+
+<script src="../config.js"></script>
+<script>
+(function(){
+  var PLANS=[{"g": "1구좌", "m": 29900, "t": 598, "n": 57}, {"g": "2구좌", "m": 59800, "t": 1196, "n": 95}, {"g": "3구좌", "m": 89700, "t": 1794, "n": 52}], plan="";
+  function up(el,to,ms){var from=parseInt(el.textContent.replace(/\D/g,""),10)||0,t0=null;
+    if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=to.toLocaleString("ko-KR");return;}
+    requestAnimationFrame(function st(t){t0=t0||t;var k=Math.min((t-t0)/ms,1),e=1-Math.pow(1-k,3);
+      el.textContent=Math.round(from+(to-from)*e).toLocaleString("ko-KR");if(k<1)requestAnimationFrame(st);});}
+  function pick(i,user){var p=PLANS[i];
+    document.querySelectorAll(".seg button").forEach(function(b,k){b.classList.toggle("on",k===i);});
+    document.getElementById("cm").textContent=p.m.toLocaleString("ko-KR")+"원";
+    document.getElementById("cn").textContent=p.n+"종";
+    up(document.getElementById("ct"),p.t,700); if(user)plan=p.g;}
+  document.querySelectorAll(".seg button").forEach(function(b,i){b.addEventListener("click",function(){pick(i,true);});});
+  pick(0,false);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("in");io.unobserve(e.target);
+    if(e.target.id==="stats")e.target.querySelectorAll("[data-n]").forEach(function(s){var n=+s.dataset.n;s.textContent="0";up(s,n,1400);});});},{threshold:.2});
+  document.querySelectorAll(".rv").forEach(function(el){io.observe(el);});
+  document.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){
+    document.querySelectorAll(".tabs button,.pane").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");document.querySelector('.pane[data-p="'+b.dataset.t+'"]').classList.add("on");});});
+  var bar=document.getElementById("bar"), ap=document.getElementById("apply");
+  function sc(){var r=ap.getBoundingClientRect();bar.classList.toggle("on",scrollY>520&&r.top>innerHeight*.6);}
+  addEventListener("scroll",sc,{passive:true});sc();
+  function q(k){var m=location.search.match(new RegExp("[?&]"+k+"=([^&]*)"));return m?decodeURIComponent(m[1]):"";}
+  document.querySelectorAll("form.lead-f").forEach(function(f){
+    var msg=f.querySelector(".msg"),E=f.elements,picked=[];
+    var chips=f.querySelectorAll(".chips button");
+    function paint(){chips.forEach(function(c){var k=picked.indexOf(c.textContent);c.classList.toggle("on",k>=0);c.dataset.o=k>=0?(k+1):"";});
+      E.w1.value=picked[0]||"";if(E.w2)E.w2.value=picked[1]||"";}
+    chips.forEach(function(c){c.addEventListener("click",function(){var t=c.textContent,k=picked.indexOf(t);
+      if(k>=0)picked.splice(k,1);else{if(picked.length>=2)picked.shift();picked.push(t);}paint();});});
+    function say(t){msg.textContent=t;msg.className="msg err";}
+    E.tel.addEventListener("input",function(){
+      var d=this.value.replace(/\D/g,"").slice(0,11);
+      this.value=d.length<4?d:d.length<8?d.slice(0,3)+"-"+d.slice(3):d.slice(0,3)+"-"+d.slice(3,d.length-4)+"-"+d.slice(-4);
+    });
+    f.addEventListener("submit",function(e){
+      e.preventDefault();
+      var name=E.name.value.trim(), tel=E.tel.value.trim();
+      if(!name){say("이름을 입력해 주세요.");E.name.focus();return;}
+      if(!/^01\d-\d{3,4}-\d{4}$/.test(tel)){say("휴대폰 번호를 정확히 입력해 주세요.");E.tel.focus();return;}
+      if(!E.w1.value){say("받고 싶은 가전을 1개 이상 골라 주세요.");if(E.w1.focus)E.w1.focus();return;}
+      if(E.age&&!E.age.value){say("나이를 선택해 주세요.");E.age.focus();return;}
+      if(!E.agree.checked){say("개인정보 수집·이용에 동의해 주세요.");return;}
+      var cfg=window.TG||{}; if(!cfg.relay){say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");return;}
+      var src=[q("utm_source"),q("utm_campaign"),q("utm_content")].filter(Boolean).join(" / ")||"직접";
+      var text="🔔 [가전 멤버십·GO] "+f.dataset.tag+"\n이름: "+name+"\n연락처: "+tel+"\n받고 싶은 가전: "+E.w1.value+(E.w2&&E.w2.value?", "+E.w2.value:"")+(E.age&&E.age.value?"\n나이: "+E.age.value:"")+
+        (plan?"\n관심 구좌: "+plan:"")+(E.when?"\n통화 시간: "+E.when.value:"")+
+        "\n유입: "+src+"\n페이지: "+location.origin+location.pathname+"\n시각: "+new Date().toLocaleString("ko-KR");
+      var b=f.querySelector(".submit"); b.disabled=true; msg.textContent="";
+      fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},
+        body:JSON.stringify({type:"lead",text:text})})
+      .then(function(r){return r.json();}).then(function(d){
+        if(d&&d.ok){f.innerHTML='<div class="done"><div class="ck">✓</div><b>상담 신청이 접수되었습니다</b><p>확인 후 남겨 주신 번호로 전화드리겠습니다.</p></div>';
+          if(window.fbq)fbq("track","Lead");}
+        else{say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");b.disabled=false;}
+      }).catch(function(){say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");b.disabled=false;});
+    });
+  });
+})();
+</script>
+</body></html>
