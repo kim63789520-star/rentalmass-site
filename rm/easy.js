@@ -2,7 +2,7 @@
  * 신청 경로는 하나(상담 창)로 모은다: 첫 화면 간편 바 · 목록 안내 바 · 상품 카드 [상담 신청] · 모바일 하단 바 · 원래 떠 있는 상담 버튼.
  * 전송: /config.js TG.relay → 텔레그램 "[렌탈몰라] 상담 신청" (shim.js 와 같은 형식 — 알림톡 접수처 = 렌탈몰라) */
 (function () {
-  var PHONE = "010-2165-7015";
+  var PHONE = "010-8175-7015"; // 렌탈 번호
   var KAKAO = "http://pf.kakao.com/_xowzxhX/chat";
   var PHOTO = "/rm/profile.jpg";
   var KINDS = ["정수기", "공기청정기", "비데", "안마의자", "냉장고", "세탁기·건조기", "에어컨", "TV", "노트북", "기타"];
