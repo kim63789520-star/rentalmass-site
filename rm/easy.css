@@ -1,0 +1,107 @@
+/* 렌탈몰라 복제판 — 쉬운 상담 신청 (간편 바 · 카드 버튼 · 모바일 하단 바 · 상담 창) */
+:root { --rm-red: #ff5c4a; --rm-ink: #1d2433; --rm-sub: #667085; --rm-line: #e6e8ec; --rm-bg: #fff6f4; }
+
+/* 간편 상담 바 */
+.rm-quick { max-width: 1200px; margin: 32px auto 8px; padding: 0 16px; box-sizing: border-box; }
+.rm-quick-in { background: var(--rm-bg); border: 1px solid #ffd9d3; border-radius: 20px; padding: 24px 28px;
+  display: grid; grid-template-columns: 1fr auto; gap: 14px 28px; align-items: center; }
+.rm-quick h3 { margin: 0; font-size: 22px; font-weight: 800; color: var(--rm-ink); letter-spacing: -0.5px; }
+.rm-quick h3 b { color: var(--rm-red); }
+.rm-quick p.rm-lead { margin: 6px 0 0; color: var(--rm-sub); font-size: 15px; }
+.rm-quick .rm-chips { grid-column: 1 / -1; }
+.rm-quick form { grid-column: 1 / -1; display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
+.rm-quick form .rm-tel { flex: 1 1 240px; }
+.rm-quick form .rm-agree { flex-basis: 100%; }
+.rm-who { display: flex; align-items: center; gap: 10px; color: var(--rm-ink); font-size: 14px; }
+.rm-who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+.rm-who b { display: block; font-size: 15px; }
+.rm-who span { color: var(--rm-sub); }
+.rm-list-bar { max-width: 1200px; margin: 0 auto 18px; padding: 0 16px; box-sizing: border-box; }
+.rm-list-bar > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--rm-bg);
+  border: 1px solid #ffd9d3; border-radius: 14px; padding: 14px 18px; }
+.rm-list-bar p { margin: 0; color: var(--rm-ink); font-size: 15px; line-height: 1.45; }
+.rm-list-bar p b { color: var(--rm-red); }
+
+/* 공통 입력 */
+.rm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.rm-chip { border: 1px solid var(--rm-line); background: #fff; color: var(--rm-ink); border-radius: 999px; padding: 9px 14px;
+  font-size: 14px; cursor: pointer; line-height: 1; font-family: inherit; }
+.rm-chip[aria-pressed="true"] { background: var(--rm-red); border-color: var(--rm-red); color: #fff; font-weight: 700; }
+.rm-tel, .rm-name { height: 52px; border: 1px solid #d0d5dd; border-radius: 12px; padding: 0 16px; font-size: 17px;
+  box-sizing: border-box; width: 100%; background: #fff; color: var(--rm-ink); font-family: inherit; }
+.rm-tel:focus, .rm-name:focus { outline: 2px solid var(--rm-red); outline-offset: 0; border-color: transparent; }
+.rm-btn { height: 52px; border: 0; border-radius: 12px; background: var(--rm-red); color: #fff; font-size: 17px; font-weight: 800;
+  padding: 0 26px; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.rm-btn:disabled { opacity: .6; cursor: default; }
+.rm-agree { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--rm-sub); }
+.rm-agree input { width: 18px; height: 18px; accent-color: var(--rm-red); margin: 0; }
+.rm-agree a { color: var(--rm-sub); text-decoration: underline; }
+.rm-msg { min-height: 18px; font-size: 13px; color: #d92d20; margin: 0; }
+.rm-note { font-size: 12.5px; color: var(--rm-sub); margin: 0; }
+
+/* 카드 버튼 */
+.rm-ask { display: block; width: calc(100% - 20px); margin: 10px auto 12px; height: 42px; border-radius: 10px;
+  border: 1.5px solid var(--rm-red); background: #fff; color: var(--rm-red); font-size: 15px; font-weight: 800; cursor: pointer;
+  font-family: inherit; }
+.rm-ask:hover { background: var(--rm-red); color: #fff; }
+#list .list_decs .rm-ask { width: 100%; max-width: 260px; margin: 12px 0 0; }
+
+/* 상담 창 */
+.rm-sheet { position: fixed; inset: 0; z-index: 10000; display: none; }
+.rm-sheet.on { display: block; }
+.rm-sheet .rm-dim { position: absolute; inset: 0; background: rgba(16, 24, 40, .55); }
+.rm-sheet .rm-box { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(440px, calc(100% - 32px));
+  max-height: calc(100% - 32px); overflow: auto; background: #fff; border-radius: 20px; padding: 22px 22px 18px; box-sizing: border-box;
+  display: flex; flex-direction: column; gap: 12px; color: var(--rm-ink); }
+.rm-sheet .rm-x { position: absolute; right: 10px; top: 10px; width: 40px; height: 40px; border: 0; background: none; font-size: 26px;
+  color: var(--rm-sub); cursor: pointer; line-height: 1; }
+.rm-sheet h4 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.4px; }
+.rm-sheet .rm-prod { background: #f6f7f9; border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.5; }
+.rm-sheet .rm-prod b { display: block; font-size: 15px; }
+.rm-sheet .rm-prod span { color: var(--rm-sub); }
+.rm-sheet .rm-lbl { font-size: 13px; font-weight: 700; color: var(--rm-sub); margin: 2px 0 -4px; }
+.rm-sheet .rm-btn { width: 100%; }
+.rm-done { text-align: center; padding: 18px 4px 8px; }
+.rm-done .rm-ck { width: 56px; height: 56px; border-radius: 50%; background: var(--rm-red); color: #fff; font-size: 30px; line-height: 56px;
+  margin: 0 auto 12px; }
+.rm-done b { display: block; font-size: 19px; margin-bottom: 6px; }
+.rm-done p { margin: 0 0 16px; color: var(--rm-sub); font-size: 14px; }
+.rm-kakao { display: block; height: 48px; line-height: 48px; border-radius: 12px; background: #fee500; color: #191919;
+  font-weight: 800; text-decoration: none; font-size: 15px; }
+
+/* 모바일 하단 바 */
+.rm-bottom { display: none; }
+@media (max-width: 768px) {
+  .rm-quick { margin-top: 20px; }
+  .rm-quick-in { grid-template-columns: 1fr; padding: 20px 16px; gap: 12px; }
+  .rm-quick h3 { font-size: 19px; }
+  .rm-quick p.rm-lead { font-size: 14px; }
+  .rm-quick .rm-who { display: none; }
+  .rm-quick form .rm-btn { flex: 1 1 100%; }
+  .rm-chip { padding: 10px 13px; }
+  .rm-list-bar > div { flex-direction: column; align-items: stretch; }
+  .rm-list-bar .rm-btn { width: 100%; height: 46px; font-size: 16px; }
+  .rm-bottom { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+    background: #fff; border-top: 1px solid var(--rm-line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
+  .rm-bottom a, .rm-bottom button { height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    gap: 6px; font-size: 15px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }
+  .rm-bottom .rm-b-tel { background: #f2f4f7; color: var(--rm-ink); }
+  .rm-bottom .rm-b-kakao { background: #fee500; color: #191919; }
+  .rm-bottom .rm-b-ask { background: var(--rm-red); color: #fff; }
+  body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+  .rm-sheet .rm-box { top: auto; bottom: 0; transform: translateX(-50%); width: 100%; border-radius: 20px 20px 0 0;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
+}
+
+/* 원본 CSS(입력칸 테두리 제거 · 줄 간격 13px 고정)가 덮어쓰지 못하게 */
+.rm-quick, .rm-quick *, .rm-sheet, .rm-sheet *, .rm-list-bar, .rm-list-bar *, .rm-bottom, .rm-bottom *, .rm-ask { box-sizing: border-box !important; line-height: 1.45; }
+.rm-btn, .rm-chip, .rm-ask, .rm-bottom a, .rm-bottom button { line-height: 1 !important; }
+html body input.rm-tel, html body input.rm-name { border: 1px solid #d0d5dd !important; line-height: normal !important; display: block; }
+html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(--rm-red) !important; outline: 0; box-shadow: 0 0 0 3px rgba(255, 92, 74, .18); }
+.rm-sheet .rm-lbl { margin: 4px 0 -6px !important; }
+.rm-quick-in > div:first-child { min-width: 0; }
+@media (max-width: 768px) {
+  /* 하단 바가 전화·카톡·상담을 맡는다 — 원래 떠 있는 버튼(비교·맨위 포함)은 입력칸을 가리므로 숨긴다 */
+  #fixed_btn_wrap { display: none !important; }
+}
+.rm-ask, .rm-btn, .rm-bottom a, .rm-bottom button { display: flex !important; align-items: center; justify-content: center; text-align: center !important; padding-left: 12px; padding-right: 12px; }

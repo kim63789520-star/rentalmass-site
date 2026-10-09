@@ -7,6 +7,7 @@
   var PER = 40;
   var cache = {};
   var ITEMS = {}; // 지금까지 받은 상품 카드 (ItemNo → 객체)
+  window.RM_ITEMS = ITEMS; // easy.js(상품 카드 상담 버튼)가 읽는다
 
   function load(path) {
     if (!cache[path]) {
