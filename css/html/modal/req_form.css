@@ -1,0 +1,439 @@
+/* req_form_modal */
+.req_form {
+  position: fixed;
+  /* display: none; */
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+}
+.modal_bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: saturate(180%) blur(5px);
+  -webkit-backdrop-filter: saturate(180%) blur(5px);
+}
+.req_form .req_form_modal_wrap {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  max-width: 520px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+#req_modal .req_close_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+}
+#req_modal .req_close_btn i {
+  font-size: 1em;
+  color: var(--primary-color);
+}
+.req_form .tit {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: 900;
+  margin: 0 0 20px 0;
+}
+.req_form .pd_info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.req_form .pd_info li {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.req_form .pd_info li:nth-child(4) {
+  margin-bottom: 0;
+}
+.req_form .pd_info li:nth-child(4):after {
+  right: 20px;
+}
+.req_form .pd_info .info {
+  display: flex;
+  justify-content: space-between;
+  min-height: 37px;
+}
+.req_form .pd_info li .agree {
+  display: flex;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+.req_form .pd_info li .agree label {
+  display: flex !important;
+  align-items: center;
+  gap: 2px;
+}
+.req_form .pd_info li .agree label span:first-child {
+  width: 11px;
+  height: 11px;
+  transform: scale(1);
+}
+.req_form .pd_info li .agree label span:first-child::before {
+  transform: scale(1);
+  opacity: 0;
+}
+.req_form .pd_info li .agree label span:first-child svg {
+  width: 8px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.req_form .pd_info li .agree label button {
+  color: var(--Black-op-30, rgba(0, 0, 0, 0.3));
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.9px;
+  margin-left: 2px;
+}
+.req_form .pd_info li .agree label button:hover {
+  color: var(--primary-color);
+}
+.req_form .pd_info li .agree input {
+  margin: 0 5px 0 0;
+}
+
+.req_form .pd_info .info select {
+  width: 200px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-position: top 1px right 10px;
+  color: var(--primary-color);
+  font-size: 1em;
+  margin-left: 0;
+}
+.req_form .pd_info .info select:focus {
+  border-color: var(--primary-color);
+}
+.req_form .pd_info li:last-child {
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+.req_form .pd_info .info span {
+  align-self: center;
+  font-weight: 700;
+  line-height: normal;
+}
+.req_form .pd_info .prd_tit_wrap {
+  margin-bottom: 30px;
+}
+.req_form .pd_info .prd_tit_wrap .prd_tit {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.req_form .pd_info .prd_tit_wrap .model_tit {
+  font-size: 1em;
+  color: #afafaf;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.req_form .pd_info li .brand_logo {
+  width: 70px;
+  margin: 0 auto 0;
+}
+.req_form .price {
+  font-size: 1.5em;
+  color: var(--primary-color);
+}
+
+.req_form input[type="date"] {
+  border: 0;
+}
+.req_form input[type="text"],
+.req_form input[type="date"] {
+  padding: 5px 20px;
+  border-bottom: solid 1px #ddd;
+  color: var(--primary-color);
+}
+.req_form input[type="text"]::placeholder {
+  color: rgba(0, 0, 0, 0.1);
+  font-family: Pretendard;
+  font-size: 17.6px;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -1.32px;
+}
+.req_form input[type="text"]:focus,
+.req_form input[type="date"]:focus {
+  border-color: var(--primary-color);
+}
+.req_form .privacy_agree {
+  position: relative;
+}
+.req_form .privacy_agree .pv_box {
+  display: none;
+  padding: 14px;
+  overflow-y: scroll;
+  font-size: 0.75em;
+  resize: none;
+  background: #f0f0f0;
+  border-radius: 10px;
+  bottom: 100%;
+  line-height: 1.4em;
+  word-break: keep-all;
+  text-align: left;
+  border: 1px solid #ddd;
+  margin-top: 12px;
+  font-weight: 400;
+  letter-spacing: -0.9px;
+}
+
+/* 라디오버튼2 */
+.req_form input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.req_form .radio-group {
+  display: inline-block;
+  margin: 10px 0 0;
+}
+.req_form .radio-group label {
+  color: var(--primary-color);
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 30px;
+  border: solid 1px #ddd;
+  font-size: 0.8em;
+}
+
+.req_form input[type="radio"]:checked + label {
+  color: #fff;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.req_form .req_btn_wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.req_form_user .req_form_modal_wrap .req_close_btn {
+  color: var(--primary-color);
+  border-color: 2px solid var(--primary-color);
+}
+@media all and (max-width: 1023px) {
+  .req_form .req_form_modal_wrap {
+    min-width: 337.5px;
+  }
+}
+@media all and (max-width: 750px) {
+  .req_form .pd_info li {
+    margin-bottom: 15px;
+  }
+  .req_form .pd_info .info select {
+    width: 162px;
+  }
+  .req_form input[type="text"],
+  .req_form input[type="date"] {
+    max-width: 200px;
+    box-sizing: border-box;
+  }
+  .req_form .pd_info li:nth-child(4):after {
+    top: 44%;
+    width: 6.5px;
+    height: 6.5px;
+  }
+}
+@media all and (max-height: 750px) {
+  .req_form .req_form_modal_wrap {
+    height: 80%;
+    padding: 20px;
+    overflow: scroll;
+  }
+  #req_modal .req_modal_wrap {
+    overflow: scroll;
+    height: 80%;
+  }
+}
+
+/* req_modal */
+#req_modal {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+#req_modal .req_modal_wrap {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+#req_modal .thumb_box {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+#req_modal .thumb_box img {
+  display: block;
+  width: 130%;
+  margin: -15%;
+}
+
+#req_modal .pd_info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+#req_modal .pd_info li {
+  width: 100%;
+  margin-bottom: 20px;
+}
+#req_modal .pd_info .info {
+  display: flex;
+  justify-content: space-between;
+}
+#req_modal .pd_info .info select {
+  width: 200px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 1em;
+  font-weight: 700;
+}
+#req_modal .pd_info li:last-child {
+  margin-bottom: 0;
+}
+#req_modal .pd_info .info > span {
+  align-self: center;
+}
+#req_modal #product_modal_price {
+  display: flex;
+  align-items: center;
+}
+#req_modal .pd-discontinued {
+  align-self: center;
+  margin-right: 5px;
+  padding: 0px 5px;
+  font-size: 0.5em;
+  font-weight: 400;
+  line-height: 1.5em;
+  background: var(--primary-color);
+  color: #fff;
+}
+#req_modal .pd_info .prd_tit_wrap {
+  margin-bottom: 40px;
+}
+#req_modal .pd_info .prd_tit_wrap .prd_tit {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+#req_modal .pd_info .prd_tit_wrap .model_tit {
+  font-size: 1em;
+  color: #afafaf;
+  font-weight: 500;
+}
+
+#req_modal .pd_info li .brand_logo {
+  width: 70px;
+  margin: 0 auto 0;
+}
+#req_modal .price {
+  font-size: 1.5em;
+  color: var(--primary-color);
+}
+
+/* 라디오버튼2 */
+#req_modal input[type="radio"] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+#req_modal label {
+  color: var(--primary-color);
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: solid 1px var(--primary-color);
+}
+
+#req_modal input[type="radio"]:checked + label {
+  color: #fff;
+  background: var(--primary-color);
+}
+#req_modal .radio-group {
+  display: inline-block;
+}
+
+#req_modal .req_btn_wrap {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.req_btn {
+  padding: 10px 20px;
+  background: #424242;
+  border-radius: 20px;
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1em;
+}
+.req_btn:hover {
+  background: var(--primary-color);
+}
+@media all and (max-width: 1023px) {
+  #req_modal .req_modal_wrap {
+    width: 50%;
+    min-width: 300px;
+  }
+  #req_modal .thumb_box {
+    width: 100%;
+    height: auto;
+  }
+}
+@media all and (max-width: 500px) {
+  .req_form .tit {
+    letter-spacing: -1.462px;
+  }
+}

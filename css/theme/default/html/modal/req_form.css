@@ -1,0 +1,11 @@
+#req_modal .req_modal_wrap {
+  padding: 0 40px 40px;
+}
+.agree .pv_box_view {
+  color: var(--primary-color);
+}
+@media all and (max-width: 1023px) {
+  #req_modal .req_modal_wrap {
+    padding: 20px;
+  }
+}

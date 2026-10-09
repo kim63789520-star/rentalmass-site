@@ -1,0 +1,178 @@
+.prd_tab {
+  display: none;
+  width: 100%;
+  padding: 80px 0;
+  background: #f9f9f9;
+}
+.prd-label-list-sub-title {
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+.prd_tab .prd_tit {
+  text-align: center;
+}
+.prd_tab .tab_btn_wrap {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+.prd_tab .tab_btn_wrap .tab_btn {
+  width: 100px;
+  padding: 5px 0;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 30px;
+  margin: 40px 10px 40px 0;
+  text-align: center;
+}
+.prd_tab .tab_btn_wrap .tab_btn:last-child {
+  margin: 40px 0;
+}
+.prd_tab .tab_btn_wrap .tab_btn.on {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.prd_tab .tab_box_wrap {
+  width: 1300px;
+  margin: 0 auto;
+}
+.prd_tab .tab_box_wrap .tab_box {
+  display: none;
+}
+.prd_tab .tab_box_wrap .tab_box.on {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  gap: 15px;
+  -ms-grid-columns: auto 15px auto 15px auto;
+  grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: auto 15px auto;
+  grid-template-rows: repeat(2, auto);
+}
+
+.prd_tab .tab_box_wrap .tab_box .box {
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+.prd_tab .tab_box_wrap .tab_box .box:hover {
+  /* box-shadow: 0px 0px 10px var(--secondary-color_opct5); */
+  border: 2px solid var(--primary-color_opct8);
+}
+
+.prd_tab .tab_box_wrap .tab_box .thumb_box {
+  position: relative;
+  width: 100%;
+}
+.prd_tab .tab_box_wrap .tab_box .thumb_box .loding_img {
+  width: 100%;
+  height: 100%;
+}
+.prd_tab .tab_box_wrap .tab_box .thumb_box img {
+  display: block;
+}
+
+.prd_tab .tab_box_wrap .tab_box .info_box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+  justify-content: center;
+  align-content: center;
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .user_btn {
+  order: 2;
+}
+
+.prd_tab .user_common_btn button.btn_heart,
+.prd_tab .user_common_btn button.btn_share {
+  margin: 0 10px 0;
+}
+.prd_tab .box .user_common_btn .user_common_modal {
+  width: 150%;
+  top: auto;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .prd_name {
+  order: 1;
+  width: 100%;
+  align-self: center;
+  font-weight: 600;
+  padding: 12px 0px;
+  cursor: pointer;
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .prd_price {
+  order: 3;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 10px 0;
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .prd_price:nth-child(3) {
+  margin-top: 25px;
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .prd_price p {
+  margin: 0;
+}
+.prd_tab .tab_box_wrap .tab_box .info_box .prd_price.month {
+  margin: 30px 0 10px 0;
+}
+
+@media all and (max-width: 1400px) {
+  .prd_tab .tab_box_wrap {
+    width: 95%;
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .prd_tab .tab_box_wrap .tab_box.on {
+    gap: 20px;
+    -ms-grid-columns: auto 20px auto 20px auto;
+    grid-template-columns: repeat(3, auto);
+    -ms-grid-rows: auto 20px auto 20px auto;
+    grid-template-rows: repeat(3, auto);
+  }
+}
+
+@media all and (max-width: 650px) {
+  .prd_tab .tab_btn_wrap {
+    width: 94%;
+    padding: 0 3%;
+    justify-content: center;
+  }
+  .prd_tab .tab_box_wrap .tab_box.on {
+    gap: 10px;
+    -ms-grid-columns: auto 10px auto;
+    grid-template-columns: repeat(2, auto);
+    -ms-grid-rows: auto 10px auto 10px auto 10px auto;
+    grid-template-rows: repeat(4, auto);
+  }
+  #prd_list_tab .prd_name h4 {
+    margin: 0 10px;
+    text-align: center;
+  }
+}
+@media all and (max-width: 450px) {
+  .prd_tab .tab_box_wrap .tab_box .info_box {
+    padding: 10px 10px;
+  }
+  .prd_tab .tab_box_wrap .tab_box .info_box .prd_name {
+    padding: 0 0 10px 0;
+  }
+  .prd_tab .tab_box_wrap .tab_box .info_box .prd_price:nth-child(3) {
+    margin-top: 10px;
+  }
+  .prd_tab .user_common_btn button.btn_heart,
+  .prd_tab .user_common_btn button.btn_share {
+    margin: 0 5px 0;
+  }
+}

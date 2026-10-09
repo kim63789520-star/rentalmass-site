@@ -1,0 +1,590 @@
+/* user page common */
+.user_page_tit {
+  font-size: 2.1em;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0 50px;
+}
+.user_page_container {
+  padding: 150px 0 50px;
+  background: #f9f9f9;
+}
+.user_page_wrap {
+  width: 1366px;
+  margin: 0 auto;
+}
+select {
+  /*background: #fff url(https://rentalleed.com/EV_Electronic/static/select_arrow.png) 100% 50% no-repeat;
+        background-size: 20px 8px;*/
+
+  /* background: #fff url('/imageserver/origin/100/img/icon/select_arrow_mint.png') no-repeat top 6px right 10px; */
+  background-size: 13px;
+
+  -webkit-appearance: none;
+  display: inline-block;
+  text-align: start;
+  border: none;
+  cursor: default;
+  margin-left: 10px;
+  padding: 2px 20px 1px 10px;
+  font-size: 0.8em;
+  border: 1px solid #dedede;
+}
+input[type="date"] {
+  border: 1px solid #dedede;
+}
+
+/* 로그인  */
+#login .login_wrap .login_box {
+  width: 440px;
+  margin: 0 auto;
+  padding: 70px 70px 50px;
+}
+
+#login .login_form {
+  font-size: 0.9em;
+}
+#login .login_form label {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+label .pw-eye {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  cursor: pointer;
+}
+#login .login_form input {
+  display: block;
+  width: -webkit-fill-available;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: 1px solid #cdcdcd;
+}
+
+/* 로그인 서포트 */
+#login .login_surppot {
+  display: inline-flex;
+  float: right;
+}
+#login .login_surppot > a {
+  position: relative;
+  padding: 3px 10px;
+  font-size: 1em;
+}
+#login .login_surppot > a:first-child:after {
+  position: absolute;
+  content: "|";
+  display: block;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  color: #dedede;
+}
+
+/* 로그인 버튼 */
+#login .login_btn {
+  width: 100%;
+}
+#login .login_btn button {
+  margin: 40px auto;
+  color: #fff;
+  background: var(--point_color);
+  padding: 10px 40px;
+  border-radius: 30px;
+}
+
+/* 로그인 SNS로그인 */
+#login .sns_login {
+  padding: 10px 0;
+}
+#login .sns_login > h3 {
+  position: relative;
+  width: 100%;
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #b1b1b1;
+  font-size: 0.8em;
+}
+#login .sns_login > h3:before,
+#login .sns_login > h3:after {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #dcdcdc;
+}
+#login .sns_login > h3:before {
+  left: 0;
+}
+#login .sns_login > h3:after {
+  right: 0;
+}
+#login .sns_login_wrap {
+  display: flex;
+}
+#login .sns_btn {
+  width: 33.3%;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  overflow: hidden;
+  font-size: 0.9em;
+  color: #424242;
+  text-align: center;
+  display: block;
+  line-height: 36px;
+  text-indent: 25px;
+  font-weight: 400;
+}
+
+#login .sns_btn.google > div {
+  height: 36px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/imageserver/origin/100/img/common/login_sns_btn_google.jpg");
+}
+#login .sns_btn.naver {
+  color: #fff;
+  background-image: url("/imageserver/origin/100/img/common/login_sns_btn_naver.jpg");
+}
+#login .sns_btn.kakao {
+  background-image: url("/imageserver/origin/100/img/common/login_sns_btn_kakao.jpg");
+}
+
+/* IE10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  #login .sns_btn.google > div {
+    height: 36px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("/imageserver/origin/100/img/common/login_sns_btn_google.jpg");
+  }
+  #login .sns_btn.naver {
+    color: #fff;
+    background-image: url("/imageserver/origin/100/img/common/login_sns_btn_naver.jpg");
+  }
+  #login .sns_btn.kakao {
+    background-image: url("/imageserver/origin/100/img/common/login_sns_btn_kakao.jpg");
+  }
+
+  #login .login_form input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* 기본정보 - 회원정보 */
+#membership_info .wrap {
+  display: flex;
+}
+
+#membership_info .side_box {
+  width: 280px;
+  padding: 40px 0;
+  display: inline-block;
+}
+#membership_info .side_box .user_img {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto;
+  border-radius: 50px;
+  overflow: hidden;
+}
+#membership_info .side_box .user_img img {
+  display: block;
+}
+#membership_info .side_box .user_name {
+  display: block;
+  margin: 40px 0 60px;
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 900;
+}
+#membership_info .side_box ul {
+}
+#membership_info .side_box ul li {
+  padding: 0 30px;
+  margin-bottom: 10px;
+}
+#membership_info .side_box ul li.select a {
+  color: var(--point_color);
+  text-indent: -4px;
+}
+#membership_info .side_box ul li.select {
+  border-left: 2px solid var(--point_color);
+  box-sizing: border-box;
+}
+
+#membership_info .info_box_wrap {
+  width: 100%;
+  margin-left: 20px;
+}
+#membership_info .info_box {
+  margin-bottom: 20px;
+  padding: 20px 40px 20px 0;
+  display: flex;
+}
+#membership_info .info_box:last-child {
+  margin-bottom: 0px;
+}
+#membership_info .info_box > h3 {
+  align-self: center;
+  text-align: center;
+  width: 200px;
+  color: var(--point_color);
+  font-weight: 700;
+}
+#membership_info .info_box > h3 ~ div {
+  padding-left: 20px;
+  border-left: 1px solid #dedede;
+}
+#membership_info .info_box .terms_box {
+  display: none;
+  padding: 20px;
+  background: #f9f4ed;
+  width: 600px;
+  white-space: break-spaces;
+  font-size: 0.9em;
+  line-height: 1.2em;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#membership_info .info_box button {
+  font-size: 0.9em;
+  padding: 5px 15px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+#membership_info .info_box button:hover {
+  border: 1px solid var(--point_color);
+  color: var(--point_color);
+}
+#membership_info .info_box .terms_box_btn:hover ~ .terms_box,
+#membership_info .info_box .terms_box_btn ~ .terms_box:hover {
+  display: inline-block;
+}
+#membership_info .info_box p {
+  margin-bottom: 10px;
+}
+#membership_info .info_box p.hint {
+  font-size: 0.9em;
+  margin-bottom: 20px;
+  font-weight: 100;
+  color: #6d6d6d;
+  line-height: 1.2em;
+}
+#membership_info .change_box {
+  display: none;
+  align-items: center;
+  padding: 10px;
+  background: #f9f4ed;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+#membership_info .change_box.view {
+  display: flex;
+  flex-wrap: wrap;
+}
+#membership_info .change_box input {
+  width: 120px;
+  margin: 0 5px;
+  border: 1px solid #dedede;
+}
+
+#membership_info .info_box button.change_btn {
+  background: #f7941d;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+}
+
+/* 기본정보 - 렌탈상품관리 */
+.registration_modal {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 100;
+}
+.registration_modal .modal_wrap {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+}
+.registration_modal .modal_wrap label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 20px 0;
+  text-align: right;
+}
+.registration_modal .modal_wrap label input,
+.registration_modal .modal_wrap label select {
+  width: 160px;
+  align-self: center;
+  padding: 5px 10px;
+  border-radius: 40px;
+  border: 1px solid #dedede;
+}
+.registration_modal .modal_wrap label .req_form {
+  color: var(--point_color);
+}
+.registration_modal .modal_wrap .btn_wrap {
+  display: flex;
+  justify-content: center;
+}
+.registration_modal .modal_wrap .btn_wrap button,
+.registration_modal .modal_wrap .btn_wrap .close {
+  padding: 10px 20px;
+  background: var(--point_color);
+  color: #fff;
+  text-align: center;
+  border-radius: 30px;
+  font-size: 0.9em;
+  margin: 20px 5px 0;
+  cursor: pointer;
+}
+
+.registration_btn {
+  position: relative;
+  width: 1366px;
+  margin: 0 auto;
+}
+.registration_btn button {
+  position: absolute;
+  right: 0;
+  top: -50px;
+  display: inline-block;
+  padding: 10px 15px;
+  background: var(--point_color);
+  color: #fff;
+  text-align: center;
+  border-radius: 30px;
+  font-size: 0.9em;
+}
+.table_container {
+  overflow-x: scroll;
+}
+.table_container tr {
+  height: 80px;
+  padding: 0 20px;
+  min-width: 1000px;
+}
+.table_container tr:first-child {
+  height: 20px;
+}
+.table_container tr:nth-child(even) {
+  background: #f7f6f6;
+}
+.table_container th {
+  padding: 10px;
+  font-weight: 900;
+}
+.table_container td {
+  padding: 0 10px;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 0.95em;
+}
+.table_container td:first-child {
+  padding-left: 20px;
+}
+.table_container td.model_wrap {
+  display: flex;
+}
+.table_container td.model_wrap .model_thum {
+  width: 70px;
+  height: 70px;
+  margin: 5px 0;
+  background: #dedede;
+  display: block;
+}
+.table_container td.model_wrap .model_thum > img {
+  display: block;
+  width: 100%;
+}
+.table_container td.model_wrap .model_info {
+  text-align: left;
+  margin-left: 10px;
+}
+.table_container td.model_wrap .model_info .model_s {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #a7a7a7;
+}
+.table_container td.expiry_date .plus {
+  color: #1e63ff;
+  font-weight: 900;
+}
+.table_container td.expiry_date .minus {
+  color: #ff3c3c;
+  font-weight: 900;
+}
+
+.table_container td.model_wrap .edit_btn {
+}
+.table_container td.edit_btn a {
+  display: block;
+  float: left;
+  margin: 5px;
+  transition: all 0.3s;
+}
+.table_container td.edit_btn a:hover {
+  color: var(--point_color);
+}
+
+@media all and (max-width: 1366px) {
+  /* user page common */
+  .user_page_tit {
+    font-size: 1.7em;
+  }
+  .user_page_wrap {
+    width: 100%;
+  }
+
+  /* 로그인  */
+
+  /* 기본정보 - 회원정보 */
+  #membership_info .wrap {
+    display: block;
+    width: 95%;
+    max-width: 700px;
+  }
+  #membership_info .user_page_container {
+    padding: 150px 80px 50px;
+  }
+  #membership_info .info_box_wrap {
+    margin-left: 0;
+  }
+  #membership_info .side_box {
+    width: 100%;
+    padding: 0px 0 20px;
+    background: transparent;
+    box-shadow: none;
+  }
+  #membership_info .side_box ul {
+    display: flex;
+    justify-content: center;
+  }
+  #membership_info .side_box ul li.select {
+    border-left: 0;
+    border-bottom: 2px solid var(--point_color);
+  }
+  #membership_info .side_box ul li {
+    padding: 5px;
+    margin: 10px;
+  }
+  #membership_info .side_box .user_name {
+    margin: 40px 0 20px;
+  }
+
+  #membership_info .info_box {
+    display: block;
+    margin: 0 auto 20px;
+    padding: 20px;
+  }
+  #membership_info .info_box > h3 {
+    text-align: left;
+    width: auto;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dedede;
+  }
+  #membership_info .info_box > h3 ~ div {
+    padding: 0 10px;
+    border-left: 0;
+  }
+  #membership_info .info_box .terms_box {
+    width: 90%;
+    max-width: 640px;
+  }
+  #membership_info .change_box input {
+    width: 100px;
+    margin: 5px;
+  }
+
+  /* 기본정보 - 렌탈상품관리 */
+  .registration_btn {
+    width: 95%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .registration_modal .modal_wrap {
+    top: 30%;
+  }
+}
+@media all and (max-width: 650px) {
+  /* user page common */
+  .user_page_tit {
+    margin: 30px 0 30px;
+  }
+  /* .user_page_container {
+    padding: 75px 0 30px;
+  } */
+
+  /* 로그인  */
+  #login .login_wrap .login_box {
+    width: 330px;
+    padding: 40px 40px 30px;
+  }
+
+  /* 로그인 SMS로그인  */
+  #login .sns_btn {
+    width: 40px;
+    text-indent: 9999em;
+  }
+  #login .sns_btn.google > div {
+    background-position-x: -2px;
+  }
+  #login .sns_btn.naver,
+  #login .sns_btn.kakao {
+    background-position-x: -2.5px;
+  }
+  #login .sns_login_wrap {
+    justify-content: center;
+  }
+
+  /* 기본정보 - 회원정보 */
+  #membership_info .user_page_container {
+    padding: 60px 0 30px;
+  }
+
+  /* 기본정보 - 렌탈상품관리 */
+  .registration_modal .modal_wrap {
+    top: 25%;
+    width: 310px;
+    padding: 20px;
+  }
+}
+
+@media all and (max-width: 430px) {
+  /* 로그인  */
+  #login .login_wrap .login_box {
+    box-shadow: none;
+    background: #f3f2ef;
+    padding: 20px 0;
+  }
+}

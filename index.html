@@ -1,365 +1,871 @@
-<!doctype html>
-<html lang="ko"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>가전 먼저 받는 멤버십</title>
-<meta name="description" content="월 29,900원부터 · 고른 가전은 먼저 받고, 200회 완납하면 낸 돈은 만기에 그대로 돌려받는 가전결합 멤버십">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="ko">
 
-<style>
-html{-webkit-tap-highlight-color:transparent}
-a,button,select,summary,label{touch-action:manipulation}
-:root{--red:#e5322d;--red2:#c9221e;--navy:#14213d;--ink:#191919;--sub:#666;--line:#e6e6e6;--gray:#f5f5f3;--cream:#fff6e9;--yel:#ffd84a}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#e4e4e1;color:var(--ink);font-family:"Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
-.wrap{max-width:480px;margin:0 auto;background:#fff;overflow:hidden;padding-bottom:84px}
-img,video{display:block;max-width:100%}
-.cond{font-size:11px;color:#8a8a8a;letter-spacing:-.2px;margin-top:10px;line-height:1.5}
-.red{color:var(--red)}
-.mk{background:linear-gradient(transparent 60%,var(--yel) 60%)}
-section{padding:48px 20px}
-h2{font-size:28px;line-height:1.36;font-weight:900;letter-spacing:-.8px}
-.lead{font-size:16px;color:var(--sub);margin-top:10px;line-height:1.6}
-.rv{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
-.rv.in{opacity:1;transform:none}
-.btn{display:block;margin-top:22px;height:58px;border-radius:12px;background:var(--red);color:#fff;font-weight:900;font-size:18px;text-align:center;line-height:58px;text-decoration:none;box-shadow:0 8px 20px rgba(229,50,45,.28)}
-.top{background:var(--navy);color:#fff;text-align:center;font-size:13px;font-weight:500;padding:9px}
-/* hero */
-.hero{position:relative;background:#111}
-.hero video{width:100%;height:min(128vw,610px);object-fit:cover}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.05) 30%,rgba(0,0,0,.78) 78%)}
-.hero .cap{position:absolute;left:20px;right:20px;bottom:112px;z-index:2;color:#fff}
-.bdg{display:inline-block;background:var(--red);font-size:13px;font-weight:700;padding:6px 11px;border-radius:5px}
-.hero h1{font-size:35px;line-height:1.28;font-weight:900;margin-top:12px;letter-spacing:-1.2px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
-.hero h1 em{font-style:normal;color:var(--yel)}
-.hero .pr{margin-top:10px;font-size:16px;font-weight:500}
-.hero .pr b{font-size:26px;font-weight:900;color:var(--yel);letter-spacing:-.5px}
-/* lead card */
-.quick{position:relative;z-index:3;margin:-92px 14px 0;padding-bottom:6px}
-.leadbox{background:#fff;border-radius:18px;padding:20px 18px 18px;box-shadow:0 14px 38px rgba(0,0,0,.2)}
-.qt{font-size:20px;font-weight:900;letter-spacing:-.5px}
-.qt i{font-style:normal;color:var(--red)}
-.qs{font-size:13px;color:var(--sub);margin-top:3px}
-.in2{display:grid;grid-template-columns:1fr 1.35fr;gap:8px;margin-top:14px}
-.lead-f input[type=text],.lead-f input[type=tel],.lead-f select{width:100%;height:54px;border:1px solid #bdbdbd;border-radius:10px;padding:0 13px;font-size:16px;background:#fff;color:var(--ink);font-family:inherit}
-.lead-f input:focus,.lead-f select:focus{outline:none;border:2px solid var(--navy)}
-.agree{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px}
-.agree input{width:20px;height:20px;accent-color:var(--red);flex:none}
-details.pv{margin-top:8px;font-size:12px;color:#555;background:var(--gray);border-radius:8px;padding:8px 12px}
-details.pv ul{padding-left:16px;line-height:1.6;margin-top:6px}
-.submit{position:relative;overflow:hidden;width:100%;height:60px;border:0;border-radius:12px;background:var(--red);color:#fff;font-size:19px;font-weight:900;margin-top:14px;cursor:pointer;font-family:inherit;box-shadow:0 8px 20px rgba(229,50,45,.3)}
-.submit:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);animation:sh 3s ease-in-out infinite}
-@keyframes sh{55%,100%{left:130%}}
-.submit:active{background:var(--red2)}
-.submit:disabled{opacity:.6}
-.msg{text-align:center;margin-top:10px;font-size:14px;font-weight:700}
-.msg:empty{display:none}
-.msg.err{color:var(--red)}
-.done{text-align:center;padding:18px 6px 8px}
-.done .ck{width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;font-size:34px;font-weight:900;display:grid;place-items:center;margin:0 auto;animation:pop .5s cubic-bezier(.2,1.6,.4,1)}
-@keyframes pop{from{transform:scale(0)}}
-.done b{display:block;font-size:21px;font-weight:900;margin-top:14px}
-.done p{font-size:15px;color:var(--sub);margin-top:6px;line-height:1.6}
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);padding:26px 14px 6px}
-.stats div{text-align:center;border-left:1px solid var(--line);padding:2px 4px}
-.stats div:first-child{border:0}
-.stats b{display:block;font-size:24px;font-weight:900;letter-spacing:-.8px;color:var(--navy)}
-.stats small{font-size:12px;color:var(--sub)}
-.stats+.cond{padding:0 20px;text-align:center}
-/* talk */
-.talk{background:var(--cream)}
-.chat{margin-top:22px;display:flex;flex-direction:column;gap:10px}
-.chat p{max-width:84%;padding:13px 16px;font-size:16px;line-height:1.5;border-radius:18px}
-.chat .l{align-self:flex-start;background:#fff;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.chat .r{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:4px;font-weight:500;max-width:90%}
-.chat .r b{color:var(--yel)}
-.chat .rv:nth-child(2){transition-delay:.25s}.chat .rv:nth-child(3){transition-delay:.5s}.chat .rv:nth-child(4){transition-delay:.9s}
-/* steps */
-.step{display:flex;gap:14px;margin-top:20px;align-items:center}
-.step img{width:42%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;flex:none}
-.step .n{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--red);border-radius:99px;padding:3px 10px}
-.step b{display:block;font-size:19px;font-weight:900;margin-top:6px;letter-spacing:-.5px}
-.step p{font-size:14px;color:var(--sub);line-height:1.55;margin-top:4px}
-/* life */
-.life{background:var(--gray)}
-.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:20px}
-.mosaic figure{position:relative;border-radius:12px;overflow:hidden}
-.mosaic img{width:100%;aspect-ratio:1;object-fit:cover}
-.mosaic figcaption{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.62);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:5px}
-/* money */
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:20px;background:var(--gray);border-radius:12px;padding:4px}
-.seg button{height:46px;border:0;background:none;border-radius:9px;font:700 15px "Noto Sans KR";color:var(--sub);cursor:pointer}
-.seg button.on{background:var(--navy);color:#fff;box-shadow:0 3px 10px rgba(20,33,61,.3)}
-.calc{border:2px solid var(--navy);border-radius:16px;margin-top:12px;overflow:hidden}
-.calc .row{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-top:1px solid var(--line);font-size:15px}
-.calc .row:first-child{border:0}
-.calc .row b{font-size:19px}
-.calc .row b small{font-size:13px;font-weight:500;color:var(--sub)}
-.calc .tot{background:var(--navy);color:#fff;padding:18px}
-.calc .tot b{font-size:34px;font-weight:900;color:var(--yel);letter-spacing:-1px}
-/* vs */
-.vs{background:var(--gray)}
-.vs .cols{display:grid;grid-template-columns:1fr 1.18fr;gap:8px;margin-top:22px;align-items:end}
-.vs .c{border-radius:14px;padding:16px 13px;background:#fff;border:1px solid var(--line)}
-.vs .c h3{font-size:14px;color:var(--sub)}
-.vs .c ul{list-style:none;margin-top:8px;font-size:14px;line-height:1.5}
-.vs .c li{padding:8px 0 8px 22px;position:relative;border-top:1px dashed var(--line)}
-.vs .c li:before{content:"✕";position:absolute;left:0;color:#b9b9b9;font-weight:900}
-.vs .me{background:var(--navy);color:#fff;border:0;box-shadow:0 14px 30px rgba(20,33,61,.3);position:relative;padding-top:22px}
-.vs .me h3{color:var(--yel)}
-.vs .me li{border-color:rgba(255,255,255,.16)}
-.vs .me li:before{content:"✓";color:var(--yel)}
-.vs .me .flag{position:absolute;top:-11px;left:13px;background:var(--red);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:99px}
-/* products */
-.tabs{display:flex;gap:6px;overflow-x:auto;margin:20px -20px 0;padding:0 20px 4px}
-.tabs::-webkit-scrollbar{display:none}
-.tabs button{flex:none;border:1px solid #cfcfcf;background:#fff;border-radius:99px;padding:9px 15px;font:700 14px "Noto Sans KR";color:#555;cursor:pointer}
-.tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff}
-.pane{display:none;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-.pane.on{display:grid;animation:fd .35s}
-@keyframes fd{from{opacity:0;transform:translateY(8px)}}
-.pc{border:1px solid var(--line);border-radius:12px;padding:10px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px;background:#fff}
-.pc img{aspect-ratio:1;object-fit:contain;width:100%;margin-bottom:6px}
-.pc-b{font-size:11px;color:#999;font-weight:700}
-.pc-t{font-size:13px;font-weight:500;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:35px}
-.pc-m{font-size:13px;font-weight:900;color:var(--red)}
-.brands{font-size:13px;color:var(--sub);margin-top:14px;text-align:center}
-/* must */
-.must{background:var(--gray)}
-.must h2{font-size:22px}
-.must ul{margin-top:14px;padding-left:18px;font-size:14px;line-height:1.75;color:#333}
-.must li{margin-top:4px}
-/* faq */
-.faq details{border-bottom:1px solid var(--line)}
-.faq details:first-of-type{margin-top:16px;border-top:1px solid var(--ink)}
-.faq summary{list-style:none;cursor:pointer;padding:17px 28px 17px 0;font-weight:700;font-size:16px;position:relative;display:flex;gap:8px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary i{font-style:normal;color:var(--red);font-weight:900}
-.faq summary:after{content:"+";position:absolute;right:2px;top:12px;font-size:24px;font-weight:400;color:#999}
-.faq details[open] summary:after{content:"−"}
-.faq details p{font-size:15px;line-height:1.7;color:#444;background:var(--gray);border-radius:8px;padding:14px;margin-bottom:16px}
-/* form */
-.form{padding:0 0 48px;background:var(--navy)}
-.form .ph{position:relative}
-.form .ph img{width:100%}
-.form .ph:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,var(--navy))}
-.form .ph div{position:absolute;left:20px;right:20px;bottom:64px;z-index:2;color:#fff}
-.form .ph h2{text-shadow:0 2px 12px rgba(0,0,0,.5)}
-.form .ph p{font-size:15px;margin-top:6px;opacity:.9}
-.form .leadbox{margin:-48px 14px 0;position:relative;z-index:3}
-.who{font-size:13px;color:#333;background:var(--gray);border-radius:8px;padding:10px 12px}
-.who b{color:var(--red)}
-.fld{margin-top:14px}
-.fld label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
-.fld label small{font-weight:400;color:var(--sub)}
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:9;display:flex;justify-content:center;background:#fff;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .35s}
-.bar.on{transform:none}
-.bar div{max-width:456px;width:100%;display:flex;align-items:center;gap:10px}
-.bar p{font-size:12px;color:var(--sub);line-height:1.3;flex:1}.bar p b{display:block;font-size:18px;color:var(--ink);font-weight:900}
-.bar a{height:50px;padding:0 26px;border-radius:10px;background:var(--red);color:#fff;font-weight:900;font-size:16px;display:grid;place-items:center;text-decoration:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
-</style><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script></head>
-<body><div class="wrap">
+<head>
+  <script>if(/[?&]utm_campaign=sangjo/.test(location.search))location.replace("/boram2/"+location.search+location.hash);</script>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <link rel="shortcut icon" type="image/jpg" href="/imageserver/origin/100/img/cooperate/icon/렌탈타임파비콘.ico"><title>rentalmalla</title>
+<meta name="keywords" content="정수기렌탈,공기청정기렌탈,직수형정수기,직수정수기,냉온정수기렌탈,전기레인지렌탈,안마의자비교,냉온정수기,안마의자추천,정수기추천">
+<meta name="author" content="정수기,공기청정기,안마의자,비데,생활가전">
+<meta name="description" content="가족을 생각하는 시간 렌탈타임">
+<!-- Open Graph Start -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="rentalmalla">
+<meta property="og:description" content="정수기렌탈,공기청정기렌탈,안마의자렌탈,생활가전렌탈">
+<meta property="og:url" content="https://rentalmass.co.kr/">
+<meta property="og:image" content="/imageserver/origin/100/img/cooperate/logo/rentalmalla.png">
+<!-- <meta property="og:site_name" content="rentalmalla"> -->
+<!-- Open Graph End -->
+  <!-- <meta name="naver-site-verification" content="c32d3f79d2a29465f2b477b4a73a99f3aa7b7cc9" />
+    <meta name="google-site-verification" content="CtP5WHfO3WvPx3r9vKNzDauzrTnl6LFvVPfuy8KuLxU" /> -->
 
-<div class="top">가전결합 멤버십 · 전국 상담 가능</div>
+  <link type="text/css" rel="stylesheet" href="/node_modules/font-applesdgothicneo/css/all.css" />
+  <link rel="stylesheet" href="/css/reset.min.css?ver=1" />
+  <link rel="stylesheet" href="/css/jquery-ui.min.css" />
+  <link rel="stylesheet" href="/css/hamburger.css?ver=5" />
+  <link rel="stylesheet" href="/css/swiper.min.css?ver=2" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css"> -->
+  <link rel="stylesheet" href="/css/animate.min.css?ver=8" />
+  <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.css" />
+  <link rel="stylesheet" href="/node_modules/toastr/build/toastr.min.css" />
+  <link rel="stylesheet" href="/css/member/user-page.css?ver=4" />
+  <link rel="stylesheet" href="/css/theme/default/member/user-page.css?ver=0.0.6" />
 
-<header class="hero">
-  <video autoplay muted loop playsinline preload="metadata" poster="img/scene_hero.jpg"><source src="img/hero.mp4" type="video/mp4"></video>
-  <div class="cap">
-    <span class="bdg">냉장고·TV 바꿀 때 됐다면</span>
-    <h1>새 가전은 <em>지금</em> 들이고<br>낸 돈은 <em>만기에</em> 돌려받고</h1>
-    <p class="pr"><b>월 29,900원</b>부터 · 가전 204종 중 선택</p>
-  </div>
-</header>
+  <!-- pannellum css -->
+  <link rel="stylesheet" href="/node_modules/pannellum/build/pannellum.css" />
+  <!-- pannellum css end -->
 
-<div class="quick">
-  <div class="leadbox">
-    <form class="lead-f" data-tag="빠른 상담" novalidate>
-      <p class="qt"><i>30초</i> 빠른 상담 신청</p>
-      <p class="qs">이름과 번호만 남기면 전화드립니다 · 상담만 받아 보셔도 됩니다</p>
-      <div class="in2"><input type="text" name="name" autocomplete="name" placeholder="이름" aria-label="이름">
-        <input type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000" aria-label="휴대폰 번호"></div>
-      <input type="hidden" name="w1" value="상담 후 결정">
-      <label class="agree"><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
-      <details class="pv"><summary>동의 내용 보기</summary><ul>
-      <li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
-      <li>이용 목적: 가전결합 멤버십 상담 연락</li>
-      <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
-      <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
-      <li><a href="privacy.html">개인정보처리방침 전문 보기</a></li></ul></details>
-      <button class="submit" type="submit">상담 신청하기</button>
-      <p class="msg"></p>
-    </form>
-  </div>
+  <!-- 추가 -->
+  <link rel="stylesheet" href="/css/theme/default/common.css?ver=0.0.29" />
+  <link rel="stylesheet" href="/css/common.css?ver=7" />
+  <link rel="stylesheet" href="/css/common_dark.css?ver=3" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/pretendard/static/pretendard-subset.css" />
+
+  <script src="/js/polyfill.min.js" async defer></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/config.js?v=20261009"></script>
+  <script src="/rm/shim.js?v=20261009"></script>
+  <!-- <script src="/js/jquery-ui.min.js"></script> -->
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <script src="/js/kakao.min.js"></script>
+
+  <!-- fullpage -->
+  <link rel="stylesheet" href="/css/jquery.fullPage.css" />
+  <script src="/js/jquery.fullPage.js"></script>
+
+  <!-- textillate -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+
+  <script type="text/javascript" src="/node_modules/jquery-mousewheel/jquery.mousewheel.js"></script>
+
+  <!-- Suit Variable -->
+  <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+
+  <!-- 모바일 주소창 컬러 지정 -->
+  <!-- Chrome, Firefox, Opera -->
+  <meta content="#ff5c4a" name="theme-color" />
+  <!-- Windows Phone -->
+  <meta content="#ff5c4a" name="msapplication-navbutton-color" />
+  <!-- iOS Safari -->
+  <meta content="#ff5c4a" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+
+  
+  <script src="/webpack/myload.js"></script>
+  <style>
+    body {
+      display: none;
+    }
+  </style>
+  <meta name="naver-site-verification" content="3a5370ab44181ddfb0cc49a7ea9ebc44431d8c65" /></head>
+
+</html><link rel="stylesheet" href="/css/html/loading.css?ver=3">
+<div id="White_Modal" class="modal create_joblist" style="background-color: rgba(0,0,0,0);">
+</div>
+<div id="ajax_indicator" class="modal" style="display:none;">
+    <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 
-<div class="stats rv" id="stats">
-  <div><b><span data-n="29900">29,900</span>원</b><small>월 납입 (1구좌)부터</small></div>
-  <div><b><span data-n="204">204</span>종</b><small>고를 수 있는 가전</small></div>
-  <div><b><span data-n="100">100</span>%</b><small>만기 환급*</small></div>
+<body>
+    <!--상담신청 모달-->
+  <link rel="stylesheet" href="/css/html/modal/req_form.css" />
+<link
+  rel="stylesheet"
+  href="/css/theme/default/html/modal/req_form.css?ver=0.0.8"
+/>
+
+<form id="product_modal_form">
+  <div id="req_modal">
+    <div class="modal_bg"></div>
+    <div class="req_modal_wrap">
+      <div class="req_close_btn" onclick="close_modal('req_modal');">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="thumb_box">
+        <div id="product_modal_img">
+          <!-- <img src="https://data.miraebiz.co.kr/samsung/KU43UT8000FXKR_m2.jpg" /> -->
+        </div>
+      </div>
+      <ul class="pd_info">
+        <li class="prd_tit_wrap">
+          <h4 id="product_modal_name" class="prd_tit"></h4>
+          <h5 id="product_modal_model" class="model_tit"></h5>
+        </li>
+        <li class="info select_arw">
+          <span>렌탈사</span>
+          <select name="brand" id="product_modal_brand">
+            <!-- <option value="MK렌탈">MK렌탈</option>
+                        <option value="BS렌탈">BS렌탈</option>
+                        <option value="스마트렌탈">스마트렌탈</option> -->
+          </select>
+        </li>
+
+        <li class="info">
+          <span>렌탈기간</span>
+          <div class="radio-group" id="product_modal_month">
+            <!-- <input type="radio" id="month60" name="month" value="60">
+                        <label for="month60" onclick="click_modal_month(60, 'MK렌탈');">60개월</label>
+                        <input type="radio" id="month48" name="month" value="48">
+                        <label for="month48" onclick="click_modal_month(48, 'MK렌탈');">48개월</label>
+                        <input type="radio" id="month36" name="month" value="36">
+                        <label for="month36" onclick="click_modal_month(36, 'MK렌탈');">36개월</label> -->
+          </div>
+        </li>
+
+        <li class="info">
+          <span>월 렌탈료</span>
+          <div><span id="product_modal_price" class="price"></span></div>
+        </li>
+      </ul>
+      <div class="req_btn_wrap">
+        <button type="button" class="req_btn add_cart">장바구니</button>
+        <button
+          type="button"
+          class="req_btn consult_submit_open js-consultSubmitOpen"
+          data-arr='["user", 0]'
+        >
+          렌탈신청
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<div id="req_form_user" class="req_form" style="display:none">
+  <div class="modal_bg"></div>
+  <div class="req_form_modal_wrap">
+    <div class="req_close_btn" onclick="close_modal('req_form_user');"><i class="fas fa-times"></i></div>
+    <h4 class="tit">렌탈 접수</h4>
+    <ul class="pd_info">
+      <li class="prd_tit_wrap">
+        <h4 class="prd_tit">삼성 블루스카이 7000 공기청정기렌탈 90㎡ (27평)</h4>
+        <h5 class="model_tit">AX90T7020WBD</h5>
+      </li>
+      <li class="info">
+        <span>이름</span>
+        <input type="text" name="Name" class="regex_space">
+      </li>
+
+      <li class="info">
+        <span>전화번호</span>
+        <input type="text" name="Tel" placeholder="숫자만 입력해 주세요.">
+      </li>
+
+      <li class="info select_arw js-availableTime">
+        <span>상담 가능 시간</span>
+        <select id="time" name="time" class="time js-timeOptions"></select>
+      </li>
+      <li class="info select_arw js-directProductOptionsWrap">
+        <!-- <span>옵션</span>
+        <select name="options" class="js-directProductOptions"></select> -->
+      </li>
+      <!-- <li class="info">
+        <span>신용카드 여부</span>
+        <div class="radio-group">
+          <input type="radio" id="use" name="card">
+          <label for="use">사용</label>
+          <input type="radio" id="notUse" name="card">
+          <label for="notUse">미사용</label>
+        </div>
+      </li> -->
+
+      <li class="privacy_agree">
+        <label class="agree">
+          <input class="privacy-agree-popup js-privacyAgreePopup" id="privacyAgreePopup" type="checkbox" name="privacyAgreePopup" style="display: none">
+          <label class="cbx" for="privacyAgreePopup">
+            <span>
+              <svg width="12px" height="10px" viewBox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+              </svg>
+            </span>
+            <span>개인정보 수집 및 이용</span>에 동의합니다.
+            <button class="pv_box_view">[상세 보기]</button>
+          </label>
+        </label>
+        <div class="pv_box">
+          다콩의 렌탈 상담을 받기 위해 개인정보를 수집/이용하는 것에 동의합니다.
+          <br>1. 수집항목 : 이름, 휴대폰번호, 이메일(선택사항)
+          <br>2. 수집.이용목적 : 다콩 렌탈 상담을 위한 정보 제공
+          <br>3. 보유.이용기간 및 파기 : 단순 상담고객 3개월 / 계약 고객 12개월까지
+          <br>※ 개인정보수집 및 이용동의을 거부할 수 있으며, 거부 할 경우 렌탈상담신청이 제한 됩니다.
+        </div>
+      </li>
+
+    </ul>
+    <div class="req_btn_wrap">
+      <button class="req_btn consult_submit">렌탈접수</button>
+    </div>
+  </div>
+</div>  <!--상담신청 모달 끝-->
+  <header>
+    <div id="header">
+      <h1 id="logo">
+        <a href="/">
+          <img src='/imageserver/origin/100/img/cooperate/logo/rentalmalla.png' alt="Logo" class="imgError" data-error='["img/cooperate/logo/rentalmalla.png", 100]'>
+        </a>
+      </h1>
+      <div id="srch_wrap">
+        <form id="search_form" class="search_form header_search" action="/list.html" type="get" data-form="#search_form">
+          <button class="srch_btn"><i class="fas fa-search"></i></button>
+          <input class="js-srchInput searchInput" type="text" placeholder="검색어를 입력하세요." name="search" value="" autocomplete="off">
+          <div id="search_box" class="swiper-container srch_box js-srchBox">
+            <div class="swiper-wrapper">
+              <div class="live_srch swiper-slide">
+                <h4 class="ns"><i class="fas fa-chart-line"></i> 실시간 인기 검색어</h4>
+                <ul>
+                  <!-- <li>1. <a href="#">LG정수기</a></li>
+                  <li>2. <a href="#">삼성냉장고</a></li>
+                  <li>3. <a href="#">1등급</a></li>
+                  <li>4. <a href="#">상품명</a></li>
+                  <li>5. <a href="#">상품명</a></li>
+                  <li>6. <a href="#">상품명</a></li>
+                  <li>8. <a href="#">상품명</a></li>
+                  <li>8. <a href="#">상품명</a></li>
+                  <li>9. <a href="#">상품명</a></li> -->
+                </ul>
+              </div>
+              <div class="best_srch swiper-slide">
+                <h4 class="ns"><i class="fas fa-heart"></i> 인기 카테고리</h4>
+                <ul>
+                  <!-- <li>1. <a href="#">정수기</a></li>
+                  <li>2. <a href="#">안마의자</a></li>
+                  <li>3. <a href="#">공기청정기</a></li>
+                  <li>4. <a href="#">에어컨</a></li>
+                  <li>5. <a href="#">카테고리명</a></li>
+                  <li>6. <a href="#">카테고리명</a></li>
+                  <li>8. <a href="#">카테고리명</a></li>
+                  <li>8. <a href="#">카테고리명</a></li>
+                  <li>9. <a href="#">카테고리명</a></li> -->
+                </ul>
+              </div>
+            </div>
+            <span class="js-srchCloBtn srch-clo-btn"><i class="fa-solid fa-xmark"></i></span>
+          </div>
+        </form>
+
+      </div>
+
+      <div id="lnb">
+        <ul>
+          <!-- notify 랑 카트 badge 일시적으로 숨김처리
+          <li class="notify">
+            <i class="fas fa-bell" style="font-size:1.2em;"></i>
+            <span class="badge">2</span>
+          </li> -->
+                    <!-- <li class="vr-link">
+            <a href="/index-vr.html">VR보기</a>
+          </li> -->
+          <!-- <li class="gift giftView">
+              <i class="fa-solid fa-gift"></i>
+              <span>사은품</span>
+            </li> -->
+          <li class="mycart" title="my cart">
+            <a href="/member/cart.html">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+          </li>
+        </ul>
+        <div class="call">
+          <a class="ft-bold" href="tel:010-2165-7015"><i class="fas fa-phone-alt"></i><span class="">010-2165-7015</span></a>
+        </div>
+      </div>
+      <div id="home_btn">
+        <a href="/">
+          <i class="fas fa-home"></i>
+        </a>
+      </div>
+      <div class="gnb_wrap">
+        <div id="gnb" class="hamburger">
+          <!-- <a href="#"><i class="fas fa-bars"></i></a> -->
+          <div class="btn not-active js-hamburger js-cateClick">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="gnb_layout">
+            <ul id="gnb_list_wrap" class="gnb_list_wrap">
+              <!-- <li class="gnb_list" onclick="cate_click()">생활가전</li>
+            <li class="gnb_list" onclick="cate_click()">주방</li>
+            <li class="gnb_list" onclick="cate_click()">디지털</li>
+            <li class="gnb_list" onclick="cate_click()">가구/침구</li>
+            <li class="gnb_list" onclick="cate_click()">취미/여행</li>
+            <li class="gnb_list" onclick="cate_click()">건강/뷰티</li>
+            <li class="gnb_list" onclick="cate_click()">자동차</li>
+            <li class="gnb_list" onclick="cate_click()">사업자</li> -->
+            </ul>
+                      </div>
+        </div>
+              </div>
+    </div>
+  </header>
+  <!-- <div id="hamburger_click" class="menu">
+    <div thumbsSlider="" class="swiper-container mnu_gnb_swp">
+      <ul id="mnu_gnb_wrap" class="mnu_gnb_wrap swiper-wrapper">
+        <li class="mnu_gnb_list swiper-slide">생활가전</li>
+        <li class="mnu_gnb_list swiper-slide">주방</li>
+        <li class="mnu_gnb_list swiper-slide">디지털</li>
+        <li class="mnu_gnb_list swiper-slide">가구/침구</li>
+        <li class="mnu_gnb_list swiper-slide">취미/여행</li>
+        <li class="mnu_gnb_list swiper-slide">건강/뷰티</li>
+        <li class="mnu_gnb_list swiper-slide">자동차</li>
+        <li class="mnu_gnb_list swiper-slide">사업자</li>
+        <li class="mnu_gnb_list swiper-slide">기타</li>
+      </ul>
+    </div>
+    <div class="swiper-container cateSwiper">
+      <div id="menu_swiper_wrap" class="menu_wrap swiper-wrapper">
+              </div>
+      <div class="swiper-button-next cateSWP fas"></div>
+      <div class="swiper-button-prev cateSWP fas"></div>
+      <div class="swiper-scrollbar cateSWP" style="top: 0%;"></div>
+    </div>
+  </div> -->
+  <!-- <div id="hd_cate_click" class="menu">
+    <div class="cateSwiper">
+      <div class="menu_wrap">
+        <div class="cate">
+          <h2 class="mnu_tit ft-bold">
+            <button class="close"><i class="fas fa-chevron-left"></i></button>
+            <span id="hd_cate_head_title">생활가전</span>
+          </h2>
+          <div class="sub_mnu swiper-container subMnuSwiper" style="width:70%; margin: 0 auto; padding:0 40px; ">
+            <div id="hd_cate_head_id" class="sub_mnu_wrap swiper-wrapper">
+              <h3 class="sub_mnu_tit swiper-slide"><a class="on" href="/list.html">공기청정기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">세탁기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">에어컨</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">냉난방기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">비데</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">건조기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">김치냉장고</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">청소기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">제습기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">가습기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">의류관리기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">살균기</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">다리미</a></h3>
+              <h3 class="sub_mnu_tit swiper-slide"><a href="/list.html">냉장고 </a></h3>
+            </div>
+            <div class="swiper-pagination subMnuSWP"></div>
+          </div>
+          <div class="cate_goods" style="width:100%; height:500px;">
+            <div id="hd_cate_goods_wrap" class="cate_goods_wrap" style="position:relative">
+              <div class="cate_goods_box">
+                <div class="thum">
+                  <img src="" alt="썸네일 샘플">
+                  <h4 class="ft-bold"><a href="/detail.html">LG전자 퓨리케어 360 공기청정기렌탈 알파 35평형 아이언 그레이</a></h4>
+                  <div class="price_wrap">
+                    <div class="price price01">
+                      <p>렌탈료</p>
+                      <p>월 <span class="ft-color03 ft-bold">59,400</span> 원</p>
+                    </div>
+                    <div class="price price02">
+                      <p>할인혜택가</p>
+                      <p>월 <span class="ft-color03 ft-bold">39,400</span> 원</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="cate_goods_box">
+                <div class="thum">
+                  <img src="" alt="썸네일 샘플">
+                  <h4 class="ft-bold"><a href="/detail.html">삼성 그랑데 세탁기렌탈 AI 24kg 블랙케비어</a></h4>
+                  <div class="price_wrap">
+                    <div class="price price01">
+                      <p>렌탈료</p>
+                      <p>월 <span class="ft-color03 ft-bold">37,900</span> 원</p>
+                    </div>
+                    <div class="price price02">
+                      <p>할인혜택가</p>
+                      <p>월 <span class="ft-color03 ft-bold">17,900</span> 원</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div id="fixed_btn_wrap">
+    <div class="fixed_btn_width_wrap">
+      <!-- <div class="vr_view_btn fixed_btn txtbox">
+        <a href='/index-vr.html' title="VR 바로가기"><i class="fas fa-vr-cardboard"></i></a>
+      </div> -->
+      <div class="compare_btn fixed_btn txtbox">
+        <a href='/member/compare.html' title="비교하기 바로가기"><i class="fas fa-balance-scale-left"></i></a>
+      </div>
+      <div class="consult_btn fixed_btn">
+        <button class="call_fixed_btn consult_submit_open js-callFixedBtn js-consultSubmitOpen" title="렌탈접수 상담" data-arr='["user", 0]'><i class="fas fa-phone-alt"></i></button>
+      </div>
+      <div class="top_btn fixed_btn">
+        <button class="topMoveButton"><i class="fas fa-chevron-up" title="상단으로 이동"></i></button>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="fixed_dark_btn" title="다크모드로 보기">
+              <div class="dark_mode_btn">
+            <input type="checkbox" id="dark_mode">
+            <label for="dark_mode" class="fas onoff_switch"></label>
+          </div>
+      </div> -->
+  <!--일반 vr버튼-->
+  <!-- <div class="fixed-vr-btn-wrap">
+    <a class="fixed-vr-btn" href="/index-vr.html" target="_blank">
+      <i class="fas fa-vr-cardboard"></i><br>VR렌탈<span>입장</span>
+    </a>
+  </div> -->
+  <link rel="stylesheet" href="/css/components/modal/all-menu.css?ver=0.0.1">
+<link rel="stylesheet" href="/css/theme/default/components/modal/all-menu.css?ver=0.0.2" />
+
+<div id="all_menu_modal">
+  <div class="all_menu_wrap">
+    <div class="cls_all_menu js-cateClick"><i class="fas fa-times"></i></div>
+    <h2 class="ns">전체 카테고리</h2>
+    <div id="srch_wrap">
+      <form action="/list.html" type="get" class="search_form header_search" id="all_cate_search_form" data-form="#all_cate_search_form">
+        <button class="srch_btn"><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="검색어를 입력하세요." name="search" value="">
+      </form>
+      <div id="search_box">
+        <div>
+          <div class="live_srch">
+            <h4>실시간 인기 검색어</h4>
+            <ul>
+              <!-- <li>1. <a href="#">LG정수기</a></li>
+              <li>2. <a href="#">삼성냉장고</a></li>
+              <li>3. <a href="#">1등급</a></li>
+              <li>4. <a href="#">상품명</a></li>
+              <li>5. <a href="#">상품명</a></li>
+              <li>6. <a href="#">상품명</a></li>
+              <li>8. <a href="#">상품명</a></li>
+              <li>8. <a href="#">상품명</a></li>
+              <li>9. <a href="#">상품명</a></li> -->
+            </ul>
+          </div>
+          <div class="best_srch">
+            <h4>인기 카테고리</h4>
+            <ul>
+              <!-- <li>1. <a href="#">정수기</a></li>
+              <li>2. <a href="#">안마의자</a></li>
+              <li>3. <a href="#">공기청정기</a></li>
+              <li>4. <a href="#">에어컨</a></li>
+              <li>5. <a href="#">카테고리명</a></li>
+              <li>6. <a href="#">카테고리명</a></li>
+              <li>8. <a href="#">카테고리명</a></li>
+              <li>8. <a href="#">카테고리명</a></li>
+              <li>9. <a href="#">카테고리명</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="all_menu_box">
+      <div class="menu_wrap">
+        <div class="all_gnb_list">
+          <ul>
+            <!-- <li>
+              <h3 class="all_gnb_tit">생활가전</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">가습기/제습기</a></li>
+                <li><a class="all_sub_tit" href="#">건조기</a></li>
+                <li><a class="all_sub_tit" href="#">공기청정기</a></li>
+                <li><a class="all_sub_tit" href="#">냉난방기</a></li>
+                <li><a class="all_sub_tit" href="#">비데/연수기</a></li>
+                <li><a class="all_sub_tit" href="#">살균기</a></li>
+                <li><a class="all_sub_tit" href="#">세탁기</a></li>
+                <li><a class="all_sub_tit" href="#">에어컨</a></li>
+                <li><a class="all_sub_tit" href="#">의류관리기</a></li>
+                <li><a class="all_sub_tit" href="#">청소기</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">주방가전</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">정수기</a></li>
+                <li><a class="all_sub_tit" href="#">김치냉장고</a></li>
+                <li><a class="all_sub_tit" href="#">냉동고</a></li>
+                <li><a class="all_sub_tit" href="#">냉장고</a></li>
+                <li><a class="all_sub_tit" href="#">식기세척기</a></li>
+                <li><a class="all_sub_tit" href="#">오븐</a></li>
+                <li><a class="all_sub_tit" href="#">와인셀러</a></li>
+                <li><a class="all_sub_tit" href="#">음식물처리기</a></li>
+                <li><a class="all_sub_tit" href="#">인덕션/전기레인지</a></li>
+                <li><a class="all_sub_tit" href="#">제빙기/빙수기</a></li>
+                <li><a class="all_sub_tit" href="#">커피머신기</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">디지털</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">TV</a></li>
+                <li><a class="all_sub_tit" href="#">CCTV</a></li>
+                <li><a class="all_sub_tit" href="#">PC/노트북</a></li>
+                <li><a class="all_sub_tit" href="#">모니터</a></li>
+                <li><a class="all_sub_tit" href="#">무인키오스크</a></li>
+                <li><a class="all_sub_tit" href="#">스피커</a></li>
+                <li><a class="all_sub_tit" href="#">전자액자/전자칠판</a></li>
+                <li><a class="all_sub_tit" href="#">프로젝터</a></li>
+                <li><a class="all_sub_tit" href="#">프린터/복합기</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">가구/인테리어</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">침대</a></li>
+                <li><a class="all_sub_tit" href="#">기타가구</a></li>
+                <li><a class="all_sub_tit" href="#">매트리스</a></li>
+                <li><a class="all_sub_tit" href="#">의자/소파</a></li>
+                <li><a class="all_sub_tit" href="#">책상</a></li>
+                <li><a class="all_sub_tit" href="#">파운데이션</a></li>
+                <li><a class="all_sub_tit" href="#">프레임</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">취미/레저</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">맥주제조기</a></li>
+                <li><a class="all_sub_tit" href="#">게이밍책상</a></li>
+                <li><a class="all_sub_tit" href="#">빔프로젝트</a></li>
+                <li><a class="all_sub_tit" href="#">캠핑용품</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">건강/바디케어</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">사우나기</a></li>
+                <li><a class="all_sub_tit" href="#">런닝머신</a></li>
+                <li><a class="all_sub_tit" href="#">미용기기</a></li>
+                <li><a class="all_sub_tit" href="#">안마기기</a></li>
+                <li><a class="all_sub_tit" href="#">안마의자</a></li>
+                <li><a class="all_sub_tit" href="#">운동기구</a></li>
+                <li><a class="all_sub_tit" href="#">의료기기</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">자동차</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">렌트카</a></li>
+                <li><a class="all_sub_tit" href="#">블랙박스</a></li>
+                <li><a class="all_sub_tit" href="#">전기차충전기</a></li>
+                <li><a class="all_sub_tit" href="#">차량용공기청정기</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">사업자</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">숙박</a></li>
+                <li><a class="all_sub_tit" href="#">군부대</a></li>
+                <li><a class="all_sub_tit" href="#">병원</a></li>
+                <li><a class="all_sub_tit" href="#">사무실</a></li>
+                <li><a class="all_sub_tit" href="#">학교</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">결합상품</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">세탁기+건조기</a></li>
+                <li><a class="all_sub_tit" href="#">TV+공기청정기</a></li>
+                <li><a class="all_sub_tit" href="#">TV+냉장고</a></li>
+                <li><a class="all_sub_tit" href="#">TV+세탁기</a></li>
+                <li><a class="all_sub_tit" href="#">냉장고+김치냉장고</a></li>
+              </ol>
+            </li>
+            <li>
+              <h3 class="all_gnb_tit">more</h3>
+              <ol class="all_sub_list">
+                <li><a class="all_sub_tit" href="#">조명/전구</a></li>
+                <li><a class="all_sub_tit" href="#">금고</a></li>
+                <li><a class="all_sub_tit" href="#">기타가전</a></li>
+                <li><a class="all_sub_tit" href="#">반려동물용품</a></li>
+                <li><a class="all_sub_tit" href="#">안면인식기</a></li>
+                <li><a class="all_sub_tit" href="#">학습기</a></li>
+              </ol>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="shortcut_box">
+                <button class="business_btn" onclick="window.open('/business/big-rental-counsel.html')">
+          <i class="shortcut_icon fas fa-won-sign"></i>
+          <div class="shortcut_tit">대량견적</div>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="business_btn" onclick="window.open('/business/b2b-rental-counsel.html')">
+          <i class="shortcut_icon far fa-handshake"></i>
+          <div class="shortcut_tit">B2B</div>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="business_btn giftView gift">
+          <i class="fas fa-gift"></i>
+          <div class="shortcut_tit">사은품</div>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <!-- <button>
+          <i class="shortcut_icon fas fa-th-large"></i>
+          <div class="shortcut_tit">브랜드관 (오픈예정)</div>
+          <i class="fas fa-chevron-right"></i>
+        </button> -->
+      </div>
+      <div class="quick_menu">
+        <!-- <button onclick="location.href='/info/notice.html'">렌탈소식</button> -->
+                <!-- <button onclick="window.open('https://www.graphicgongbang.com')">
+          <span class="quick_menu_icon"
+            ><img src="/imageserver/webp/100/img/icon/all_menu_sub_icon_vr.webp"
+            alt="VR제작 아이콘"></span
+          >
+          <span class="quick_menu_tit">VR제작</span>
+        </button> -->
+        <a class="business_btn btn-wrap" href="/member/cart.html">
+          <span class="quick_menu_icon"><i class="fa-solid fa-cart-shopping"></i></span>
+          <span class="quick_menu_tit">장바구니</span>
+        </a>
+        <button class="business_btn btn-wrap consult_submit_open js-callFixedBtn js-consultSubmitOpen" data-arr='["user", 0]'>
+          <span class="quick_menu_icon"><i class="fa-solid fa-headset"></i></span>
+          <span class="quick_menu_tit">상담신청</span>
+        </button>
+              </div>
+    </div>
+  </div>
+</div>  <script>
+    // $('.srch_open_btn i.fa-sort-down').on(
+    //   'click',
+    //   function() {
+    //     $('#search_box').toggleClass('on');
+    //     $('.srch_open_btn i').toggleClass('fa-sort-up');
+
+    //     $("header #header #srch_wrap input").focusout(function() {
+    //       inputPocusOutEvent();
+    //     });
+
+    //   }
+    // );
+    // $(".srch_open_btn i.fa-sort-down").on("click", function() {
+    //   $('#search_box').toggleClass('on');
+    //   $('.srch_open_btn i').toggleClass('fa-sort-up');
+    // });
+  </script>
+  <div id="body"><!--메인-->
+<link rel="stylesheet" href="/css/html/list.css">
+
+<body>
+  <div id="main" class="">
+    <!--렌탈이 vr버튼-->
+    <!-- <div class="character_banner wow animate__bounceInLeft" data-wow-duration="1.3s" data-wow-delay="0.2s"
+      data-wow-offset="0" data-wow-iteration="1">
+      <a href="/index-vr.html">
+        <img class="" src="/imageserver/origin/100/img/banner/character_banner_w3.png" alt="캐릭터배너">
+        <div class="bubble">
+          국내최초 VR렌탈<br><i>VR 렌탈존</i><br><i>입장하기</i>
+        </div>
+      </a>
+    </div> -->
+    <div id="banner">
+      <div class="swiper js-bannerSwiper">
+        <div class="swiper-wrapper js-mainBannerList">
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!-- main_bar -->
+    <div id="main_bar">
+      <div class="bar_wrap">
+        <div class="count_wrap">
+          <div class="count">
+            <span class="c_tit">총 상품</span>
+            <p><span class="js-countNum num" data-count="3916">0</span></p>
+          </div>
+          <div class="count">
+            <span class="c_tit">입점 브랜드</span>
+            <p><span class="js-countNum num" data-count="136">0</span></p>
+          </div>
+        </div>
+        <div class="realtime_wrap">
+
+          <div class="realtime">
+            <p>2026.10.09 기준<br> 요금·조건은 상품 화면에서 확인</p>
+          </div>
+        </div>
+        <div class="liveshow_wrap">
+
+          <div class="liveshow">
+            <p>렌탈 라이브쇼<br><i>방송종료</i></p>
+            <span class="onoff-toggle-btn"><i class="onair">ON</i> <i class="offair">OFF</i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- prd_left -->
+    <link rel="stylesheet" href="/css/html/main_list/prd_list_right.css?ver=1">
+    <link rel="stylesheet" href="/css/html/main_list/prd_list_left.css?ver=6">
+    <link rel="stylesheet" href="/css/theme/default/html/main_list/prd_list_left.css?ver=0.0.3" /> <!-- 추가 -->
+    <div class="js-mainItemsLine">
+      <!-- <div id="prd_list_right" class="prd_list">
+        <div class="prd_tit_wrap">
+          <div>
+            <h2 class="prd_tit ns">BEST</h2>
+            <p>MK렌탈의 베스트 상품을 만나보세요</p>
+          </div>
+          <div class="arrow-btn-wrap">
+            <div class="swiper-button-next fas"></div>
+            <div class="swiper-button-prev fas"></div>
+          </div>
+        </div>
+        <div class="swiper-container prd_list_wrap">
+          <div class="swiper-wrapper">
+          </div>
+        </div>
+      </div>
+
+      <div id="prd_list_left" class="prd_list">
+        <style>
+        </style>
+        <div class="prd_tit_wrap">
+          <div>
+            <h2 class="prd_tit ns">NEW</h2>
+            <p>매월 새로운 신규 렌탈 상품!</p>
+          </div>
+          <div class="arrow-btn-wrap">
+            <div class="swiper-button-next fas"></div>
+            <div class="swiper-button-prev fas"></div>
+          </div>
+        </div>
+        <div class="swiper-container prd_list_wrap">
+          <div class="swiper-wrapper">
+          </div>
+        </div>
+        <div class="character_banner2 wow animate__bounceInRight" data-wow-duration="1.3s" data-wow-delay="0.2s" data-wow-offset="50" data-wow-iteration="1" onclick="location.href='/member/compare.html'">
+          <img class="" src="/imageserver/origin/100/img/banner/character_banner_w.png" alt="캐릭터배너2">
+          <div class="bubble">
+            "스마트한 렌탈Tip"<br><i>장바구니</i><span>에 담아</span><br><i>비교해보기 !</i>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <!-- prd_tab -->
+    <link rel="stylesheet" href="/css/html/main_list/prd_tab.css?ver=15">
+    <link rel="stylesheet" href="/css/theme/default/html/main_list/prd_tab.css?ver=0.0.4" />
+    <div id="prd_list_tab" class="prd_tab js-mainItemsLabelList">
+      <!-- <div class="prd_tit_wrap">
+        <div>
+          <h2 class="prd_tit ns">카테고리별 인기상품</h2>
+        </div>
+      </div>
+      <ul class="tab_btn_wrap">
+      </ul>
+      <div class="tab_box_wrap">
+      </div> -->
+    </div>
+  </div>
+
+  <!-- <section id="like_product">
+    <div class="like_product_wrap" style="display:none;">
+      <div class="like_product_up">
+        <i class="fas fa-angle-up"></i>
+      </div>
+      <div class="like_product_list">
+        <div class="like_list under_cart">
+        </div>
+      </div>
+      <div class="list_btn">
+        <button class="compare_btn2" onclick="location.assign('/member/compare.html')">비교하기</button>
+        <button class="alldel_btn delete_product_cart" data-arr='[0, "ALL"]'>전체삭제</button>
+      </div>
+    </div>
+  </section> -->
+  
+<div class="iframe_b2c_wrap">
+  <div id="iframe_b2c" class="gift_list">
+  <div class="gift_list_img"></div>
 </div>
-<p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
+<div class="iframe_dim"></div>
+<div class="iframe_close">
+  <i class="fas fa-times-circle"></i>
+</div></div>
 
-<section class="talk">
-  <h2>이런 고민,<br>해 보셨죠?</h2>
-  <div class="chat">
-    <p class="l rv">냉장고가 10년이 넘었는데… 바꿀 때가 됐나 봐요</p>
-    <p class="l rv">사려니 <b>목돈</b>이 한 번에 나가는 게 부담이에요</p>
-    <p class="l rv">매달 내는 돈이 그냥 사라지는 것도 아깝고요</p>
-    <p class="r rv">그럴 때 보는 게 <b>가전결합 멤버십</b>입니다.<br>가전은 먼저 받고, 납입금은 만기에 돌려받습니다*</p>
-  </div>
-  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
-</section>
+<div id="footer">
+  <div class="footer_wrap">
+    <div class="ft_logo">
+      <img src='/imageserver/origin/100/img/cooperate/logo/rentalmalla.png' alt="rentalmalla" class="logo" data-error='["/img/logo_miraebizone.png", 100]'>
+    </div>
+    <div class="ft_nav">
+      <ul>
+        <li class="privacy"><a href="/privacy.html">개인정보처리방침</a></li>
+                <li><a href="https://rentalmalla.shop/info/agreement.html">이용약관</a></li>
+              </ul>
+    </div>
+    <div class="ft_info">
+      <div id="footerSnsLink">
+        <ul>
+        </ul>
+      </div>
+      <ul>
+        <li>
+          상호 : 다콩        </li>
+        <li>
+          대표 : 김다혜        </li>
+        <li>
+          사업자등록번호 : 584-13-02281        </li>
+        <li>
+          통신판매업신고 : 제2025-대전중구-0577호        </li>
+        <li>
+          대표전화 : 010-2165-7015        </li>
+        <li>
+          이메일 : kim637895@naver.com        </li>
+      </ul>
 
-<section class="steps">
-  <h2>신청부터 환급까지<br><span class="red">딱 세 단계</span></h2>
-  <div class="step rv"><img src="img/scene_call.jpg" alt="" loading="lazy"><div><span class="n">STEP 1</span><b>상담 신청</b><p>전화로 구좌와 가전을 같이 고릅니다.</p></div></div>
-  <div class="step rv"><img src="img/scene_install.jpg" alt="" loading="lazy"><div><span class="n">STEP 2</span><b>가전 먼저 받기</b><p>고른 가전을 60개월 렌탈로 먼저 받아 씁니다.</p></div></div>
-  <div class="step rv"><img src="img/scene_phone.jpg" alt="" loading="lazy"><div><span class="n">STEP 3</span><b>만기에 돌려받기</b><p>200회 완납하고 조건을 지키면 낸 납입금이 돌아옵니다*</p></div></div>
-  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시 · 사진은 이해를 돕기 위한 연출 이미지입니다.</p>
-</section>
-
-<section class="money" id="money">
-  <h2>내 구좌로<br>계산해 보세요</h2>
-  <p class="lead">구좌를 눌러 보세요.</p>
-  <div class="seg"><button type="button" class=on>1구좌</button><button type="button">2구좌</button><button type="button">3구좌</button></div>
-  <div class="calc">
-    <div class="row"><span>매달 납입</span><b id="cm">29,900원</b></div>
-    <div class="row"><span>납입 횟수</span><b>200회 <small>(16년 8개월)</small></b></div>
-    <div class="row"><span>고를 수 있는 가전</span><b id="cn">0종</b></div>
-    <div class="row tot"><span>만기에 돌려받는 돈</span><b><span id="ct">598</span>만원</b></div>
-  </div>
-  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시 · 만기 환급액은 총 납입금과 같습니다</p>
-  <a class="btn" href="#apply">이 조건으로 상담받기</a>
-</section>
-
-<section class="vs">
-  <h2>같은 가전,<br>받는 방법이 다릅니다</h2>
-  <div class="cols rv">
-    <div class="c"><h3>일시불로 사면</h3><ul><li>목돈이 한 번에</li><li>쓰고 나면 끝</li><li>돌려받는 돈 없음</li></ul></div>
-    <div class="c me"><span class="flag">가전결합 멤버십</span><h3>멤버십으로 받으면</h3><ul><li>월 29,900원부터 나눠서</li><li>가전은 먼저 받아 사용</li><li>200회 완납 시 납입금 100% 환급*</li></ul></div>
-  </div>
-  <p class="cond">*200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약, 3가지 모두 충족 시</p>
-</section>
-
-<section class="life" style="background:#fff">
-  <h2>고른 가전은 먼저 받아<br><span class="red">바로 씁니다</span></h2>
-  <div class="mosaic rv">
-    <figure><img src="img/scene_washer.jpg" alt="" loading="lazy"><figcaption>세탁기·건조기</figcaption></figure>
-    <figure><img src="img/scene_tv.jpg" alt="" loading="lazy"><figcaption>거실 대형 TV</figcaption></figure>
-    <figure><img src="img/scene_sofa.jpg" alt="" loading="lazy"><figcaption>스탠바이미</figcaption></figure>
-    <figure><img src="img/scene_robot.jpg" alt="" loading="lazy"><figcaption>로봇청소기</figcaption></figure>
-  </div>
-  <p class="cond">사진은 이해를 돕기 위한 연출 이미지입니다.</p>
-  <h2 style="margin-top:44px">어떤 가전 받으실래요?</h2>
-  <div class="tabs"><button type="button" data-t="0" class=on>TV</button><button type="button" data-t="1">냉장고</button><button type="button" data-t="2">세탁·건조</button><button type="button" data-t="3">에어컨</button><button type="button" data-t="4">주방</button><button type="button" data-t="5">청소·생활</button></div>
-  <div class="pane on" data-p="0"><a class="pc" href="#apply"><img src="img/132681.jpg" alt="나노셀 AI TV 86인치" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">나노셀 AI TV 86인치</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/149721.jpg" alt="라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터" loading="lazy"><span class="pc-b">엡손</span><span class="pc-t">라이프스튜디오 플렉스 스페셜 에디션 빔프로젝터</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/143716.jpg" alt="크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">크리스탈 UHD TV 75인치 + 무빙스타일 M7 32인치 (화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/143711.jpg" alt="크리스탈 UHD TV 85인치 + 5.0채널 사운드바" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">크리스탈 UHD TV 85인치 + 5.0채널 사운드바</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/107814.jpg" alt="UHD 스마트 TV 75인치 (블랙)" loading="lazy"><span class="pc-b">인켈</span><span class="pc-t">UHD 스마트 TV 75인치 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/107819.jpg" alt="UHD 스마트 TV 86인치 (블랙)" loading="lazy"><span class="pc-b">인켈</span><span class="pc-t">UHD 스마트 TV 86인치 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="1"><a class="pc" href="#apply"><img src="img/151404.jpg" alt="디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/151409.jpg" alt="디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 870L (오브제컬렉션 베이지/베이지) + 퓨리케어 오브제컬렉션 에어로퍼니처 공기청정기 6평형 (에센스 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/151424.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 자연기화 가습기 3.6L (라이트 블루)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/151429.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 엑스붐 360</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/151434.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로 Hit 공기청정기 10평형 (화이트)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/151439.jpg" alt="디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 AI 오브제컬렉션 냉장고 832L (오브제컬렉션 에센스 화이트/에센스 화이트) + 퓨리케어 에어로미니 공기청정기 7평형 (화이트)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="2"><a class="pc" href="#apply"><img src="img/151414.jpg" alt="트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 세탁기 17kg (에센스 그라파이트) + 디오스 오브제컬렉션 광파오븐 39L (미스트 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/151419.jpg" alt="트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 세탁기 17kg (에센스 그라파이트) + 코드제로 오브제컬렉션 A7 Core 청소기 (카밍 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/148180.jpg" alt="AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (블랙캐비어)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/148185.jpg" alt="그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">그랑데 AI 세탁기 25kg + 건조기 21kg + 상단 설치 키트 (화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/139415.jpg" alt="오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">오브제컬렉션 뉴 스타일러 대용량 + 스티머 (샌드 베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/148170.jpg" alt="트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">트롬 AI 오브제컬렉션 건조기 25kg (네이처 그린)</span><span class="pc-m">3구좌 · 월 89,700원</span></a></div><div class="pane" data-p="3"><a class="pc" href="#apply"><img src="img/106949.jpg" alt="비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/그레이)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/138014.jpg" alt="비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크  AI 무풍 클래식 2in1 에어컨 17평형+6평형 (화이트/베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/138004.jpg" alt="비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 2in1 에어컨 17평형+6평형 (메탈 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/138024.jpg" alt="비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/그레이)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/138019.jpg" alt="비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 무풍 클래식 스탠드 에어컨 19평형 (화이트/베이지)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/138009.jpg" alt="비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 스탠드 에어컨 19평형 (메탈 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a></div><div class="pane" data-p="4"><a class="pc" href="#apply"><img src="img/151399.jpg" alt="디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 프리스탠딩 식기세척기 14인용 (네이처 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/107779.jpg" alt="전자동 에스프레소 커피머신 F11" loading="lazy"><span class="pc-b">닥터커피</span><span class="pc-t">전자동 에스프레소 커피머신 F11</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/127509.jpg" alt="Infinite AI 빌트인 인덕션 3구 (블랙)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">Infinite AI 빌트인 인덕션 3구 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/107089.jpg" alt="디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 빌트인 식기세척기 14인용 (네이처 베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/107094.jpg" alt="디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">디오스 오브제컬렉션 빌트인 식기세척기 14인용 (솔리드 그린)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/127504.jpg" alt="비스포크 AI 식기세척기 14인용 (새틴베이지)" loading="lazy"><span class="pc-b">삼성</span><span class="pc-t">비스포크 AI 식기세척기 14인용 (새틴베이지)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div><div class="pane" data-p="5"><a class="pc" href="#apply"><img src="img/149716.jpg" alt="오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">오브제컬렉션 홈봇 AI 로니 로봇청소기 (에센스 화이트)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/130474.jpg" alt="코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)" loading="lazy"><span class="pc-b">LG</span><span class="pc-t">코드제로 로보킹 AI 올인원 프리스탠딩 로봇청소기 (카밍 베이지) + 퓨리케어 AI 360도 플러스 공기청정기 (크리미스노우)</span><span class="pc-m">3구좌 · 월 89,700원</span></a><a class="pc" href="#apply"><img src="img/127264.jpg" alt="S8 MaxV 울트라 로봇청소기 (직배수형)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S8 MaxV 울트라 로봇청소기 (직배수형)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/144296.jpg" alt="S9 MaxV Slim 로봇청소기 (블랙)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S9 MaxV Slim 로봇청소기 (블랙)</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/144306.jpg" alt="S9 MaxV Ultra 로봇청소기" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">S9 MaxV Ultra 로봇청소기</span><span class="pc-m">2구좌 · 월 59,800원</span></a><a class="pc" href="#apply"><img src="img/144301.jpg" alt="Saros Z70 로봇청소기 (실버)" loading="lazy"><span class="pc-b">로보락</span><span class="pc-t">Saros Z70 로봇청소기 (실버)</span><span class="pc-m">2구좌 · 월 59,800원</span></a></div>
-  <p class="brands">LG · SAMSUNG · 로보락 · 쿠쿠 · 세라젬 · 다이슨 외 총 204종</p>
-  <a class="btn" href="#apply">원하는 가전 상담받기</a>
-</section>
-
-<section class="must">
-  <h2>가입 전 꼭 확인하세요</h2>
-  <ul>
-    <li><b>멤버십 + 가전 렌탈 결합상품</b>입니다.</li>
-    <li>납입은 <b>200회(16년 8개월)</b>이며, 만기 100% 환급은 <b>200회 완납 · 행사·부가서비스 미사용 · 만기 익월 이후 해약</b> 3가지를 모두 충족할 때입니다.</li>
-    <li>가전은 <b>60개월 렌탈</b>로 먼저 받으시며, 그 기간 동안 소유권은 렌탈사에 있습니다.</li>
-    <li>60개월 안에 해지하시면 <b>남은 렌탈료를 한 번에 부담</b>하셔야 합니다.</li>
-    <li>출금은 멤버십 납입금·렌탈료 <b>2건으로 나뉘며</b>, 합계는 구좌 월 납입금과 같습니다.</li>
-    <li>중도 해약 시 환급금은 납입하신 금액보다 적을 수 있습니다.</li>
-    <li>할부거래법에 따라 공제조합을 통해 선수금의 50%가 보전되며, 100% 안전을 뜻하지는 않습니다.</li>
-  </ul>
-</section>
-
-<section class="faq">
-  <h2>자주 묻는 질문</h2>
-  <details><summary><i>Q</i>가전은 제가 고를 수 있나요?</summary><p>네. 냉장고·세탁기·TV·에어컨 등 204종 중에서 구좌별로 원하는 가전을 고르시면 됩니다.</p></details><details><summary><i>Q</i>모은 돈은 중간에 못 쓰나요?</summary><p>멤버십 서비스로 이용하실 수 있습니다. 다만 이용하시면 만기 100% 환급 조건에서는 빠집니다.</p></details><details><summary><i>Q</i>중간에 해지하면 어떻게 되나요?</summary><p>해약 환급금은 납입하신 금액보다 적을 수 있습니다. 가전 렌탈 60개월 안에 해지하시면 렌탈료 잔금을 일시불로 부담하셔야 합니다.</p></details><details><summary><i>Q</i>납입금은 안전한가요?</summary><p>할부거래법에 따라 공제조합을 통해 선수금의 50%가 보전됩니다. 100% 안전은 아니라는 점도 함께 알려드립니다.</p></details>
-</section>
-
-<section class="form" id="apply">
-  <div class="ph"><img src="img/scene_sofa.jpg" alt="" loading="lazy"><div><h2>상담 신청</h2><p>구좌·가전은 통화하면서 같이 고르시면 됩니다</p></div></div>
-  <div class="leadbox">
-    <p class="who"><b>신청 가능</b> · 전국 · 만 25세 ~ 만 70세 미만</p>
-    <form class="lead-f" data-tag="상담 신청" novalidate>
-      <div class="fld"><label>이름</label><input type="text" name="name" autocomplete="name" placeholder="홍길동"></div>
-      <div class="fld"><label>휴대폰 번호</label><input type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000"></div>
-      <div class="fld"><label>관심 가전</label>
-        <select name="w1"><option value="">선택해 주세요</option><option>냉장고</option><option>김치냉장고</option><option>세탁기</option><option>건조기</option><option>TV</option><option>에어컨</option><option>로봇청소기</option><option>안마의자</option><option>공기청정기</option><option>청소기</option><option>상담 후 결정</option></select></div>
-      <div class="fld"><label>통화 편한 시간 <small>(선택)</small></label>
-        <select name="when"><option>아무 때나</option><option>오전 (9~12시)</option><option>오후 (12~18시)</option><option>저녁 (18시 이후)</option></select></div>
-      <label class="agree"><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
-      <details class="pv"><summary>동의 내용 보기</summary><ul>
-      <li>수집 항목: 이름, 휴대폰번호 (관심 상품, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
-      <li>이용 목적: 가전결합 멤버십 상담 연락</li>
-      <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
-      <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
-      <li><a href="privacy.html">개인정보처리방침 전문 보기</a></li></ul></details>
-      <button class="submit" type="submit">상담 신청하기</button>
-      <p class="msg"></p>
-    </form>
-  </div>
-</section>
-
+    </div>
+          <p class="footer_sub_txt">ⓒ 2024 MKRental Solution. all rights reserved.</p>
+      </div>
 </div>
-<div class="bar" id="bar"><div><p>가전결합 멤버십<b>월 29,900원부터</b></p><a href="#apply">상담 신청</a></div></div>
-
-<script src="config.js"></script>
 <script>
-(function(){
-  var PLANS=[{"g": "1구좌", "m": 29900, "t": 598, "n": 57}, {"g": "2구좌", "m": 59800, "t": 1196, "n": 95}, {"g": "3구좌", "m": 89700, "t": 1794, "n": 52}], plan="";
-  function up(el,to,ms){var from=parseInt(el.textContent.replace(/\D/g,""),10)||0,t0=null;
-    if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=to.toLocaleString("ko-KR");return;}
-    requestAnimationFrame(function st(t){t0=t0||t;var k=Math.min((t-t0)/ms,1),e=1-Math.pow(1-k,3);
-      el.textContent=Math.round(from+(to-from)*e).toLocaleString("ko-KR");if(k<1)requestAnimationFrame(st);});}
-  function pick(i,user){var p=PLANS[i];
-    document.querySelectorAll(".seg button").forEach(function(b,k){b.classList.toggle("on",k===i);});
-    document.getElementById("cm").textContent=p.m.toLocaleString("ko-KR")+"원";
-    document.getElementById("cn").textContent=p.n+"종";
-    up(document.getElementById("ct"),p.t,700); if(user)plan=p.g;}
-  document.querySelectorAll(".seg button").forEach(function(b,i){b.addEventListener("click",function(){pick(i,true);});});
-  pick(0,false);
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;e.target.classList.add("in");io.unobserve(e.target);
-    if(e.target.id==="stats")e.target.querySelectorAll("[data-n]").forEach(function(s){var n=+s.dataset.n;s.textContent="0";up(s,n,1400);});});},{threshold:.2});
-  document.querySelectorAll(".rv").forEach(function(el){io.observe(el);});
-  document.querySelectorAll(".tabs button").forEach(function(b){b.addEventListener("click",function(){
-    document.querySelectorAll(".tabs button,.pane").forEach(function(x){x.classList.remove("on");});
-    b.classList.add("on");document.querySelector('.pane[data-p="'+b.dataset.t+'"]').classList.add("on");});});
-  var bar=document.getElementById("bar"), ap=document.getElementById("apply");
-  function sc(){var r=ap.getBoundingClientRect();bar.classList.toggle("on",scrollY>520&&r.top>innerHeight*.6);}
-  addEventListener("scroll",sc,{passive:true});sc();
-  function q(k){var m=location.search.match(new RegExp("[?&]"+k+"=([^&]*)"));return m?decodeURIComponent(m[1]):"";}
-  document.querySelectorAll("form.lead-f").forEach(function(f){
-    var msg=f.querySelector(".msg"),E=f.elements;
-    function say(t){msg.textContent=t;msg.className="msg err";}
-    E.tel.addEventListener("input",function(){
-      var d=this.value.replace(/\D/g,"").slice(0,11);
-      this.value=d.length<4?d:d.length<8?d.slice(0,3)+"-"+d.slice(3):d.slice(0,3)+"-"+d.slice(3,d.length-4)+"-"+d.slice(-4);
-    });
-    f.addEventListener("submit",function(e){
-      e.preventDefault();
-      var name=E.name.value.trim(), tel=E.tel.value.trim();
-      if(!name){say("이름을 입력해 주세요.");E.name.focus();return;}
-      if(!/^01\d-\d{3,4}-\d{4}$/.test(tel)){say("휴대폰 번호를 정확히 입력해 주세요.");E.tel.focus();return;}
-      if(!E.w1.value){say("관심 가전을 선택해 주세요.");E.w1.focus();return;}
-      if(!E.agree.checked){say("개인정보 수집·이용에 동의해 주세요.");return;}
-      var cfg=window.TG||{}; if(!cfg.relay){say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");return;}
-      var src=[q("utm_source"),q("utm_campaign"),q("utm_content")].filter(Boolean).join(" / ")||"직접";
-      var text="🔔 [가전 멤버십] "+f.dataset.tag+"\n이름: "+name+"\n연락처: "+tel+"\n관심 가전: "+E.w1.value+
-        (plan?"\n관심 구좌: "+plan:"")+(E.when?"\n통화 시간: "+E.when.value:"")+
-        "\n유입: "+src+"\n페이지: "+location.origin+location.pathname+"\n시각: "+new Date().toLocaleString("ko-KR");
-      var b=f.querySelector(".submit"); b.disabled=true; msg.textContent="";
-      fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},
-        body:JSON.stringify({type:"lead",text:text})})
-      .then(function(r){return r.json();}).then(function(d){
-        if(d&&d.ok){f.innerHTML='<div class="done"><div class="ck">✓</div><b>상담 신청이 접수되었습니다</b><p>확인 후 남겨 주신 번호로 전화드리겠습니다.</p></div>';
-          if(window.fbq)fbq("track","Lead");}
-        else{say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");b.disabled=false;}
-      }).catch(function(){say("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");b.disabled=false;});
-    });
+  $(".group_comp").on("click", function() {
+    $(this).toggleClass("view");
+    $(".gc_list_wrap").slideToggle(300);
   });
-})();
 </script>
-</body></html>
+<script src='/dist/main.dd90c65a88e6c194ad4f.js'></script></body>
+
+</html>

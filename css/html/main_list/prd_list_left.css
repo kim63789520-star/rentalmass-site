@@ -1,0 +1,123 @@
+.prd_list_wrap.prd-list-left,
+.prd_list_wrap.prd-list-left .prd_list {
+  background: transparent;
+}
+.prd_list.prd-list-left {
+  flex-direction: row-reverse;
+}
+.prd-list-left .btn_more_prd {
+  align-self: flex-end;
+  background: #fff;
+  color: var(--secondary-color);
+}
+
+.prd-list-left .arrow-btn-wrap {
+  align-self: flex-end;
+}
+/* .prd-list-left .prd_list_wrap .user_page_box {
+  height: 405px;
+}
+
+.prd-list-left .prd_list_wrap .info_box {
+  transition: all 0.3s;
+  width: 100%;
+}
+@media all and (max-width: 1020px) {
+  .prd-list-left .prd_list_wrap {
+    width: calc(100% - 14px);
+  }
+  .prd-list-left .prd_tit_wrap div {
+    text-align: initial;
+  }
+  .prd-list-left .btn_more_prd {
+    align-self: initial;
+  }
+  .prd-list-left .prd_list_wrap .info_box {
+    opacity: 1;
+    position: initial;
+    transform: initial;
+  }
+  .prd-list-left .prd_list_wrap .info_box .prd_name {
+    margin: 10px 0 0;
+    padding: 10px 0 20px;
+  }
+  .prd-list-left .thumb_box img {
+    width: 100%;
+    margin: 0px 0%;
+  }
+} */
+
+.character_banner2 {
+  display: none;
+  position: absolute;
+  right: 19%;
+  top: 35%;
+  width: 120px;
+  transition: right 0.3s;
+  cursor: pointer;
+}
+.character_banner2 img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(1mm 0.5mm 0.5mm rgb(0, 0, 0, 0.12));
+}
+.character_banner2 .bubble {
+  position: absolute;
+  background: #eee;
+  border-radius: 50%;
+  padding: 40px 20px;
+  transform: translateY(-50%);
+  top: 50%;
+  right: -160px;
+  line-height: 1.7em;
+  text-align: center;
+  font-size: 0.86em;
+  font-weight: 600;
+  color: #605d5d;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.1);
+}
+.character_banner2 .bubble i {
+  font-size: 1.3em;
+  font-weight: 800;
+  color: var(--secondary-color);
+}
+.character_banner2 .bubble span {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #605d5d;
+}
+.character_banner2 .bubble:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 14px solid transparent;
+  border-right-color: #eee;
+  border-left: 0;
+  margin-top: -14px;
+  margin-left: -11px;
+}
+.animate__bounceInRight {
+  animation-duration: 1.5s;
+  animation-delay: 0.5s;
+  animation-iteration-count: 1;
+  animation-name: bounceInRight;
+}
+
+@media all and (max-width: 1240px) {
+  .character_banner2 {
+    right: 20%;
+  }
+}
+@media all and (max-width: 1143px) {
+  .character_banner2 {
+    right: 22%;
+  }
+}
+@media all and (max-width: 1020px) {
+  .character_banner2 {
+    display: none;
+  }
+}
