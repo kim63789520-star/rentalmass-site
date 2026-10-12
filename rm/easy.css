@@ -105,3 +105,18 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
   #fixed_btn_wrap { display: none !important; }
 }
 .rm-ask, .rm-btn, .rm-bottom a, .rm-bottom button { display: flex !important; align-items: center; justify-content: center; text-align: center !important; padding-left: 12px; padding-right: 12px; }
+
+/* 모바일 헤더 빈칸 = 카테고리 바 (2026-10-12 대표님 "여기 카테고리 넣어") */
+.rm-mcat { display: none; }
+@media (max-width: 857px) {
+  header #header .gnb_wrap, header.scroll #header .gnb_wrap { width: calc(100% - 96px); }
+  header #header #lnb { width: 96px; }
+  #gnb { display: flex !important; align-items: center; min-width: 0; width: 100%; }
+  #gnb .js-hamburger { flex: 0 0 auto; }
+  .rm-mcat { display: flex; gap: 6px; overflow-x: auto; flex: 1 1 auto; min-width: 0; margin: 0 8px; padding: 2px 0;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .rm-mcat::-webkit-scrollbar { display: none; }
+  .rm-mcat a { flex: 0 0 auto; padding: 7px 12px; border-radius: 999px; background: #fff3f1; color: #222; font-size: 14px;
+    font-weight: 700; text-decoration: none; white-space: nowrap; line-height: 1 !important; }
+  .rm-mcat a:active { background: #ff5c4a; color: #fff; }
+}
