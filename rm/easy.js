@@ -191,4 +191,10 @@
     '<button type="button" class="rm-b-ask">상담 신청</button></nav>');
   document.body.appendChild(bottom);
   bottom.querySelector(".rm-b-ask").onclick = function () { openSheet({ from: "모바일 하단 바" }); };
+
+  // 첫 배너(24시간 자동 접수)를 누르면 바로 상담 창
+  document.addEventListener("click", function (e) {
+    var slide = e.target.closest && e.target.closest("#banner .swiper-slide");
+    if (slide && slide.querySelector('img[src*="main_banner_rm24"]')) { e.preventDefault(); openSheet({ from: "첫 배너(24시간 접수)" }); }
+  }, true);
 })();
