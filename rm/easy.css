@@ -81,7 +81,7 @@
   .rm-chip { padding: 10px 13px; }
   .rm-list-bar > div { flex-direction: column; align-items: stretch; }
   .rm-list-bar .rm-btn { width: 100%; height: 46px; font-size: 16px; }
-  .rm-bottom { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+  .rm-bottom { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
     background: #fff; border-top: 1px solid var(--rm-line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
   .rm-bottom a, .rm-bottom button { height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
     gap: 6px; font-size: 15px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }

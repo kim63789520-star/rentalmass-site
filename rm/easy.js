@@ -76,7 +76,7 @@
     btn.disabled = true; btn.textContent = "보내는 중…";
     send($.extend({ tel: tel }, extra())).then(onDone, function () {
       btn.disabled = false; btn.textContent = "상담 신청하기";
-      msg.textContent = "전송에 실패했습니다. 잠시 후 다시 시도하시거나 " + PHONE + "로 전화 주세요.";
+      msg.textContent = "전송에 실패했습니다. 잠시 후 다시 시도하시거나 카톡으로 문의해 주세요.";
     });
   }
 
@@ -94,7 +94,7 @@
     current = opt || {};
     var it = current.item, ctx = current.kind || pageContext();
     var head = '<div class="rm-who"><img src="' + PHOTO + '" alt="렌탈 상담 담당 김다혜"><div><b>렌탈 상담 담당 김다혜</b>' +
-               "<span>확인 후 바로 전화드려요 · " + PHONE + "</span></div></div>";
+               "<span>확인 후 바로 연락드려요</span></div></div>";
     var what = it
       ? '<div class="rm-prod"><b>' + esc(it.ItemName) + "</b><span>" + esc(it.ModelName || "") +
         (it.RentalFee ? " · 월 " + won(it.RentalFee) + "원" : "") + (it.DutyUsePeriod ? " · " + esc(it.DutyUsePeriod) + "개월" : "") + "</span></div>"
@@ -131,7 +131,7 @@
     var q = el('<section class="rm-quick" aria-label="간편 상담 신청"><div class="rm-quick-in">' +
       '<div><h3>어떤 가전 알아보세요? <b>번호만</b> 남겨 주세요</h3>' +
       '<p class="rm-lead">렌탈사·약정 기간별 월 요금을 담당자가 전화로 안내해 드려요.</p></div>' +
-      '<div class="rm-who"><img src="' + PHOTO + '" alt="렌탈 상담 담당 김다혜"><div><b>담당 김다혜</b><span>' + PHONE + "</span></div></div>" +
+      '<div class="rm-who"><img src="' + PHOTO + '" alt="렌탈 상담 담당 김다혜"><div><b>담당 김다혜</b><span>확인 후 바로 연락드려요</span></div></div>' +
       chips(KINDS, true) +
       '<form novalidate><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="휴대폰 번호 (010-0000-0000)" aria-label="휴대폰 번호">' +
       '<button type="submit" class="rm-btn">상담 신청하기</button>' + AGREE + '<p class="rm-msg" aria-live="polite"></p></form></div></section>');
@@ -187,8 +187,7 @@
   }, true);
 
   // ---------------- 모바일 하단 바
-  var bottom = el('<nav class="rm-bottom" aria-label="빠른 상담"><a class="rm-b-tel" href="tel:' + PHONE + '">전화</a>' +
-    '<a class="rm-b-kakao" href="' + KAKAO + '" target="_blank" rel="noopener">카톡</a>' +
+  var bottom = el('<nav class="rm-bottom" aria-label="빠른 상담"><a class="rm-b-kakao" href="' + KAKAO + '" target="_blank" rel="noopener">카톡</a>' +
     '<button type="button" class="rm-b-ask">상담 신청</button></nav>');
   document.body.appendChild(bottom);
   bottom.querySelector(".rm-b-ask").onclick = function () { openSheet({ from: "모바일 하단 바" }); };
