@@ -120,3 +120,10 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
     font-weight: 700; text-decoration: none; white-space: nowrap; line-height: 1 !important; }
   .rm-mcat a:active { background: #ff5c4a; color: #fff; }
 }
+
+/* 배너 화살표가 아이콘 대신 'prev'/'next' 글자로 보임 — 넘기기·점으로 충분, 지운다 (2026-10-12 대표님) */
+#banner .swiper-button-next, #banner .swiper-button-prev { display: none !important; }
+/* '렌탈 라이브쇼 방송종료 ON/OFF' — 안 쓰는 기능이라 덜 만든 사이트로 보임 (비즈채널 심사) */
+.liveshow_wrap { display: none !important; }
+#main_bar .bar_wrap .realtime_wrap { border-right: 0 !important; }
+@media (max-width: 1023px) { #main_bar .bar_wrap .realtime_wrap { width: 100% !important; } }
