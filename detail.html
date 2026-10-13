@@ -1,3 +1,256 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex">
-<title>렌탈몰라</title><script>location.replace("https://rentalmalla.shop"+location.pathname+location.search+location.hash);</script>
-</head><body></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+  <title id="dt-title">렌탈몰라 | 상품 상세</title>
+  <link rel="shortcut icon" type="image/jpg" href="/imageserver/origin/100/img/cooperate/icon/렌탈타임파비콘.ico">
+  <link rel="stylesheet" href="/css/reset.min.css?ver=1">
+  <link rel="stylesheet" href="/css/common.css?ver=7">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610132206">
+  <style>
+    body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
+    .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
+    .dt-nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 16px; border-bottom: 1px solid #e2e8f0; margin-bottom: 16px; }
+    .dt-logo { font-size: 22px; font-weight: 800; color: #1e3a8a; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; line-height: 1; }
+    .dt-nav-links { display: flex; align-items: center; gap: 8px; }
+    .dt-nav-links a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .dt-btn-kakao-top { background: #fee500; color: #371d1e; }
+    .dt-btn-home { background: #e2e8f0; color: #334155; }
+    
+    .dt-bread { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 13px; color: #64748b; margin-bottom: 20px; }
+    .dt-bread a { display: inline; color: #64748b; text-decoration: none; }
+    .dt-bread span { display: inline; color: #cbd5e1; }
+    .dt-bread .dt-curr { color: #1e293b; font-weight: 500; }
+    @media (max-width: 640px) { .dt-bread { display: none; } }
+
+    .dt-card { display: grid; grid-template-columns: 1fr 1.15fr; gap: 36px; background: #fff; border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    @media (max-width: 768px) {
+      .dt-card { grid-template-columns: 1fr; gap: 24px; padding: 20px; }
+    }
+    .dt-img-box { position: relative; border-radius: 12px; overflow: hidden; background: #fff; border: 1px solid #eef2f6; display: flex; align-items: center; justify-content: center; min-height: 320px; max-height: 440px; }
+    .dt-img-box img { width: 100%; height: 100%; object-fit: contain; max-height: 400px; display: block; }
+    .dt-badge { position: absolute; top: 14px; left: 14px; background: rgba(30, 58, 138, 0.9); color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+
+    .dt-info { display: flex; flex-direction: column; }
+    .dt-brand { font-size: 14px; font-weight: 700; color: #2563eb; margin-bottom: 6px; }
+    .dt-title { font-size: 24px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; color: #0f172a; word-break: keep-all; }
+    .dt-model { font-size: 13px; color: #64748b; margin-bottom: 20px; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; display: inline-block; width: fit-content; }
+    
+    .dt-price-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; }
+    .dt-price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .dt-price-label { font-size: 14px; color: #475569; font-weight: 500; }
+    .dt-price-val { font-size: 28px; font-weight: 800; color: #e11d48; }
+    .dt-price-val small { font-size: 16px; font-weight: 600; color: #475569; margin-left: 2px; }
+    .dt-term { font-size: 13px; color: #64748b; display: flex; justify-content: space-between; padding-top: 8px; border-top: 1px dashed #cbd5e1; }
+    .dt-price-notice { font-size: 11px; color: #94a3b8; margin-top: 10px; line-height: 1.4; }
+
+    .dt-actions { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+    .dt-btn-ask { background: #1e3a8a; color: #fff; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.15s; }
+    .dt-btn-ask:hover { background: #1d4ed8; }
+    .dt-btn-kakao { background: #fee500; color: #371d1e; padding: 13px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .dt-btn-tel { background: #f1f5f9; color: #1e293b; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+    .dt-trust-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+    @media (max-width: 640px) { .dt-trust-cards { grid-template-columns: repeat(2, 1fr); } }
+    .dt-trust-card { background: #fff; border-radius: 12px; padding: 18px 14px; text-align: center; border: 1px solid #eef2f6; }
+    .dt-trust-card i { font-size: 22px; color: #2563eb; margin-bottom: 8px; display: block; }
+    .dt-trust-card b { display: block; font-size: 13px; margin-bottom: 4px; color: #0f172a; }
+    .dt-trust-card p { font-size: 11px; color: #64748b; line-height: 1.35; margin: 0; }
+
+    .dt-footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; line-height: 1.6; }
+    .dt-footer b { color: #334155; }
+    .dt-footer a { color: #64748b; text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="dt-wrap">
+  <header class="dt-nav">
+    <a href="/" class="dt-logo"><i class="fas fa-boxes-stacked"></i> 렌탈몰라</a>
+    <div class="dt-nav-links">
+      <a href="/" class="dt-btn-home"><i class="fas fa-home"></i> 홈</a>
+      <a href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener" class="dt-btn-kakao-top"><i class="fas fa-comment"></i> 카톡 상담</a>
+    </div>
+  </header>
+
+  <div class="dt-bread" id="dt-bread">
+    <a href="/">홈</a> <span>›</span> <a href="/list.html" id="dt-bread-cat">전체상품</a> <span>›</span> <span id="dt-bread-name">상품 상세</span>
+  </div>
+
+  <main class="dt-card">
+    <div class="dt-img-box">
+      <span class="dt-badge" id="dt-badge">렌탈몰라</span>
+      <img id="dt-img" src="" alt="상품 이미지" loading="eager">
+    </div>
+    <div class="dt-info">
+      <span class="dt-brand" id="dt-brand">브랜드</span>
+      <h1 class="dt-title" id="dt-name">상품 정보를 불러오는 중…</h1>
+      <span class="dt-model" id="dt-model">모델명: -</span>
+
+      <div class="dt-price-box">
+        <div class="dt-price-row">
+          <span class="dt-price-label">기본 월 렌탈료</span>
+          <span class="dt-price-val" id="dt-fee">0<small>원</small></span>
+        </div>
+        <div class="dt-term">
+          <span>의무 사용 약정</span>
+          <span id="dt-term-val">60개월</span>
+        </div>
+        <div class="dt-term" style="margin-top: 4px;">
+          <span>제휴카드 추가할인</span>
+          <span style="color: #2563eb; font-weight: 600;">전월 실적 시 최대 할인</span>
+        </div>
+        <p class="dt-price-notice">* 카드 할인 전 기본 월 요금 · <span id="dt-today"></span> 기준 · 렌탈사 및 약정기간에 따라 달라질 수 있습니다.</p>
+      </div>
+
+      <div class="dt-actions">
+        <button type="button" class="dt-btn-ask" id="dt-ask-btn"><i class="fas fa-phone-volume"></i> 간편 상담 신청하기</button>
+        <a href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener" class="dt-btn-kakao"><i class="fas fa-comment"></i> 카카오톡 실시간 상담</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- 빠른 간편 상담 폼 (화면 하단) -->
+  <section class="rm-quick" style="margin-top: 32px;" aria-label="간편 상담 신청">
+    <div class="rm-quick-in">
+      <div>
+        <h3>이 상품 견적이 궁금하신가요? <b>번호만</b> 남겨 주세요</h3>
+        <p class="rm-lead">렌탈사별 월 요금과 제휴카드 혜택을 담당자가 친절히 안내해 드립니다.</p>
+      </div>
+      <div class="rm-who">
+        <img src="/rm/profile.jpg" alt="렌탈 상담 담당 김다혜">
+        <div><b>담당 김다혜 매니저</b><span>확인 후 바로 연락드려요</span></div>
+      </div>
+      <form id="dt-inline-form" novalidate>
+        <input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="휴대폰 번호 (010-0000-0000)" aria-label="휴대폰 번호">
+        <button type="submit" class="rm-btn">상담 신청하기</button>
+        <label class="rm-agree"><input type="checkbox" class="rm-ok" checked> 개인정보 수집·이용에 동의합니다(필수) <a href="/privacy.html" target="_blank" rel="noopener">보기</a></label>
+        <p class="rm-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 안심 서비스 안내 -->
+  <div class="dt-trust-cards">
+    <div class="dt-trust-card"><i class="fas fa-shield-halved"></i><b>안심 무료 비교</b><p>가입 강요 없는 투명한 견적 상담</p></div>
+    <div class="dt-trust-card"><i class="fas fa-scale-balanced"></i><b>렌탈사별 요금 비교</b><p>같은 모델도 렌탈사마다 다른 월 요금을 비교해 안내</p></div>
+    <div class="dt-trust-card"><i class="fas fa-user-check"></i><b>담당 매니저 연락</b><p>김다혜 매니저가 확인 후 직접 연락</p></div>
+    <div class="dt-trust-card"><i class="fas fa-credit-card"></i><b>제휴카드 추가할인</b><p>전월 실적에 따른 최대 렌탈료 청구할인</p></div>
+  </div>
+
+  <footer class="dt-footer">
+    <p><b>렌탈몰라</b> (상호: 다콩) | 대표: 김다혜 | 사업자등록번호: 584-13-02281 | 통신판매업신고: 제2025-대전중구-0577호</p>
+    <p>상담 010-8175-7015 | <a href="/privacy.html">개인정보처리방침</a></p>
+    <p style="margin-top: 6px; color: #94a3b8;">렌탈몰라는 가전 렌탈 중개 및 요금 비교 상담 서비스를 제공하며, 상품 및 서비스의 계약 이행 의무는 각 렌탈 본사에 있습니다.</p>
+  </footer>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/config.js?v=202610132206"></script>
+<script src="/rm/shim.js?v=202610132206"></script>
+<script src="/rm/easy.js?v=202610132206"></script>
+<script>
+(function() {
+  var params = new URLSearchParams(location.search);
+  var itemNo = params.get("item") || params.get("ItemNo") || "";
+
+  if (!itemNo) { location.replace("/list.html"); return; }
+  if (!itemNo.startsWith("f_") && /^\d+$/.test(itemNo)) {
+    location.replace("https://rentalmalla.shop/detail.html" + location.search + location.hash);
+    return;
+  }
+
+  var today = new Date();
+  var dateStr = today.getFullYear() + "." + String(today.getMonth()+1).padStart(2, "0") + "." + String(today.getDate()).padStart(2, "0");
+  var todayEl = document.getElementById("dt-today");
+  if (todayEl) todayEl.textContent = dateStr;
+
+  function won(n) { return Number(n || 0).toLocaleString("ko-KR"); }
+
+  fetch("/rm/data/items.json").then(function(r) { return r.json(); }).then(function(items) {
+    var it = items[itemNo];
+    if (!it) {
+      document.getElementById("dt-name").textContent = "상품 정보를 찾을 수 없습니다.";
+      return;
+    }
+    document.title = it.ItemName + " | 렌탈몰라";
+    document.getElementById("dt-name").textContent = it.ItemName;
+    document.getElementById("dt-bread-name").textContent = it.ItemName;
+    if (it.CategoryName) {
+      var catEl = document.getElementById("dt-bread-cat");
+      catEl.textContent = it.CategoryName;
+      if (it.CategoryCode) catEl.href = "/list.html?cate_code=" + it.CategoryCode;
+    }
+    document.getElementById("dt-brand").textContent = it.BrandName || it.ManufacturerName || "렌탈몰라";
+    document.getElementById("dt-badge").textContent = it.BrandName || "렌탈몰라";
+    document.getElementById("dt-model").textContent = "모델명: " + (it.ModelName || it.ItemName);
+    document.getElementById("dt-fee").innerHTML = won(it.RentalFee) + "<small>원</small>";
+    document.getElementById("dt-term-val").textContent = it.DutyUsePeriod ? it.DutyUsePeriod + "개월" : "상담 시 안내";
+
+    var imgPath = it.Image1 || "";
+    if (imgPath.startsWith("flow/")) {
+      var webpSub = imgPath.replace(/\.[A-Za-z]+$/, ".webp");
+      document.getElementById("dt-img").src = "/imageserver/webp/50/" + webpSub;
+    } else if (imgPath) {
+      document.getElementById("dt-img").src = "/imageserver/webp/50/" + imgPath.replace(/\.[A-Za-z]+$/, ".webp");
+    }
+
+    document.getElementById("dt-ask-btn").onclick = function() {
+      if (window.RM_OPEN) {
+        window.RM_OPEN({ item: it, from: "상세 견적 버튼" });
+      }
+    };
+
+    var form = document.getElementById("dt-inline-form");
+    form.onsubmit = function(e) {
+      e.preventDefault();
+      var tel = form.querySelector(".rm-tel").value;
+      var ok = form.querySelector(".rm-ok").checked;
+      var msg = form.querySelector(".rm-msg");
+      var btn = form.querySelector(".rm-btn");
+      if (!/^01[016789]\d{7,8}$/.test(tel.replace(/\D/g, ""))) {
+        msg.textContent = "휴대폰 번호를 확인해 주세요.";
+        form.querySelector(".rm-tel").focus();
+        return;
+      }
+      if (!ok) {
+        msg.textContent = "개인정보 수집·이용 동의가 필요합니다.";
+        return;
+      }
+      msg.textContent = "";
+      btn.disabled = true;
+      btn.textContent = "보내는 중…";
+
+      var lines = [
+        "[렌탈몰라] 상세페이지 간편 상담 신청",
+        "연락처: " + tel.replace(/\D/g, "").replace(/(\d{3})(\d{3,4})(\d{4})/, "$1-$2-$3"),
+        "상품: " + it.ItemName + (it.ModelName ? " (" + it.ModelName + ")" : "") + " · 월 " + won(it.RentalFee) + "원",
+        "페이지: " + location.href
+      ];
+      var relay = (window.TG || {}).relay;
+      if (!relay) {
+        msg.textContent = "상담 시스템 준비 중입니다. 카톡이나 전화로 문의해 주세요.";
+        btn.disabled = false;
+        btn.textContent = "상담 신청하기";
+        return;
+      }
+      fetch(relay, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ type: "lead", text: lines.join("\n") })
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        form.innerHTML = '<div style="padding: 20px; text-align: center; color: #166534; font-weight: 700;">' +
+                         '<i class="fas fa-check-circle" style="font-size: 32px; display: block; margin-bottom: 8px;"></i>' +
+                         '상담 신청이 완료되었습니다!<br><span style="font-size: 13px; font-weight: 400; color: #475569;">담당자가 확인 후 빠르게 연락드리겠습니다.</span></div>';
+      }).catch(function() {
+        btn.disabled = false;
+        btn.textContent = "상담 신청하기";
+        msg.textContent = "전송 실패. 카톡으로 문의해 주세요.";
+      });
+    };
+  });
+})();
+</script>
+</body>
+</html>

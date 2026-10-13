@@ -66,7 +66,11 @@
         newOrder.forEach(function (n, i) { pos[n] = i; });
         return nos.slice().sort(function (a, b) { return (pos[a] || 0) - (pos[b] || 0); });
       }
-      return nos.slice().sort(function (a, b) { return Number(b) - Number(a); });
+      return nos.slice().sort(function (a, b) {
+        var na = Number(String(a).replace(/\D/g, "")) || 0;
+        var nb = Number(String(b).replace(/\D/g, "")) || 0;
+        return nb - na;
+      });
     }
     return nos;
   }
@@ -274,13 +278,8 @@
     return origFetch.apply(this, arguments);
   };
 
-  // 상품 상세 → 원본 사이트
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a[href]");
-    if (!a) return;
-    var href = a.getAttribute("href");
-    if (/^\/?(vrpage\/)?detail\.html/.test(href)) a.setAttribute("href", ORIGIN + "/" + href.replace(/^\//, ""));
-  }, true);
+  // 상품 상세: 원본 사이트로 보내지 않고 우리 도메인 detail.html 유지
+  // (외부 몰 리다이렉트 제거)
 
   // 사진이 복제판에 없으면 원본 서버 사진으로
   document.addEventListener("error", function (e) {
