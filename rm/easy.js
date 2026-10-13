@@ -171,11 +171,23 @@
       spot.appendChild(btn);
     });
   }
+  // 첫 화면 품목 줄 제목 옆 'OO 전체보기' → 그 카테고리 목록 (2026-10-13 대표님)
+  var MORE = { "정수기": "1000210010", "공기청정기": "1000110001", "냉난방기": "1000110009", "콤보&결합": "10010",
+    "PC/노트북": "1000310002", "음식물 처리기": "1000210004", "전기자전거/스쿠터": "1000610008", "건강/미용기기": "10006",
+    "생활가전": "10001", "냉장고": "1000210001", "TV": "1000310001", "가구": "10004" };
+  function moreLinks() {
+    [].forEach.call(document.querySelectorAll(".js-mainItemsLine .prd_tit_wrap"), function (w) {
+      if (w.querySelector(".rm-more")) return;
+      var h = w.querySelector("h2"), t = h && h.textContent.trim(), c = MORE[t];
+      if (!c) return;
+      w.appendChild(el('<a class="rm-more" href="/list.html?cate_code=' + c + '">' + esc(t) + ' 전체보기 <span aria-hidden="true">›</span></a>'));
+    });
+  }
   var pending = false;
   new MutationObserver(function () {
     if (pending) return;
     pending = true;
-    setTimeout(function () { pending = false; cardButtons(); listBar(); }, 120);
+    setTimeout(function () { pending = false; cardButtons(); listBar(); moreLinks(); }, 120);
   }).observe(document.documentElement, { childList: true, subtree: true });
 
   // ---------------- 원래 떠 있는 상담 버튼 → 상담 창
@@ -191,6 +203,28 @@
     '<button type="button" class="rm-b-ask">상담 신청</button></nav>');
   document.body.appendChild(bottom);
   bottom.querySelector(".rm-b-ask").onclick = function () { openSheet({ from: "모바일 하단 바" }); };
+
+  // 이달의 추천 상품 — 탭 · 좌우 넘기기 · 견적 받기
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest(".rm-pop .rp-tabs button");
+    if (t) {
+      var pop = t.closest(".rm-pop");
+      [].forEach.call(pop.querySelectorAll(".rp-tabs button"), function (b) { b.setAttribute("aria-selected", b === t ? "true" : "false"); });
+      [].forEach.call(pop.querySelectorAll(".rp-list"), function (u) { u.hidden = u.getAttribute("data-i") !== t.getAttribute("data-i"); });
+      return;
+    }
+    var a = e.target.closest && e.target.closest(".rm-pop .rp-arr");
+    if (a) {
+      var u = a.parentNode.querySelector(".rp-list:not([hidden])");
+      u.scrollBy({ left: (a.classList.contains("next") ? 1 : -1) * u.clientWidth * 0.9, behavior: "smooth" });
+      return;
+    }
+    var q = e.target.closest && e.target.closest(".rm-pop .rp-ask");
+    if (q) {
+      openSheet({ item: { ItemName: q.getAttribute("data-name"), ModelName: q.getAttribute("data-model"),
+        RentalFee: q.getAttribute("data-fee"), DutyUsePeriod: q.getAttribute("data-term") }, from: "이달의 추천 상품" });
+    }
+  });
 
   // 첫 배너(24시간 자동 접수)를 누르면 바로 상담 창
   document.addEventListener("click", function (e) {
