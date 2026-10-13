@@ -186,3 +186,34 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-more:hover{border-color:#f04e3e;color:#f04e3e}
 .rm-more span{font-size:18px;line-height:1}
 @media (max-width:768px){.rm-more{position:static;transform:none;margin-top:10px;padding:6px 12px;font-size:13px}.js-mainItemsLine .prd_tit_wrap{display:flex;flex-direction:column;align-items:center}}
+
+/* PC 카테고리 줄 — 왼쪽에 몰려 있던 걸 가로 전체로 넓게 (2026-10-13 대표님, 빌리고처럼) */
+@media (min-width: 858px) {
+  header #header .gnb_wrap { display: flex; align-items: center; }
+  header #header #gnb, header #header .gnb_layout { flex: 1 1 auto; min-width: 0; }
+  header #header #gnb_list_wrap { display: flex !important; justify-content: space-between; width: 100%; padding-left: 28px; }
+  header #header #gnb_list_wrap > li { float: none; padding: 0 6px; font-size: 17px; }
+}
+
+/* 많이 찾는 BEST 카테고리 (2026-10-13) */
+.rm-bestcat{padding:48px 16px 16px;background:#fff}
+.rm-bc-in{max-width:1240px;margin:0 auto}
+.rm-bestcat h2{text-align:center;font-size:26px;font-weight:800;color:#222;margin:0 0 28px}
+.rm-bestcat ul{display:grid;grid-template-columns:repeat(10,1fr);gap:28px 12px;list-style:none;margin:0;padding:0}
+.rm-bestcat a{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:#333}
+.bc-i{width:100px;height:100px;border-radius:50%;background:#f1efed;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.bc-i img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transform:scale(1.45)}
+.rm-bestcat a:hover .bc-i{transform:translateY(-4px);box-shadow:0 8px 18px rgba(0,0,0,.12)}
+.bc-n{font-size:15px;font-weight:600}
+.bc-sangjo{background:#111;color:#fff;flex-direction:column;line-height:1.2}
+.bc-sangjo b{font-size:22px;font-weight:800}
+.bc-sangjo small{font-size:11px;color:#ffdd00;margin-top:2px}
+@media (max-width:1100px){.rm-bestcat ul{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:768px){
+  .rm-bestcat{padding:28px 12px 8px}
+  .rm-bestcat h2{font-size:20px;margin-bottom:18px}
+  .rm-bestcat ul{grid-template-columns:repeat(4,1fr);gap:18px 6px}
+  .bc-i{width:68px;height:68px}
+  .bc-n{font-size:13px}
+  .bc-sangjo b{font-size:16px}.bc-sangjo small{font-size:9px}
+}
