@@ -70,16 +70,16 @@
   font-weight: 800; text-decoration: none; font-size: 15px; }
 
 /* 하단 바 — 전화 · 카톡 · 접수신청 (PC·모바일 모두) */
-.rm-bottom { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
-  background: #fff; border-top: 1px solid var(--rm-line); box-shadow: 0 -4px 14px rgba(0, 0, 0, .06);
-  padding: 8px max(10px, calc((100% - 720px) / 2)) calc(8px + env(safe-area-inset-bottom)); }
-.rm-bottom a, .rm-bottom button { height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-  gap: 6px; font-size: 16px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }
+.rm-bottom { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 0; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+  background: #fff; box-shadow: 0 -4px 14px rgba(0, 0, 0, .08);
+  padding: 0 0 env(safe-area-inset-bottom); }
+.rm-bottom a, .rm-bottom button { height: 62px; border-radius: 0; display: flex; align-items: center; justify-content: center;
+  gap: 6px; font-size: 18px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }
 .rm-bottom .rm-b-tel { background: #f2f4f7; color: var(--rm-ink); }
 .rm-bottom .rm-b-kakao { background: #fee500; color: #191919; }
 .rm-bottom .rm-b-ask { background: var(--rm-red); color: #fff; }
-body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
-@media (min-width: 769px) { #fixed_btn_wrap { top: auto !important; bottom: 86px !important; } } /* PC 떠 있는 버튼은 하단 바 위로 */
+body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
+@media (min-width: 769px) { #fixed_btn_wrap { top: auto !important; bottom: 78px !important; } } /* PC 떠 있는 버튼은 하단 바 위로 */
 @media (max-width: 768px) {
   .rm-quick { margin-top: 20px; }
   .rm-quick-in { grid-template-columns: 1fr; padding: 20px 16px; gap: 12px; }
