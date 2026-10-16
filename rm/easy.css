@@ -69,8 +69,17 @@
 .rm-kakao { display: block; height: 48px; line-height: 48px; border-radius: 12px; background: #fee500; color: #191919;
   font-weight: 800; text-decoration: none; font-size: 15px; }
 
-/* 모바일 하단 바 */
-.rm-bottom { display: none; }
+/* 하단 바 — 전화 · 카톡 · 접수신청 (PC·모바일 모두) */
+.rm-bottom { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
+  background: #fff; border-top: 1px solid var(--rm-line); box-shadow: 0 -4px 14px rgba(0, 0, 0, .06);
+  padding: 8px max(10px, calc((100% - 720px) / 2)) calc(8px + env(safe-area-inset-bottom)); }
+.rm-bottom a, .rm-bottom button { height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  gap: 6px; font-size: 16px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }
+.rm-bottom .rm-b-tel { background: #f2f4f7; color: var(--rm-ink); }
+.rm-bottom .rm-b-kakao { background: #fee500; color: #191919; }
+.rm-bottom .rm-b-ask { background: var(--rm-red); color: #fff; }
+body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
+@media (min-width: 769px) { #fixed_btn_wrap { top: auto !important; bottom: 86px !important; } } /* PC 떠 있는 버튼은 하단 바 위로 */
 @media (max-width: 768px) {
   .rm-quick { margin-top: 20px; }
   .rm-quick-in { grid-template-columns: 1fr; padding: 20px 16px; gap: 12px; }
@@ -81,14 +90,6 @@
   .rm-chip { padding: 10px 13px; }
   .rm-list-bar > div { flex-direction: column; align-items: stretch; }
   .rm-list-bar .rm-btn { width: 100%; height: 46px; font-size: 16px; }
-  .rm-bottom { display: grid; grid-template-columns: 1fr 2fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9000;
-    background: #fff; border-top: 1px solid var(--rm-line); padding: 8px 10px calc(8px + env(safe-area-inset-bottom)); }
-  .rm-bottom a, .rm-bottom button { height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    gap: 6px; font-size: 15px; font-weight: 800; text-decoration: none; border: 0; font-family: inherit; cursor: pointer; }
-  .rm-bottom .rm-b-tel { background: #f2f4f7; color: var(--rm-ink); }
-  .rm-bottom .rm-b-kakao { background: #fee500; color: #191919; }
-  .rm-bottom .rm-b-ask { background: var(--rm-red); color: #fff; }
-  body { padding-bottom: calc(70px + env(safe-area-inset-bottom)); }
   .rm-sheet .rm-box { top: auto; bottom: 0; transform: translateX(-50%); width: 100%; border-radius: 20px 20px 0 0;
     padding-bottom: calc(18px + env(safe-area-inset-bottom)); }
 }

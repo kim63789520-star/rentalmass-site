@@ -198,9 +198,10 @@
     openSheet({ from: "떠 있는 상담 버튼" });
   }, true);
 
-  // ---------------- 모바일 하단 바
-  var bottom = el('<nav class="rm-bottom" aria-label="빠른 상담"><a class="rm-b-kakao" href="' + KAKAO + '" target="_blank" rel="noopener">카톡</a>' +
-    '<button type="button" class="rm-b-ask">상담 신청</button></nav>');
+  // ---------------- 하단 바 — 전화 · 카톡 · 접수신청 (2026-10-16 대표님, PC·모바일 모두)
+  var bottom = el('<nav class="rm-bottom" aria-label="빠른 상담"><a class="rm-b-tel" href="tel:' + digits(PHONE) + '">전화</a>' +
+    '<a class="rm-b-kakao" href="' + KAKAO + '" target="_blank" rel="noopener">카톡</a>' +
+    '<button type="button" class="rm-b-ask">접수신청</button></nav>');
   document.body.appendChild(bottom);
   bottom.querySelector(".rm-b-ask").onclick = function () { openSheet({ from: "모바일 하단 바" }); };
 
