@@ -172,13 +172,17 @@
       }
     });
     if (data.companyName) lines.push("회사: " + data.companyName, "담당: " + (data.managerName || ""), "문의: " + (data.inquiry || ""));
+    if (window.RM_SRC) lines.push("유입: " + window.RM_SRC());
     lines.push("페이지: " + location.href);
     var relay = (window.TG || {}).relay;
     if (!relay) return Promise.resolve({ state: "error" });
     return fetch(relay, { method: "POST", headers: { "Content-Type": "text/plain" },
                           body: JSON.stringify({ type: "lead", text: lines.join("\n") }) })
       .then(function (r) { return r.json(); })
-      .then(function (d) { return { state: d && d.ok ? "okay" : "error" }; });
+      .then(function (d) {
+        if (d && d.ok && window.fbq) window.fbq("track", "Lead");
+        return { state: d && d.ok ? "okay" : "error" };
+      });
   }
 
   function handle(name, data) {

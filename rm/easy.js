@@ -51,13 +51,18 @@
         (f.item.RentalFee ? " · 월 " + won(f.item.RentalFee) + "원" : "") + (f.item.DutyUsePeriod ? " · " + f.item.DutyUsePeriod + "개월" : ""));
     }
     if (f.kinds && f.kinds.length) lines.push("관심 품목: " + f.kinds.join(", "));
-    lines.push("신청 위치: " + f.from, "페이지: " + location.href);
+    lines.push("신청 위치: " + f.from);
+    if (window.RM_SRC) lines.push("유입: " + window.RM_SRC());
+    lines.push("페이지: " + location.href);
     var relay = (window.TG || {}).relay;
     if (!relay) return Promise.reject(new Error("relay"));
     return fetch(relay, { method: "POST", headers: { "Content-Type": "text/plain" },
                           body: JSON.stringify({ type: "lead", text: lines.join("\n") }) })
       .then(function (r) { return r.json(); })
-      .then(function (d) { if (!d || !d.ok) throw new Error((d && d.why) || "fail"); });
+      .then(function (d) {
+        if (!d || !d.ok) throw new Error((d && d.why) || "fail");
+        if (window.fbq) window.fbq("track", "Lead");
+      });
   }
 
   function doneHTML() {

@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610161416">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610171937">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -63,6 +63,8 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
+  <script src="/rm/src.js?v=202610171937"></script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
 <div class="dt-wrap">
@@ -147,9 +149,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610161416"></script>
-<script src="/rm/shim.js?v=202610161416"></script>
-<script src="/rm/easy.js?v=202610161416"></script>
+<script src="/config.js?v=202610171937"></script>
+<script src="/rm/shim.js?v=202610171937"></script>
+<script src="/rm/easy.js?v=202610171937"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -226,6 +228,7 @@
         "[렌탈몰라] 상세페이지 간편 상담 신청",
         "연락처: " + tel.replace(/\D/g, "").replace(/(\d{3})(\d{3,4})(\d{4})/, "$1-$2-$3"),
         "상품: " + it.ItemName + (it.ModelName ? " (" + it.ModelName + ")" : "") + " · 월 " + won(it.RentalFee) + "원",
+        "유입: " + (window.RM_SRC ? window.RM_SRC() : ""),
         "페이지: " + location.href
       ];
       var relay = (window.TG || {}).relay;
@@ -240,6 +243,7 @@
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({ type: "lead", text: lines.join("\n") })
       }).then(function(r) { return r.json(); }).then(function(d) {
+        if (d && d.ok && window.fbq) window.fbq("track", "Lead");
         form.innerHTML = '<div style="padding: 20px; text-align: center; color: #166534; font-weight: 700;">' +
                          '<i class="fas fa-check-circle" style="font-size: 32px; display: block; margin-bottom: 8px;"></i>' +
                          '상담 신청이 완료되었습니다!<br><span style="font-size: 13px; font-weight: 400; color: #475569;">담당자가 확인 후 빠르게 연락드리겠습니다.</span></div>';
