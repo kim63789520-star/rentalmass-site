@@ -194,6 +194,10 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
   header #header #gnb, header #header .gnb_layout { flex: 1 1 auto; min-width: 0; }
   header #header #gnb_list_wrap { display: flex !important; justify-content: space-between; width: 100%; padding-left: 28px; }
   header #header #gnb_list_wrap > li { float: none; padding: 0 6px; font-size: 17px; }
+  /* 글씨 크게·굵게 (2026-10-17 대표님 "글씨가 너무 작아") — 원본 0.95em 규칙이 이겨서 #gnb 까지 붙여 덮는다 */
+  header #header #gnb #gnb_list_wrap > li.gnb_list { font-size: 18px; font-weight: 600; padding: 15px 8px; letter-spacing: -0.5px; }
+  header #header #gnb #gnb_list_wrap > li.gnb_list > a { color: #555; font-size: inherit; font-weight: inherit; }
+  header #header #gnb #gnb_list_wrap > li.gnb_list:hover > a { color: #111; }
 }
 
 /* 많이 찾는 BEST 카테고리 (2026-10-13) */
