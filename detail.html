@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610171956">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610191532">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -52,6 +52,24 @@
     .dt-btn-kakao { background: #fee500; color: #371d1e; padding: 13px; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
     .dt-btn-tel { background: #f1f5f9; color: #1e293b; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
+    .dt-cmp { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px 24px; margin-top: 24px; }
+    .dt-cmp h2 { font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
+    .dt-cmp-sub { font-size: 12px; color: #64748b; margin: 0 0 14px; }
+    .dt-cmp-row { display: grid; grid-template-columns: 1.1fr 1fr 2fr auto; gap: 14px; align-items: center; padding: 16px 0; border-top: 1px solid #eef2f6; }
+    .dt-cmp-name { font-size: 15px; font-weight: 800; color: #0f172a; }
+    .dt-cmp-best { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 700; color: #ea580c; background: #fff7ed; border-radius: 6px; padding: 2px 8px; }
+    .dt-cmp-fee small { display: block; font-size: 12px; color: #64748b; }
+    .dt-cmp-fee b { font-size: 20px; font-weight: 800; color: #e11d48; }
+    .dt-cmp-age small { display: block; font-size: 12px; font-weight: 700; color: #334155; }
+    .dt-cmp-age span { font-size: 13px; color: #475569; line-height: 1.45; word-break: keep-all; }
+    .dt-cmp-btn { background: #ea580c; color: #fff; border: 0; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+    @media (max-width: 640px) {
+      .dt-cmp { padding: 18px 16px; }
+      .dt-cmp-row { grid-template-columns: 1fr auto; gap: 8px 12px; }
+      .dt-cmp-age { grid-column: 1 / -1; }
+      .dt-cmp-btn { grid-column: 1 / -1; }
+    }
+
     .dt-trust-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
     @media (max-width: 640px) { .dt-trust-cards { grid-template-columns: repeat(2, 1fr); } }
     .dt-trust-card { background: #fff; border-radius: 12px; padding: 18px 14px; text-align: center; border: 1px solid #eef2f6; }
@@ -63,7 +81,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610171948"></script>
+  <script src="/rm/src.js?v=202610191532"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -113,6 +131,13 @@
     </div>
   </main>
 
+  <!-- 렌탈사 비교 — 요금·가입 가능 나이 (10-19 대표님) -->
+  <section class="dt-cmp" id="dt-cmp" hidden>
+    <h2>렌탈사 비교</h2>
+    <p class="dt-cmp-sub">같은 모델도 렌탈사마다 월 요금과 가입 가능 나이가 다릅니다. 카드 할인 전 기본 요금입니다.</p>
+    <div id="dt-cmp-list"></div>
+  </section>
+
   <!-- 빠른 간편 상담 폼 (화면 하단) -->
   <section class="rm-quick" style="margin-top: 32px;" aria-label="간편 상담 신청">
     <div class="rm-quick-in">
@@ -149,9 +174,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610171948"></script>
-<script src="/rm/shim.js?v=202610171948"></script>
-<script src="/rm/easy.js?v=202610171948"></script>
+<script src="/config.js?v=202610191532"></script>
+<script src="/rm/shim.js?v=202610191532"></script>
+<script src="/rm/easy.js?v=202610191532"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -197,6 +222,24 @@
     } else if (imgPath) {
       document.getElementById("dt-img").src = "/imageserver/webp/50/" + imgPath.replace(/\.[A-Za-z]+$/, ".webp");
     }
+
+    var AGE = {"현대렌탈서비스": "생활가전(정수기·비데·청정기) 만 19세 ~ 만 85세 / 일반가전 만 25세 ~ 만 70세", "BS렌탈": "만 24세 ~ 만 70세", "SK매직": "만 20세 이상 (상한 없음)", "스마트렌탈": "만 20세 ~ 만 70세 (생일 기준)", "오텍캐리어": "만 22세 ~ 만 79세", "코웨이": "만 19세 이상 (100세 미만)", "쿠쿠": "만 19세 이상 (상한 없음)", "LG전자케어솔루션": "만 20세 ~ 1931년생까지", "LG헬로비전": "만 25세 ~ 만 75세", "위더스컴퓨터": "만 20세 이상 (27세 이하 남성은 군필)", "이니렌탈": "연 나이 20세 ~ 84세", "청호나이스": "만 20세 이상", "현대큐밍": "만 19세 ~ 만 85세 (가전은 만 19세 이상)", "보람상조피플": "만 24세 ~ 만 74세 미만"};
+    var offers = (it.Offers && it.Offers.length) ? it.Offers : [[it.BrandName, Number(it.RentalFee)]];
+    var esc = function(s) { return String(s).replace(/[&<>"]/g, function(c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); };
+    document.getElementById("dt-cmp-list").innerHTML = offers.map(function(o, i) {
+      return '<div class="dt-cmp-row">' +
+        '<div><div class="dt-cmp-name">' + esc(o[0]) + '</div>' + (i === 0 && offers.length > 1 ? '<span class="dt-cmp-best">최저가</span>' : '') + '</div>' +
+        '<div class="dt-cmp-fee"><small>월 렌탈료</small><b>' + won(o[1]) + '</b>원</div>' +
+        '<div class="dt-cmp-age"><small>가입 가능 나이</small><span>' + esc(AGE[o[0]] || "상담 시 확인해 드려요") + '</span></div>' +
+        '<button type="button" class="dt-cmp-btn" data-i="' + i + '">렌탈 신청</button></div>';
+    }).join("");
+    document.getElementById("dt-cmp").hidden = false;
+    Array.prototype.forEach.call(document.querySelectorAll(".dt-cmp-btn"), function(b) {
+      b.onclick = function() {
+        var o = offers[Number(b.getAttribute("data-i"))];
+        if (window.RM_OPEN) window.RM_OPEN({ item: Object.assign({}, it, { BrandName: o[0], RentalFee: String(o[1]) }), from: "렌탈사 비교 · " + o[0] });
+      };
+    });
 
     document.getElementById("dt-ask-btn").onclick = function() {
       if (window.RM_OPEN) {
