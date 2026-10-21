@@ -33,7 +33,7 @@
 
   var saved = null;
   try {
-    if (now) { now.at = new Date().toISOString().slice(0, 16).replace("T", " "); localStorage.setItem(KEY, JSON.stringify(now)); }
+    if (now) { now.at = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 16).replace("T", " "); localStorage.setItem(KEY, JSON.stringify(now)); }
     saved = JSON.parse(localStorage.getItem(KEY) || "null");
   } catch (e) { saved = now; }
 
