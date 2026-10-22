@@ -229,6 +229,26 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-cardnote b{color:#111}
 .rm-cardnote a{color:#111;font-weight:700;text-decoration:underline;white-space:nowrap}
 
+/* 렌탈사별 가입 가능 나이 (2026-10-22) */
+.rm-age{padding:56px 16px 0;background:#f6f7f9}
+.rm-age-in{max-width:1240px;margin:0 auto}
+.rm-age h2{text-align:center;font-size:26px;font-weight:800;color:#222;margin:0}
+.rm-age-sub{text-align:center;color:#777;font-size:15px;margin:8px 0 24px;word-break:keep-all}
+.rm-age ul{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;list-style:none;margin:0;padding:0}
+.rm-age li{display:flex;gap:12px;align-items:baseline;padding:12px 16px;background:#fff;border:1px solid #e7e9ee;border-radius:10px;font-size:15px;line-height:1.5}
+.rm-age li b{flex:0 0 130px;color:#111}
+.rm-age li span{color:#444;word-break:keep-all}
+.rm-age-note{margin:14px 0 0;text-align:center;font-size:14px;color:#777;word-break:keep-all}
+.rm-age-note a{color:#111;font-weight:700;text-decoration:underline}
+@media (max-width:768px){
+  .rm-age{padding:36px 12px 0}
+  .rm-age h2{font-size:20px}
+  .rm-age-sub{font-size:14px;margin-bottom:16px}
+  .rm-age ul{grid-template-columns:1fr}
+  .rm-age li{flex-direction:column;gap:2px;padding:10px 14px;font-size:14px}
+  .rm-age li b{flex:none}
+}
+
 /* 알고 쓰면 이득, 렌탈 가이드 (2026-10-17) */
 .rm-guide{padding:56px 16px;background:#f6f7f9}
 .rm-gd-in{max-width:1240px;margin:0 auto}

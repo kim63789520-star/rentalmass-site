@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610210416">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610221321">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -81,7 +81,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610210416"></script>
+  <script src="/rm/src.js?v=202610221321"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -174,9 +174,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610210416"></script>
-<script src="/rm/shim.js?v=202610210416"></script>
-<script src="/rm/easy.js?v=202610210416"></script>
+<script src="/config.js?v=202610221321"></script>
+<script src="/rm/shim.js?v=202610221321"></script>
+<script src="/rm/easy.js?v=202610221321"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -223,7 +223,7 @@
       document.getElementById("dt-img").src = "/imageserver/webp/50/" + imgPath.replace(/\.[A-Za-z]+$/, ".webp");
     }
 
-    var AGE = {"현대렌탈서비스": "생활가전(정수기·비데·청정기) 만 19세 ~ 만 85세 / 일반가전 만 25세 ~ 만 70세", "BS렌탈": "만 24세 ~ 만 70세", "SK매직": "만 20세 이상 (상한 없음)", "스마트렌탈": "만 20세 ~ 만 70세 (생일 기준)", "오텍캐리어": "만 22세 ~ 만 79세", "코웨이": "만 19세 이상 (100세 미만)", "쿠쿠": "만 19세 이상 (상한 없음)", "LG전자케어솔루션": "만 20세 ~ 1931년생까지", "LG헬로비전": "만 25세 ~ 만 75세", "위더스컴퓨터": "만 20세 이상 (27세 이하 남성은 군필)", "이니렌탈": "연 나이 20세 ~ 84세", "청호나이스": "만 20세 이상", "현대큐밍": "만 19세 ~ 만 85세 (가전은 만 19세 이상)", "보람상조피플": "만 24세 ~ 만 74세 미만"};
+    var AGE = {"현대렌탈서비스": "생활가전(정수기·비데·청정기) 만 19세 ~ 만 85세 / 일반가전 만 25세 ~ 만 70세", "BS렌탈": "만 24세 ~ 만 70세", "SK매직": "만 20세 이상 (상한 없음)", "스마트렌탈": "만 20세 ~ 만 70세 (생일 기준)", "오텍캐리어": "만 22세 ~ 만 79세", "코웨이": "만 19세 이상 (100세 미만)", "쿠쿠": "만 19세 이상 (상한 없음)", "LG전자케어솔루션": "만 20세 ~ 1931년생까지", "LG헬로비전": "만 25세 ~ 만 75세", "위더스컴퓨터": "만 20세 이상 (27세 이하 남성은 군필)", "이니렌탈": "연 나이 20세 ~ 84세", "청호나이스": "만 20세 이상", "현대큐밍": "만 19세 ~ 만 85세 (가전은 만 19세 이상)", "보람상조피플": "만 25세 ~ 만 70세 미만"};
     var offers = (it.Offers && it.Offers.length) ? it.Offers : [[it.BrandName, Number(it.RentalFee)]];
     var esc = function(s) { return String(s).replace(/[&<>"]/g, function(c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); };
     document.getElementById("dt-cmp-list").innerHTML = offers.map(function(o, i) {
