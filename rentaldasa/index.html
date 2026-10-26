@@ -747,7 +747,7 @@ function rows(){
   $("sfTags").innerHTML=tags; var N=$("sfN"); N.textContent=cnt; N.classList.toggle("on",cnt>0);
 }
 function card(p){
-  var url="/detail.html?item="+encodeURIComponent(p.id);
+  var url="/detail.html?item="+encodeURIComponent(p.it||p.id);
   var img=p.thumb?'<img loading="lazy" src="'+esc(p.thumb)+'" alt="'+esc(p.title)+'">':'<div class="noimg">이미지 준비중</div>';
   var tt=(p.t||[]).filter(function(t){return t[0]!==p.mo;}).map(function(t){return t[0]+'개월 '+won(t[1])+'원';}).join(' · ');
   return '<a class="pcard'+(picked.indexOf(p.id)>=0?' picked':'')+'" data-id="'+p.id+'" href="'+url+'">'

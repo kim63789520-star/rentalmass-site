@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610261631">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610261721">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -62,6 +62,12 @@
     .dt-cmp-fee b { font-size: 20px; font-weight: 800; color: #e11d48; }
     .dt-cmp-age small { display: block; font-size: 12px; font-weight: 700; color: #334155; }
     .dt-cmp-age span { font-size: 13px; color: #475569; line-height: 1.45; word-break: keep-all; }
+    .dt-cmp-terms { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px; margin: -4px 0 0; padding: 0; list-style: none; }
+    .dt-cmp-terms li { background: #f8fafc; border: 1px solid #eef2f6; border-radius: 10px; padding: 8px 10px; font-size: 13px; color: #334155; }
+    .dt-cmp-terms b { display: block; font-size: 12px; color: #64748b; font-weight: 700; }
+    .dt-cmp-terms em { font-style: normal; font-weight: 800; color: #0f172a; }
+    .dt-cmp-terms i { font-style: normal; color: #ea580c; font-weight: 700; }
+    .dt-cmp-as { grid-column: 1 / -1; font-size: 12px; color: #64748b; margin-top: -6px; }
     .dt-cmp-btn { background: #ea580c; color: #fff; border: 0; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
     @media (max-width: 640px) {
       .dt-cmp { padding: 18px 16px; }
@@ -81,7 +87,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610261631"></script>
+  <script src="/rm/src.js?v=202610261721"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -134,7 +140,7 @@
   <!-- 렌탈사 비교 — 요금·가입 가능 나이 (10-19 대표님) -->
   <section class="dt-cmp" id="dt-cmp" hidden>
     <h2>렌탈사 비교</h2>
-    <p class="dt-cmp-sub">같은 모델도 렌탈사마다 월 요금과 가입 가능 나이가 다릅니다. 카드 할인 전 기본 요금입니다.</p>
+    <p class="dt-cmp-sub">같은 모델도 렌탈사마다 월 요금과 가입 가능 나이가 다릅니다. 약정 기간별 월 요금과 제휴카드 할인 시 요금입니다(카드 할인은 전월 실적 조건).</p>
     <div id="dt-cmp-list"></div>
   </section>
 
@@ -174,9 +180,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610261631"></script>
-<script src="/rm/shim.js?v=202610261631"></script>
-<script src="/rm/easy.js?v=202610261631"></script>
+<script src="/config.js?v=202610261721"></script>
+<script src="/rm/shim.js?v=202610261721"></script>
+<script src="/rm/easy.js?v=202610261721"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -231,7 +237,15 @@
         '<div><div class="dt-cmp-name">' + esc(o[0]) + '</div>' + (i === 0 && offers.length > 1 ? '<span class="dt-cmp-best">최저가</span>' : '') + '</div>' +
         '<div class="dt-cmp-fee"><small>월 렌탈료</small><b>' + won(o[1]) + '</b>원</div>' +
         '<div class="dt-cmp-age"><small>가입 가능 나이</small><span>' + esc(AGE[o[0]] || "상담 시 확인해 드려요") + '</span></div>' +
-        '<button type="button" class="dt-cmp-btn" data-i="' + i + '">렌탈 신청</button></div>';
+        '<button type="button" class="dt-cmp-btn" data-i="' + i + '">렌탈 신청</button>' +
+        // 개월별 요금 (빌리고 비교표 · 10-26 대표님) — [개월, 월요금, 카드할인 시 요금, 표기]
+        ((o[2] && o[2].length) ? '<ul class="dt-cmp-terms">' + o[2].map(function(t) {
+          var lab = t[3] || (t[0] + "개월");
+          if (t[0] && lab.indexOf("개월") < 0) lab += " (" + t[0] + "개월)";
+          return '<li><b>' + esc(lab) + '</b>월 <em>' + won(t[1]) + '원</em>' +
+            (t[2] != null && t[2] < t[1] ? '<br>카드 할인 시 <i>' + won(t[2]) + '원</i>' : '') + '</li>';
+        }).join("") + '</ul>' : '') +
+        (o[3] ? '<div class="dt-cmp-as">A/S: ' + esc(o[3]) + '</div>' : '') + '</div>';
     }).join("");
     document.getElementById("dt-cmp").hidden = false;
     Array.prototype.forEach.call(document.querySelectorAll(".dt-cmp-btn"), function(b) {

@@ -22,6 +22,21 @@ for no, it in items.items():
     o = {'id': no, 'title': it['ItemName'], 'model': it.get('ModelName', ''), 'cat': it.get('CategoryName', ''),
          'co': it.get('BrandName', ''), 'brand': it.get('ManufacturerName', ''), 'm': fee,
          'mo': int(it.get('DutyUsePeriod') or 0), 'thumb': thumb}
+    # 빌리고 상품은 렌탈사별 요금(Offers)을 한 줄씩 펼친다 — 렌탈사로 걸렀을 때 빠지지 않게 (10-26 대표님). 상세는 같은 상품(it)
+    # Offers = [렌탈사, 기본 요금, [[개월, 요금, 카드할인 시 요금, 표기], ...], A/S]
+    if it.get('Offers'):
+        for i, of in enumerate(it['Offers']):
+            tl = of[2] if len(of) > 2 else []
+            base = next((x for x in tl if x[1] == of[1]), None)
+            r = dict(o, co=of[0], m=int(of[1]), mo=base[0] if base else 0)
+            if i:
+                r.update(id=no + '~' + str(i), it=no)
+            if base and base[2] is not None and base[2] < of[1]:
+                r['d'] = of[1] - base[2]
+            tt = [[x[0], x[1]] for x in tl if x[0]]
+            if len(tt) > 1: r['t'] = tt
+            out.append(r)
+        continue
     d = int(it.get('MaxDiscountAmount') or 0)
     if d: o['d'] = d
     t = terms(it.get('ItemAllianceCardDetail'))
