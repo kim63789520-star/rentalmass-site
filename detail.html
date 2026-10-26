@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610261738">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610262211">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -76,6 +76,10 @@
       .dt-cmp-btn { grid-column: 1 / -1; }
     }
 
+    .dt-detail { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px 24px; margin-top: 24px; }
+    .dt-detail h2 { font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 14px; }
+    .dt-detail-imgs { max-width: 860px; margin: 0 auto; }
+    .dt-detail-imgs img { display: block; width: 100%; height: auto; }
     .dt-trust-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
     @media (max-width: 640px) { .dt-trust-cards { grid-template-columns: repeat(2, 1fr); } }
     .dt-trust-card { background: #fff; border-radius: 12px; padding: 18px 14px; text-align: center; border: 1px solid #eef2f6; }
@@ -87,7 +91,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610261738"></script>
+  <script src="/rm/src.js?v=202610262211"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -165,6 +169,12 @@
   </section>
 
   <!-- 안심 서비스 안내 -->
+  <!-- 상세정보 이미지 (R2) -->
+  <section class="dt-detail" id="dt-detail" hidden>
+    <h2>상세정보</h2>
+    <div class="dt-detail-imgs" id="dt-detail-imgs"></div>
+  </section>
+
   <div class="dt-trust-cards">
     <div class="dt-trust-card"><i class="fas fa-shield-halved"></i><b>안심 무료 비교</b><p>가입 강요 없는 투명한 견적 상담</p></div>
     <div class="dt-trust-card"><i class="fas fa-scale-balanced"></i><b>렌탈사별 요금 비교</b><p>같은 모델도 렌탈사마다 다른 월 요금을 비교해 안내</p></div>
@@ -180,9 +190,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610261738"></script>
-<script src="/rm/shim.js?v=202610261738"></script>
-<script src="/rm/easy.js?v=202610261738"></script>
+<script src="/config.js?v=202610262211"></script>
+<script src="/rm/shim.js?v=202610262211"></script>
+<script src="/rm/easy.js?v=202610262211"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -248,6 +258,12 @@
         (o[3] ? '<div class="dt-cmp-as">A/S: ' + esc(o[3]) + '</div>' : '') + '</div>';
     }).join("");
     document.getElementById("dt-cmp").hidden = false;
+    if (it.Detail && it.Detail.length) {
+      document.getElementById("dt-detail-imgs").innerHTML = it.Detail.map(function(u) {
+        return '<img loading="lazy" src="' + esc(u) + '" alt="' + esc(it.ItemName) + ' 상세">';
+      }).join("");
+      document.getElementById("dt-detail").hidden = false;
+    }
     Array.prototype.forEach.call(document.querySelectorAll(".dt-cmp-btn"), function(b) {
       b.onclick = function() {
         var o = offers[Number(b.getAttribute("data-i"))];
