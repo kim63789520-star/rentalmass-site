@@ -80,6 +80,14 @@
     var list = nos.slice((p - 1) * PER, p * PER).map(function (n, i) {
       var it = $.extend({}, ITEMS[n]);
       it.SeqNo = String((p - 1) * PER + i + 1);
+      // 빌리고 상품은 ItemAllianceCardDetail 이 비어 있다 → 원본 목록 코드가 빈 행에서 멈춰 목록 전체가 안 그려진다 (10-26).
+      // 렌탈사별 요금(Offers)으로 채운다. 약정기간은 없으니 비워 두고 화면에서 '기간 상담'으로 바꾼다(fixPeriod).
+      if (!it.ItemAllianceCardDetail) {
+        var offers = $.isArray(it.Offers) && it.Offers.length ? it.Offers : [[it.BrandName || "", it.RentalFee || "0"]];
+        it.ItemAllianceCardDetail = offers.map(function (o, j) {
+          return [it.ItemNo + "_" + j, o[0], String(o[1]), "", "09"].join('"^"');
+        }).join('"|"');
+      }
       return it;
     });
     return ok({ Test: [null, null, false, filter], Total: { TotalCount: String(nos.length) }, ItemList: list, Post: data });
@@ -296,4 +304,17 @@
       t.src = ORIGIN + src;
     }
   }, true);
+
+  // 렌탈사 요금 팝업: 약정기간 없는 빌리고 상품은 '0개월'로 찍힌다 → '기간 상담' (위 page() 참고)
+  function fixPeriod(root) {
+    $(root).find(".rentalcom_pop td").each(function () {
+      if ($.trim(this.textContent) === "0개월") this.textContent = "기간 상담";
+    });
+  }
+  $(function () {
+    fixPeriod(document.body);
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) fixPeriod(n); }); });
+    }).observe(document.body, { childList: true, subtree: true });
+  });
 })();
