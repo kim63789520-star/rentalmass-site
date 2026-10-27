@@ -6,8 +6,8 @@
   <title>말로 찾기 | 렌탈몰라</title>
   <meta name="description" content="품목·예산·약정 기간·브랜드를 말하듯 적으면 맞는 렌탈 상품을 렌탈사별 요금과 함께 찾아 드립니다.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610271936">
-  <script src="/rm/src.js?v=202610271936"></script>
+  <link rel="stylesheet" href="/rm/easy.css?v=202610271940">
+  <script src="/rm/src.js?v=202610271940"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
   <style>
     /* 말로 찾기 (10-27 대표님, 티엘파트너 'AI 상품 상담' 참고) — 규칙으로 알아듣는 검색이라 'AI'라고 쓰지 않는다 */
@@ -58,6 +58,7 @@
     .fd-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
     .fd-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s, border-color .15s; }
     .fd-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(15,23,42,.08); border-color: #d6dbe3; }
+    .fd-card { position: relative; }
     .fd-card .ph { display: block; aspect-ratio: 1 / 1; background: #fff; padding: 14px; border-bottom: 1px solid #f1f5f9; position: relative; }
     .fd-card .ph img { width: 100%; height: 100%; object-fit: contain; }
     .fd-card .co { position: absolute; left: 10px; top: 10px; font-size: 11.5px; font-weight: 700; color: #1d4ed8; background: #eff6ff; border-radius: 6px; padding: 3px 8px; }
@@ -77,6 +78,58 @@
     .fd-card .bt a:hover { border-color: #94a3b8; }
     .fd-card .bt button { border: 0; background: var(--acc); color: #fff; }
     .fd-card .bt button:hover { background: var(--acc-d); }
+    /* 비교함 (10-27 대표님, 티엘파트너 '비교함' 참고) */
+    .fd-card .cmpk { position: absolute; right: 10px; top: 10px; display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); background: rgba(255,255,255,.95);
+                     border-radius: 99px; padding: 4px 10px 4px 7px; font-size: 12px; font-weight: 700; color: #475569; cursor: pointer; font-family: inherit; }
+    .fd-card .cmpk i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #cbd5e1; display: inline-flex; align-items: center; justify-content: center; font-size: 9px; color: transparent; }
+    .fd-card .cmpk.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+    .fd-card .cmpk.on i { border-color: #fff; background: #fff; color: var(--ink); }
+    .fd-tray { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(62px + 14px + env(safe-area-inset-bottom)); z-index: 8000; width: min(760px, calc(100% - 24px));
+               background: var(--ink); color: #fff; border-radius: 18px; padding: 10px 10px 10px 16px; display: flex; align-items: center; gap: 10px; box-shadow: 0 18px 40px rgba(15,23,42,.35); }
+    .fd-tray[hidden] { display: none; }
+    .fd-tray .lb { font-size: 14px; font-weight: 800; white-space: nowrap; }
+    .fd-tray .lb small { font-weight: 500; color: #94a3b8; margin-left: 4px; }
+    .fd-tray .its { flex: 1; display: flex; gap: 6px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+    .fd-tray .it { flex: none; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.1); border-radius: 10px; padding: 4px 6px 4px 4px; max-width: 200px; }
+    .fd-tray .it img { width: 34px; height: 34px; object-fit: contain; background: #fff; border-radius: 7px; flex: none; }
+    .fd-tray .it span { font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .fd-tray .it button { flex: none; border: 0; background: none; color: #94a3b8; cursor: pointer; font-size: 15px; padding: 0 2px; }
+    .fd-tray .go { flex: none; height: 44px; padding: 0 18px; border: 0; border-radius: 12px; background: var(--acc); color: #fff; font-size: 15px; font-weight: 800; cursor: pointer; font-family: inherit; }
+    .fd-tray .go:disabled { background: #475569; color: #cbd5e1; cursor: default; }
+    .fd-cmp { position: fixed; inset: 0; z-index: 9500; background: rgba(15,23,42,.55); display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 24px 12px; }
+    .fd-cmp[hidden] { display: none; }
+    .fd-cmp .box { position: relative; background: #fff; border-radius: 20px; width: min(980px, 100%); padding: 22px 22px 18px; }
+    .fd-cmp h2 { margin: 0 48px 14px 0; font-size: 22px; font-weight: 800; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+    .fd-cmp .x { position: absolute; right: 18px; top: 18px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--ink); color: #fff; font-size: 18px; cursor: pointer; }
+    .fd-cmp .scr { overflow-x: auto; }
+    .fd-cmp table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .fd-cmp th, .fd-cmp td { padding: 12px 10px; border-bottom: 1px solid #eef2f6; vertical-align: top; text-align: center; font-size: 14px; }
+    .fd-cmp th { width: 110px; text-align: left; color: var(--sub); font-size: 13px; font-weight: 700; background: #f8fafc; position: sticky; left: 0; z-index: 1; box-shadow: 1px 0 0 #eef2f6; }
+    .fd-cmp table { min-width: calc(110px + var(--n, 2) * 150px); }
+    .fd-cmp .pimg { width: 120px; height: 120px; object-fit: contain; display: block; margin: 0 auto 8px; }
+    .fd-cmp .pnm { font-weight: 700; line-height: 1.4; color: var(--ink); text-decoration: none; display: block; }
+    .fd-cmp .fee b { font-size: 17px; font-weight: 800; }
+    .fd-cmp .fee .c { display: block; color: var(--acc); font-size: 12.5px; font-weight: 700; margin-top: 2px; }
+    .fd-cmp .best { background: #fff7f2; }
+    .fd-cmp .best b { color: var(--acc-d); }
+    .fd-cmp .dash { color: #cbd5e1; }
+    .fd-cmp .acts { display: grid; gap: 6px; }
+    .fd-cmp .acts a, .fd-cmp .acts button { height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 13.5px; font-weight: 700; text-decoration: none; cursor: pointer; font-family: inherit; }
+    .fd-cmp .acts a { border: 1px solid var(--line); color: #334155; }
+    .fd-cmp .acts button { border: 0; background: var(--acc); color: #fff; }
+    .fd-cmp .nt { margin: 12px 0 0; font-size: 12px; color: var(--faint); }
+    @media (max-width: 720px) {
+      .fd-card .cmpk { right: 6px; top: 6px; padding: 3px 8px 3px 5px; font-size: 11px; }
+      .fd-card .co { left: 6px; top: 6px; font-size: 10.5px; padding: 2px 6px; }
+      .fd-tray { padding: 8px 8px 8px 12px; border-radius: 16px; }
+      .fd-tray .lb small { display: none; }
+      .fd-tray .it { max-width: 120px; }
+      .fd-cmp { padding: 0; align-items: flex-end; }
+      .fd-cmp .box { border-radius: 20px 20px 0 0; padding: 18px 12px 16px; max-height: 92vh; overflow-y: auto; }
+      .fd-cmp th { width: 74px; font-size: 12px; padding: 10px 6px; }
+      .fd-cmp td { font-size: 13px; padding: 10px 6px; }
+      .fd-cmp .pimg { width: 84px; height: 84px; }
+    }
     .fd-more { display: block; margin: 22px auto 0; height: 48px; padding: 0 28px; border: 1.5px solid var(--ink); background: #fff; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
     .fd-more:hover { background: var(--ink); color: #fff; }
     .fd-empty, .fd-start { background: #fff; border: 1px dashed #cbd5e1; border-radius: 18px; padding: 34px 20px; text-align: center; color: var(--sub); }
@@ -134,10 +187,23 @@
     <p class="fd-note">요금은 기본 월 렌탈료 기준이며 카드 할인은 제휴카드 전월 실적을 채웠을 때 금액입니다. 정확한 조건은 상세 화면과 상담에서 확인해 주세요.</p>
   </main>
 
+  <div class="fd-tray" id="fdTray" hidden role="region" aria-label="비교함">
+    <span class="lb">비교함 <span id="fdTrayN">0</span>/3<small>2개부터 비교</small></span>
+    <div class="its" id="fdTrayIts"></div>
+    <button type="button" class="go" id="fdCmpGo">비교하기</button>
+  </div>
+  <div class="fd-cmp" id="fdCmp" hidden role="dialog" aria-modal="true" aria-labelledby="fdCmpT">
+    <div class="box"><button type="button" class="x" id="fdCmpX" aria-label="닫기">×</button>
+      <h2 id="fdCmpT">고른 상품 나란히 비교</h2>
+      <div class="scr" id="fdCmpBody"></div>
+      <p class="nt">기간별 요금은 렌탈사 중 가장 낮은 요금입니다. 카드 할인은 제휴카드 전월 실적을 채웠을 때 금액이에요. 렌탈사별 요금은 '자세히'에서 확인하세요.</p>
+    </div>
+  </div>
+
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610271936"></script>
-<script src="/rm/shim.js?v=202610271936"></script>
-<script src="/rm/easy.js?v=202610271936"></script>
+<script src="/config.js?v=202610271940"></script>
+<script src="/rm/shim.js?v=202610271940"></script>
+<script src="/rm/easy.js?v=202610271940"></script>
 <script>
 (function () {
   // 품목 — 앞에 있는 것이 먼저 (김치냉장고 > 냉장고, 세탁+건조 > 건조기 > 세탁기)
@@ -302,6 +368,7 @@
     return '<article class="fd-card">' +
       '<a class="ph" href="' + href + '">' + (r[9] ? '<img loading="lazy" src="/' + esc(r[9]) + '" alt="' + esc(r[1]) + '">' : "") +
         (r[10] > 1 ? '<span class="co">렌탈사 ' + r[10] + '곳 비교</span>' : '<span class="co">' + esc(r[5]) + '</span>') + '</a>' +
+      '<button type="button" class="cmpk' + (cmpHas(r[0]) ? " on" : "") + '" data-cmp="' + esc(r[0]) + '" aria-pressed="' + cmpHas(r[0]) + '"><i class="fas fa-check"></i>비교</button>' +
       '<div class="bd"><span class="mk">' + esc(r[4] || r[5]) + '</span>' +
       '<a class="nm" href="' + href + '">' + esc(r[1]) + '</a>' +
       (r[2] ? '<span class="md">' + esc(r[2]) + '</span>' : "") +
@@ -356,13 +423,69 @@
     if (DATA) render();
   }
 
+  // ---- 비교함 — 최대 3개, 이 브라우저에 기억 (검색을 바꿔도 남는다)
+  var MAP = {}, CMP = [];
+  try { CMP = JSON.parse(localStorage.getItem("rm_cmp") || "[]").slice(0, 3); } catch (e) { CMP = []; }
+  function cmpHas(no) { return CMP.indexOf(no) >= 0; }
+  function cmpSave() { try { localStorage.setItem("rm_cmp", JSON.stringify(CMP)); } catch (e) {} }
+  function cmpToggle(no) {
+    var i = CMP.indexOf(no);
+    if (i >= 0) CMP.splice(i, 1);
+    else { if (CMP.length >= 3) { alertTray(); return; } CMP.push(no); }
+    cmpSave(); tray();
+    Array.prototype.forEach.call(document.querySelectorAll('.cmpk[data-cmp="' + no + '"]'), function (b) { b.classList.toggle("on", cmpHas(no)); b.setAttribute("aria-pressed", cmpHas(no)); });
+  }
+  function alertTray() { var t = $("#fdTray"); t.animate && t.animate([{ transform: "translateX(-50%) scale(1)" }, { transform: "translateX(-50%) scale(1.04)" }, { transform: "translateX(-50%) scale(1)" }], 260); $("#fdTrayN").textContent = "3 (가득)"; setTimeout(tray, 1400); }
+  function tray() {
+    CMP = CMP.filter(function (no) { return MAP[no]; });
+    $("#fdTray").hidden = !CMP.length;
+    $("#fdTrayN").textContent = CMP.length;
+    $("#fdTrayIts").innerHTML = CMP.map(function (no) { var r = MAP[no];
+      return '<span class="it">' + (r[9] ? '<img src="/' + esc(r[9]) + '" alt="">' : "") + '<span>' + esc(r[1]) + '</span><button type="button" data-uncmp="' + esc(no) + '" aria-label="비교함에서 빼기">×</button></span>'; }).join("");
+    $("#fdCmpGo").disabled = CMP.length < 2;
+  }
+  function openCmp() {
+    var rs = CMP.map(function (no) { return MAP[no]; });
+    var months = []; rs.forEach(function (r) { (r[11] || []).forEach(function (t) { if (months.indexOf(t[0]) < 0) months.push(t[0]); }); });
+    months.sort(function (a, b) { return b - a; });
+    var row = function (lb, cells) { return "<tr><th>" + lb + "</th>" + cells.join("") + "</tr>"; };
+    var h = "<table style=\"--n:" + rs.length + "\"><colgroup><col style=\"width:" + (innerWidth < 720 ? 74 : 110) + "px\">" + rs.map(function () { return "<col>"; }).join("") + "</colgroup>";
+    h += row("상품", rs.map(function (r) { var href = "/detail.html?item=" + encodeURIComponent(r[0]);
+      return '<td>' + (r[9] ? '<img class="pimg" src="/' + esc(r[9]) + '" alt="">' : "") + '<a class="pnm" href="' + href + '">' + esc(r[1]) + '</a></td>'; }));
+    h += row("모델명", rs.map(function (r) { return "<td>" + esc(r[2] || "-") + "</td>"; }));
+    h += row("제조사", rs.map(function (r) { return "<td>" + esc(r[4] || "-") + "</td>"; }));
+    h += row("렌탈사", rs.map(function (r) { return "<td>" + (r[10] > 1 ? r[10] + "곳 비교" : esc(r[5])) + "</td>"; }));
+    months.forEach(function (m) {
+      var vals = rs.map(function (r) { return (r[11] || []).filter(function (t) { return t[0] === m; })[0]; });
+      var low = Math.min.apply(null, vals.filter(Boolean).map(function (t) { return t[1]; }));
+      h += row(m + "개월", vals.map(function (t) {
+        if (!t) return '<td class="dash">—</td>';
+        return '<td class="fee' + (vals.filter(Boolean).length > 1 && t[1] === low ? " best" : "") + '"><b>월 ' + won(t[1]) + '원</b>' + (t[2] ? '<span class="c">카드 할인 시 ' + won(t[2]) + '원</span>' : "") + "</td>"; }));
+    });
+    h += row("", rs.map(function (r) { return '<td><div class="acts"><a href="/detail.html?item=' + encodeURIComponent(r[0]) + '">자세히</a><button type="button" data-ask2="' + esc(r[0]) + '">상담 신청</button></div></td>'; }));
+    $("#fdCmpBody").innerHTML = h + "</table>";
+    $("#fdCmp").hidden = false;
+  }
+
   // ---- 이벤트
   $("#fdForm").addEventListener("submit", function (e) { e.preventDefault(); go($("#fdQ").value); $("#fdQ").blur(); });
   var EX = ["카페에서 쓸 얼음정수기 월 3만 원 이하", "부모님 안마의자 60개월", "원룸 세탁기 2만원대", "LG 65인치 TV", "로봇청소기 물걸레 저렴한 거", "삼성 김치냉장고"];
   $("#fdEx").innerHTML = EX.map(function (x) { return '<button type="button" data-q="' + esc(x) + '">' + esc(x) + '</button>'; }).join("");
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") $("#fdCmp").hidden = true; });
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-q],[data-drop],[data-sort],[data-ask],#fdMore,#fdAskQ");
+    var t = e.target.closest("[data-q],[data-drop],[data-sort],[data-ask],[data-ask2],[data-cmp],[data-uncmp],#fdMore,#fdAskQ,#fdCmpGo,#fdCmpX,#fdCmp");
     if (!t) return;
+    if (t.dataset.cmp) return cmpToggle(t.dataset.cmp);
+    if (t.dataset.uncmp) return cmpToggle(t.dataset.uncmp);
+    if (t.id === "fdCmpGo") return openCmp();
+    if (t.id === "fdCmpX" || (t.id === "fdCmp" && e.target === t)) { $("#fdCmp").hidden = true; return; }
+    if (t.id === "fdCmp") return;
+    if (t.dataset.ask2) {
+      var r2 = MAP[t.dataset.ask2];
+      $("#fdCmp").hidden = true;
+      if (r2 && window.RM_OPEN) window.RM_OPEN({ item: { ItemNo: r2[0], ItemName: r2[1], ModelName: r2[2], RentalFee: String(r2[6]), DutyUsePeriod: r2[7] ? String(r2[7]) : "", BrandName: r2[5] }, from: "비교함 · " + state.q });
+      return;
+    }
     if (t.dataset.q) return go(t.dataset.q);
     if (t.dataset.drop) { state.drop[t.dataset.drop] = 1; state.shown = 24; return render(); }
     if (t.dataset.sort) { state.sort = t.dataset.sort; state.shown = 24; return render(); }
@@ -378,10 +501,10 @@
   var q0 = (location.search.match(/[?&]q=([^&]*)/) || [])[1];
   $("#fdQ").value = q0 ? decodeURIComponent(q0.replace(/\+/g, " ")) : "";
   state.q = $("#fdQ").value;
-  fetch("/rm/data/find.json?v=202610271936").then(function (r) { return r.json(); }).then(function (d) {
+  fetch("/rm/data/find.json?v=202610271940").then(function (r) { return r.json(); }).then(function (d) {
     DATA = d;
-    var seen = {}; d.forEach(function (r) { if (r[5]) seen[r[5]] = 1; }); COS = Object.keys(seen);
-    render();
+    var seen = {}; d.forEach(function (r) { if (r[5]) seen[r[5]] = 1; MAP[r[0]] = r; }); COS = Object.keys(seen);
+    render(); tray();
   }).catch(function () {
     $("#fdOut").innerHTML = '<div class="fd-empty"><b>상품 목록을 불러오지 못했어요</b>잠시 뒤 다시 열어 주시거나 카톡으로 물어봐 주세요.</div>';
   });
