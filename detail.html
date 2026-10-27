@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610271800">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610271806">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -143,7 +143,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610271800"></script>
+  <script src="/rm/src.js?v=202610271806"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -261,9 +261,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610271800"></script>
-<script src="/rm/shim.js?v=202610271800"></script>
-<script src="/rm/easy.js?v=202610271800"></script>
+<script src="/config.js?v=202610271806"></script>
+<script src="/rm/shim.js?v=202610271806"></script>
+<script src="/rm/easy.js?v=202610271806"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -303,8 +303,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("#dt-copy button"), function(b) {
       b.onclick = function() {
         var k = b.getAttribute("data-copy"), nm = it.ItemName || "", md = it.ModelName || "";
-        var t = k === "name" ? nm : k === "model" ? (md || nm) : nm + (md ? "
-" + md : "");
+        var t = k === "name" ? nm : k === "model" ? (md || nm) : nm + (md ? "\n" + md : "");
         var ok = document.getElementById("dt-copy-ok");
         var shown = function() { ok.textContent = "✓ 복사됨"; setTimeout(function() { ok.textContent = ""; }, 1500); };
         if (navigator.clipboard && window.isSecureContext) {

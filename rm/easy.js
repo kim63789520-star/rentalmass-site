@@ -111,6 +111,8 @@
       ? '<div class="rm-prod"><b>' + esc(it.ItemName) + "</b><span>" + esc(it.ModelName || "") +
         (it.RentalFee ? " · 월 " + won(it.RentalFee) + "원" : "") + (it.DutyUsePeriod ? " · " + esc(it.DutyUsePeriod) + "개월" : "") + "</span></div>"
       : '<p class="rm-lbl">관심 품목 (여러 개 가능)</p>' + chips(KINDS, true);
+    sheet.classList.toggle("ap", !!(it && it.Pick));
+    if (it && it.Pick) return openApply(it);
     body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + what +
       '<p class="rm-lbl">휴대폰 번호 (필수)</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">' +
       '<p class="rm-lbl">이름 (선택)</p><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="성함">' +
@@ -134,6 +136,29 @@
     };
     sheet.classList.add("on");
     setTimeout(function () { var t = body.querySelector(".rm-tel"); if (t && window.innerWidth > 768) t.focus(); }, 50);
+  }
+  // 렌탈 신청서 — 상세 '렌탈 신청 → 기간 고르기' 다음 (10-27 대표님 "보람 신청서처럼 바꿔")
+  function openApply(it) {
+    body.innerHTML = '<h4 id="rm-sheet-t">렌탈신청을 위한 정보를 확인해 주세요</h4>' +
+      '<p class="rm-ap-h">상품정보</p>' +
+      '<div class="rm-ap-prod">' + (it.Img ? '<img src="' + esc(it.Img) + '" alt="">' : "") + "<div><small>" + esc(it.ModelName || "") + "</small>" +
+      "<b>" + esc(it.ItemName) + "</b><span>" + esc(it.BrandName) + " · 렌탈기간 " + esc(it.DutyUsePeriod) + "개월</span>" +
+      "<span>월 렌탈료 <em>" + won(it.RentalFee) + "원</em></span>" + (it.CardFee ? '<span class="c">카드할인시 <em>' + won(it.CardFee) + "원</em></span>" : "") + "</div></div>" +
+      '<p class="rm-ap-h">고객정보 <small>연락처만 필수</small></p>' +
+      '<div class="rm-ap-f"><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (선택)">' +
+      '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="연락처 (숫자만)">' +
+      '<select class="rm-time w"><option value="">상담 희망 시간 (선택)</option><option>바로 가능</option><option>오전</option><option>오후</option><option>저녁</option></select>' +
+      '<input class="rm-addr w" type="text" autocomplete="street-address" maxlength="80" placeholder="설치 주소 (선택)"></div>' +
+      AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
+      '<button type="button" class="rm-btn">신청하기</button>' +
+      '<p class="rm-note">상담 신청만으로 가입되지 않습니다.</p>';
+    body.querySelector(".rm-btn").onclick = function () {
+      submit(body, function () {
+        return { name: body.querySelector(".rm-name").value.trim(), time: body.querySelector(".rm-time").value,
+                 addr: body.querySelector(".rm-addr").value.trim(), item: it, kinds: [], from: current.from || "렌탈 신청" };
+      }, function () { body.innerHTML = doneHTML(); });
+    };
+    sheet.classList.add("on");
   }
   window.RM_OPEN = openSheet;
 
