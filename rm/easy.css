@@ -61,6 +61,30 @@
 .rm-sheet .rm-prod span { color: var(--rm-sub); }
 .rm-sheet .rm-lbl { font-size: 13px; font-weight: 700; color: var(--rm-sub); margin: 2px 0 -4px; }
 .rm-sheet .rm-btn { width: 100%; }
+/* 말로 찾기 입구 — 첫 화면 (10-27) */
+.rm-find { max-width: 1200px; margin: 28px auto 8px; padding: 0 16px; box-sizing: border-box; }
+.rm-find-in { background: linear-gradient(135deg, #fff7f2 0%, #fff 55%, #f5f7ff 100%); border: 1px solid #fde3d3; border-radius: 22px; padding: 24px 26px 20px; }
+.rm-find-hd { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.rm-find-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 800; color: #f26b3a; background: #fff; border: 1px solid #fcd5bf; border-radius: 99px; padding: 4px 11px; }
+.rm-find-hd h2 { margin: 0; font-size: 21px; font-weight: 800; color: #0f172a; letter-spacing: -0.4px; }
+.rm-find-box { display: flex; align-items: center; gap: 8px; background: #fff; border: 2px solid #0f172a; border-radius: 16px; padding: 5px 5px 5px 16px; }
+.rm-find-box:focus-within { border-color: #f26b3a; }
+.rm-find-box i { color: #94a3b8; font-size: 17px; }
+.rm-find-box input { flex: 1; min-width: 0; border: 0 !important; outline: 0; background: none; height: 46px; font-size: 16px; color: #0f172a; padding: 0 4px; font-family: inherit; }
+.rm-find-box button { flex: none; height: 46px; padding: 0 22px; border: 0; border-radius: 12px; background: #f26b3a; color: #fff; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.rm-find-ex { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.rm-find-ex a { font-size: 13px; color: #334155; background: #fff; border: 1px solid #e5e7eb; border-radius: 99px; padding: 6px 12px; text-decoration: none; }
+.rm-find-ex a:hover { border-color: #f26b3a; color: #f26b3a; }
+@media (max-width: 768px) {
+  .rm-find { margin-top: 18px; }
+  .rm-find-in { padding: 18px 14px 14px; border-radius: 18px; }
+  .rm-find-hd h2 { font-size: 18px; }
+  .rm-find-box button { padding: 0 15px; font-size: 15px; }
+  .rm-find-ex { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -14px; }
+  .rm-find-ex a { flex: none; }
+}
+.rm-find, .rm-find * { box-sizing: border-box !important; line-height: 1.45; }
+
 /* 렌탈 신청서 (상세 '렌탈 신청' → 기간 고르기 다음) — 보람 사이트 신청서와 같은 틀 (10-27) */
 .rm-sheet.ap .rm-box { width: min(520px, calc(100% - 32px)); padding: 26px 24px 20px; gap: 0; }
 .rm-sheet.ap h4 { font-size: 21px; padding: 0 52px 14px 0; border-bottom: 2px solid var(--rm-ink); line-height: 1.35 !important; }
