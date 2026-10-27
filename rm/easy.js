@@ -46,10 +46,17 @@
   function send(f) {
     var lines = ["[렌탈몰라] 상담 신청", "이름: " + (f.name || "(미입력)"), "연락처: " + fmtTel(f.tel)];
     if (f.time) lines.push("통화 가능: " + f.time);
-    if (f.item) {
+    if (f.item && f.item.Pick) {  // 칸마다 한 줄 — 텔레그램에서 칸별로 눌러 복사 (중계 copyHtml_ · 10-27 대표님)
+      lines.push("상품명: " + f.item.ItemName);
+      if (f.item.ModelName) lines.push("모델명: " + f.item.ModelName);
+      lines.push("렌탈사: " + f.item.BrandName);
+      lines.push("렌탈기간: " + f.item.DutyUsePeriod + "개월");
+      lines.push("월 렌탈료: " + won(f.item.RentalFee) + "원");
+      if (f.item.CardFee) lines.push("카드 할인 시: " + won(f.item.CardFee) + "원");
+    } else if (f.item) {
       lines.push("상품: " + f.item.ItemName + (f.item.ModelName ? " (" + f.item.ModelName + ")" : "") +
         (f.item.RentalFee ? " · 월 " + won(f.item.RentalFee) + "원" : "") + (f.item.DutyUsePeriod ? " · " + f.item.DutyUsePeriod + "개월" : ""));
-      if (f.item.Pick) lines.push("렌탈사: " + f.item.BrandName + (f.item.CardFee ? " · 카드 할인 시 월 " + won(f.item.CardFee) + "원" : ""));
+      if (f.item.ModelName) lines.push("모델명: " + f.item.ModelName);
     }
     if (f.addr) lines.push("주소: " + f.addr);
     if (f.kinds && f.kinds.length) lines.push("관심 품목: " + f.kinds.join(", "));
