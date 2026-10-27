@@ -49,7 +49,9 @@
     if (f.item) {
       lines.push("상품: " + f.item.ItemName + (f.item.ModelName ? " (" + f.item.ModelName + ")" : "") +
         (f.item.RentalFee ? " · 월 " + won(f.item.RentalFee) + "원" : "") + (f.item.DutyUsePeriod ? " · " + f.item.DutyUsePeriod + "개월" : ""));
+      if (f.item.Pick) lines.push("렌탈사: " + f.item.BrandName + (f.item.CardFee ? " · 카드 할인 시 월 " + won(f.item.CardFee) + "원" : ""));
     }
+    if (f.addr) lines.push("주소: " + f.addr);
     if (f.kinds && f.kinds.length) lines.push("관심 품목: " + f.kinds.join(", "));
     lines.push("신청 위치: " + f.from);
     if (window.RM_SRC) lines.push("유입: " + window.RM_SRC());
@@ -100,14 +102,20 @@
     var it = current.item, ctx = current.kind || pageContext();
     var head = '<div class="rm-who"><img src="' + PHOTO + '" alt="렌탈 상담 담당 김다혜"><div><b>렌탈 상담 담당 김다혜</b>' +
                "<span>확인 후 바로 연락드려요</span></div></div>";
-    var what = it
+    // 상세 '렌탈 신청'에서 기간까지 고르고 온 경우 — 빌리고 신청서처럼 렌탈사·기간·카드 할인 시 요금 (10-27 대표님)
+    var what = it && it.Pick
+      ? '<div class="rm-prod rm-pick">' + (it.Img ? '<img src="' + esc(it.Img) + '" alt="">' : "") + "<div><span>" + esc(it.ModelName || "") + "</span><b>" + esc(it.ItemName) + "</b>" +
+        "<span>" + esc(it.BrandName) + " · 렌탈기간 " + esc(it.DutyUsePeriod) + "개월</span>" +
+        "<em>월 렌탈료 " + won(it.RentalFee) + "원</em>" + (it.CardFee ? '<i>카드 할인 시 ' + won(it.CardFee) + "원</i>" : "") + "</div></div>"
+      : it
       ? '<div class="rm-prod"><b>' + esc(it.ItemName) + "</b><span>" + esc(it.ModelName || "") +
         (it.RentalFee ? " · 월 " + won(it.RentalFee) + "원" : "") + (it.DutyUsePeriod ? " · " + esc(it.DutyUsePeriod) + "개월" : "") + "</span></div>"
       : '<p class="rm-lbl">관심 품목 (여러 개 가능)</p>' + chips(KINDS, true);
     body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + what +
       '<p class="rm-lbl">휴대폰 번호 (필수)</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">' +
       '<p class="rm-lbl">이름 (선택)</p><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="성함">' +
-      '<p class="rm-lbl">통화 편한 시간 (선택)</p>' + chips(TIMES, false) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
+      '<p class="rm-lbl">통화 편한 시간 (선택)</p>' + chips(TIMES, false) +
+      (it && it.Pick ? '<p class="rm-lbl">설치 주소 (선택)</p><input class="rm-addr" type="text" autocomplete="street-address" maxlength="80" placeholder="예) 부산 해운대구 OO동">' : "") + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
       '<p class="rm-note">상담받으신다고 꼭 가입하셔야 하는 건 아니에요.</p>';
     if (!it && ctx) {
@@ -120,6 +128,7 @@
         var kinds = it ? [] : picked(body.querySelector(".rm-chips"));
         if (!it && ctx && !kinds.length) kinds = [ctx];
         return { name: body.querySelector(".rm-name").value.trim(), time: picked(body.querySelectorAll(".rm-chips")[it ? 0 : 1])[0] || "",
+                 addr: ((body.querySelector(".rm-addr") || {}).value || "").trim(),
                  item: it, kinds: kinds, from: current.from || "상담 창" };
       }, function () { body.innerHTML = doneHTML(); });
     };

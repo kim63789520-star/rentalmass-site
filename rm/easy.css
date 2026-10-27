@@ -271,3 +271,10 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
   .rm-guide b{font-size:15px}
   .rm-cardnote p{font-size:13px}
 }
+
+/* 상세 렌탈 신청 — 고른 렌탈사·기간·카드 할인 시 (10-27) */
+.rm-pick{display:flex;gap:12px;align-items:center}
+.rm-pick img{width:84px;height:84px;object-fit:contain;background:#fff;border-radius:8px;flex:0 0 84px}
+.rm-pick div{display:flex;flex-direction:column;gap:2px}
+.rm-pick em{font-style:normal;font-weight:800;color:#0f172a;margin-top:4px}
+.rm-pick i{font-style:normal;font-weight:800;color:#ea580c}

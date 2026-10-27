@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610271722">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610271752">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -55,22 +55,45 @@
     .dt-cmp { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px 24px; margin-top: 24px; }
     .dt-cmp h2 { font-size: 18px; font-weight: 800; color: #0f172a; margin: 0 0 4px; }
     .dt-cmp-sub { font-size: 12px; color: #64748b; margin: 0 0 14px; }
-    .dt-cmp-row { display: grid; grid-template-columns: 1.1fr 1fr 2fr auto; gap: 14px; align-items: center; padding: 16px 0; border-top: 1px solid #eef2f6; }
-    .dt-cmp-name { font-size: 15px; font-weight: 800; color: #0f172a; }
-    .dt-cmp-best { display: inline-block; margin-top: 4px; font-size: 11px; font-weight: 700; color: #ea580c; background: #fff7ed; border-radius: 6px; padding: 2px 8px; }
-    .dt-cmp-fee small { display: block; font-size: 12px; color: #64748b; }
-    .dt-cmp-fee b { font-size: 20px; font-weight: 800; color: #e11d48; }
-    .dt-cmp-age small { display: block; font-size: 12px; font-weight: 700; color: #334155; }
-    .dt-cmp-age span { font-size: 13px; color: #475569; line-height: 1.45; word-break: keep-all; }
-    .dt-cmp-terms { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 6px; margin: -4px 0 0; padding: 0; list-style: none; }
-    .dt-cmp-terms li { background: #f8fafc; border: 1px solid #eef2f6; border-radius: 10px; padding: 8px 10px; font-size: 13px; color: #334155; }
-    .dt-cmp-terms b { display: block; font-size: 12px; color: #64748b; font-weight: 700; }
-    .dt-cmp-terms em { font-style: normal; font-weight: 800; color: #0f172a; }
-    .dt-cmp-terms i { font-style: normal; color: #ea580c; font-weight: 700; }
-    .dt-cmp-as { grid-column: 1 / -1; font-size: 12px; color: #64748b; margin-top: -6px; }
-    .dt-card-btn { display: block; margin-top: 6px; background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #334155; cursor: pointer; }
+    .dt-cmp-row { display: grid; grid-template-columns: 170px 1fr 260px; border-top: 1px solid #e5e7eb; }
+    .dt-cmp-co { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 18px 10px; text-align: center; }
+    .dt-cmp-co img { max-width: 90px; max-height: 36px; object-fit: contain; }
+    .dt-cmp-name { font-size: 15px; font-weight: 700; color: #111827; }
+    .dt-cmp-best { display: block; width: 100%; max-width: 130px; font-size: 12px; font-weight: 700; color: #ea580c; background: #fff4ec; border-radius: 6px; padding: 4px 0; }
+    .dt-cmp-terms { display: flex; flex-direction: column; }
+    .dt-cmp-term { display: grid; grid-template-columns: 90px 1fr; align-items: center; padding: 14px 20px; border-left: 1px solid #f1f5f9; }
+    .dt-cmp-term + .dt-cmp-term { border-top: 1px solid #f1f5f9; }
+    .dt-cmp-term > b { font-size: 14px; font-weight: 700; color: #111827; text-align: center; }
+    .dt-cmp-prc p { display: flex; justify-content: space-between; align-items: baseline; margin: 2px 0 2px 40px; font-size: 13px; color: #6b7280; }
+    .dt-cmp-prc em { font-style: normal; font-size: 16px; font-weight: 700; color: #374151; }
+    .dt-cmp-prc i { font-style: normal; font-size: 18px; font-weight: 800; color: #f26b3a; }
+    .dt-cmp-prc i.no { color: #cbd5e1; }
+    .dt-cmp-prc small { font-size: 12px; font-weight: 400; color: #6b7280; margin-left: 1px; }
+    .dt-cmp-info { padding: 16px 0 16px 20px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .dt-cmp-info dl { margin: 0; }
+    .dt-cmp-info dt { font-size: 13px; font-weight: 700; color: #111827; }
+    .dt-cmp-info dd { margin: 2px 0 0; font-size: 12px; color: #4b5563; line-height: 1.45; word-break: keep-all; }
+    .dt-card-btn { display: block; margin-top: 2px; background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #334155; cursor: pointer; }
     #dt-card-modal { position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 9999; display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; padding: 24px 12px; }
-    #dt-card-modal[hidden] { display: none; }
+    #dt-card-modal[hidden], #dt-opt-modal[hidden] { display: none; }
+    #dt-opt-modal { position: fixed; inset: 0; background: rgba(15,23,42,.55); z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .dt-opt-box { position: relative; background: #fff; border-radius: 16px; width: 100%; max-width: 600px; max-height: 92vh; overflow-y: auto; padding: 24px; }
+    .dt-opt-box h2 { margin: 0 0 12px; font-size: 22px; font-weight: 800; padding-bottom: 12px; border-bottom: 2px solid #0f172a; }
+    .dt-opt-prod { display: flex; gap: 16px; align-items: center; padding: 8px 0 16px; border-bottom: 1px solid #e2e8f0; }
+    .dt-opt-prod img { width: 110px; height: 110px; object-fit: contain; background: #f8fafc; border-radius: 8px; }
+    .dt-opt-prod small { display: block; color: #94a3b8; font-size: 13px; }
+    .dt-opt-prod b { display: block; font-size: 16px; color: #0f172a; margin: 2px 0 6px; }
+    .dt-opt-co { display: inline-block; border: 1px solid #4c3a9e; color: #4c3a9e; border-radius: 4px; padding: 1px 6px; font-size: 12px; }
+    .dt-opt-row { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+    .dt-opt-lbl { flex: 0 0 64px; font-size: 14px; color: #334155; padding-top: 12px; }
+    .dt-opt-terms { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .dt-opt-terms button { display: flex; justify-content: space-between; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 13px 14px; font-size: 14px; cursor: pointer; color: #0f172a; }
+    .dt-opt-terms button.on { border-color: #ea580c; color: #ea580c; font-weight: 700; }
+    .dt-opt-sum { padding: 16px 0; border-bottom: 1px solid #e2e8f0; }
+    .dt-opt-sum div { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; font-size: 14px; }
+    .dt-opt-sum b { font-size: 22px; font-weight: 800; }
+    .dt-opt-sum .card { color: #ea580c; }
+    .dt-opt-go { display: block; margin: 20px auto 0; width: 180px; background: #f26b3a; color: #fff; border: 0; border-radius: 8px; padding: 14px; font-size: 16px; font-weight: 700; cursor: pointer; }
     .dt-card-box { position: relative; background: #fff; border-radius: 16px; width: 100%; max-width: 760px; overflow: hidden; }
     .dt-card-head { background: #4c3a9e; color: #fff; text-align: center; padding: 26px 16px; }
     .dt-card-head h2 { margin: 0; font-size: 26px; font-weight: 800; }
@@ -90,12 +113,15 @@
     .dt-card-body dd em { font-style: normal; font-weight: 700; color: #0f172a; }
     .dt-card-body .lstTxt { font-size: 12px; color: #64748b; }
     .dt-card-body .btn { display: inline-block; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 10px; color: #334155; text-decoration: none; font-size: 13px; }
-    .dt-cmp-btn { background: #ea580c; color: #fff; border: 0; border-radius: 10px; padding: 11px 16px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
-    @media (max-width: 640px) {
-      .dt-cmp { padding: 18px 16px; }
-      .dt-cmp-row { grid-template-columns: 1fr auto; gap: 8px 12px; }
-      .dt-cmp-age { grid-column: 1 / -1; }
-      .dt-cmp-btn { grid-column: 1 / -1; }
+    .dt-cmp-btn { margin-top: 6px; background: #f26b3a; color: #fff; border: 0; border-radius: 10px; padding: 13px 16px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; }
+    @media (max-width: 760px) {
+      .dt-cmp { padding: 18px 12px; }
+      .dt-cmp-row { grid-template-columns: 1fr; }
+      .dt-cmp-co { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; padding: 14px 4px 6px; }
+      .dt-cmp-best { width: auto; padding: 3px 8px; }
+      .dt-cmp-term { padding: 10px 4px; border-left: 0; grid-template-columns: 64px 1fr; }
+      .dt-cmp-prc p { margin-left: 8px; }
+      .dt-cmp-info { padding: 8px 4px 16px; }
     }
 
     .dt-detail { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 22px 24px; margin-top: 24px; }
@@ -113,7 +139,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610271722"></script>
+  <script src="/rm/src.js?v=202610271752"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -164,6 +190,14 @@
   </main>
 
   <!-- 렌탈사 비교 — 요금·가입 가능 나이 (10-19 대표님) -->
+  <div id="dt-opt-modal" class="dt-modal" hidden><div class="dt-opt-box">
+    <button type="button" class="dt-card-x" aria-label="닫기">×</button>
+    <h2>상품 옵션 선택</h2>
+    <div class="dt-opt-prod"></div>
+    <div class="dt-opt-row"><span class="dt-opt-lbl">렌탈기간</span><div class="dt-opt-terms"></div></div>
+    <div class="dt-opt-sum"></div>
+    <button type="button" class="dt-opt-go">렌탈신청</button>
+  </div></div>
   <div id="dt-card-modal" hidden><div class="dt-card-box">
     <div class="dt-card-head"><h2>제휴카드 할인</h2><p>제휴카드로 월 렌탈 비용 부담을 줄여보세요!</p></div>
     <button type="button" class="dt-card-x" aria-label="닫기">×</button>
@@ -217,9 +251,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610271722"></script>
-<script src="/rm/shim.js?v=202610271722"></script>
-<script src="/rm/easy.js?v=202610271722"></script>
+<script src="/config.js?v=202610271752"></script>
+<script src="/rm/shim.js?v=202610271752"></script>
+<script src="/rm/easy.js?v=202610271752"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -269,21 +303,25 @@
     var AGE = {"현대렌탈서비스": "생활가전(정수기·비데·청정기) 만 19세 ~ 만 85세 / 일반가전 만 25세 ~ 만 70세", "BS렌탈": "만 24세 ~ 만 70세", "SK매직": "만 20세 이상 (상한 없음)", "스마트렌탈": "만 20세 ~ 만 70세 (생일 기준)", "오텍캐리어": "만 22세 ~ 만 79세", "코웨이": "만 19세 이상 (100세 미만)", "쿠쿠": "만 19세 이상 (상한 없음)", "LG전자케어솔루션": "만 20세 ~ 1931년생까지", "LG헬로비전": "만 25세 ~ 만 75세", "위더스컴퓨터": "만 20세 이상 (27세 이하 남성은 군필)", "이니렌탈": "연 나이 20세 ~ 84세", "청호나이스": "만 20세 이상", "현대큐밍": "만 19세 ~ 만 85세 (가전은 만 19세 이상)", "보람상조피플": "만 25세 ~ 만 70세 미만"};
     var offers = (it.Offers && it.Offers.length) ? it.Offers : [[it.BrandName, Number(it.RentalFee)]];
     var esc = function(s) { return String(s).replace(/[&<>"]/g, function(c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]; }); };
+    // 렌탈사 비교 — 빌리고 비교표와 같은 3단 (로고·이름·제휴카드 | 기간별 월 렌탈료·카드 할인시 | A/S·가입 나이·렌탈 신청) (10-27 대표님 "빌리고랑 똑같이")
+    var low = Math.min.apply(null, offers.map(function(o) { return Number(o[1]) || 1e9; }));
     document.getElementById("dt-cmp-list").innerHTML = offers.map(function(o, i) {
+      var terms = (o[2] && o[2].length) ? o[2] : [[Number(it.DutyUsePeriod) || 0, o[1], null, ""]];
       return '<div class="dt-cmp-row">' +
-        '<div><div class="dt-cmp-name">' + esc(o[0]) + '</div>' + (i === 0 && offers.length > 1 ? '<span class="dt-cmp-best">최저가</span>' : '') +
-          (o[4] ? '<button type="button" class="dt-card-btn" data-card="' + esc(o[4]) + '">제휴카드 보기 ›</button>' : '') + '</div>' +
-        '<div class="dt-cmp-fee"><small>월 렌탈료</small><b>' + won(o[1]) + '</b>원</div>' +
-        '<div class="dt-cmp-age"><small>가입 가능 나이</small><span>' + esc(AGE[o[0]] || "상담 시 확인해 드려요") + '</span></div>' +
-        '<button type="button" class="dt-cmp-btn" data-i="' + i + '">렌탈 신청</button>' +
-        // 개월별 요금 (빌리고 비교표 · 10-26 대표님) — [개월, 월요금, 카드할인 시 요금, 표기]
-        ((o[2] && o[2].length) ? '<ul class="dt-cmp-terms">' + o[2].map(function(t) {
-          var lab = t[3] || (t[0] + "개월");
-          if (t[0] && lab.indexOf("개월") < 0) lab += " (" + t[0] + "개월)";
-          return '<li><b>' + esc(lab) + '</b>월 <em>' + won(t[1]) + '원</em>' +
-            (t[2] != null && t[2] < t[1] ? '<br>카드 할인 시 <i>' + won(t[2]) + '원</i>' : '') + '</li>';
-        }).join("") + '</ul>' : '') +
-        (o[3] ? '<div class="dt-cmp-as">A/S: ' + esc(o[3]) + '</div>' : '') + '</div>';
+        '<div class="dt-cmp-co">' + (o[5] ? '<img src="/rm/logos/' + esc(o[5]) + '" alt="">' : '') +
+          '<div class="dt-cmp-name">' + esc(o[0]) + '</div>' +
+          (o[4] ? '<button type="button" class="dt-card-btn" data-card="' + esc(o[4]) + '">제휴카드 보기 ›</button>' : '') +
+          (offers.length > 1 && Number(o[1]) === low ? '<span class="dt-cmp-best">● 최저가</span>' : '') + '</div>' +
+        '<div class="dt-cmp-terms">' + terms.map(function(t) {
+          var card = t[2] != null && t[2] < t[1];
+          return '<div class="dt-cmp-term"><b>' + (t[0] ? t[0] + '개월' : esc(t[3] || '')) + '</b><div class="dt-cmp-prc">' +
+            '<p><span>월 렌탈료</span><em>' + won(t[1]) + '<small>원</small></em></p>' +
+            '<p class="c"><span>카드 할인시</span>' + (card ? '<i>' + won(t[2]) + '<small>원</small></i>' : '<i class="no">-</i>') + '</p></div></div>';
+        }).join("") + '</div>' +
+        '<div class="dt-cmp-info">' +
+          (o[3] ? '<dl><dt>A/S 기간</dt><dd>' + esc(o[3]) + '</dd></dl>' : '') +
+          '<dl><dt>가입가능연령</dt><dd>' + esc(AGE[o[0]] || "상담 시 확인해 드려요") + '</dd></dl>' +
+          '<button type="button" class="dt-cmp-btn" data-i="' + i + '">✓ 렌탈 신청</button></div></div>';
     }).join("");
     document.getElementById("dt-cmp").hidden = false;
     // 제휴카드 보기 — 빌리고 제휴카드 안내 그대로 (10-27 대표님)
@@ -296,6 +334,9 @@
         });
       };
     });
+    document.getElementById("dt-opt-modal").onclick = function(e) {
+      if (e.target === this || e.target.classList.contains("dt-card-x")) this.hidden = true;
+    };
     document.getElementById("dt-card-modal").onclick = function(e) {
       if (e.target === this || e.target.classList.contains("dt-card-x")) this.hidden = true;
     };
@@ -308,7 +349,34 @@
     Array.prototype.forEach.call(document.querySelectorAll(".dt-cmp-btn"), function(b) {
       b.onclick = function() {
         var o = offers[Number(b.getAttribute("data-i"))];
-        if (window.RM_OPEN) window.RM_OPEN({ item: Object.assign({}, it, { BrandName: o[0], RentalFee: String(o[1]) }), from: "렌탈사 비교 · " + o[0] });
+        var terms = (o[2] || []).filter(function(t) { return t[0]; });
+        if (!terms.length) {
+          if (window.RM_OPEN) window.RM_OPEN({ item: Object.assign({}, it, { BrandName: o[0], RentalFee: String(o[1]) }), from: "렌탈사 비교 · " + o[0] });
+          return;
+        }
+        // 상품 옵션 선택 — 기간 고르고 월 렌탈료·카드 할인 시 확인 후 신청 (빌리고 흐름, 10-27 대표님)
+        var m = document.getElementById("dt-opt-modal"), sel = 0;
+        m.querySelector(".dt-opt-prod").innerHTML = '<img src="' + esc(document.getElementById("dt-img").src) + '" alt=""><div><small>' + esc(it.ModelName || "") +
+          '</small><b>' + esc(it.ItemName) + '</b><span class="dt-opt-co">' + esc(o[0]) + '</span></div>';
+        var draw = function() {
+          m.querySelector(".dt-opt-terms").innerHTML = terms.map(function(t, k) {
+            return '<button type="button" data-k="' + k + '"' + (k === sel ? ' class="on"' : '') + '><span>' + t[0] + '개월</span><b>월 ' + won(t[1]) + '원</b></button>';
+          }).join("");
+          var t = terms[sel];
+          m.querySelector(".dt-opt-sum").innerHTML = '<div><span>월 렌탈료</span><b>' + won(t[1]) + '원</b></div>' +
+            (t[2] != null && t[2] < t[1] ? '<div class="card"><span>카드 할인시</span><b>' + won(t[2]) + '원</b></div>' : '');
+          Array.prototype.forEach.call(m.querySelectorAll(".dt-opt-terms button"), function(x) {
+            x.onclick = function() { sel = Number(x.getAttribute("data-k")); draw(); };
+          });
+        };
+        draw();
+        m.querySelector(".dt-opt-go").onclick = function() {
+          var t = terms[sel];
+          m.hidden = true;
+          if (window.RM_OPEN) window.RM_OPEN({ item: Object.assign({}, it, { Pick: true, BrandName: o[0], RentalFee: String(t[1]), DutyUsePeriod: String(t[0]),
+            CardFee: (t[2] != null && t[2] < t[1]) ? t[2] : null, Img: document.getElementById("dt-img").src }), from: "렌탈사 비교 · " + o[0] + " · " + t[0] + "개월" });
+        };
+        m.hidden = false;
       };
     });
 
