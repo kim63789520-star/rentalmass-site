@@ -147,7 +147,7 @@
       '<p class="rm-ap-h">고객정보 <small>연락처만 필수</small></p>' +
       '<div class="rm-ap-f"><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (선택)">' +
       '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="연락처 (숫자만)">' +
-      '<select class="rm-time w"><option value="">상담 희망 시간 (선택)</option><option>바로 가능</option><option>오전</option><option>오후</option><option>저녁</option></select>' +
+      '<select class="rm-time w empty" onchange="this.classList.toggle(\'empty\',!this.value)"><option value="">상담 희망 시간 (선택)</option><option>바로 가능</option><option>오전</option><option>오후</option><option>저녁</option></select>' +
       '<input class="rm-addr w" type="text" autocomplete="street-address" maxlength="80" placeholder="설치 주소 (선택)"></div>' +
       AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">신청하기</button>' +

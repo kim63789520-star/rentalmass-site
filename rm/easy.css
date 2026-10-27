@@ -63,7 +63,7 @@
 .rm-sheet .rm-btn { width: 100%; }
 /* 렌탈 신청서 (상세 '렌탈 신청' → 기간 고르기 다음) — 보람 사이트 신청서와 같은 틀 (10-27) */
 .rm-sheet.ap .rm-box { width: min(520px, calc(100% - 32px)); padding: 26px 24px 20px; gap: 0; }
-.rm-sheet.ap h4 { font-size: 21px; padding: 0 40px 14px 0; border-bottom: 2px solid var(--rm-ink); }
+.rm-sheet.ap h4 { font-size: 21px; padding: 0 52px 14px 0; border-bottom: 2px solid var(--rm-ink); line-height: 1.35 !important; }
 .rm-sheet.ap .rm-x { top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: var(--rm-ink); color: #fff; font-size: 18px; }
 .rm-ap-h { display: flex; justify-content: space-between; align-items: baseline; margin: 18px 0 8px; font-size: 15px; font-weight: 800; color: var(--rm-ink); }
 .rm-ap-h small { font-size: 12px; font-weight: 400; color: var(--rm-sub); }
@@ -76,8 +76,11 @@
 .rm-ap-prod .c, .rm-ap-prod .c em { color: #f26b3a; }
 .rm-ap-f { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .rm-ap-f .w { grid-column: 1 / -1; }
-.rm-sheet.ap .rm-ap-f input, .rm-sheet.ap .rm-ap-f select { width: 100%; height: 50px; border: 0; background: #f4f6f8; border-radius: 8px;
-  padding: 0 14px; font-size: 16px; color: var(--rm-ink); font-family: inherit; }
+.rm-sheet.ap .rm-ap-f input, .rm-sheet.ap .rm-ap-f select { width: 100%; height: 50px; border: 0 !important; outline: 0; background: #f4f6f8; border-radius: 8px;
+  padding: 0 14px; font-size: 16px; color: var(--rm-ink); font-family: inherit; box-shadow: none; }
+.rm-sheet.ap .rm-ap-f input::placeholder { color: #8b95a1; opacity: 1; }
+.rm-sheet.ap .rm-ap-f select:invalid, .rm-sheet.ap .rm-ap-f select.empty { color: #8b95a1; }
+.rm-sheet.ap .rm-ap-f input:focus, .rm-sheet.ap .rm-ap-f select:focus { box-shadow: inset 0 0 0 2px var(--rm-red); }
 .rm-sheet.ap .rm-agree { margin-top: 14px; }
 .rm-sheet.ap .rm-msg { min-height: 18px; margin: 6px 0 0; }
 .rm-sheet.ap .rm-btn { margin-top: 10px; height: 54px; border-radius: 10px; }
