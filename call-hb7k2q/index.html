@@ -5,54 +5,55 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;600;800&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* 레이아웃: 휴대폰 한 손 조작 — 위 고정 검색·탭, 아래 회사별 묶음 카드, 줄마다 큰 전화 버튼 */
+/* 레이아웃: 휴대폰 한 손 조작 — 무지개 헤더, 회사마다 다른 색 카드, 줄마다 큰 전화 버튼 */
 :root{
-  --bg:#f3f5f7; --panel:#ffffff; --ink:#17212b; --muted:#5d6b78; --line:#dde3e8;
-  --son:#0f5f8c; --saeng:#1d7a52; --chong:#7a5a12; --call:#0f5f8c; --callink:#ffffff;
+  --bg:#fff8f0; --panel:#ffffff; --ink:#1f1a2e; --muted:#6b6280; --line:#efe4f2;
+  --son:#2f6fed; --saeng:#14a86b; --chong:#f08a00; --callink:#ffffff;
+  --rainbow:linear-gradient(120deg,#ff5f8f 0%,#ff9f43 22%,#ffd23f 42%,#3ccf91 62%,#3aa0ff 80%,#8a5cff 100%);
   --f-body:"Gothic A1",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --f-num:"IBM Plex Mono",ui-monospace,Consolas,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1418; --panel:#182027; --ink:#e6edf2; --muted:#93a3b0; --line:#26323c;
-  --son:#5cb3e6; --saeng:#5fcf98; --chong:#e0b54f; --call:#2a7fb3; --callink:#ffffff; color-scheme:dark}}
+  --bg:#17131f; --panel:#221c2e; --ink:#f4f0fa; --muted:#b4aac6; --line:#352c44;
+  --son:#6fa0ff; --saeng:#4fd69c; --chong:#ffb04a; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1418; --panel:#182027; --ink:#e6edf2; --muted:#93a3b0; --line:#26323c;
-  --son:#5cb3e6; --saeng:#5fcf98; --chong:#e0b54f; --call:#2a7fb3; --callink:#ffffff; color-scheme:dark}
+  --bg:#17131f; --panel:#221c2e; --ink:#f4f0fa; --muted:#b4aac6; --line:#352c44;
+  --son:#6fa0ff; --saeng:#4fd69c; --chong:#ffb04a; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;margin:0}
-.wrap{max-width:720px;margin:0 auto;padding-block:12px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.45;margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-block:12px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px;display:grid;gap:10px}
-h1{margin:0;font-size:20px;font-weight:800;text-wrap:balance}
-h1 small{font-weight:400;font-size:13px;color:var(--muted);margin-left:6px}
-#q{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink)}
-#q:focus{outline:2px solid var(--son);outline-offset:1px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tabs button{font:inherit;font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer}
-.tabs button[aria-pressed="true"]{color:var(--panel);background:var(--ink);border-color:var(--ink)}
-.tabs button:focus-visible,.row a:focus-visible,.row button:focus-visible{outline:2px solid var(--son);outline-offset:2px}
-.grp{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.grp h2{margin:0;padding:10px 14px;font-size:15px;font-weight:800;display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-bottom:1px solid var(--line)}
-.grp h2 .kind{font-size:12px;font-weight:600;letter-spacing:.04em}
-.k-son .kind{color:var(--son)} .k-saeng .kind{color:var(--saeng)} .k-chong .kind{color:var(--chong)}
-.row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:10px 14px}
-.row+.row{border-top:1px dashed var(--line)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;display:grid;gap:12px}
+h1{margin:0;font-size:27px;font-weight:800;text-wrap:balance;background:var(--rainbow);color:#fff;padding:16px 18px;border-radius:20px;text-shadow:0 1px 2px rgba(0,0,0,.25);box-shadow:0 6px 18px rgba(138,92,255,.25)}
+h1 small{display:block;font-weight:600;font-size:15px;opacity:.95;margin-top:2px}
+#q{width:100%;font:inherit;font-size:19px;padding:14px 16px;border:2.5px solid #ffb4cf;border-radius:16px;background:var(--panel);color:var(--ink)}
+#q:focus{outline:3px solid #8a5cff;outline-offset:1px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:inherit;font-size:17px;font-weight:800;padding:9px 16px;border-radius:999px;border:2.5px solid var(--tc,#8a5cff);background:var(--panel);color:var(--tc,#8a5cff);cursor:pointer}
+.tabs button[data-k="all"]{--tc:#8a5cff} .tabs button[data-k="son"]{--tc:var(--son)} .tabs button[data-k="saeng"]{--tc:var(--saeng)} .tabs button[data-k="chong"]{--tc:var(--chong)}
+.tabs button[aria-pressed="true"]{color:#fff;background:var(--tc)}
+.tabs button:focus-visible,.row a:focus-visible,.row button:focus-visible{outline:3px solid #8a5cff;outline-offset:2px}
+.grp{background:var(--panel);border:2.5px solid var(--c);border-radius:20px;overflow:hidden;box-shadow:0 5px 0 var(--c)}
+.grp h2{margin:0;padding:12px 16px;font-size:22px;font-weight:800;display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--c);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.grp h2 .kind{font-size:14px;font-weight:800;background:rgba(255,255,255,.9);color:var(--c);padding:3px 11px;border-radius:999px;text-shadow:none;white-space:nowrap}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:13px 16px}
+.row+.row{border-top:2px dotted var(--line)}
 .who{min-width:0}
-.who b{font-weight:600}
-.who .num{display:block;font-family:var(--f-num);font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;user-select:all}
-.row a.call{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:10px;background:var(--call);color:var(--callink);text-decoration:none;font-weight:800;font-size:15px;white-space:nowrap}
-.row button.copy{font:inherit;font-size:13px;padding:9px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
-.note{font-size:13px;color:var(--muted);margin:0}
+.who b{font-weight:800;font-size:20px}
+.who .num{display:block;font-family:var(--f-num);font-size:18px;color:var(--muted);font-variant-numeric:tabular-nums;user-select:all;margin-top:2px}
+.row a.call{display:inline-flex;align-items:center;gap:6px;padding:13px 18px;border-radius:16px;background:var(--c);color:var(--callink);text-decoration:none;font-weight:800;font-size:18px;white-space:nowrap;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.row button.copy{font:inherit;font-size:16px;font-weight:600;padding:11px 12px;border-radius:14px;border:2px solid var(--c);background:var(--panel);color:var(--ink);cursor:pointer;white-space:nowrap}
+.note{font-size:15px;color:var(--muted);margin:0}
 .empty{text-align:center;color:var(--muted);padding:24px 0}
-#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px}
-@media (max-width:380px){.row{grid-template-columns:1fr auto}.row button.copy{display:none}}
-@media (prefers-reduced-motion:no-preference){.row a.call{transition:transform .1s}.row a.call:active{transform:scale(.97)}}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:#8a5cff;color:#fff;padding:12px 18px;border-radius:14px;font-size:16px;font-weight:600}
+@media (max-width:400px){.row{grid-template-columns:1fr auto}.row button.copy{display:none}.who b{font-size:19px}h1{font-size:24px}}
+@media (prefers-reduced-motion:no-preference){.row a.call{transition:transform .1s}.row a.call:active{transform:translateY(2px);box-shadow:none}}
 </style>
 
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style></head><body>
 <div class="wrap">
   <header>
-    <h1>보험사 매니저 연락처 <small>누르면 전화 · 2026-10-27</small></h1>
+    <h1>📞 보험사 매니저 연락처 <small>이름 옆 버튼 누르면 바로 전화</small></h1>
     <input id="q" type="search" placeholder="회사·이름으로 찾기 (예: 메리츠, 흥국)" aria-label="회사나 이름으로 찾기" autocomplete="off">
     <div class="tabs" role="group" aria-label="구분">
       <button type="button" data-k="all" aria-pressed="true">전체</button>
@@ -130,6 +131,8 @@ const DATA = [
   ["chong","라이나","전지혜 총무","02-3775-7159"],
   ["chong","하나생명","홍지혜 총무","02-3709-7155"]
 ];
+const COLORS=["#ff4f81","#ff8a1f","#e8b100","#20b26b","#1e9be0","#5b6cff","#9b4dff","#e0457b","#00a6a6","#f05d23","#3d8bfd","#c2410c","#16a34a","#d946ef"];
+const coColor={};const colorOf=co=>coColor[co]||(coColor[co]=COLORS[Object.keys(coColor).length%COLORS.length]);
 const KIND = {son:"손보 매니저", saeng:"생보 매니저", chong:"총무 · 영업소"};
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let kind = "all";
@@ -142,7 +145,7 @@ function render(){
   const groups = [];
   rows.forEach(r => { const key = r[0]+"|"+r[1]; let g = groups.find(x=>x.key===key); if(!g){g={key,k:r[0],co:r[1],rows:[]};groups.push(g);} g.rows.push(r); });
   document.getElementById("list").innerHTML = groups.length ? groups.map(g => `
-    <section class="grp k-${g.k}"><h2>${esc(g.co)}<span class="kind">${KIND[g.k]}</span></h2>
+    <section class="grp k-${g.k}" style="--c:${colorOf(g.co)}"><h2>${esc(g.co)}<span class="kind">${KIND[g.k]}</span></h2>
     ${g.rows.map(r => `<div class="row"><div class="who"><b>${esc(r[2])}</b><span class="num">${esc(r[3])}${r[4]?` · ${esc(r[4])}`:""}</span></div>
       <a class="call" href="tel:${r[3].replace(/[^0-9]/g,"")}" aria-label="${esc(r[1]+" "+r[2])} 전화">📞 전화</a>
       <button type="button" class="copy" data-n="${esc(r[3])}">복사</button></div>`).join("")}
