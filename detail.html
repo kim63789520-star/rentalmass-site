@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/reset.min.css?ver=1">
   <link rel="stylesheet" href="/css/common.css?ver=7">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610271752">
+  <link rel="stylesheet" href="/rm/easy.css?v=202610271800">
   <style>
     body { background-color: #f8f9fa; color: #222; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; line-height: 1.5; }
     .dt-wrap { max-width: 1040px; margin: 0 auto; padding: 16px 16px 80px; }
@@ -36,7 +36,11 @@
     .dt-info { display: flex; flex-direction: column; }
     .dt-brand { font-size: 14px; font-weight: 700; color: #2563eb; margin-bottom: 6px; }
     .dt-title { font-size: 24px; font-weight: 700; line-height: 1.35; margin-bottom: 10px; color: #0f172a; word-break: keep-all; }
-    .dt-model { font-size: 13px; color: #64748b; margin-bottom: 20px; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; display: inline-block; width: fit-content; }
+    .dt-model { font-size: 13px; color: #64748b; margin-bottom: 8px; background: #f1f5f9; padding: 4px 10px; border-radius: 6px; display: inline-block; width: fit-content; }
+    .dt-copy { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 20px; }
+    .dt-copy button { background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 10px; font-size: 12.5px; color: #334155; cursor: pointer; }
+    .dt-copy button:hover { border-color: #f26b3a; color: #f26b3a; }
+    .dt-copy-ok { font-size: 12.5px; color: #16a34a; font-weight: 700; }
     
     .dt-price-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; }
     .dt-price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
@@ -139,7 +143,7 @@
     .dt-footer b { color: #334155; }
     .dt-footer a { color: #64748b; text-decoration: underline; }
   </style>
-  <script src="/rm/src.js?v=202610271752"></script>
+  <script src="/rm/src.js?v=202610271800"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
 </head>
 <body>
@@ -165,6 +169,12 @@
       <span class="dt-brand" id="dt-brand">브랜드</span>
       <h1 class="dt-title" id="dt-name">상품 정보를 불러오는 중…</h1>
       <span class="dt-model" id="dt-model">모델명: -</span>
+      <div class="dt-copy" id="dt-copy">
+        <button type="button" data-copy="name">상품명 복사</button>
+        <button type="button" data-copy="model">모델명 복사</button>
+        <button type="button" data-copy="both">둘 다 복사</button>
+        <span class="dt-copy-ok" id="dt-copy-ok" aria-live="polite"></span>
+      </div>
 
       <div class="dt-price-box">
         <div class="dt-price-row">
@@ -251,9 +261,9 @@
 </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610271752"></script>
-<script src="/rm/shim.js?v=202610271752"></script>
-<script src="/rm/easy.js?v=202610271752"></script>
+<script src="/config.js?v=202610271800"></script>
+<script src="/rm/shim.js?v=202610271800"></script>
+<script src="/rm/easy.js?v=202610271800"></script>
 <script>
 (function() {
   var params = new URLSearchParams(location.search);
@@ -289,6 +299,23 @@
     document.getElementById("dt-brand").textContent = it.BrandName || it.ManufacturerName || "렌탈몰라";
     document.getElementById("dt-badge").textContent = it.BrandName || "렌탈몰라";
     document.getElementById("dt-model").textContent = "모델명: " + (it.ModelName || it.ItemName);
+    // 접수할 때 붙여 넣기용 복사 버튼 (10-27 대표님 "접수할 때마다 복붙해야 해")
+    Array.prototype.forEach.call(document.querySelectorAll("#dt-copy button"), function(b) {
+      b.onclick = function() {
+        var k = b.getAttribute("data-copy"), nm = it.ItemName || "", md = it.ModelName || "";
+        var t = k === "name" ? nm : k === "model" ? (md || nm) : nm + (md ? "
+" + md : "");
+        var ok = document.getElementById("dt-copy-ok");
+        var shown = function() { ok.textContent = "✓ 복사됨"; setTimeout(function() { ok.textContent = ""; }, 1500); };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(t).then(shown);
+        } else {
+          var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); shown(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      };
+    });
     document.getElementById("dt-fee").innerHTML = won(it.RentalFee) + "<small>원</small>";
     document.getElementById("dt-term-val").textContent = it.DutyUsePeriod ? it.DutyUsePeriod + "개월" : "상담 시 안내";
 
