@@ -19,8 +19,7 @@
     return cache[path];
   }
   function remember(list) {
-    // 카드할인 금액은 안 보여 준다 — 기본 월 요금만 (10-27 대표님 "카드할인 빼고 금액 적자")
-    (list || []).forEach(function (it) { it.MaxDiscountAmount = "0"; ITEMS[it.ItemNo] = it; });
+    (list || []).forEach(function (it) { ITEMS[it.ItemNo] = it; });
   }
   function ok(payload) { return { state: "okay", message: "정상적으로 데이터를 가져왔습니다.", payload: payload }; }
   function hash(s) { // 파이썬 build_site.py 의 search_key 와 같은 규칙
@@ -147,7 +146,7 @@
     // ItemAllianceCardDetail = 'ProductNo"^"렌탈사"^"월요금"^"개월"^"상태"|"…'
     return String(it.ItemAllianceCardDetail || "").split('"|"').filter(Boolean).map(function (row) {
       var c = row.split('"^"');
-      return { ProductNo: c[0], BrandName: c[1], MaxDiscountAmount: "0", RentalFee: c[2], RentalPeriod: c[3],
+      return { ProductNo: c[0], BrandName: c[1], MaxDiscountAmount: it.MaxDiscountAmount || "0", RentalFee: c[2], RentalPeriod: c[3],
                ProductStatus: c[4] || "09", BrandType: "01", DirectURL: "" };
     });
   }
@@ -318,28 +317,4 @@
       ms.forEach(function (m) { m.addedNodes.forEach(function (n) { if (n.nodeType === 1) fixPeriod(n); }); });
     }).observe(document.body, { childList: true, subtree: true });
   });
-})();
-
-// 원본 몰 화면에 남는 '카드할인가·제휴카드할인가' 줄은 숨긴다 (10-27 대표님 "카드할인 빼고 금액 적자")
-(function () {
-  var RE = /(제휴카드\s*할인가|카드할인가|제휴카드 적용 렌탈료|제휴카드\s*최대)/;
-  function hide(root) {
-    if (!root || !root.querySelectorAll) return;
-    var els = root.querySelectorAll("li, dl, tr, strong.card_discount, .card_discount, .prd_price");
-    for (var i = 0; i < els.length; i++) {
-      var el = els[i];
-      if (el.style.display === "none" || el.querySelector("li, dl, tr")) continue;
-      if (RE.test(el.textContent)) el.style.display = "none";
-    }
-  }
-  function start() {
-    hide(document.body);
-    new MutationObserver(function (ms) {
-      for (var i = 0; i < ms.length; i++) for (var j = 0; j < ms[i].addedNodes.length; j++) {
-        var n = ms[i].addedNodes[j];
-        if (n.nodeType === 1) hide(n.parentNode || n);
-      }
-    }).observe(document.body, { childList: true, subtree: true });
-  }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

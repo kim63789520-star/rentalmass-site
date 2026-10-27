@@ -271,6 +271,3 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
   .rm-guide b{font-size:15px}
   .rm-cardnote p{font-size:13px}
 }
-
-/* 카드할인 금액은 안 보여 준다 — 기본 월 요금만 (10-27 대표님 "카드할인 빼고 금액 적자") */
-.price_wrap.discount, .price_box.card_discount, .card_discount, .brand_card_btn, .rm-cardnote { display: none !important; }
