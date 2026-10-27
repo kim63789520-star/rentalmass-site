@@ -171,3 +171,24 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   .mf-in { gap: 24px; }
   .mf-cs > a { font-size: 26px; }
 }
+
+/* 왼쪽 빠른 메뉴 (main-rental.com 참고, 10-27 대표님) — PC: 펼침 기본, 휴대폰: 접힘 기본 */
+.lq { position: fixed; left: 10px; top: 150px; z-index: 940; width: 184px; transition: top .2s; }
+.lq-tg { display: inline-flex; align-items: center; gap: 7px; height: 38px; padding: 0 12px; border: 1.5px solid var(--navy); border-radius: 8px; background: #fff; color: var(--navy); font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; box-shadow: 0 2px 8px rgba(30,42,74,.12); }
+.lq-nav { display: flex; flex-direction: column; gap: 7px; margin-top: 8px; }
+.lq.off .lq-nav { display: none; }
+.lq-nav a, .lq-nav button { display: flex; align-items: center; justify-content: space-between; height: 50px; padding: 0 16px; border: 0; border-radius: 10px; background: var(--navy); color: #fff; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(30,42,74,.22); transition: background .15s, transform .15s; }
+.lq-nav a:hover, .lq-nav button:hover { background: #2b3c66; transform: translateX(3px); }
+.lq-nav span { font-size: 17px; opacity: .85; }
+/* 화면이 좁아 바가 상품을 가리면(1280 내용 + 바 200 = 1680 미만) 펼친 동안 내용을 오른쪽으로 민다 */
+@media (min-width: 769px) and (max-width: 1679px) {
+  body.rm-main.lq-open .best-wrap .w, body.rm-main.lq-open main .w, body.rm-main.lq-open .rm-find { padding-left: 214px; }
+  body.rm-main.lq-open .hero-arr.prev { left: 214px; }
+  .lq { width: 184px; }
+}
+@media (max-width: 768px) {
+  .lq { left: 8px; top: auto; bottom: calc(62px + 14px + env(safe-area-inset-bottom)); width: 160px; }
+  .lq-tg { height: 34px; font-size: 13px; padding: 0 10px; }
+  .lq-nav { position: absolute; left: 0; bottom: 42px; width: 160px; margin: 0; }
+  .lq-nav a, .lq-nav button { height: 44px; font-size: 14px; }
+}

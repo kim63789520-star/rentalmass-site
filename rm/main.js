@@ -65,4 +65,23 @@
       })
       .catch(function () { btn.disabled = false; msg.textContent = "전송에 실패했습니다. 잠시 뒤 다시 시도하시거나 카톡으로 문의해 주세요."; });
   });
+
+  // ---- 왼쪽 빠른 메뉴: PC는 펼침, 휴대폰은 접힘. 접은 상태는 이 브라우저에 기억
+  var lq = document.getElementById("lq"), lqTg = document.getElementById("lqTg");
+  var mob = window.innerWidth <= 768, saved = null;
+  try { saved = localStorage.getItem("rm_lq"); } catch (e) {}
+  var open = saved === null ? !mob : saved === "1";
+  function setLq(o) { lq.classList.toggle("off", !o); document.body.classList.toggle("lq-open", o && !mob); lqTg.setAttribute("aria-expanded", o); try { localStorage.setItem("rm_lq", o ? "1" : "0"); } catch (e) {} }
+  setLq(open);
+  lqTg.onclick = function () { setLq(lq.classList.contains("off")); };
+  lq.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-lq]");
+    if (!b) return;
+    if (b.dataset.lq === "top") window.scrollTo({ top: 0, behavior: "smooth" });
+    if (b.dataset.lq === "ask" && window.RM_OPEN) window.RM_OPEN({ from: "왼쪽 빠른 메뉴" });
+    if (mob) setLq(false);
+  });
+  // 배너를 지나면 머리 바로 밑으로 올라붙는다
+  function lqPos() { if (mob) return; var hb = hero ? hero.getBoundingClientRect().bottom : 0; lq.style.top = (hb > 150 ? hb + 16 : 150) + "px"; }
+  window.addEventListener("scroll", lqPos, { passive: true }); lqPos();
 })();
