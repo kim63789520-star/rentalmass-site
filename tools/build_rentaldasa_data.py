@@ -31,14 +31,11 @@ for no, it in items.items():
             r = dict(o, co=of[0], m=int(of[1]), mo=base[0] if base else 0)
             if i:
                 r.update(id=no + '~' + str(i), it=no)
-            if base and base[2] is not None and base[2] < of[1]:
-                r['d'] = of[1] - base[2]
+            # 카드할인 금액은 안 넣는다 — 기본 월 요금만 (10-27 대표님 "카드할인 빼고 금액 적자")
             tt = [[x[0], x[1]] for x in tl if x[0]]
             if len(tt) > 1: r['t'] = tt
             out.append(r)
         continue
-    d = int(it.get('MaxDiscountAmount') or 0)
-    if d: o['d'] = d
     t = terms(it.get('ItemAllianceCardDetail'))
     if len(t) > 1: o['t'] = [list(x) for x in t]
     out.append(o)

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>렌탈 추천 | 렌탈몰라</title>
 <meta property="og:title" content="고객님께 추천드리는 렌탈 가전">
-<meta property="og:description" content="렌탈사별 월 렌탈료와 제휴카드 할인을 한눈에 비교해 보세요.">
+<meta property="og:description" content="렌탈사별 월 렌탈료를 한눈에 비교해 보세요.">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -631,7 +631,7 @@ body.picking .pcard .det{display:block;margin:10px -14px 0;padding:10px 0;text-a
 </header>
 <div class="rd-hero"><div class="wrap">
   <h1 id="rdTitle">렌탈 상품 골라서 보내기</h1>
-  <p id="rdSub">렌탈사별 월 렌탈료와 제휴카드 할인을 비교하고, 고객님께 보낼 상품을 골라 링크로 보내세요.</p>
+  <p id="rdSub">렌탈사별 월 렌탈료를 비교하고, 고객님께 보낼 상품을 골라 링크로 보내세요.</p>
 </div></div>
 <section class="catalog" id="catalog">
   <div class="wrap">
@@ -679,7 +679,6 @@ body.picking .pcard .det{display:block;margin:10px -14px 0;padding:10px 0;text-a
       <ul>
         <li><b>소유권</b> — 렌탈 기간 동안 제품 소유권은 렌탈사에 있으며, 기간 만료 후 소유권 이전 조건은 렌탈사마다 다릅니다.</li>
         <li><b>의무 사용 기간</b> — 기간 중 해지하면 위약금이 발생할 수 있습니다.</li>
-        <li><b>제휴카드 할인</b> — 카드사 전월 이용 실적 조건을 충족할 때 적용되며, "최대" 금액은 가장 높은 실적 구간 기준입니다.</li>
         <li>월 렌탈료와 구성은 렌탈사·시점에 따라 바뀔 수 있으며, 정확한 조건은 계약서를 기준으로 합니다.</li>
       </ul>
     </div>
@@ -697,7 +696,7 @@ body.picking .pcard .det{display:block;margin:10px -14px 0;padding:10px 0;text-a
     </div>
     <div class="disc">
       본 페이지는 가전 렌탈 상품의 정보 제공용입니다. 렌탈 기간 동안 제품 소유권은 렌탈사에 있으며, 의무 사용 기간 중 해지하면 위약금이 발생할 수 있습니다.
-      월 렌탈료·제휴카드 할인·사은품은 렌탈사와 시점에 따라 달라질 수 있으며, 실제 계약 조건은 렌탈사 계약서를 기준으로 합니다.
+      월 렌탈료·사은품은 렌탈사와 시점에 따라 달라질 수 있으며, 실제 계약 조건은 렌탈사 계약서를 기준으로 합니다.
     </div>
   </div>
 </footer>
@@ -710,7 +709,7 @@ body.picking .pcard .det{display:block;margin:10px -14px 0;padding:10px 0;text-a
 <script>
 (function(){
 var $=function(id){return document.getElementById(id);};
-var MEMO="가전렌탈 담당 김다혜입니다 😊\n렌탈사별 월 렌탈료와 제휴카드 할인을 비교해 골라 드렸어요. 상품을 누르면 자세한 조건을 보실 수 있어요.\n마음에 드는 제품을 알려주시면 가장 유리한 조건으로 안내해 드릴게요!";
+var MEMO="가전렌탈 담당 김다혜입니다 😊\n렌탈사별 월 렌탈료를 비교해 골라 드렸어요. 상품을 누르면 자세한 조건을 보실 수 있어요.\n마음에 드는 제품을 알려주시면 가장 유리한 조건으로 안내해 드릴게요!";
 var BANDS=[[0,19999,"2만원 미만"],[20000,29999,"2만원대"],[30000,49999,"3~4만원대"],[50000,79999,"5~7만원대"],[80000,1e12,"8만원 이상"]];
 var LABEL={cat:"카테고리",co:"렌탈사",brand:"제조사",price:"월 렌탈료"}, SHOW={cat:16,co:10,brand:16};
 var P=[], F={}, sel={cat:[],co:[],brand:[],price:[]}, q="", sort="def", shown=0, PER=24, cur=[];
@@ -757,7 +756,7 @@ function card(p){
     +'<div class="model">'+esc(p.model)+'</div>'
     +'<div class="foot"><div class="m">월<b>'+won(p.m)+'<small>원</small></b>'
     +(tt?'<i class="m2 terms">'+tt+'</i>':'')
-    +(p.d?'<span class="disc-badge">제휴카드 최대 월 '+won(p.d)+'원 할인</span>':'')+'</div></div>'
++'</div></div>'
     +'<span class="go">자세히 보기 ›</span><span class="det" data-det="1">자세히 보기 ›</span></div></a>';
 }
 function render(){
@@ -827,7 +826,7 @@ fetch("data.json").then(function(r){return r.json();}).then(function(d){
     document.body.classList.add("custom");
     var t=UP.get("t")||(UP.get("q")?"고객님께 추천드리는 "+UP.get("q"):"고객님께 추천드리는 렌탈 가전");
     $("phTitle").textContent=t; $("phMemo").textContent=UP.get("memo")||MEMO; $("pickHead").hidden=false;
-    $("rdTitle").textContent="렌탈 추천 상품"; $("rdSub").textContent="렌탈사별 월 렌탈료와 제휴카드 할인을 비교해 드려요.";
+    $("rdTitle").textContent="렌탈 추천 상품"; $("rdSub").textContent="렌탈사별 월 렌탈료를 비교해 드려요.";
     document.title=t+" | 렌탈몰라";
   } else {
     document.body.classList.add("picking"); $("pickGuide").hidden=false; $("pickbar").hidden=false; bar();
