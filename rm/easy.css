@@ -21,6 +21,8 @@
   border: 1px solid #ffd9d3; border-radius: 14px; padding: 14px 18px; }
 .rm-list-bar p { margin: 0; color: var(--rm-ink); font-size: 15px; line-height: 1.45; }
 .rm-list-bar p b { color: var(--rm-red); }
+.rm-list-bar p small { display: block; margin-top: 4px; font-size: 12.5px; color: var(--rm-sub); }
+.rm-fit { margin: 0; padding: 8px 10px; border-radius: 8px; background: #f3f4f6; font-size: 12.5px; color: var(--rm-ink); line-height: 1.4; }
 
 /* 공통 입력 */
 .rm-chips { display: flex; flex-wrap: wrap; gap: 8px; }

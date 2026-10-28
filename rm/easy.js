@@ -31,6 +31,8 @@
     }
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
   });
+  // 들어오기 전에 거르기 (10-28 대표님) — 단기·심사 불가 문의가 전부 떨어져서. 조건 정본: 지식베이스/렌탈/렌탈사_접수기준.md
+  var FIT = "36개월 이상 장기렌탈만 · 렌탈사 심사(만 나이·신용) 통과 후 설치";
   var AGREE = '<label class="rm-agree"><input type="checkbox" class="rm-ok"> 개인정보 수집·이용에 동의합니다(필수) ' +
               '<a href="/privacy.html" target="_blank" rel="noopener">보기</a></label>';
 
@@ -120,7 +122,8 @@
       : '<p class="rm-lbl">관심 품목 (여러 개 가능)</p>' + chips(KINDS, true);
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + what +
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head +
+      '<p class="rm-fit">' + FIT + "</p>" + what +
       '<p class="rm-lbl">휴대폰 번호 (필수)</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">' +
       '<p class="rm-lbl">이름 (선택)</p><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="성함">' +
       '<p class="rm-lbl">통화 편한 시간 (선택)</p>' + chips(TIMES, false) +
@@ -195,7 +198,7 @@
     if (!title || document.querySelector(".rm-list-bar")) return;
     var ctx = pageContext();
     var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 번호만 남겨 주세요.<br>" +
-      "렌탈사·기간별 월 요금을 전화로 안내해 드려요.</p>" +
+      "렌탈사·기간별 월 요금을 전화로 안내해 드려요.<small>" + FIT + "</small></p>" +
       '<button type="button" class="rm-btn">상담 신청</button></div></div>');
     title.parentNode.insertBefore(bar, title.nextSibling);
     bar.querySelector(".rm-btn").onclick = function () { openSheet({ kind: ctx, from: "목록 안내 바" }); };
