@@ -31,8 +31,6 @@
     }
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
   });
-  // 들어오기 전에 거르기 (10-28 대표님) — 단기·심사 불가 문의가 전부 떨어져서. 조건 정본: 지식베이스/렌탈/렌탈사_접수기준.md
-  var FIT = "36개월 이상 장기렌탈만 · 렌탈사 심사(만 나이·신용) 통과 후 설치";
   var AGREE = '<label class="rm-agree"><input type="checkbox" class="rm-ok"> 개인정보 수집·이용에 동의합니다(필수) ' +
               '<a href="/privacy.html" target="_blank" rel="noopener">보기</a></label>';
 
@@ -122,8 +120,7 @@
       : '<p class="rm-lbl">관심 품목 (여러 개 가능)</p>' + chips(KINDS, true);
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head +
-      '<p class="rm-fit">' + FIT + "</p>" + what +
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + what +
       '<p class="rm-lbl">휴대폰 번호 (필수)</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">' +
       '<p class="rm-lbl">이름 (선택)</p><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="성함">' +
       '<p class="rm-lbl">통화 편한 시간 (선택)</p>' + chips(TIMES, false) +
@@ -198,7 +195,7 @@
     if (!title || document.querySelector(".rm-list-bar")) return;
     var ctx = pageContext();
     var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 번호만 남겨 주세요.<br>" +
-      "렌탈사·기간별 월 요금을 전화로 안내해 드려요.<small>" + FIT + "</small></p>" +
+      "렌탈사·기간별 월 요금을 전화로 안내해 드려요.</p>" +
       '<button type="button" class="rm-btn">상담 신청</button></div></div>');
     title.parentNode.insertBefore(bar, title.nextSibling);
     bar.querySelector(".rm-btn").onclick = function () { openSheet({ kind: ctx, from: "목록 안내 바" }); };
@@ -280,28 +277,5 @@
   document.addEventListener("click", function (e) {
     var slide = e.target.closest && e.target.closest("#banner .swiper-slide");
     if (slide && slide.querySelector('img[src*="main_banner_rm24"]')) { e.preventDefault(); openSheet({ from: "첫 배너(24시간 접수)" }); }
-  }, true);
-})();
-
-/* 방문·상담 버튼 클릭 기록 (10-28 대표님 "사람을 더 끌어오게" — 클릭 뒤 측정)
- * IP 없이 페이지·유입·브라우저만 (처리방침 10항). 보람 사이트와 같은 방문기록 시트 · 분석 scripts/ads/visit_log.py */
-(function () {
-  var u = (window.TG || {}).relay; if (!u) return;
-  var q = location.search, ref = document.referrer || "";
-  var ad = /NaPm=|n_media=|n_query=|n_keyword=/.test(q) || /adcr\.naver|ad\.search\.naver/.test(ref);
-  function send(page) {
-    var body = JSON.stringify({ site: location.host, page: page.slice(0, 120), q: q.slice(0, 400), ref: ref.slice(0, 300),
-                                ad: 0, ip: "", ua: navigator.userAgent.slice(0, 200), adv: ad ? 1 : 0 });
-    try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
-    try { fetch(u, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: body }); } catch (e) {}
-  }
-  var external = true; try { external = !ref || new URL(ref).host !== location.host; } catch (e) {}
-  if (external) send((ad ? "광고유입 " : "") + location.pathname);
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("a,button"); if (!a) return;
-    var h = a.getAttribute("href") || "", t = (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 20);
-    if (/kakao/i.test(h)) send("클릭:카톡 " + location.pathname);
-    else if (/^tel:/i.test(h)) send("클릭:전화 " + location.pathname);
-    else if (/rm-btn|rm-b-ask|dt-btn-ask/.test(a.className + " " + a.id) || /상담 신청|접수신청|렌탈 신청/.test(t)) send("클릭:신청 " + t + " " + location.pathname);
   }, true);
 })();
