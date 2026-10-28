@@ -282,3 +282,26 @@
     if (slide && slide.querySelector('img[src*="main_banner_rm24"]')) { e.preventDefault(); openSheet({ from: "첫 배너(24시간 접수)" }); }
   }, true);
 })();
+
+/* 방문·상담 버튼 클릭 기록 (10-28 대표님 "사람을 더 끌어오게" — 클릭 뒤 측정)
+ * IP 없이 페이지·유입·브라우저만 (처리방침 10항). 보람 사이트와 같은 방문기록 시트 · 분석 scripts/ads/visit_log.py */
+(function () {
+  var u = (window.TG || {}).relay; if (!u) return;
+  var q = location.search, ref = document.referrer || "";
+  var ad = /NaPm=|n_media=|n_query=|n_keyword=/.test(q) || /adcr\.naver|ad\.search\.naver/.test(ref);
+  function send(page) {
+    var body = JSON.stringify({ site: location.host, page: page.slice(0, 120), q: q.slice(0, 400), ref: ref.slice(0, 300),
+                                ad: 0, ip: "", ua: navigator.userAgent.slice(0, 200), adv: ad ? 1 : 0 });
+    try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
+    try { fetch(u, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: body }); } catch (e) {}
+  }
+  var external = true; try { external = !ref || new URL(ref).host !== location.host; } catch (e) {}
+  if (external) send((ad ? "광고유입 " : "") + location.pathname);
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a,button"); if (!a) return;
+    var h = a.getAttribute("href") || "", t = (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 20);
+    if (/kakao/i.test(h)) send("클릭:카톡 " + location.pathname);
+    else if (/^tel:/i.test(h)) send("클릭:전화 " + location.pathname);
+    else if (/rm-btn|rm-b-ask|dt-btn-ask/.test(a.className + " " + a.id) || /상담 신청|접수신청|렌탈 신청/.test(t)) send("클릭:신청 " + t + " " + location.pathname);
+  }, true);
+})();
