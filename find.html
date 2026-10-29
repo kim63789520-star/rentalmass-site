@@ -6,8 +6,8 @@
   <title>말로 찾기 | 렌탈몰라</title>
   <meta name="description" content="품목·예산·약정 기간·브랜드를 말하듯 적으면 맞는 렌탈 상품을 렌탈사별 요금과 함께 찾아 드립니다.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <link rel="stylesheet" href="/rm/easy.css?v=202610290420">
-  <script src="/rm/src.js?v=202610290420"></script>
+  <link rel="stylesheet" href="/rm/easy.css?v=202610300421">
+  <script src="/rm/src.js?v=202610300421"></script>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
   <style>
     /* 말로 찾기 (10-27 대표님, 티엘파트너 'AI 상품 상담' 참고) — 규칙으로 알아듣는 검색이라 'AI'라고 쓰지 않는다 */
@@ -201,9 +201,9 @@
   </div>
 
 <script src="/js/jquery.min.js"></script>
-<script src="/config.js?v=202610290420"></script>
-<script src="/rm/shim.js?v=202610290420"></script>
-<script src="/rm/easy.js?v=202610290420"></script>
+<script src="/config.js?v=202610300421"></script>
+<script src="/rm/shim.js?v=202610300421"></script>
+<script src="/rm/easy.js?v=202610300421"></script>
 <script>
 (function () {
   // 품목 — 앞에 있는 것이 먼저 (김치냉장고 > 냉장고, 세탁+건조 > 건조기 > 세탁기)
@@ -501,7 +501,7 @@
   var q0 = (location.search.match(/[?&]q=([^&]*)/) || [])[1];
   $("#fdQ").value = q0 ? decodeURIComponent(q0.replace(/\+/g, " ")) : "";
   state.q = $("#fdQ").value;
-  fetch("/rm/data/find.json?v=202610290420").then(function (r) { return r.json(); }).then(function (d) {
+  fetch("/rm/data/find.json?v=202610300421").then(function (r) { return r.json(); }).then(function (d) {
     DATA = d;
     var seen = {}; d.forEach(function (r) { if (r[5]) seen[r[5]] = 1; MAP[r[0]] = r; }); COS = Object.keys(seen);
     render(); tray();
