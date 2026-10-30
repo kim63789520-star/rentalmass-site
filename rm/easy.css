@@ -148,7 +148,19 @@ body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
 .rm-btn, .rm-chip, .rm-ask, .rm-bottom a, .rm-bottom button { line-height: 1 !important; }
 html body input.rm-tel, html body input.rm-name { border: 1px solid #d0d5dd !important; line-height: normal !important; display: block; }
 html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(--rm-red) !important; outline: 0; box-shadow: 0 0 0 3px rgba(255, 92, 74, .18); }
-.rm-sheet .rm-lbl { margin: 4px 0 -6px !important; }
+/* 칸 이름이 아래 칸에 덮이던 것 — 음수 여백 없앰 (10-30 모바일 실측) */
+.rm-sheet .rm-lbl { margin: 4px 0 -2px !important; padding: 0 !important; height: auto !important; line-height: 1.5 !important; overflow: visible; color: var(--rm-ink); font-size: 15px; }
+.rm-sheet .rm-lbl small { font-size: 12.5px; font-weight: 400; color: var(--rm-sub); }
+.rm-sheet:not(.ap) .rm-agree { padding: 6px 0; font-size: 14px; cursor: pointer; }
+.rm-sheet:not(.ap) .rm-agree input { width: 22px; height: 22px; flex: none; }
+.rm-sheet:not(.ap) .rm-btn { height: 56px; font-size: 18px; }
+.rm-sheet:not(.ap) .rm-note { text-align: center; line-height: 1.6 !important; }
+@media (max-width: 768px) {
+  /* 품목은 한 줄 옆으로 넘기기 — 창 높이를 줄여 신청 버튼이 바로 보이게 */
+  .rm-sheet .rm-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -22px; padding-right: 22px; -webkit-overflow-scrolling: touch; }
+  .rm-sheet .rm-chips::-webkit-scrollbar { display: none; }
+  .rm-sheet .rm-chip { flex: none; }
+}
 .rm-quick-in > div:first-child { min-width: 0; }
 @media (max-width: 768px) {
   /* 하단 바가 전화·카톡·상담을 맡는다 — 원래 떠 있는 버튼(비교·맨위 포함)은 입력칸을 가리므로 숨긴다 */

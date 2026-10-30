@@ -6,7 +6,7 @@
   var KAKAO = "http://pf.kakao.com/_xowzxhX/chat";
   var PHOTO = "/rm/profile.jpg";
   var KINDS = ["정수기", "공기청정기", "비데", "안마의자", "냉장고", "세탁기·건조기", "에어컨", "TV", "노트북", "기타"];
-  var TIMES = ["바로 가능", "오전", "오후", "저녁"];
+  var FIT = "36개월 이상 장기렌탈 · 렌탈사 심사 통과 후 설치";  // 문의 전 거르기 한 줄 (10-28)
 
   function el(html) { var d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstChild; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -30,6 +30,13 @@
       [].forEach.call(box.querySelectorAll(".rm-chip"), function (x) { if (x !== b) x.setAttribute("aria-pressed", "false"); });
     }
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  });
+  // 번호 칸 — 치는 대로 010-1234-5678 꼴로
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (!t.classList || !t.classList.contains("rm-tel")) return;
+    var d = digits(t.value).slice(0, 11);
+    t.value = d.length < 4 ? d : d.length < 8 ? d.slice(0, 3) + "-" + d.slice(3) : d.slice(0, 3) + "-" + d.slice(3, d.length - 4) + "-" + d.slice(-4);
   });
   var AGREE = '<label class="rm-agree"><input type="checkbox" class="rm-ok"> 개인정보 수집·이용에 동의합니다(필수) ' +
               '<a href="/privacy.html" target="_blank" rel="noopener">보기</a></label>';
@@ -117,16 +124,15 @@
       : it
       ? '<div class="rm-prod"><b>' + esc(it.ItemName) + "</b><span>" + esc(it.ModelName || "") +
         (it.RentalFee ? " · 월 " + won(it.RentalFee) + "원" : "") + (it.DutyUsePeriod ? " · " + esc(it.DutyUsePeriod) + "개월" : "") + "</span></div>"
-      : '<p class="rm-lbl">관심 품목 (여러 개 가능)</p>' + chips(KINDS, true);
+      : '<p class="rm-lbl">관심 품목 <small>(선택 · 여러 개 가능)</small></p>' + chips(KINDS, true);
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + what +
-      '<p class="rm-lbl">휴대폰 번호 (필수)</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="010-0000-0000">' +
-      '<p class="rm-lbl">이름 (선택)</p><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="성함">' +
-      '<p class="rm-lbl">통화 편한 시간 (선택)</p>' + chips(TIMES, false) +
-      (it && it.Pick ? '<p class="rm-lbl">설치 주소 (선택)</p><input class="rm-addr" type="text" autocomplete="street-address" maxlength="80" placeholder="예) 부산 해운대구 OO동">' : "") + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
+    // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + (it ? what : "") +
+      '<p class="rm-lbl">휴대폰 번호만 남겨 주세요</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000">' +
+      (it ? "" : what) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
-      '<p class="rm-note">상담받으신다고 꼭 가입하셔야 하는 건 아니에요.</p>';
+      '<p class="rm-note">' + FIT + "<br>상담만 받으셔도 돼요. 가입은 원하실 때만.</p>";
     if (!it && ctx) {
       [].forEach.call(body.querySelectorAll(".rm-chip"), function (b) {
         if (ctx.indexOf(b.textContent.split("·")[0]) >= 0 || b.textContent.indexOf(ctx) >= 0) b.setAttribute("aria-pressed", "true");
@@ -136,11 +142,10 @@
       submit(body, function () {
         var kinds = it ? [] : picked(body.querySelector(".rm-chips"));
         if (!it && ctx && !kinds.length) kinds = [ctx];
-        return { name: body.querySelector(".rm-name").value.trim(), time: picked(body.querySelectorAll(".rm-chips")[it ? 0 : 1])[0] || "",
-                 addr: ((body.querySelector(".rm-addr") || {}).value || "").trim(),
-                 item: it, kinds: kinds, from: current.from || "상담 창" };
+        return { item: it, kinds: kinds, from: current.from || "상담 창" };
       }, function () { body.innerHTML = doneHTML(); });
     };
+    body.querySelector(".rm-tel").onkeydown = function (e) { if (e.key === "Enter") body.querySelector(".rm-btn").click(); };
     sheet.classList.add("on");
     setTimeout(function () { var t = body.querySelector(".rm-tel"); if (t && window.innerWidth > 768) t.focus(); }, 50);
   }
@@ -152,8 +157,8 @@
       "<b>" + esc(it.ItemName) + "</b><span>" + esc(it.BrandName) + " · 렌탈기간 " + esc(it.DutyUsePeriod) + "개월</span>" +
       "<span>월 렌탈료 <em>" + won(it.RentalFee) + "원</em></span>" + (it.CardFee ? '<span class="c">카드할인시 <em>' + won(it.CardFee) + "원</em></span>" : "") + "</div></div>" +
       '<p class="rm-ap-h">고객정보 <small>연락처만 필수</small></p>' +
-      '<div class="rm-ap-f"><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (선택)">' +
-      '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="연락처 (숫자만)">' +
+      '<div class="rm-ap-f"><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" maxlength="13" placeholder="연락처 (필수)">' +
+      '<input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (선택)">' +
       '<select class="rm-time w empty" onchange="this.classList.toggle(\'empty\',!this.value)"><option value="">상담 희망 시간 (선택)</option><option>바로 가능</option><option>오전</option><option>오후</option><option>저녁</option></select>' +
       '<input class="rm-addr w" type="text" autocomplete="street-address" maxlength="80" placeholder="설치 주소 (선택)"></div>' +
       AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
