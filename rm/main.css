@@ -55,24 +55,25 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 
 /* 떠 있는 상담 바 — PC: 배너를 지나면 아래에 뜬다 */
 /* 하단 고정 상담 바 — 피오렌탈(porental.kr)처럼 화면 아래 꽉 차게, 항상 보임 (10-30 대표님) */
-.askbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 950; background: var(--acc); color: #fff;
-  box-shadow: 0 -6px 24px rgba(0,0,0,.18); padding-bottom: env(safe-area-inset-bottom); }
-.ab-in { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding: 13px 20px; position: relative; }
-.ab-tel { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; flex: none; padding-right: 22px; border-right: 1px solid rgba(255,255,255,.35); }
-.ab-tel i { font-size: 22px; color: #fff; }
-.ab-tel small { display: block; font-size: 12.5px; color: rgba(255,255,255,.9); }
-.ab-tel b { display: block; font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.4px; line-height: 1.1; }
-.ab-form { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
-.ab-form input[type=text], .ab-form input[type=tel] { flex: 1; min-width: 0; height: 46px; border: 0; background: #fff; color: var(--ink); border-radius: 8px; padding: 0 14px; font-size: 15.5px; font-family: inherit; outline: 0; }
-.ab-form input[name=name] { flex: 0 1 220px; }
+.askbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 950; background: #f7941e; color: #fff;
+  box-shadow: 0 -6px 24px rgba(0,0,0,.16); padding-bottom: env(safe-area-inset-bottom); }
+.ab-in { max-width: 1648px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 26px 20px; position: relative; }
+.ab-tel { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; flex: none; margin-right: 14px; }
+.ab-tel i { font-size: 34px; color: #fff; }
+.ab-tel small { display: block; font-size: 15px; font-weight: 600; color: rgba(255,255,255,.95); margin-bottom: 3px; }
+.ab-tel b { display: block; font-size: 36px; font-weight: 800; color: #fff; letter-spacing: -0.6px; line-height: 1.1; }
+.ab-form { flex: none; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.ab-form input[type=text], .ab-form input[type=tel] { flex: none; height: 50px; border: 0; background: #fff; color: var(--ink); border-radius: 6px; padding: 0 16px; font-size: 16px; font-family: inherit; outline: 0; }
+.ab-form input[name=name] { width: 180px; }
+.ab-form input[name=tel] { width: 260px; }
 .ab-form input::placeholder { color: #9a9a9a; }
 .ab-form input:focus { outline: 2px solid var(--navy); }
-.ab-ok { flex: none; display: flex; align-items: center; gap: 6px; font-size: 13.5px; color: #fff; white-space: nowrap; }
-.ab-ok input { width: 17px; height: 17px; accent-color: var(--navy); }
-.ab-ok a { color: #fff; }
-.ab-form button { flex: none; height: 46px; padding: 0 32px; border: 0; border-radius: 8px; background: #111; color: #fff; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.ab-ok { flex: none; display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: #fff; white-space: nowrap; margin: 0 6px 0 10px; }
+.ab-ok input { width: 20px; height: 20px; accent-color: #111; }
+.ab-ok a { color: #fff; text-decoration: none; font-size: 12.5px; border: 1px solid rgba(255,255,255,.9); border-radius: 4px; padding: 3px 9px; }
+.ab-form button { flex: none; height: 50px; min-width: 200px; padding: 0 32px; border: 0; border-radius: 6px; background: #111; color: #fff; font-size: 17px; font-weight: 800; cursor: pointer; font-family: inherit; }
 .ab-form button:hover { background: #000; }
-.ab-kk { flex: none; display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 8px; background: #fee500; color: #191919 !important; text-decoration: none; font-size: 16px; font-weight: 800; }
+.ab-kk { flex: none; display: flex; align-items: center; gap: 8px; height: 50px; padding: 0 28px; border-radius: 6px; background: #fee500; color: #191919 !important; text-decoration: none; font-size: 17px; font-weight: 800; }
 .ab-kk:hover { background: #f3d900; }
 .ab-form button:disabled { opacity: .6; }
 .ab-msg { position: absolute; left: 50%; top: -40px; transform: translateX(-50%); margin: 0; font-size: 13.5px; color: #fff; }
@@ -128,7 +129,11 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 @media (min-width: 769px) {
   body.rm-main .rm-bottom { display: none !important; }
   body.rm-main { padding-bottom: 0 !important; }
-  .mf { padding-bottom: 120px; }
+  .mf { padding-bottom: 150px; }
+}
+@media (max-width: 1400px) {
+  .ab-tel b { font-size: 30px; } .ab-tel small { font-size: 13.5px; } .ab-ok span { display: none; }
+  .ab-form input[name=name] { width: 140px; } .ab-form input[name=tel] { width: 210px; } .ab-form button { min-width: 150px; padding: 0 20px; } .ab-in { padding: 20px 18px; gap: 10px; }
 }
 @media (max-width: 1100px) {
   .best-wrap .rm-bestcat ul { grid-template-columns: repeat(5, 1fr); }
