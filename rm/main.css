@@ -201,3 +201,71 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   .lq-nav { position: absolute; left: 0; bottom: 42px; width: 160px; margin: 0; }
   .lq-nav a, .lq-nav button { height: 44px; font-size: 14px; }
 }
+
+/* 하단 바 전화 아이콘 — 울리듯 흔들림 (10-30 대표님 "피오렌탈 상담바 전화표시가 움직여, 나도") */
+.ab-tel i { transform-origin: 50% 60%; animation: ab-ring 1.4s ease-in-out infinite; }
+@keyframes ab-ring { 0%, 55%, 100% { transform: rotate(0); } 60% { transform: rotate(-18deg); } 70% { transform: rotate(16deg); } 80% { transform: rotate(-12deg); } 90% { transform: rotate(8deg); } }
+@media (prefers-reduced-motion: reduce) { .ab-tel i { animation: none; } }
+
+/* 오른쪽 고정 위젯 — 피오렌탈 왼쪽 위젯(CS CENTER · 제휴카드 · 대량렌탈)과 같은 짜임새를 오른쪽에 (10-30 대표님) */
+.rq { position: fixed; right: 10px; top: 150px; z-index: 940; width: 184px; display: flex; flex-direction: column; gap: 12px; }
+.rq-cs { background: #fff; border: 2px solid #f7941e; border-radius: 12px; overflow: hidden; text-align: center; }
+.rq-cs small { display: block; padding: 10px 0 2px; font-size: 13px; font-weight: 700; color: #f7941e; letter-spacing: .02em; }
+.rq-cs a { display: block; padding: 2px 8px 8px; color: #f7941e; text-decoration: none; font-weight: 800; font-size: 30px; line-height: 1.1; letter-spacing: -.02em; }
+.rq-cs a b { display: block; }
+.rq-cs a i { display: block; font-style: normal; font-size: 14px; line-height: .8; }
+.rq-cs span { display: block; background: #f7941e; color: #fff; font-size: 12.5px; font-weight: 700; padding: 7px 0; }
+.rq-card { display: block; background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 10px 12px; text-align: center; text-decoration: none; color: #222; }
+.rq-card span { display: block; font-size: 13.5px; font-weight: 600; line-height: 1.35; }
+.rq-card b { display: block; margin-top: 2px; font-size: 15px; font-weight: 800; color: #5b4ad6; }
+.rq-card img { display: block; width: 70px; margin: 10px auto 0; border-radius: 6px; box-shadow: 2px 3px 8px rgba(0,0,0,.18); }
+.rq-card:hover { border-color: #f7941e; }
+.rq-bulk { align-self: center; width: 64px; height: 64px; border: 0; border-radius: 50% 50% 50% 8px; background: #1e9bf0; color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(30,155,240,.3); position: relative; }
+.rq-bulk::after { content: ""; position: absolute; left: 50%; bottom: 10px; width: 14px; height: 8px; border: 2px solid #fff; border-top: 0; border-radius: 0 0 10px 10px; transform: translateX(-50%); }
+.rq-bulk span { position: relative; top: -5px; }
+/* 오른쪽 위젯이 상품을 가리면 겹치는 만큼만 왼쪽으로 (왼쪽 빠른 메뉴와 같은 식) */
+@media (min-width: 769px) and (max-width: 1999px) {
+  body.rm-main .best-wrap .w, body.rm-main main .w, body.rm-main .rm-find { padding-right: max(20px, calc(214px - (100vw - 1600px) / 2)); }
+  body.rm-main .hero-arr.next { right: max(16px, calc(214px - (100vw - 1600px) / 2)); }
+}
+@media (max-width: 768px) { .rq { display: none; } }
+
+/* 제휴카드 할인 페이지 /card.html (피오렌탈 /model/card.php 짜임새: 렌탈사 탭 → 카드 목록) */
+.rm-cardpage .cd { padding: 36px 0 60px; }
+.cd-hero { background: #fff; border-radius: 20px; padding: 36px 36px 30px; margin-bottom: 22px; box-shadow: 0 4px 20px rgba(0,0,0,.05); }
+.cd-kick { margin: 0 0 8px; color: #f7941e; font-weight: 800; font-size: 14px; }
+.cd-hero h1 { margin: 0; font-size: 32px; line-height: 1.3; letter-spacing: -.02em; }
+.cd-hero h1 em { font-style: normal; color: #f7941e; }
+.cd-lead { margin: 14px 0 0; font-size: 15.5px; color: var(--sub); max-width: 760px; line-height: 1.65; }
+.cd-steps { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cd-steps li { display: flex; align-items: center; gap: 10px; background: #fff7ee; border: 1px solid #fcd9b6; border-radius: 999px; padding: 8px 16px 8px 8px; font-size: 14px; font-weight: 600; }
+.cd-steps li b { width: 26px; height: 26px; border-radius: 50%; background: #f7941e; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.cd-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.cd-tab { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 16px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; font: inherit; font-size: 14.5px; font-weight: 700; color: #333; cursor: pointer; }
+.cd-tab img { height: 20px; width: auto; }
+.cd-tab.on { border-color: #f7941e; background: #fff7ee; color: #d9700a; box-shadow: 0 0 0 2px rgba(247,148,30,.2); }
+.cd-panel h2 { margin: 0 0 14px; font-size: 22px; }
+.cd-list { background: #fff; border-radius: 16px; padding: 4px 28px; box-shadow: 0 4px 20px rgba(0,0,0,.05); font-size: 14px; color: #334155; line-height: 1.6; }
+.cd-list ul { list-style: none; margin: 0; padding: 0; }
+.cd-list li { display: flex; gap: 28px; padding: 26px 0; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+.cd-list li:last-child { border-bottom: 0; }
+.cd-list .img { flex: 0 0 220px; }
+.cd-list .img img { width: 220px; border-radius: 12px; box-shadow: 4px 4px 12px rgba(0,0,0,.15); }
+.cd-list .info { flex: 1 1 320px; }
+.cd-list h3 { margin: 0; font-size: 21px; font-weight: 800; color: #111; }
+.cd-list .desc { margin: 6px 0 10px; font-size: 15px; }
+.cd-list .desc em { font-style: normal; color: #ea580c; font-weight: 800; }
+.cd-list dl { display: flex; gap: 14px; margin: 8px 0; }
+.cd-list dt { flex: 0 0 92px; font-weight: 700; color: #475569; }
+.cd-list dd { margin: 0; }
+.cd-list dd em { font-style: normal; font-weight: 800; color: #111; }
+.cd-list .lstTxt { font-size: 12.5px; color: #64748b; }
+.cd-list .btn { display: inline-block; border: 1px solid #cbd5e1; border-radius: 6px; padding: 3px 12px; margin: 2px 4px 2px 0; color: #334155; text-decoration: none; font-size: 13px; background: #fff; }
+.cd-list .btn.call { border-color: #f7941e; color: #d9700a; }
+@media (max-width: 768px) {
+  .cd-hero { padding: 22px 18px; border-radius: 14px; }
+  .cd-hero h1 { font-size: 23px; }
+  .cd-list { padding: 4px 16px; }
+  .cd-list .img, .cd-list .img img { flex-basis: 100%; width: 100%; max-width: 260px; }
+  .cd-list dl { flex-direction: column; gap: 2px; }
+}

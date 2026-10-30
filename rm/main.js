@@ -1,7 +1,7 @@
 // rentalmass 첫 화면 — 배너 넘기기 · 떠 있는 상담 바 (10-27 대표님 "메인화면 빌리고 따라해") · build_main.py
 (function () {
   // ---- 배너: 5초마다 넘김, 화살표·점, 손가락으로 밀기
-  var track = document.getElementById("heroTrack"), dots = [].slice.call(document.querySelectorAll("#heroDots button"));
+  var track = document.getElementById("heroTrack"), dots = track ? [].slice.call(document.querySelectorAll("#heroDots button")) : [];
   var n = dots.length, cur = 0, timer = null;
   function go(i) {
     if (!n) return;
@@ -28,7 +28,7 @@
 
   // ---- 하단 고정 상담 바(PC, 항상 보임 — 피오렌탈식) 신청 → 중계(텔레그램·상담신청 시트). 번호+동의만 필수
   var f = document.getElementById("abForm"), msg = document.getElementById("abMsg");
-  f.addEventListener("submit", function (e) {
+  if (f) f.addEventListener("submit", function (e) {
     e.preventDefault();
     var tel = f.tel.value.trim(), d = tel.replace(/\D/g, ""), name = f.name.value.trim();
     if (d.length < 10 || d.length > 11 || !/^01/.test(d)) { msg.textContent = "휴대폰 번호를 확인해 주세요."; f.tel.focus(); return; }
@@ -65,6 +65,11 @@
     if (b.dataset.lq === "top") window.scrollTo({ top: 0, behavior: "smooth" });
     if (b.dataset.lq === "ask" && window.RM_OPEN) window.RM_OPEN({ from: "왼쪽 빠른 메뉴" });
     if (mob) setLq(false);
+  });
+  // 오른쪽 위젯 '대량렌탈' → 상담 창 (10-30 대표님 "오른쪽에 똑같이")
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-rq=bulk]");
+    if (b && window.RM_OPEN) window.RM_OPEN({ from: "대량렌탈 문의(오른쪽 위젯)" });
   });
   // 배너를 지나면 머리 바로 밑으로 올라붙는다
   function lqPos() { if (mob) return; var hb = hero ? hero.getBoundingClientRect().bottom : 0; lq.style.top = (hb > 150 ? hb + 16 : 150) + "px"; }
