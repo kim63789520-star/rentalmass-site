@@ -23,25 +23,10 @@
       if (Math.abs(dx) > 40) { go(cur + (dx < 0 ? 1 : -1)); auto(); }
     });
   }
-  // 24시간 접수 배너 → 상담 창
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest("[data-ask]");
-    if (!a) return;
-    e.preventDefault();
-    if (window.RM_OPEN) window.RM_OPEN({ from: "첫 배너(24시간 접수)" });
-  });
+  // 첫 배너(24시간 자동 접수)는 카톡 링크(build_main.py BANNERS) — 10-30 대표님
+  var hero = document.querySelector(".hero");
 
-  // ---- 떠 있는 상담 바: 배너를 지나면 아래에 뜬다 (PC)
-  var bar = document.getElementById("askbar"), hero = document.querySelector(".hero");
-  function onScroll() {
-    var past = hero ? hero.getBoundingClientRect().bottom < 0 : true;
-    var nearEnd = window.innerHeight + window.scrollY > document.body.scrollHeight - 260;
-    bar.classList.toggle("on", past && !nearEnd);
-  }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  // ---- 상담 바 신청 → 중계(텔레그램·상담신청 시트). 번호+동의만 필수
+  // ---- 하단 고정 상담 바(PC, 항상 보임 — 피오렌탈식) 신청 → 중계(텔레그램·상담신청 시트). 번호+동의만 필수
   var f = document.getElementById("abForm"), msg = document.getElementById("abMsg");
   f.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -51,7 +36,7 @@
     var relay = (window.TG || {}).relay;
     if (!relay) { msg.textContent = "접수 설정 오류입니다. 카톡으로 문의해 주세요."; return; }
     var lines = ["[렌탈몰라] 상담 신청", "이름: " + (name || "(미입력)"), "연락처: " + d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, "$1-$2-$3"),
-                 "신청 위치: 첫 화면 상담 바"];
+                 "신청 위치: 첫 화면 하단 상담 바"];
     if (window.RM_SRC) lines.push("유입: " + window.RM_SRC());
     lines.push("페이지: " + location.href);
     var btn = f.querySelector("button"); btn.disabled = true; msg.textContent = "";

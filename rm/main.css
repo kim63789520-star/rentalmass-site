@@ -5,7 +5,7 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
 .rm-main a { color: inherit; }
 .rm-main img { max-width: 100%; }
-.w { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+.w { max-width: 1600px; margin: 0 auto; padding: 0 20px; }  /* 10-30 대표님 "폭을 꽉맞게" 1280→1600 */
 
 /* 머리 */
 .mh { position: sticky; top: 0; z-index: 900; background: #fff; box-shadow: 0 1px 0 var(--line); }
@@ -54,25 +54,29 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 .rm-main .rm-find { max-width: none; padding: 0; margin: 34px 0 0; }
 
 /* 떠 있는 상담 바 — PC: 배너를 지나면 아래에 뜬다 */
-.askbar { position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 140%); z-index: 950; width: min(1180px, calc(100% - 40px));
-  background: #262626; color: #fff; border-radius: 16px; box-shadow: 0 18px 44px rgba(0,0,0,.28); transition: transform .35s cubic-bezier(.4, 0, .2, 1); }
-.askbar.on { transform: translate(-50%, 0); }
-.ab-in { display: flex; align-items: center; gap: 22px; padding: 14px 18px 14px 28px; position: relative; }
-.ab-tel { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; flex: none; padding-right: 22px; border-right: 1px solid #444; }
+/* 하단 고정 상담 바 — 피오렌탈(porental.kr)처럼 화면 아래 꽉 차게, 항상 보임 (10-30 대표님) */
+.askbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 950; background: var(--acc); color: #fff;
+  box-shadow: 0 -6px 24px rgba(0,0,0,.18); padding-bottom: env(safe-area-inset-bottom); }
+.ab-in { max-width: 1600px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding: 13px 20px; position: relative; }
+.ab-tel { display: flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; flex: none; padding-right: 22px; border-right: 1px solid rgba(255,255,255,.35); }
 .ab-tel i { font-size: 22px; color: #fff; }
-.ab-tel small { display: block; font-size: 12px; color: #c7c7c7; }
-.ab-tel b { display: block; font-size: 26px; font-weight: 800; color: var(--acc); letter-spacing: -0.4px; line-height: 1.1; }
+.ab-tel small { display: block; font-size: 12.5px; color: rgba(255,255,255,.9); }
+.ab-tel b { display: block; font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.4px; line-height: 1.1; }
 .ab-form { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
-.ab-form input[type=text], .ab-form input[type=tel] { flex: 1; min-width: 0; height: 44px; border: 1px solid #555; background: #333; color: #fff; border-radius: 9px; padding: 0 14px; font-size: 15px; font-family: inherit; outline: 0; }
+.ab-form input[type=text], .ab-form input[type=tel] { flex: 1; min-width: 0; height: 46px; border: 0; background: #fff; color: var(--ink); border-radius: 8px; padding: 0 14px; font-size: 15.5px; font-family: inherit; outline: 0; }
+.ab-form input[name=name] { flex: 0 1 220px; }
 .ab-form input::placeholder { color: #9a9a9a; }
-.ab-form input:focus { border-color: var(--acc); }
-.ab-ok { flex: none; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #d4d4d4; white-space: nowrap; }
-.ab-ok input { width: 16px; height: 16px; accent-color: var(--acc); }
-.ab-ok a { color: #d4d4d4; }
-.ab-form button { flex: none; height: 44px; padding: 0 26px; border: 0; border-radius: 9px; background: var(--acc); color: #fff; font-size: 15.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
-.ab-form button:hover { background: var(--acc-d); }
+.ab-form input:focus { outline: 2px solid var(--navy); }
+.ab-ok { flex: none; display: flex; align-items: center; gap: 6px; font-size: 13.5px; color: #fff; white-space: nowrap; }
+.ab-ok input { width: 17px; height: 17px; accent-color: var(--navy); }
+.ab-ok a { color: #fff; }
+.ab-form button { flex: none; height: 46px; padding: 0 32px; border: 0; border-radius: 8px; background: #111; color: #fff; font-size: 16px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.ab-form button:hover { background: #000; }
+.ab-kk { flex: none; display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: 8px; background: #fee500; color: #191919 !important; text-decoration: none; font-size: 16px; font-weight: 800; }
+.ab-kk:hover { background: #f3d900; }
 .ab-form button:disabled { opacity: .6; }
-.ab-msg { position: absolute; left: 28px; bottom: -22px; margin: 0; font-size: 12.5px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.ab-msg { position: absolute; left: 50%; top: -40px; transform: translateX(-50%); margin: 0; font-size: 13.5px; color: #fff; }
+.ab-msg:not(:empty) { background: #b3261e; padding: 7px 14px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.2); white-space: nowrap; }
 .ab-done { flex: 1; display: flex; align-items: center; gap: 14px; font-size: 15px; }
 .ab-done a { margin-left: auto; background: #fee500; color: #191919; text-decoration: none; font-weight: 800; padding: 11px 18px; border-radius: 9px; }
 
@@ -180,10 +184,10 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 .lq-nav a, .lq-nav button { display: flex; align-items: center; justify-content: space-between; height: 50px; padding: 0 16px; border: 0; border-radius: 10px; background: var(--navy); color: #fff; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; font-family: inherit; box-shadow: 0 4px 12px rgba(30,42,74,.22); transition: background .15s, transform .15s; }
 .lq-nav a:hover, .lq-nav button:hover { background: #2b3c66; transform: translateX(3px); }
 .lq-nav span { font-size: 17px; opacity: .85; }
-/* 화면이 좁아 바가 상품을 가리면(1280 내용 + 바 200 = 1680 미만) 펼친 동안 내용을 오른쪽으로 민다 */
-@media (min-width: 769px) and (max-width: 1679px) {
-  body.rm-main.lq-open .best-wrap .w, body.rm-main.lq-open main .w, body.rm-main.lq-open .rm-find { padding-left: 214px; }
-  body.rm-main.lq-open .hero-arr.prev { left: 214px; }
+/* 바가 상품을 가리면(1600 내용 + 바 200 = 2000 미만) 펼친 동안 겹치는 만큼만 내용을 오른쪽으로 민다 */
+@media (min-width: 769px) and (max-width: 1999px) {
+  body.rm-main.lq-open .best-wrap .w, body.rm-main.lq-open main .w, body.rm-main.lq-open .rm-find { padding-left: max(20px, calc(214px - (100vw - 1600px) / 2)); }
+  body.rm-main.lq-open .hero-arr.prev { left: max(16px, calc(214px - (100vw - 1600px) / 2)); }
   .lq { width: 184px; }
 }
 @media (max-width: 768px) {
