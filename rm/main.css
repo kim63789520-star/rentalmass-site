@@ -48,8 +48,7 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 .best-wrap .rm-bestcat h2 { font-size: 24px; margin-bottom: 26px; }
 .best-wrap .rm-bestcat ul { grid-template-columns: repeat(10, 1fr); gap: 24px 8px; }
 .best-wrap .bc-i { width: 92px; height: 92px; background: #f3f1ee; }
-.best-wrap .bc-sangjo { background: #111; }
-
+.best-wrap 
 /* 말로 찾기 입구 */
 .rm-main .rm-find { max-width: none; padding: 0; margin: 34px 0 0; }
 
@@ -269,3 +268,5 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   .cd-list .img, .cd-list .img img { flex-basis: 100%; width: 100%; max-width: 260px; }
   .cd-list dl { flex-direction: column; gap: 2px; }
 }
+/* main.css 가 easy.css 뒤에 실려 .bc-i 회색 배경이 상조 칸 그라데이션을 덮음 → 우선순위 올림 (10-30) */
+.bc-i.bc-sangjo { background: linear-gradient(145deg, #ff4d1f, #f7941e); }
