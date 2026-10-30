@@ -124,7 +124,7 @@
       : it
       ? '<div class="rm-prod"><b>' + esc(it.ItemName) + "</b><span>" + esc(it.ModelName || "") +
         (it.RentalFee ? " · 월 " + won(it.RentalFee) + "원" : "") + (it.DutyUsePeriod ? " · " + esc(it.DutyUsePeriod) + "개월" : "") + "</span></div>"
-      : '<p class="rm-lbl">관심 품목 <small>(선택 · 여러 개 가능)</small></p>' + chips(KINDS, true);
+      : "";  // 관심 품목 고르기 칸 뺌 — 번호만 (10-30 대표님 "이것도 빼"). 품목은 보던 페이지(ctx)로만 적는다
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
     // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
@@ -140,8 +140,7 @@
     }
     body.querySelector(".rm-btn").onclick = function () {
       submit(body, function () {
-        var kinds = it ? [] : picked(body.querySelector(".rm-chips"));
-        if (!it && ctx && !kinds.length) kinds = [ctx];
+        var kinds = (!it && ctx) ? [ctx] : [];
         return { item: it, kinds: kinds, from: current.from || "상담 창" };
       }, function () { body.innerHTML = doneHTML(); });
     };
