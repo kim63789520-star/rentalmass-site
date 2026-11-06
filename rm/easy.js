@@ -283,3 +283,29 @@
     if (slide && slide.querySelector('img[src*="main_banner_rm24"]')) { e.preventDefault(); openSheet({ from: "첫 배너(24시간 접수)" }); }
   }, true);
 })();
+
+/* 방문·상담 버튼 기록 (11-06 대표님 — 부정클릭 확인·광고 효과. 처리방침 6항)
+ * 10-28에 배포본 rm/easy.js에만 넣어 다음 날 자동 업데이트로 지워졌다 — 고칠 땐 이 파일(site_src)만 고친다.
+ * 사이트 밖에서 들어온 첫 화면만 IP와 함께 남긴다. 버튼 기록엔 IP 없음. 분석 scripts/ads/visit_log.py */
+(function () {
+  var u = (window.TG || {}).relay; if (!u || /^\/bohum/.test(location.pathname)) return;
+  var q = location.search, ref = document.referrer || "";
+  var ad = /NaPm=|n_media=|n_query=|n_keyword=/.test(q) || /adcr\.naver|ad\.search\.naver/.test(ref) ||
+           (/search\.naver/.test(ref) && /^\/list\.html/.test(location.pathname) && /cate_code=/.test(q)); // 13번 도착 페이지: 추적값이 안 붙어 검색 유입+목록으로 추정
+  function send(page, ip) {
+    var body = JSON.stringify({ site: location.host, page: page.slice(0, 120), q: q.slice(0, 400), ref: ref.slice(0, 300),
+                                ad: ip !== undefined && ad ? 1 : 0, ip: ip || "", ua: navigator.userAgent.slice(0, 200) });
+    try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
+    try { fetch(u, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: body }); } catch (e) {}
+  }
+  var external = true; try { external = !ref || new URL(ref).host !== location.host; } catch (e) {}
+  if (external) fetch("https://api.ipify.org?format=json").then(function (r) { return r.json(); }).catch(function () { return {}; })
+    .then(function (j) { send(location.pathname, (j && j.ip) || ""); });
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a,button"); if (!a) return;
+    var h = a.getAttribute("href") || "", t = (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 20);
+    if (/kakao/i.test(h)) send("클릭:카톡 " + location.pathname);
+    else if (/^tel:/i.test(h)) send("클릭:전화 " + location.pathname);
+    else if (/rm-btn|rm-b-ask|rm-ask|dt-btn-ask/.test(a.className + " " + a.id) || /상담 신청|접수신청|렌탈 신청/.test(t)) send("클릭:신청 " + t + " " + location.pathname);
+  }, true);
+})();
