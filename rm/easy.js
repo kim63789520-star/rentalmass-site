@@ -128,7 +128,9 @@
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
     // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + head + (it ? what : "") +
+    // PC에서 전화 버튼을 누른 경우 — 번호를 크게 보여 주고 바로 아래 번호 남기기 (11-11 대표님: PC 전화 클릭이 그냥 사라짐)
+    var call = current.call ? '<div class="rm-call"><span>전화 상담</span><b>' + PHONE + "</b><small>휴대폰으로 거시거나, 아래에 번호를 남겨 주시면 바로 전화드려요</small></div>" : "";
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + call + head + (it ? what : "") +
       '<p class="rm-lbl">휴대폰 번호만 남겨 주세요</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000">' +
       (it ? "" : what) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
@@ -254,6 +256,15 @@
     '<button type="button" class="rm-b-ask">접수신청</button></nav>');
   document.body.appendChild(bottom);
   bottom.querySelector(".rm-b-ask").onclick = function () { openSheet({ from: "모바일 하단 바" }); };
+
+  // PC(마우스)에선 tel: 링크가 아무 일도 안 한다 → 상담 창 + 번호 크게 (11-11). 기록용 클릭 리스너는 막지 않는다
+  var mouse = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (mouse) document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!a) return;
+    e.preventDefault();
+    openSheet({ call: true, from: "PC 전화 버튼" });
+  });
 
   // 이달의 추천 상품 — 탭 · 좌우 넘기기 · 견적 받기
   document.addEventListener("click", function (e) {
