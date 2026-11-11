@@ -304,7 +304,9 @@
   var ad = /NaPm=|n_media=|n_query=|n_keyword=/.test(q) || /adcr\.naver|ad\.search\.naver/.test(ref) ||
            (/search\.naver/.test(ref) && /^\/list\.html/.test(location.pathname) && /cate_code=/.test(q)); // 13번 도착 페이지: 추적값이 안 붙어 검색 유입+목록으로 추정
   function send(page, ip) {
-    var body = JSON.stringify({ site: location.host, page: page.slice(0, 120), q: q.slice(0, 400), ref: ref.slice(0, 300),
+    // 버튼 기록엔 처음 들어올 때의 유입(광고 키워드)을 붙인다 — 다른 페이지로 옮겨 가서 눌러도 어느 키워드인지 남게 (11-11 대표님 "판단하게 해")
+    var qq = ip === undefined && window.RM_SRC ? "유입=" + window.RM_SRC() + " " + q : q;
+    var body = JSON.stringify({ site: location.host, page: page.slice(0, 120), q: qq.slice(0, 400), ref: ref.slice(0, 300),
                                 ad: ip !== undefined && ad ? 1 : 0, ip: ip || "", ua: navigator.userAgent.slice(0, 200) });
     try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
     try { fetch(u, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: body }); } catch (e) {}
