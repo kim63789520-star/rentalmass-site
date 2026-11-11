@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>렌탈 견적 상담 — 다콩 렌탈몰라</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="정수기·노트북·전기자전거·안마의자·가전 렌탈, 필요한 품목만 고르면 렌탈사 여러 곳 견적을 비교해 전화로 알려 드립니다. 등록비·설치비 면제 상품 우선 안내.">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+html{-webkit-tap-highlight-color:transparent}
+a,button,select,summary,label{touch-action:manipulation}
+:root{--red:#e5322d;--red2:#c9221e;--navy:#14213d;--ink:#191919;--sub:#666;--line:#e6e6e6;--gray:#f5f5f3;--yel:#ffd84a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#e4e4e1;color:var(--ink);font-family:"Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+.wrap{max-width:480px;margin:0 auto;background:#fff;overflow:hidden;padding-bottom:84px}
+img,video{display:block;max-width:100%}
+section{padding:44px 20px}
+h2{font-size:26px;line-height:1.36;font-weight:900;letter-spacing:-.8px}
+.lead{font-size:15px;color:var(--sub);margin-top:10px;line-height:1.6}
+.red{color:var(--red)}
+.cond{font-size:11px;color:#8a8a8a;margin-top:10px;line-height:1.5}
+.btn{display:block;margin-top:22px;height:56px;border-radius:12px;background:var(--red);color:#fff;font-weight:900;font-size:17px;text-align:center;line-height:56px;text-decoration:none;box-shadow:0 8px 20px rgba(229,50,45,.28)}
+.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--navy);box-shadow:none;line-height:52px}
+.top{background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 16px}
+.top a{color:var(--yel);font-weight:900;text-decoration:none;font-size:15px}
+.hero{position:relative;background:#111}
+.hero video{width:100%;height:min(82vw,380px);object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.05) 25%,rgba(0,0,0,.8) 80%)}
+.hero .cap{position:absolute;left:20px;right:20px;bottom:104px;z-index:2;color:#fff}
+.bdg{display:inline-block;background:var(--red);font-size:13px;font-weight:700;padding:6px 11px;border-radius:5px}
+.hero h1{font-size:31px;line-height:1.3;font-weight:900;margin-top:12px;letter-spacing:-1px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.hero h1 em{font-style:normal;color:var(--yel)}
+.hero .pr{margin-top:8px;font-size:15px;font-weight:500;line-height:1.5}
+.quick{position:relative;z-index:3;margin:-86px 14px 0}
+.leadbox{background:#fff;border-radius:18px;padding:20px 18px 18px;box-shadow:0 14px 38px rgba(0,0,0,.2)}
+.qt{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.qt i{font-style:normal;color:var(--red)}
+.qs{font-size:13px;color:var(--sub);margin-top:3px}
+.ql{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:14px;font-size:15px;font-weight:900;flex-wrap:wrap}
+.ql em{font-style:normal;color:var(--red)}
+.ql small{font-weight:500;color:var(--sub);font-size:12px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.chips button{position:relative;min-height:74px;border:2px solid #d9d9d9;background:var(--gray);border-radius:12px;font:700 13px "Noto Sans KR";color:#333;cursor:pointer;padding:22px 4px 8px;letter-spacing:-.4px;line-height:1.2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:transform .08s,background .15s,border-color .15s}
+.chips button:active{transform:scale(.95)}
+.chips button .ck{position:absolute;left:6px;top:6px;width:18px;height:18px;border-radius:50%;border:2px solid #b5b5b5;background:#fff}
+.chips button .ic{font-size:20px;line-height:1}
+.chips button .tx{font-size:12.5px}
+.chips button.on{background:var(--red);border-color:var(--red2);color:#fff;box-shadow:0 6px 16px rgba(229,50,45,.35)}
+.chips button.on .ck{background:#fff;border-color:#fff}
+.chips button.on .ck:after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:var(--red);font-size:12px;font-weight:900}
+.chips button.on:before{content:attr(data-o)"순위";position:absolute;right:6px;top:5px;font-size:9px;background:var(--yel);color:#191919;border-radius:4px;padding:1px 4px;font-weight:900}
+.chips button:not(.on):hover{border-color:#999}
+.in2{display:grid;grid-template-columns:1.5fr 1fr;gap:8px;margin-top:12px}
+.done .kk{display:block;height:54px;line-height:54px;border-radius:12px;background:#fee500;color:#191919;font-weight:900;font-size:17px;text-decoration:none;margin-top:16px}
+.done small{display:block;font-size:12.5px;color:var(--sub);margin-top:10px}
+.cta2{text-align:center}
+.cta2 .submit{display:block;line-height:58px;text-decoration:none}
+.cta2 .kk2{display:block;height:52px;line-height:52px;border-radius:12px;background:#fee500;color:#191919;font-weight:900;font-size:16px;text-decoration:none;margin-top:8px}
+.lead-f input[type=text],.lead-f input[type=tel],.lead-f select{width:100%;height:52px;border:1px solid #bdbdbd;border-radius:10px;padding:0 13px;font-size:16px;background:#fff;color:var(--ink);font-family:inherit}
+.lead-f select{margin-top:8px}
+.lead-f input:focus,.lead-f select:focus{outline:none;border:2px solid var(--navy)}
+.agree{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px}
+.agree input{width:20px;height:20px;accent-color:var(--red);flex:none}
+details.pv{margin-top:8px;font-size:12px;color:#555;background:var(--gray);border-radius:8px;padding:8px 12px}
+details.pv ul{padding-left:16px;line-height:1.6;margin-top:6px}
+.submit{position:relative;overflow:hidden;width:100%;height:58px;border:0;border-radius:12px;background:var(--red);color:#fff;font-size:18px;font-weight:900;margin-top:12px;cursor:pointer;font-family:inherit;box-shadow:0 8px 20px rgba(229,50,45,.3)}
+.submit:active{background:var(--red2)}
+.submit:disabled{opacity:.6}
+.fit{margin-top:10px;font-size:12.5px;color:var(--sub);text-align:center}
+.msg{text-align:center;margin-top:10px;font-size:14px;font-weight:700}
+.msg:empty{display:none}
+.msg.err{color:var(--red)}
+.done{text-align:center;padding:18px 6px 8px}
+.done .ck{width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;font-size:34px;font-weight:900;display:grid;place-items:center;margin:0 auto}
+.done b{display:block;font-size:21px;font-weight:900;margin-top:14px}
+.done p{font-size:15px;color:var(--sub);margin-top:6px;line-height:1.6}
+.host{display:flex;align-items:center;gap:12px;margin:14px 14px 0;background:var(--gray);border-radius:14px;padding:10px 14px}
+.host img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15);flex:none}
+.host b{display:block;font-size:15px;font-weight:900;letter-spacing:-.3px}
+.host span{display:block;font-size:12.5px;color:var(--sub);margin-top:2px;line-height:1.4}
+.pts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:24px 14px 0}
+.pts div{background:var(--gray);border-radius:12px;padding:14px 8px;text-align:center}
+.pts b{display:block;font-size:17px;font-weight:900;color:var(--navy);letter-spacing:-.5px;line-height:1.3}
+.pts small{display:block;font-size:12px;color:var(--sub);margin-top:4px;line-height:1.4}
+.steps{background:var(--gray)}
+.step{display:flex;gap:14px;margin-top:20px;align-items:center}
+.step img{width:40%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;flex:none}
+.step .n{display:inline-block;font-size:12px;font-weight:900;color:#fff;background:var(--red);border-radius:99px;padding:3px 10px}
+.step b{display:block;font-size:18px;font-weight:900;margin-top:6px;letter-spacing:-.5px}
+.step p{font-size:14px;color:var(--sub);line-height:1.55;margin-top:4px}
+.me{background:var(--navy);color:#fff;padding:0 0 26px}
+.me .pic{display:grid;grid-template-columns:1fr;gap:16px;align-items:end;padding:22px 20px 0}
+.me img{width:160px;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:16px;box-shadow:0 14px 30px rgba(0,0,0,.35);background:#fff}
+.me .nm{padding-bottom:6px}
+.me .nm small{display:block;font-size:13px;color:var(--yel);font-weight:700;letter-spacing:.02em}
+.me .nm b{display:block;font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1.15;margin-top:4px}
+.me .nm span{display:block;font-size:14px;opacity:.9;margin-top:6px;line-height:1.5}
+.me blockquote{margin:16px 20px 0;padding:18px 18px 18px 22px;border-left:4px solid var(--yel);background:rgba(255,255,255,.07);border-radius:0 14px 14px 0;font-size:16px;line-height:1.65;font-weight:500}
+.me blockquote b{color:var(--yel);font-weight:900}
+.me ul{list-style:none;margin:18px 20px 0;display:grid;gap:8px;font-size:14px}
+.me li{padding-left:24px;position:relative;line-height:1.5}
+.me li:before{content:"✓";position:absolute;left:0;color:var(--yel);font-weight:900}
+.me .ct{display:grid;grid-template-columns:1fr;gap:8px;margin:20px 20px 0}
+.me .ct a{height:52px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:16px;text-decoration:none}
+.me .ct .c1{background:#fff;color:var(--navy)}
+.me .ct .c2{background:#fee500;color:#191919}
+.who ul{list-style:none;margin-top:18px;display:grid;gap:10px}
+.who li{background:var(--gray);border-radius:12px;padding:14px 16px;font-size:15px;line-height:1.5;padding-left:44px;position:relative}
+.who li:before{content:"✓";position:absolute;left:16px;top:13px;color:var(--red);font-weight:900;font-size:18px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:20px}
+.mosaic figure{position:relative;border-radius:12px;overflow:hidden}
+.mosaic img{width:100%;aspect-ratio:1;object-fit:cover}
+.mosaic figcaption{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.62);color:#fff;font-size:12px;font-weight:700;padding:4px 9px;border-radius:5px}
+.must{background:var(--gray)}
+.must h2{font-size:21px}
+.must ul{margin-top:14px;padding-left:18px;font-size:14px;line-height:1.75;color:#333}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{margin-top:16px;border-top:1px solid var(--ink)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 28px 16px 0;font-weight:700;font-size:16px;position:relative;display:flex;gap:8px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{font-style:normal;color:var(--red);font-weight:900}
+.faq summary:after{content:"+";position:absolute;right:2px;top:11px;font-size:24px;font-weight:400;color:#999}
+.faq details[open] summary:after{content:"−"}
+.faq details p{font-size:15px;line-height:1.7;color:#444;background:var(--gray);border-radius:8px;padding:14px;margin-bottom:16px}
+.form{padding:0 0 40px;background:var(--navy)}
+.form .ph{position:relative}
+.form .ph img{width:100%}
+.form .ph:after{content:"";position:absolute;inset:30% 0 0;background:linear-gradient(transparent,var(--navy))}
+.form .ph div{position:absolute;left:20px;right:20px;bottom:60px;z-index:2;color:#fff}
+.form .ph h2{text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.form .ph p{font-size:15px;margin-top:6px;opacity:.9}
+.form .leadbox{margin:-44px 14px 0;position:relative;z-index:3}
+footer{background:#1b1b1b;color:#9a9a9a;font-size:12px;line-height:1.8;padding:26px 20px 30px}
+footer b{color:#fff;font-size:14px}
+footer a{color:#cfcfcf}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:9;display:flex;justify-content:center;background:#fff;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));}
+.bar div{max-width:456px;width:100%;display:flex;gap:8px}
+.bar a{flex:1;height:50px;border-radius:10px;font-weight:900;font-size:16px;display:grid;place-items:center;text-decoration:none}
+.bar .call{border:2px solid var(--navy);color:var(--navy);background:#fff}
+.bar .go{background:var(--red);color:#fff}
+.hero .cap{bottom:100px}
+.hero h1{font-size:27px}
+.hero .pr b{color:var(--yel);font-weight:900}
+.top .kk{background:#fee500;color:#191919;border-radius:6px;padding:4px 9px;font-size:13px;font-weight:900;text-decoration:none;margin-left:8px}
+.grid{padding:28px 14px 8px}
+.grid h2{font-size:23px;padding:0 6px}
+.grid .lead{padding:0 6px;margin-top:6px}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:16px}
+.pc{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 6px 10px;text-align:center;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;gap:4px;align-items:center}
+.pc:active{border-color:var(--red)}
+.pc-t{font-size:13px;font-weight:700;color:#333;line-height:1.25;letter-spacing:-.4px}
+.pc-p{font-size:14px;font-weight:900;color:var(--red);letter-spacing:-.5px;white-space:nowrap}
+.pc-p:before{content:none;font-size:9px;color:#fff;background:var(--red);border-radius:3px;padding:1px 4px;margin-right:4px;vertical-align:2px;font-weight:700}
+.mall{margin:22px 0 0;display:block;text-decoration:none;background:linear-gradient(135deg,#ff5a1f,#e5322d 60%,#c9221e);color:#fff;border-radius:18px;padding:22px 20px;box-shadow:0 14px 32px rgba(229,50,45,.45);position:relative;overflow:hidden;border:3px solid var(--yel)}
+.mall:after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:sh 2.6s ease-in-out infinite}
+@keyframes sh{55%,100%{left:130%}}
+.mall small{display:block;font-size:13px;font-weight:700;color:#fff;opacity:.95;letter-spacing:-.2px}
+.mall b{display:block;font-size:30px;font-weight:900;letter-spacing:-1px;line-height:1.2;margin-top:6px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25);padding-right:34px}
+.mall i{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-style:normal;font-size:38px;font-weight:900;color:var(--yel);text-shadow:0 2px 8px rgba(0,0,0,.25)}
+.kakao{position:fixed;right:14px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:10;width:58px;height:58px;border-radius:50%;background:#fee500;color:#191919;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25);font-size:11px;font-weight:900;line-height:1.1;text-align:center}
+.kakao svg{width:26px;height:26px;display:block;margin:0 auto 1px}
+.bar .kk{background:#fee500;color:#191919}
+.vsb{margin-top:18px;border:2px solid var(--navy);border-radius:14px;overflow:hidden}
+.vsb div{display:grid;grid-template-columns:1.1fr 1fr 1fr;font-size:14px}
+.vsb div span{padding:12px 10px;border-top:1px solid var(--line)}
+.vsb div:first-child span{border:0;background:var(--navy);color:#fff;font-weight:700;font-size:13px}
+.vsb div span:first-child{font-weight:700;background:var(--gray)}
+.vsb div span.hi{color:var(--red);font-weight:900}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('set','autoConfig',false,'1612056800649940');fbq('init','1612056800649940');fbq('track','PageView');</script>
+</head>
+<body><div class="wrap">
+
+<div class="top"><span>렌탈사 비교 최저가 견적</span><span><a class="kk" href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener">카톡</a></span></div>
+
+
+
+<header class="hero">
+  <video autoplay muted loop playsinline preload="metadata" poster="/img/scene_hero.jpg"><source src="/img/hero.mp4" type="video/mp4"></video>
+  <div class="cap">
+    <span class="bdg">렌탈사 비교 최저가 견적</span>
+    <h1>같은 제품도<br>렌탈사마다 <em>월 요금이 다릅니다</em></h1>
+    <p class="pr">정수기 <b>월 13,000원~</b> · 세탁기 <b>월 17,800원~</b> · 전기자전거 <b>월 25,900원~</b><br>가장 싼 렌탈사로 찾아서 전화로 알려 드립니다</p>
+  </div>
+</header>
+
+<div class="quick" id="quick">
+  <div class="leadbox">
+    <form class="lead-f" data-tag="첫 화면 빠른 견적" novalidate>
+      <p class="qt">번호만 남기면 <i>견적 끝</i></p>
+      <p class="qs">품목을 골라 주시면 더 정확해요 · 렌탈사별 월 요금을 전화로 알려 드립니다</p>
+      <div class="in2"><input type="tel" name="tel" autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="휴대폰 010-0000-0000 (필수)" aria-label="휴대폰 번호 (필수)">
+        <input type="text" name="name" autocomplete="name" maxlength="20" placeholder="이름 (선택)" aria-label="이름 (선택)"></div>
+      <p class="ql">필요한 품목 <em>골라 주세요</em> <small>선택 · 최대 2개</small></p>
+      <div class="chips"><button type="button" data-k="water" aria-pressed="false"><i class="ck"></i><span class="ic">💧</span><span class="tx">정수기·비데</span></button><button type="button" data-k="laptop" aria-pressed="false"><i class="ck"></i><span class="ic">💻</span><span class="tx">노트북·컴퓨터</span></button><button type="button" data-k="ebike" aria-pressed="false"><i class="ck"></i><span class="ic">🚲</span><span class="tx">전기자전거</span></button><button type="button" data-k="massage" aria-pressed="false"><i class="ck"></i><span class="ic">💺</span><span class="tx">안마의자</span></button><button type="button" data-k="bed" aria-pressed="false"><i class="ck"></i><span class="ic">🛏️</span><span class="tx">침대·매트리스·소파</span></button><button type="button" data-k="fridge" aria-pressed="false"><i class="ck"></i><span class="ic">🧊</span><span class="tx">냉장고·김치냉장고</span></button><button type="button" data-k="wash" aria-pressed="false"><i class="ck"></i><span class="ic">🧺</span><span class="tx">세탁기·건조기</span></button><button type="button" data-k="tv" aria-pressed="false"><i class="ck"></i><span class="ic">📺</span><span class="tx">TV·프로젝터</span></button><button type="button" data-k="air" aria-pressed="false"><i class="ck"></i><span class="ic">❄️</span><span class="tx">에어컨·공기청정기</span></button><button type="button" data-k="kitchen" aria-pressed="false"><i class="ck"></i><span class="ic">🍳</span><span class="tx">주방가전</span></button><button type="button" data-k="clean" aria-pressed="false"><i class="ck"></i><span class="ic">🧹</span><span class="tx">청소기·생활가전</span></button><button type="button" data-k="etc" aria-pressed="false"><i class="ck"></i><span class="ic">➕</span><span class="tx">기타</span></button></div>
+      <input type="hidden" name="w1" value=""><input type="hidden" name="w2" value="">
+      <select name="when" aria-label="통화 편한 시간"><option>통화 편한 시간: 아무 때나</option><option>오전 (9~12시)</option><option>오후 (12~18시)</option><option>저녁 (18시 이후)</option></select>
+      <label class="agree"><input type="checkbox" name="agree"> 개인정보 수집·이용에 동의합니다 (필수)</label>
+      <details class="pv"><summary>동의 내용 보기</summary><ul>
+      <li>수집 항목: 이름, 휴대폰번호 (필요 품목, 통화 시간, 신청한 페이지 주소, 신청 시각이 함께 기록됩니다)</li>
+      <li>이용 목적: 렌탈 상담 연락 및 견적 안내</li>
+      <li>보유 기간: 접수일로부터 90일 보관 후 파기</li>
+      <li>동의를 거부할 수 있으나, 거부하면 온라인 상담 신청이 제한됩니다.</li>
+      <li><a href="../privacy.html">개인정보처리방침 전문 보기</a></li></ul></details>
+      <p class="fit">36개월 이상 장기렌탈만 · 렌탈사 심사 통과 후 설치</p>
+      <button class="submit" type="submit">최저 견적 받기</button>
+      <p class="msg"></p>
+    </form></div>
+</div>
+
+<div class="pts">
+  <div><b>목돈 없이</b><small>월 요금으로<br>바로 사용</small></div>
+  <div><b>견적 비교</b><small>렌탈사 여러 곳<br>한 번에</small></div>
+  <div><b>30초 신청</b><small>품목 고르고<br>번호만</small></div>
+</div>
+
+<section class="grid">
+  <h2>품목별 <span class="red">월 요금</span></h2>
+  <p class="lead">누르면 위 신청 폼에 바로 담깁니다. 렌탈사 비교 후 더 싼 곳이 있으면 그쪽으로 안내합니다.</p>
+  <div class="pgrid"><button type="button" class="pc" data-k="water"><span class="pc-t">정수기·비데</span><span class="pc-p">월 13,000원~</span></button><button type="button" class="pc" data-k="laptop"><span class="pc-t">노트북·컴퓨터</span><span class="pc-p">월 22,600원~</span></button><button type="button" class="pc" data-k="ebike"><span class="pc-t">전기자전거</span><span class="pc-p">월 25,900원~</span></button><button type="button" class="pc" data-k="massage"><span class="pc-t">안마의자</span><span class="pc-p">월 39,900원~</span></button><button type="button" class="pc" data-k="bed"><span class="pc-t">침대·매트리스·소파</span><span class="pc-p">월 18,900원~</span></button><button type="button" class="pc" data-k="fridge"><span class="pc-t">냉장고·김치냉장고</span><span class="pc-p">월 22,900원~</span></button><button type="button" class="pc" data-k="wash"><span class="pc-t">세탁기·건조기</span><span class="pc-p">월 17,800원~</span></button><button type="button" class="pc" data-k="tv"><span class="pc-t">TV·프로젝터</span><span class="pc-p">월 18,300원~</span></button><button type="button" class="pc" data-k="air"><span class="pc-t">에어컨·공기청정기</span><span class="pc-p">월 19,900원~</span></button><button type="button" class="pc" data-k="kitchen"><span class="pc-t">주방가전</span><span class="pc-p">월 10,500원~</span></button><button type="button" class="pc" data-k="clean"><span class="pc-t">청소기·생활가전</span><span class="pc-p">월 11,800원~</span></button></div>
+  <p class="cond">렌탈몰라 등록 상품(의무사용 36개월 이상) 기본 월 렌탈료 기준(2026-11-11), 제휴카드 할인 제외. 모델·기간·렌탈사에 따라 다르며 정확한 요금은 상담 견적으로 안내합니다.</p>
+  <a class="mall" href="/"><small>상품 7,296개 · 렌탈사별 월 요금 비교</small><b>🛒 전체 상품 보기</b><i>›</i></a>
+</section>
+
+<section class="steps">
+  <h2>신청부터 설치까지<br><span class="red">딱 세 단계</span></h2>
+  <div class="step"><img src="/img/scene_call.jpg" alt="" loading="lazy"><div><span class="n">STEP 1</span><b>품목 고르고 신청</b><p>위 폼에서 필요한 품목과 번호만 남기세요.</p></div></div>
+  <div class="step"><img src="/img/scene_phone.jpg" alt="" loading="lazy"><div><span class="n">STEP 2</span><b>견적 비교 전화</b><p>원하시는 모델·기간을 듣고 렌탈사별 월 요금을 비교해 알려 드립니다.</p></div></div>
+  <div class="step"><img src="/img/scene_install.jpg" alt="" loading="lazy"><div><span class="n">STEP 3</span><b>심사 후 설치</b><p>렌탈사 심사가 끝나면 설치 일정을 잡습니다. 제품은 렌탈사가 직접 배송·설치합니다.</p></div></div>
+  <p class="cond">사진은 이해를 돕기 위한 연출 이미지입니다.</p>
+</section>
+
+<section class="who">
+  <h2>이런 분께 맞습니다</h2>
+  <ul>
+    <li>새 가전·가구가 필요한데 한 번에 목돈 쓰기는 부담될 때</li>
+    <li>어느 렌탈사가 싼지 하나하나 비교할 시간이 없을 때</li>
+    <li>사무실·매장·학원처럼 여러 대를 한 번에 들일 때</li>
+    <li>전기자전거·안마의자처럼 써 보고 정하고 싶은 제품일 때</li>
+  </ul>
+  <div class="vsb">
+    <div><span></span><span>직접 알아보면</span><span>여기서 신청하면</span></div>
+    <div><span>견적</span><span>렌탈사마다 따로</span><span class="hi">한 번에 비교</span></div>
+    <div><span>등록비·설치비</span><span>상품마다 확인</span><span class="hi">면제 상품 우선</span></div>
+    <div><span>걸리는 시간</span><span>며칠</span><span class="hi">전화 한 통</span></div>
+  </div>
+</section>
+
+<section style="background:#fff;padding-top:0">
+  <h2>이런 제품을<br><span class="red">월 요금으로</span></h2>
+  <div class="mosaic">
+    <figure><img src="/img/scene_washer.jpg" alt="" loading="lazy"><figcaption>세탁기·건조기</figcaption></figure>
+    <figure><img src="/img/scene_tv.jpg" alt="" loading="lazy"><figcaption>TV·프로젝터</figcaption></figure>
+    <figure><img src="/img/scene_sofa.jpg" alt="" loading="lazy"><figcaption>노트북·컴퓨터</figcaption></figure>
+    <figure><img src="/img/scene_robot.jpg" alt="" loading="lazy"><figcaption>청소기·주방가전</figcaption></figure>
+  </div>
+  <p class="cond">사진은 이해를 돕기 위한 연출 이미지입니다. 정수기·전기자전거·안마의자·침대·냉장고·에어컨도 상담 가능합니다.</p>
+</section>
+
+<section class="must">
+  <h2>신청 전 확인하세요</h2>
+  <ul>
+    <li>렌탈 계약은 각 <b>렌탈사와 직접</b> 체결하며, 월 요금·의무사용기간·소유권 이전 조건은 렌탈사와 모델마다 다릅니다.</li>
+    <li>의무사용기간 안에 해지하면 약관에 따른 <b>위약금</b>과 면제받은 등록비·설치비가 청구될 수 있습니다.</li>
+    <li>렌탈사 <b>심사 결과</b>에 따라 진행이 어려울 수 있습니다. 단기(1년 미만) 대여는 취급하지 않습니다.</li>
+    <li>제휴카드 할인은 카드사 조건(월 사용액 등)을 충족할 때 적용됩니다.</li>
+  </ul>
+</section>
+
+<section class="faq">
+  <h2>자주 묻는 질문</h2>
+  <details><summary><i>Q</i>어떤 품목까지 되나요?</summary><p>정수기·비데, 노트북·컴퓨터·모니터, 전기자전거, 안마의자, 침대·매트리스·소파, 냉장고·김치냉장고, 세탁기·건조기, TV·프로젝터, 에어컨·냉난방기, 주방가전, 청소기·운동기구 등입니다. 목록에 없으면 "기타"로 남겨 주세요.</p></details>
+  <details><summary><i>Q</i>견적만 받아도 되나요?</summary><p>네. 전화로 월 요금과 조건을 듣고 결정하시면 됩니다. 가입을 권유하지 않습니다.</p></details>
+  <details><summary><i>Q</i>사업자도 가능한가요?</summary><p>가능합니다. 사무실·매장용은 여러 대를 함께 견적하며, 렌탈료는 사업자 경비로 처리하는 경우가 많습니다(세무 처리는 세무사와 확인하세요).</p></details>
+  <details><summary><i>Q</i>심사가 있나요?</summary><p>렌탈사마다 간단한 신용 심사가 있습니다. 결과에 따라 진행이 어려울 수 있고, 그 경우 다른 렌탈사나 조건을 함께 찾아 드립니다.</p></details>
+</section>
+
+<section class="form" id="apply">
+  <div class="ph"><img src="/img/scene_sofa.jpg" alt="" loading="lazy"><div><h2>견적 상담 신청</h2><p>모델·기간은 통화하면서 같이 고르시면 됩니다</p></div></div>
+  <div class="leadbox cta2"><p class="qt">번호만 남기면 끝</p><p class="qs">가입 권유 없이 견적만 받아 보셔도 됩니다</p>
+    <a class="submit go-form" href="#quick">견적 상담 신청하기</a>
+    <a class="kk2" href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener">💬 카톡으로 바로 문의</a></div>
+</section>
+
+<footer>
+  <b>다콩</b> · 대표 김다혜<br>
+  사업자등록번호 584-13-02281 · 통신판매업신고 제2025-대전중구-0577호<br>
+  상담 전화 010-8175-7015 · E-MAIL kim637895@naver.com<br>
+  <a href="../privacy.html">개인정보처리방침</a> · 개인정보보호책임자 김다혜<br>
+  렌탈 계약의 당사자는 각 렌탈사이며, 다콩은 상담·견적 안내를 합니다.<br>
+  Copyright © 다콩 All rights reserved.
+</footer>
+
+</div>
+<div class="bar"><div><a class="kk" href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener">💬 카톡</a><a class="go go-form" href="#quick">최저 견적</a></div></div>
+
+<script src="/rm/src.js"></script>
+<script src="../config.js"></script>
+<script>
+(function(){
+  var u=window.VISITLOG||(window.TG||{}).relay; if(!u) return;
+  var ref=document.referrer||"";
+  try{ if(ref && new URL(ref).host===location.host) return; }catch(e){}
+  var q=location.search, ad=/NaPm=|n_media=|n_query=|n_keyword=/.test(q)||/adcr\.naver|ad\.search\.naver/.test(ref);
+  fetch("https://api.ipify.org?format=json").then(function(r){return r.json();}).catch(function(){return {};}).then(function(j){
+    fetch(u,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({
+      site:location.host, page:location.pathname, q:q.slice(0,400), ref:ref.slice(0,300), ad:ad?1:0,
+      ip:(j&&j.ip)||"", ua:navigator.userAgent.slice(0,200)})}).catch(function(){});
+  });
+})();
+(function(){
+  function q(k){var m=location.search.match(new RegExp("[?&]"+k+"=([^&]*)"));try{return m?decodeURIComponent(m[1].replace(/\+/g," ")):"";}catch(e){return m?m[1]:"";}}
+  var pre=q("c");
+  var HERO={"water": {"q": "정수기·비데 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "정수기·비데 렌탈 최저가 비교", "h": "정수기·비데 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 13,000원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "정수기·비데 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "laptop": {"q": "노트북·컴퓨터 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "노트북·컴퓨터 렌탈 최저가 비교", "h": "노트북·컴퓨터 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 22,600원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "노트북·컴퓨터 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "ebike": {"q": "전기자전거 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "전기자전거 렌탈 최저가 비교", "h": "전기자전거 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 25,900원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "전기자전거 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "massage": {"q": "안마의자 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "안마의자 렌탈 최저가 비교", "h": "안마의자 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 39,900원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "안마의자 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "bed": {"q": "침대·매트리스·소파 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "침대·매트리스·소파 렌탈 최저가 비교", "h": "침대·매트리스·소파 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 18,900원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "침대·매트리스·소파 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "fridge": {"q": "냉장고·김치냉장고 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "냉장고·김치냉장고 렌탈 최저가 비교", "h": "냉장고·김치냉장고 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 22,900원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "냉장고·김치냉장고 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "wash": {"q": "세탁기·건조기 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "세탁기·건조기 렌탈 최저가 비교", "h": "세탁기·건조기 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 17,800원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "세탁기·건조기 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "tv": {"q": "TV·프로젝터 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "TV·프로젝터 렌탈 최저가 비교", "h": "TV·프로젝터 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 18,300원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "TV·프로젝터 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "air": {"q": "에어컨·공기청정기 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "에어컨·공기청정기 렌탈 최저가 비교", "h": "에어컨·공기청정기 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 19,900원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "에어컨·공기청정기 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "kitchen": {"q": "주방가전 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "주방가전 렌탈 최저가 비교", "h": "주방가전 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 10,500원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "주방가전 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "clean": {"q": "청소기·생활가전 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "청소기·생활가전 렌탈 최저가 비교", "h": "청소기·생활가전 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "<b>월 11,800원~</b> 부터 · 렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "청소기·생활가전 렌탈 최저가 견적 — 다콩 렌탈몰라"}, "etc": {"q": "기타 렌탈, <i>가장 싼 곳</i> 찾아 드립니다", "b": "기타 렌탈 최저가 비교", "h": "기타 렌탈,<br>렌탈사마다 <em>월 요금이 다릅니다</em>", "p": "렌탈사 여러 곳 견적을 비교해 가장 싼 곳으로 알려 드립니다", "t": "기타 렌탈 최저가 견적 — 다콩 렌탈몰라"}};
+  if(pre&&HERO[pre]){var h=HERO[pre];document.title=h.t;document.querySelector(".hero h1").innerHTML=h.h;document.querySelector(".hero .pr").innerHTML=h.p;document.querySelector(".hero .bdg").textContent=h.b;}
+  var picked=[], forms=[];
+  function paintAll(){forms.forEach(function(x){x.paint();});}
+  document.querySelectorAll(".pgrid .pc").forEach(function(b){b.addEventListener("click",function(){
+    var first=document.querySelector("form.lead-f .chips button[data-k='"+b.dataset.k+"']");
+    if(first&&!first.classList.contains("on"))first.click();
+    document.querySelector(".quick").scrollIntoView({behavior:"smooth",block:"start"});});});
+  // 신청 폼은 맨 위 하나뿐 — 아래 버튼·하단 바는 그 폼으로 데려가 번호 칸에 커서를 둔다
+  document.querySelectorAll(".go-form").forEach(function(a){a.addEventListener("click",function(e){
+    e.preventDefault();var t=document.querySelector("#quick form.lead-f");if(!t)return;
+    document.querySelector(".quick").scrollIntoView({behavior:"smooth",block:"start"});
+    t.dataset.from=a.closest(".bar")?"하단 바":"아래 신청 버튼";
+    setTimeout(function(){if(t.elements.tel)t.elements.tel.focus({preventScroll:true});},450);});});
+  document.querySelectorAll("form.lead-f").forEach(function(f){
+    var msg=f.querySelector(".msg"),E=f.elements;
+    var chips=f.querySelectorAll(".chips button");
+    function paint(){chips.forEach(function(c){var k=picked.indexOf(c.querySelector(".tx").textContent);c.classList.toggle("on",k>=0);c.setAttribute("aria-pressed",k>=0?"true":"false");c.dataset.o=k>=0?(k+1):"";});
+      E.w1.value=picked[0]||"";E.w2.value=picked[1]||"";}
+    chips.forEach(function(c){c.addEventListener("click",function(){var t=c.querySelector(".tx").textContent,k=picked.indexOf(t);
+      if(k>=0)picked.splice(k,1);else{if(picked.length>=2)picked.shift();picked.push(t);}paintAll();});
+      if(pre&&c.dataset.k===pre&&picked.indexOf(c.querySelector(".tx").textContent)<0){picked.push(c.querySelector(".tx").textContent);}});
+    forms.push({paint:paint}); paint();
+    function say(t){msg.textContent=t;msg.className="msg err";}
+    E.tel.addEventListener("input",function(){
+      var d=this.value.replace(/\D/g,"").slice(0,11);
+      this.value=d.length<4?d:d.length<8?d.slice(0,3)+"-"+d.slice(3):d.slice(0,3)+"-"+d.slice(3,d.length-4)+"-"+d.slice(-4);
+    });
+    f.addEventListener("submit",function(e){
+      e.preventDefault();
+      var name=E.name.value.trim(), tel=E.tel.value.trim();
+      if(!/^01\d-\d{3,4}-\d{4}$/.test(tel)){say("휴대폰 번호를 정확히 입력해 주세요.");E.tel.focus();return;}
+      if(!E.agree.checked){say("개인정보 수집·이용에 동의해 주세요.");return;}
+      var cfg=window.TG||{}; if(!cfg.relay){say("전송에 실패했습니다. 전화 010-8175-7015 로 연락 주세요.");return;}
+      var src=window.RM_SRC?window.RM_SRC()+(q("c")?" / "+q("c"):""):[q("utm_source")||(q("n_keyword")||q("NaPm")?"네이버광고":""),q("n_keyword"),q("utm_campaign"),q("utm_content"),q("c")].filter(Boolean).join(" / ")||"직접";
+      // 첫 줄 "[렌탈몰라] 상담 신청" — 중계가 이 형식일 때 접수 알림톡을 보낸다(접수처 = 렌탈몰라)
+      var text="🔔 [렌탈몰라] 상담 신청\n이름: "+(name||"(미입력)")+"\n연락처: "+tel+"\n품목: "+(E.w1.value?E.w1.value+(E.w2.value?", "+E.w2.value:""):"(미선택)")+
+        "\n통화 시간: "+E.when.value.replace("통화 편한 시간: ","")+"\n신청 위치: "+(f.dataset.from||f.dataset.tag)+"\n유입: "+src+"\n페이지: "+location.origin+location.pathname+"\n시각: "+new Date().toLocaleString("ko-KR");
+      var b=f.querySelector(".submit"); b.disabled=true; msg.textContent="";
+      fetch(cfg.relay,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({type:"lead",text:text})})
+      .then(function(r){return r.json();}).then(function(d){
+        if(d&&d.ok){f.innerHTML='<div class="done"><div class="ck">✓</div><b>견적 상담이 접수되었습니다</b><p>확인 후 남겨 주신 번호로 카톡·문자로 먼저 안내드리겠습니다.<br>궁금한 건 카톡으로 먼저 물어보셔도 돼요.</p>'+
+          '<a class="kk" href="http://pf.kakao.com/_xowzxhX/chat" target="_blank" rel="noopener">💬 카톡으로 바로 상담하기</a><small>상담받으신다고 꼭 가입하셔야 하는 건 아니에요.</small></div>';if(window.fbq)fbq("track","Lead");}
+        else{say("전송에 실패했습니다. 전화 010-8175-7015 로 연락 주세요.");b.disabled=false;}
+      }).catch(function(){say("전송에 실패했습니다. 전화 010-8175-7015 로 연락 주세요.");b.disabled=false;});
+    });
+  });
+})();
+(function(){
+  var u=(window.TG||{}).relay; if(!u) return;
+  function log(what){ var body=JSON.stringify({site:location.host,page:("클릭:"+what+" "+location.pathname).slice(0,120),
+      q:("유입="+(window.RM_SRC?RM_SRC():"")+" "+location.search).slice(0,400),ref:(document.referrer||"").slice(0,300),ad:0,ip:"",ua:navigator.userAgent.slice(0,200)});
+    try{ if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([body],{type:"text/plain"}))) return; }catch(e){}
+    try{ fetch(u,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain"},body:body}); }catch(e){} }
+  document.addEventListener("click",function(e){ var a=e.target.closest&&e.target.closest("a,button"); if(!a) return;
+    var h=a.getAttribute("href")||"", t=(a.textContent||"").replace(/\s+/g," ").trim().slice(0,20);
+    if(/kakao/i.test(h)) log("카톡"); else if(/^tel:/i.test(h)) log("전화");
+    else if(a.classList.contains("go-form")||a.type==="submit") log("신청 "+t); },true);
+  document.addEventListener("submit",function(e){ var f=e.target,E=f.elements||{};
+    var d=E.tel?(E.tel.value||"").replace(/\D/g,""):""; log("제출 "+((d.length<10||d.length>11)?"번호오류":(E.agree&&!E.agree.checked)?"동의안함":"통과")); },true);
+})();
+</script>
+</body></html>
