@@ -305,8 +305,15 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   .ms-cp { margin-bottom: 16px; }
   .ms-cp b { font-size: 19px; }
   .ms-cp span { font-size: 13.5px; margin-top: 4px; }
-  .ms-grid { grid-auto-flow: column; grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: 44%;
-             overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
-  .ms-grid::-webkit-scrollbar { display: none; }
-  .ms-grid > * { scroll-snap-align: start; }
+  .ms-grid { grid-auto-columns: 36%; gap: 8px; margin-right: -16px; padding-right: 16px; }
 }
+/* 모든 화면에서 옆으로 넘기는 2줄 (11-18 대표님 "이렇게 옆으로 넘어가게") + 아래 진행 막대 */
+.ms-grid { grid-auto-flow: column; grid-template-columns: none !important; grid-template-rows: repeat(2, auto); grid-auto-columns: calc((100% - 4 * 18px) / 4.4);
+           overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 14px;
+           scrollbar-width: thin; scrollbar-color: #333 #e5e5e5; }
+.ms-grid::-webkit-scrollbar { height: 3px; }
+.ms-grid::-webkit-scrollbar-track { background: #e5e5e5; }
+.ms-grid::-webkit-scrollbar-thumb { background: #333; }
+.ms-grid > * { scroll-snap-align: start; }
+@media (max-width: 1024px) { .ms-grid { grid-auto-columns: calc((100% - 2 * 18px) / 3.3) !important; } }
+@media (max-width: 768px) { .ms-grid { grid-auto-columns: 38% !important; gap: 8px; } }
