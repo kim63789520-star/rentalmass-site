@@ -355,3 +355,10 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-call span { display: block; color: var(--rm-sub); font-size: 13px; }
 .rm-call b { display: block; color: var(--rm-red); font-size: 28px; font-weight: 800; letter-spacing: 0.5px; margin: 2px 0 4px; user-select: all; }
 .rm-call small { display: block; color: var(--rm-ink); font-size: 13px; line-height: 1.4; }
+/* 글씨체 지마켓 산스 (11-18 대표님 "지마켓으로 할래") — 사이트 안 rm/fonts, 받는 동안은 기본 글씨(swap) */
+@font-face { font-family: "GmarketSans"; src: url("/rm/fonts/GmarketSansMedium.woff") format("woff"); font-weight: 100 500; font-display: swap; }
+@font-face { font-family: "GmarketSans"; src: url("/rm/fonts/GmarketSansBold.woff") format("woff"); font-weight: 600 900; font-display: swap; }
+body { font-family: "GmarketSans", "Pretendard Variable", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
+input, button, select, textarea { font-family: inherit; }
+/* 목록·상세(원본 몰 CSS가 Pretendard를 강하게 박아 둠) — 아이콘 글꼴은 빼고 덮어쓴다 */
+html body, html body *:not(i):not([class*="fa-"]):not([class^="fa"]):not(.material-icons) { font-family: "GmarketSans", "Pretendard Variable", "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !important; }
