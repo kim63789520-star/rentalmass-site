@@ -380,3 +380,6 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 /* 글씨체 Pretendard (11-18 대표님 "글씨체가 마음에 안 들어") — 자간 살짝 좁혀 단정하게 */
 body { letter-spacing: -0.2px; -webkit-font-smoothing: antialiased; }
 input, button, select, textarea { font-family: inherit; }
+
+/* 전액지원 맨 앞 — 테두리·HOT 위가 잘리지 않게 (11-18) */
+.rm-bestcat ul { padding-top: 12px !important; }
