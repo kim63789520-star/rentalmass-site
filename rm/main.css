@@ -281,6 +281,7 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 @media (prefers-reduced-motion: reduce) { .rm-corp .rc-btn { animation: none; } }
 @media (max-width: 768px) {
   .rm-corp { flex-direction: column; align-items: stretch; margin-top: 12px; padding: 20px 18px; border-radius: 14px; }
+  .rm-corp::after { display: none; }
   .rm-corp .rc-tx b { font-size: 19px; }
   .rm-corp .rc-tx span { font-size: 14.5px; }
   .rm-corp .rc-btn { justify-content: center; width: 100%; height: 54px; }
