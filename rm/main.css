@@ -288,3 +288,25 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 }
 /* main.css 가 easy.css 뒤에 실려 .bc-i 회색 배경이 상조 칸 그라데이션을 덮음 → 우선순위 올림 (10-30) */
 .bc-i.bc-sangjo { background: linear-gradient(145deg, #ff4d1f, #f7941e); }
+
+/* 품목 칸 — 빌리고식 큰 사진 + 문구 + (휴대폰) 옆으로 넘기는 2줄 (11-18 대표님 "이렇게") */
+.ms-ph { display: block; overflow: hidden; border-radius: 0 28px 0 0; margin: 0 0 18px; aspect-ratio: 750 / 330; background: #eee; }
+.ms-ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+.ms-ph:hover img { transform: scale(1.03); }
+.ms-cp { margin: 0 0 22px; }
+.ms-cp b { display: block; font-size: 24px; font-weight: 800; color: var(--ink); letter-spacing: -0.6px; }
+.ms-cp span { display: block; margin-top: 6px; font-size: 15px; color: var(--sub); }
+@media (max-width: 768px) {
+  .ms-hd { display: flex; align-items: center; justify-content: space-between; text-align: left; margin-bottom: 14px; }
+  .ms-hd h2 { font-size: 20px; color: var(--acc); gap: 0; }
+  .ms-hd h2 i { display: none; }
+  .ms-all { margin: 0; border: 0; background: none; padding: 0; font-size: 14px; color: #333; }
+  .ms-ph { margin: 0 -16px 14px 0; aspect-ratio: 750 / 406; border-radius: 0 24px 0 0; }
+  .ms-cp { margin-bottom: 16px; }
+  .ms-cp b { font-size: 19px; }
+  .ms-cp span { font-size: 13.5px; margin-top: 4px; }
+  .ms-grid { grid-auto-flow: column; grid-template-columns: none; grid-template-rows: repeat(2, auto); grid-auto-columns: 44%;
+             overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; margin-right: -16px; padding-right: 16px; scrollbar-width: none; }
+  .ms-grid::-webkit-scrollbar { display: none; }
+  .ms-grid > * { scroll-snap-align: start; }
+}
