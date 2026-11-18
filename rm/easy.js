@@ -323,8 +323,8 @@
   }, true);
 })();
 
-/* 즐겨찾기 안내 (11-18 대표님) — 같은 브라우저로 광고 타고 3번째 들어오면 "즐겨찾기 해두고 바로 들어오세요" 안내.
- * 상담 버튼(아래 고정 바)을 가리지 않게 화면 위쪽에 띄운다. 하루 1번만, 닫기 가능. 저장은 이 브라우저 localStorage만. */
+/* 즐겨찾기 안내 (11-18 대표님) — 같은 브라우저로 광고 타고 2번째부터 들어올 때마다(11-18 변경) "즐겨찾기 해두고 바로 들어오세요" 안내.
+ * 상담 버튼(아래 고정 바)을 가리지 않게 화면 위쪽에 띄운다. 매번 띄움, 닫기 가능·12초 뒤 사라짐. 저장은 이 브라우저 localStorage만. */
 (function () {
   try {
     var q = location.search, ref = document.referrer || "";
@@ -332,16 +332,14 @@
     if (!ad) return;
     var ls = window.localStorage, n = (parseInt(ls.getItem("fav_adn") || "0", 10) || 0) + 1;
     ls.setItem("fav_adn", String(n));
-    var today = new Date().toISOString().slice(0, 10);
-    if (n < 3 || ls.getItem("fav_day") === today) return;
-    ls.setItem("fav_day", today);
+    if (n < 2) return;
     var show = function () {
       var b = document.createElement("div");
       b.setAttribute("role", "status");
       b.style.cssText = "position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);" +
         "box-sizing:border-box;background:#fff;color:#222;border:1px solid #d9dde3;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);" +
         "padding:10px 40px 10px 14px;font:14px/1.45 -apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;";
-      b.textContent = "자주 찾아주셔서 감사해요 😊 즐겨찾기(★) 해두시면 다음엔 검색 없이 바로 들어오실 수 있어요.";
+      b.textContent = "안녕하세요! 자주 찾아주셔서 감사해요 😊 즐겨찾기(★) 해두시면 다음엔 검색 없이 바로 들어오실 수 있어요. 광고로 눌러주시면 제 피같은 돈이 나가요 😭😭";
       var x = document.createElement("button");
       x.type = "button"; x.setAttribute("aria-label", "닫기"); x.textContent = "×";
       x.style.cssText = "position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:20px;color:#888;padding:4px 8px;cursor:pointer;";
