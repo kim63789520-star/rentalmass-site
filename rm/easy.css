@@ -21,6 +21,11 @@
   border: 1px solid #ffd9d3; border-radius: 14px; padding: 14px 18px; }
 .rm-list-bar p { margin: 0; color: var(--rm-ink); font-size: 15px; line-height: 1.45; }
 .rm-list-bar p b { color: var(--rm-red); }
+/* 법인·사업자 상담 (11-18) — 목록 안내 바 아래 한 줄 · 상담 창 안내 */
+.rm-list-bar .rm-corp-link { display: block; width: 100%; margin-top: 8px; padding: 10px 14px; border: 1px solid var(--rm-line); border-radius: 12px;
+  background: #fff; color: var(--rm-sub); font-size: 13.5px; text-align: left; cursor: pointer; font-family: inherit; line-height: 1.45; }
+.rm-list-bar .rm-corp-link b { color: var(--rm-ink); font-weight: 800; white-space: nowrap; margin-left: 4px; }
+.rm-sheet .rm-corp-note { margin: 0; padding: 10px 14px; background: #f2f4f6; border-radius: 10px; color: var(--rm-ink); font-size: 14px; line-height: 1.55 !important; }
 
 /* 공통 입력 */
 .rm-chips { display: flex; flex-wrap: wrap; gap: 8px; }

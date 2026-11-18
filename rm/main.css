@@ -268,5 +268,19 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
   .cd-list .img, .cd-list .img img { flex-basis: 100%; width: 100%; max-width: 260px; }
   .cd-list dl { flex-direction: column; gap: 2px; }
 }
+/* 법인·사업자 상담 줄 (11-18 대표님 "렌탈 법인 문의가 많다") — 흰 카드 · 회색 글 · 버튼 하나. 상담 창은 easy.js(data-corp) */
+.rm-corp { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 16px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 24px; }
+.rm-corp .rc-tx { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; min-width: 0; }
+.rm-corp .rc-tx b { font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -0.3px; }
+.rm-corp .rc-tx span { font-size: 14.5px; color: var(--sub); }
+.rm-corp .rc-btn { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border: 0; border-radius: 10px; background: var(--navy); color: #fff; font-size: 15.5px; font-weight: 800; cursor: pointer; font-family: inherit; }
+.rm-corp .rc-btn:hover { background: #2b3c66; }
+@media (max-width: 768px) {
+  .rm-corp { flex-direction: column; align-items: stretch; margin-top: 12px; padding: 16px; border-radius: 14px; }
+  .rm-corp .rc-tx { flex-direction: column; gap: 2px; }
+  .rm-corp .rc-tx b { font-size: 16px; }
+  .rm-corp .rc-tx span { font-size: 14px; }
+  .rm-corp .rc-btn { justify-content: center; width: 100%; height: 48px; }
+}
 /* main.css 가 easy.css 뒤에 실려 .bc-i 회색 배경이 상조 칸 그라데이션을 덮음 → 우선순위 올림 (10-30) */
 .bc-i.bc-sangjo { background: linear-gradient(145deg, #ff4d1f, #f7941e); }

@@ -51,7 +51,9 @@
   }
 
   function send(f) {
-    var lines = ["[렌탈몰라] 상담 신청", "이름: " + (f.name || "(미입력)"), "연락처: " + fmtTel(f.tel)];
+    // 법인·사업자 상담은 첫 줄 끝에 [법인] — '[렌탈몰라] 상담 신청' 앞부분은 중계(사이트 구분·시트·알림톡)가 읽으니 그대로 둔다 (11-18)
+    var lines = ["[렌탈몰라] 상담 신청" + (f.corp ? " [법인]" : ""), "이름: " + (f.name || "(미입력)"), "연락처: " + fmtTel(f.tel)];
+    if (f.corp) lines.push("구분: 법인·사업자");
     if (f.time) lines.push("통화 가능: " + f.time);
     if (f.item && f.item.Pick) {  // 칸마다 한 줄 — 텔레그램에서 칸별로 눌러 복사 (중계 copyHtml_ · 10-27 대표님)
       lines.push("상품명: " + f.item.ItemName);
@@ -130,7 +132,9 @@
     // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
     // PC에서 전화 버튼을 누른 경우 — 번호를 크게 보여 주고 바로 아래 번호 남기기 (11-11 대표님: PC 전화 클릭이 그냥 사라짐)
     var call = current.call ? '<div class="rm-call"><span>전화 상담</span><b>' + PHONE + "</b><small>휴대폰으로 거시거나, 아래에 번호를 남겨 주시면 바로 전화드려요</small></div>" : "";
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + call + head + (it ? what : "") +
+    // 법인·사업자 상담 (11-18) — 안내는 확인된 사실만
+    var corp = current.corp && !it ? '<p class="rm-corp-note">법인·개인사업자도 렌탈 상담 가능해요.<br>사무실·매장 여러 대도 한 번에 견적 드려요.</p>' : "";
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : corp ? "법인·사업자 렌탈 상담" : "렌탈 상담 신청") + "</h4>" + call + head + corp + (it ? what : "") +
       '<p class="rm-lbl">휴대폰 번호만 남겨 주세요</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000">' +
       (it ? "" : what) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
@@ -143,7 +147,7 @@
     body.querySelector(".rm-btn").onclick = function () {
       submit(body, function () {
         var kinds = (!it && ctx) ? [ctx] : [];
-        return { item: it, kinds: kinds, from: current.from || "상담 창" };
+        return { item: it, kinds: kinds, corp: !!corp, from: current.from || "상담 창" };
       }, function () { body.innerHTML = doneHTML(); });
     };
     body.querySelector(".rm-tel").onkeydown = function (e) { if (e.key === "Enter") body.querySelector(".rm-btn").click(); };
@@ -202,10 +206,18 @@
     var ctx = pageContext();
     var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 번호만 남겨 주세요.<br>" +
       "렌탈사·기간별 월 요금을 전화로 안내해 드려요.</p>" +
-      '<button type="button" class="rm-btn">상담 신청</button></div></div>');
+      '<button type="button" class="rm-btn">상담 신청</button></div>' +
+      '<button type="button" class="rm-corp-link" data-corp="목록 법인·사업자 안내">법인·개인사업자도 상담 가능 · 여러 대 한 번에 견적 <b>법인·사업자 상담 ›</b></button></div>');
     title.parentNode.insertBefore(bar, title.nextSibling);
     bar.querySelector(".rm-btn").onclick = function () { openSheet({ kind: ctx, from: "목록 안내 바" }); };
   }
+  // 법인·사업자 상담 버튼(첫 화면 줄 · 목록 안내 바) → 같은 상담 창, 신청 첫 줄에 [법인] (11-18 대표님)
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-corp]");
+    if (!b) return;
+    e.preventDefault();
+    openSheet({ corp: true, from: b.getAttribute("data-corp") || "법인·사업자 상담" });
+  });
 
   // ---------------- 상품 카드 버튼
   function cardButtons() {
