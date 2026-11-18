@@ -270,7 +270,7 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 }
 /* 법인·사업자 상담 줄 (11-18 대표님 "렌탈 법인 문의가 많다" → "눈에 더 잘 띄게") — 남색 카드 · 흰 글 · 주황 버튼. 상담 창은 easy.js(data-corp) */
 .rm-corp { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 14px 20px; margin-top: 16px; background: linear-gradient(135deg, #1e2a4a 0%, #2c3f70 100%); border: 0; border-radius: 16px; padding: 22px 26px; box-shadow: 0 8px 24px rgba(30,42,74,.28); color: #fff; }
-.rm-corp::after { content: "1ad"; font-family: "Font Awesome 6 Free","Font Awesome 5 Free","FontAwesome"; font-weight: 900; position: absolute; right: -10px; bottom: -22px; font-size: 120px; color: rgba(255,255,255,.07); pointer-events: none; }
+.rm-corp::after { content: "\f1ad"; font-family: "Font Awesome 6 Free","Font Awesome 5 Free","FontAwesome"; font-weight: 900; position: absolute; right: -10px; bottom: -22px; font-size: 120px; color: rgba(255,255,255,.07); pointer-events: none; }
 .rm-corp .rc-tx { position: relative; margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .rm-corp .rc-badge { font-style: normal; align-self: flex-start; display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--acc); color: #fff; font-size: 12.5px; font-weight: 800; letter-spacing: -0.2px; }
 .rm-corp .rc-tx b { font-size: 21px; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.3; }
