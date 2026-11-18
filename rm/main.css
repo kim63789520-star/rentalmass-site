@@ -331,8 +331,8 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 
 
 /* ── 메인 배너 HTML 슬라이드 (11-18 대표님 "고급스럽게") — 글자는 HTML, 사진은 우리 것 ── */
-.hx { position: relative; aspect-ratio: 1920 / 500; text-decoration: none; color: inherit; isolation: isolate; }
-.hx-in { position: absolute; z-index: 2; left: max(48px, calc(50% - 640px)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-start; max-width: 620px; }
+.hx { position: relative; aspect-ratio: auto; height: clamp(420px, 30vw, 540px); text-decoration: none; color: inherit; isolation: isolate; }
+.hx-in { position: absolute; z-index: 2; left: max(110px, calc(50% - 560px)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-start; max-width: 620px; }
 .hx-t1 { font-size: 46px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.2; }
 .hx-t2 { font-size: 30px; font-weight: 700; letter-spacing: -0.8px; margin-top: 8px; }
 .hx-s { font-size: 17px; margin-top: 16px; letter-spacing: -0.3px; }
@@ -360,7 +360,7 @@ body.rm-main { margin: 0; background: var(--bg); color: var(--ink); line-height:
 .hx-ph .hx-t2 { color: #b4462a; }
 .hx-ph .hx-s { color: #555; }
 @media (max-width: 768px) {
-  .hx { aspect-ratio: 16 / 11; }
+  .hx { height: auto; aspect-ratio: 16 / 11; }
   .hx-in { left: 20px; right: 20px; top: auto; bottom: 34px; transform: none; max-width: none; }
   .hx-t1 { font-size: 26px; letter-spacing: -0.8px; }
   .hx-t2 { font-size: 18px; margin-top: 4px; }
