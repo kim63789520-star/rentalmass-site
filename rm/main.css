@@ -388,3 +388,7 @@ input, button, select, textarea { font-family: inherit; }
 
 /* 전액지원 맨 앞 — 테두리·HOT 위가 잘리지 않게 (11-18) */
 .rm-bestcat ul { padding-top: 12px !important; }
+
+/* TV 칸 '인수형 렌탈' 표시 (11-18) */
+.ms-pill { display: inline-block; align-self: flex-start; font-style: normal; font-size: 14px; font-weight: 700; color: #fff; background: #e0201b; padding: 6px 14px; border-radius: 999px; margin-bottom: 10px; letter-spacing: -0.2px; }
+@media (max-width: 768px) { .ms-pill { font-size: 12.5px; padding: 5px 12px; margin-bottom: 8px; } }
