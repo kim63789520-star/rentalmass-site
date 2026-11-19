@@ -94,7 +94,16 @@
     var tel = root.querySelector(".rm-tel").value, msg = root.querySelector(".rm-msg"), btn = root.querySelector(".rm-btn");
     var ok = root.querySelector(".rm-ok");
     if (!validTel(tel)) { msg.textContent = "휴대폰 번호를 확인해 주세요."; root.querySelector(".rm-tel").focus(); return; }
-    if (!ok.checked) { msg.textContent = "개인정보 수집·이용 동의가 필요합니다."; return; }
+    // 11-20 대표님: 동의 미체크로 막지 않는다 — 한 번 더 누르는 버튼을 '동의하고 신청하기'로 바꿔 그 클릭을 동의로 받는다(미리 체크 X)
+    if (!ok.checked) {
+      if (root.getAttribute("data-ask") !== "1") {
+        root.setAttribute("data-ask", "1");
+        btn.textContent = "동의하고 신청하기";
+        msg.textContent = "개인정보 수집·이용(아래 '보기')에 동의하시면 '동의하고 신청하기'를 한 번 더 눌러 주세요.";
+        return;
+      }
+      ok.checked = true;
+    }
     msg.textContent = "";
     btn.disabled = true; btn.textContent = "보내는 중…";
     send($.extend({ tel: tel }, extra())).then(onDone, function () {
