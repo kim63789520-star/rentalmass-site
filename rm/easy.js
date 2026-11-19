@@ -344,7 +344,7 @@
   }, true);
 })();
 
-/* 즐겨찾기 안내 (11-18 대표님 · 11-20 문구 교체·하루 1번) — 같은 브라우저로 광고 타고 2번째부터 들어오면 하루 1번 안내.
+/* 즐겨찾기 안내 (11-18 대표님 · 11-20 문구 교체, 매번) — 같은 브라우저로 광고 타고 2번째부터 들어올 때마다 안내.
  * 상담 버튼(아래 고정 바)을 가리지 않게 화면 위쪽에 띄운다. 닫기 가능·12초 뒤 사라짐. 저장은 이 브라우저 localStorage만. */
 (function () {
   try {
@@ -354,9 +354,6 @@
     var ls = window.localStorage, n = (parseInt(ls.getItem("fav_adn") || "0", 10) || 0) + 1;
     ls.setItem("fav_adn", String(n));
     if (n < 2) return;
-    var today = new Date().toISOString().slice(0, 10);
-    if (ls.getItem("fav_day") === today) return;
-    ls.setItem("fav_day", today);
     var show = function () {
       var b = document.createElement("div");
       b.setAttribute("role", "status");
