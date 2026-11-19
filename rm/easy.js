@@ -357,7 +357,7 @@
     var show = function () {
       var b = document.createElement("div");
       b.setAttribute("role", "status");
-      b.style.cssText = "position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);" +
+      b.style.cssText = "position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:2147483000;width:calc(100% - 32px);max-width:480px;" +
         "box-sizing:border-box;background:#fff4f8;color:#5a2a3c;border:2px solid #ffc2d6;border-radius:18px;box-shadow:0 6px 18px rgba(255,105,150,.22);" +
         "padding:10px 40px 10px 14px;font:14px/1.45 -apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;";
       b.textContent = "또 와 주셨네요! 너무 반가워요 🥰 즐겨찾기(★) 콕 눌러 두시면 다음엔 검색 없이 바로 만나요 💛 궁금한 건 아래 카톡으로 살짝 물어봐 주세요!";
