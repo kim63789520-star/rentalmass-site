@@ -358,9 +358,9 @@
       var b = document.createElement("div");
       b.setAttribute("role", "status");
       b.style.cssText = "position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:2147483000;max-width:calc(100% - 32px);" +
-        "box-sizing:border-box;background:#fff;color:#222;border:1px solid #d9dde3;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);" +
+        "box-sizing:border-box;background:#fff4f8;color:#5a2a3c;border:2px solid #ffc2d6;border-radius:18px;box-shadow:0 6px 18px rgba(255,105,150,.22);" +
         "padding:10px 40px 10px 14px;font:14px/1.45 -apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;";
-      b.textContent = "다시 찾아주셔서 반가워요 😊 즐겨찾기(★) 해 두시면 다음엔 검색 없이 바로 오실 수 있어요. 궁금한 건 아래 카톡으로 편하게 물어보세요.";
+      b.textContent = "또 와 주셨네요! 너무 반가워요 🥰 즐겨찾기(★) 콕 눌러 두시면 다음엔 검색 없이 바로 만나요 💛 궁금한 건 아래 카톡으로 살짝 물어봐 주세요!";
       var x = document.createElement("button");
       x.type = "button"; x.setAttribute("aria-label", "닫기"); x.textContent = "×";
       x.style.cssText = "position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:20px;color:#888;padding:4px 8px;cursor:pointer;";
