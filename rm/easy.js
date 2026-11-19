@@ -93,11 +93,13 @@
   function submit(root, extra, onDone) {
     var tel = root.querySelector(".rm-tel").value, msg = root.querySelector(".rm-msg"), btn = root.querySelector(".rm-btn");
     var ok = root.querySelector(".rm-ok");
-    if (!validTel(tel)) { msg.textContent = "휴대폰 번호를 확인해 주세요."; root.querySelector(".rm-tel").focus(); return; }
+    // 11-20 대표님: 접수 성공·막힘을 방문기록에 남긴다(번호는 안 남김) — 보람 config.js의 "제출 …"과 같은 꼴
+    function vlog(why) { try { if (window.RM_VLOG) window.RM_VLOG("클릭:제출 " + why + " " + location.pathname); } catch (e) {} }
+    if (!validTel(tel)) { vlog("번호오류(" + String(tel).replace(/\D/g, "").length + "자리)"); msg.textContent = "휴대폰 번호를 확인해 주세요."; root.querySelector(".rm-tel").focus(); return; }
     // 11-20 대표님: 동의 미체크로 막지 않는다 — 한 번 더 누르는 버튼을 '동의하고 신청하기'로 바꿔 그 클릭을 동의로 받는다(미리 체크 X)
     if (!ok.checked) {
       if (root.getAttribute("data-ask") !== "1") {
-        root.setAttribute("data-ask", "1");
+        root.setAttribute("data-ask", "1"); vlog("동의안함(재안내)");
         btn.textContent = "동의하고 신청하기";
         msg.textContent = "개인정보 수집·이용(아래 '보기')에 동의하시면 '동의하고 신청하기'를 한 번 더 눌러 주세요.";
         return;
@@ -106,7 +108,8 @@
     }
     msg.textContent = "";
     btn.disabled = true; btn.textContent = "보내는 중…";
-    send($.extend({ tel: tel }, extra())).then(onDone, function () {
+    send($.extend({ tel: tel }, extra())).then(function (r) { vlog("통과"); return onDone(r); }, function () {
+      vlog("전송실패");
       btn.disabled = false; btn.textContent = "상담 신청하기";
       msg.textContent = "전송에 실패했습니다. 잠시 후 다시 시도하시거나 카톡으로 문의해 주세요.";
     });
@@ -332,6 +335,7 @@
     try { if (navigator.sendBeacon && navigator.sendBeacon(u, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
     try { fetch(u, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain" }, body: body }); } catch (e) {}
   }
+  window.RM_VLOG = function (page) { send(page); };  // 11-20 접수 결과 기록용(상담창 submit에서 부름)
   var external = true; try { external = !ref || new URL(ref).host !== location.host; } catch (e) {}
   if (external) fetch("https://api.ipify.org?format=json").then(function (r) { return r.json(); }).catch(function () { return {}; })
     .then(function (j) { send(location.pathname, (j && j.ip) || ""); });
