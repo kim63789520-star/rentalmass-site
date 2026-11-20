@@ -51,9 +51,7 @@
   }
 
   function send(f) {
-    // 법인·사업자 상담은 첫 줄 끝에 [법인] — '[렌탈몰라] 상담 신청' 앞부분은 중계(사이트 구분·시트·알림톡)가 읽으니 그대로 둔다 (11-18)
-    var lines = ["[렌탈몰라] 상담 신청" + (f.corp ? " [법인]" : ""), "이름: " + (f.name || "(미입력)"), "연락처: " + fmtTel(f.tel)];
-    if (f.corp) lines.push("구분: 법인·사업자");
+    var lines = ["[렌탈몰라] 상담 신청", "이름: " + (f.name || "(미입력)"), "연락처: " + fmtTel(f.tel)];
     if (f.time) lines.push("통화 가능: " + f.time);
     if (f.item && f.item.Pick) {  // 칸마다 한 줄 — 텔레그램에서 칸별로 눌러 복사 (중계 copyHtml_ · 10-27 대표님)
       lines.push("상품명: " + f.item.ItemName);
@@ -144,9 +142,7 @@
     // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
     // PC에서 전화 버튼을 누른 경우 — 번호를 크게 보여 주고 바로 아래 번호 남기기 (11-11 대표님: PC 전화 클릭이 그냥 사라짐)
     var call = current.call ? '<div class="rm-call"><span>전화 상담</span><b>' + PHONE + "</b><small>휴대폰으로 거시거나, 아래에 번호를 남겨 주시면 바로 전화드려요</small></div>" : "";
-    // 법인·사업자 상담 (11-18) — 안내는 확인된 사실만
-    var corp = current.corp && !it ? '<p class="rm-corp-note">법인·개인사업자도 렌탈 상담 가능해요.<br>사무실·매장 여러 대도 한 번에 견적 드려요.</p>' : "";
-    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : corp ? "법인·사업자 렌탈 상담" : "렌탈 상담 신청") + "</h4>" + call + head + corp + (it ? what : "") +
+    body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + call + head + (it ? what : "") +
       '<p class="rm-lbl">휴대폰 번호만 남겨 주세요</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000">' +
       (it ? "" : what) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
@@ -159,7 +155,7 @@
     body.querySelector(".rm-btn").onclick = function () {
       submit(body, function () {
         var kinds = (!it && ctx) ? [ctx] : [];
-        return { item: it, kinds: kinds, corp: !!corp, from: current.from || "상담 창" };
+        return { item: it, kinds: kinds, from: current.from || "상담 창" };
       }, function () { body.innerHTML = doneHTML(); });
     };
     body.querySelector(".rm-tel").onkeydown = function (e) { if (e.key === "Enter") body.querySelector(".rm-btn").click(); };
@@ -218,18 +214,10 @@
     var ctx = pageContext();
     var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 번호만 남겨 주세요.<br>" +
       "렌탈사·기간별 월 요금을 전화로 안내해 드려요.</p>" +
-      '<button type="button" class="rm-btn">상담 신청</button></div>' +
-      '<button type="button" class="rm-corp-link" data-corp="목록 법인·사업자 안내">법인·개인사업자도 상담 가능 · 여러 대 한 번에 견적 <b>법인·사업자 상담 ›</b></button></div>');
+      '<button type="button" class="rm-btn">상담 신청</button></div></div>');
     title.parentNode.insertBefore(bar, title.nextSibling);
     bar.querySelector(".rm-btn").onclick = function () { openSheet({ kind: ctx, from: "목록 안내 바" }); };
   }
-  // 법인·사업자 상담 버튼(첫 화면 줄 · 목록 안내 바) → 같은 상담 창, 신청 첫 줄에 [법인] (11-18 대표님)
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest("[data-corp]");
-    if (!b) return;
-    e.preventDefault();
-    openSheet({ corp: true, from: b.getAttribute("data-corp") || "법인·사업자 상담" });
-  });
 
   // ---------------- 상품 카드 버튼
   function cardButtons() {
@@ -342,14 +330,14 @@
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a,button"); if (!a) return;
     var h = a.getAttribute("href") || "", t = (a.textContent || "").replace(/\s+/g, " ").trim().slice(0, 20);
-    if (/kakao/i.test(h)) send("클릭:카톡" + (a.hasAttribute("data-fav") ? "(안내창)" : "") + " " + location.pathname);  // 11-20 즐겨찾기 안내창은 따로
+    if (/kakao/i.test(h)) send("클릭:카톡" + (a.hasAttribute("data-fav") ? "(안내창)" : "") + " " + location.pathname);  // 즐겨찾기 안내창은 따로
     else if (/^tel:/i.test(h)) send("클릭:전화 " + location.pathname);
     else if (/rm-btn|rm-b-ask|rm-ask|dt-btn-ask/.test(a.className + " " + a.id) || /상담 신청|접수신청|렌탈 신청/.test(t)) send("클릭:신청 " + t + " " + location.pathname);
   }, true);
 })();
 
-/* 즐겨찾기 안내 (11-18 대표님 · 11-20 문구 교체, 매번) — 같은 브라우저로 광고 타고 2번째부터 들어올 때마다 안내.
- * 상담 버튼(아래 고정 바)을 가리지 않게 화면 위쪽에 띄운다. 닫기 가능·12초 뒤 사라짐. 저장은 이 브라우저 localStorage만. */
+/* 즐겨찾기 안내 (11-20 대표님 "3번 유지") — 같은 브라우저로 광고 타고 3번째 들어올 때부터, 하루 1번만, 작은 띠 한 줄.
+ * 아래 상담 바를 가리지 않게 화면 맨 위에 얇게. ×로 닫기·10초 뒤 사라짐. 저장은 이 브라우저 localStorage만. */
 (function () {
   try {
     var q = location.search, ref = document.referrer || "";
@@ -357,32 +345,32 @@
     if (!ad || /^\/(bohum|boram22)\//.test(location.pathname)) return;  // 보험 페이지엔 안 띄움(카톡 채널 다름)
     var ls = window.localStorage, n = (parseInt(ls.getItem("fav_adn") || "0", 10) || 0) + 1;
     ls.setItem("fav_adn", String(n));
-    if (n < 2) return;
+    var d = new Date(), today = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    if (n < 3 || ls.getItem("fav_day") === today) return;
+    ls.setItem("fav_day", today);
     var show = function () {
       var b = document.createElement("div");
       b.setAttribute("role", "status");
-      b.style.cssText = "position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:2147483000;width:calc(100% - 32px);max-width:480px;" +
-        "box-sizing:border-box;background:#fff4f8;color:#5a2a3c;border:2px solid #ffc2d6;border-radius:18px;box-shadow:0 6px 18px rgba(255,105,150,.22);" +
-        "padding:10px 40px 10px 14px;font:14px/1.45 -apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;";
-      var m = document.createElement("a");  // 11-20 대표님: 문구를 눌러도 카톡 상담으로 (× 만 닫기)
-      m.href = "http://pf.kakao.com/_xowzxhX/chat"; m.target = "_blank"; m.rel = "noopener"; m.setAttribute("data-fav", "1");
-      m.style.cssText = "display:block;color:inherit;text-decoration:none;";
-      m.textContent = "또 와 주셨네요! 너무 반가워요 🥰 즐겨찾기(★) 콕 눌러 두시면 다음엔 검색 없이 바로 만나요 💛 궁금한 건 카톡으로 살짝 물어봐 주세요!";
-      m.onclick = function () { b.remove(); };
+      b.style.cssText = "position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:2147483000;width:calc(100% - 24px);max-width:460px;" +
+        "box-sizing:border-box;display:flex;align-items:center;gap:8px;background:#fff;color:#333;border:1px solid #e5e5e5;border-radius:999px;" +
+        "box-shadow:0 4px 14px rgba(0,0,0,.12);padding:6px 6px 6px 14px;font:13px/1.3 -apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;";
+      var m = document.createElement("span");
+      m.style.cssText = "flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+      m.textContent = "또 와 주셨네요! 즐겨찾기(★) 해 두시면 바로 와요";
       b.appendChild(m);
-      var x = document.createElement("button");
-      x.type = "button"; x.setAttribute("aria-label", "닫기"); x.textContent = "×";
-      x.style.cssText = "position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:20px;color:#888;padding:4px 8px;cursor:pointer;";
-      x.onclick = function () { b.remove(); };
-      b.appendChild(x);
-      var k = document.createElement("a");  // 11-20 대표님: 안내에서 바로 카톡 상담으로 (닫기는 그대로 닫기)
+      var k = document.createElement("a");
       k.href = "http://pf.kakao.com/_xowzxhX/chat"; k.target = "_blank"; k.rel = "noopener"; k.setAttribute("data-fav", "1");
-      k.textContent = "💬 카톡으로 물어보기";
-      k.style.cssText = "display:block;margin-top:8px;text-align:center;background:#fee500;color:#3c1e1e;border-radius:12px;padding:9px 0;font-weight:700;text-decoration:none;";
+      k.textContent = "카톡 문의";
+      k.style.cssText = "flex:none;background:#fee500;color:#3c1e1e;border-radius:999px;padding:6px 10px;font-weight:700;text-decoration:none;";
       k.onclick = function () { b.remove(); };
       b.appendChild(k);
+      var x = document.createElement("button");
+      x.type = "button"; x.setAttribute("aria-label", "닫기"); x.textContent = "×";
+      x.style.cssText = "flex:none;border:0;background:none;font-size:18px;line-height:1;color:#999;padding:4px 6px;cursor:pointer;font-family:inherit;";
+      x.onclick = function () { b.remove(); };
+      b.appendChild(x);
       document.body.appendChild(b);
-      setTimeout(function () { if (b.parentNode) b.remove(); }, 20000);
+      setTimeout(function () { if (b.parentNode) b.remove(); }, 10000);
     };
     if (document.body) show(); else document.addEventListener("DOMContentLoaded", show);
   } catch (e) {}

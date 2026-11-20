@@ -21,11 +21,6 @@
   border: 1px solid #ffd9d3; border-radius: 14px; padding: 14px 18px; }
 .rm-list-bar p { margin: 0; color: var(--rm-ink); font-size: 15px; line-height: 1.45; }
 .rm-list-bar p b { color: var(--rm-red); }
-/* 법인·사업자 상담 (11-18) — 목록 안내 바 아래 한 줄 · 상담 창 안내 */
-.rm-list-bar .rm-corp-link { display: block; width: 100%; margin-top: 8px; padding: 10px 14px; border: 1px solid var(--rm-line); border-radius: 12px;
-  background: #fff; color: var(--rm-sub); font-size: 13.5px; text-align: left; cursor: pointer; font-family: inherit; line-height: 1.45; }
-.rm-list-bar .rm-corp-link b { color: var(--rm-ink); font-weight: 800; white-space: nowrap; margin-left: 4px; }
-.rm-sheet .rm-corp-note { margin: 0; padding: 10px 14px; background: #f2f4f6; border-radius: 10px; color: var(--rm-ink); font-size: 14px; line-height: 1.55 !important; }
 
 /* 공통 입력 */
 .rm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -355,10 +350,3 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-call span { display: block; color: var(--rm-sub); font-size: 13px; }
 .rm-call b { display: block; color: var(--rm-red); font-size: 28px; font-weight: 800; letter-spacing: 0.5px; margin: 2px 0 4px; user-select: all; }
 .rm-call small { display: block; color: var(--rm-ink); font-size: 13px; line-height: 1.4; }
-/* 글씨체 지마켓 산스 (11-18 대표님 "지마켓으로 할래") — 사이트 안 rm/fonts, 받는 동안은 기본 글씨(swap) */
-@font-face { font-family: "GmarketSans"; src: url("/rm/fonts/GmarketSansMedium.woff") format("woff"); font-weight: 100 500; font-display: swap; }
-@font-face { font-family: "GmarketSans"; src: url("/rm/fonts/GmarketSansBold.woff") format("woff"); font-weight: 600 900; font-display: swap; }
-body { font-family: "GmarketSans", "Pretendard Variable", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; }
-input, button, select, textarea { font-family: inherit; }
-/* 목록·상세(원본 몰 CSS가 Pretendard를 강하게 박아 둠) — 아이콘 글꼴은 빼고 덮어쓴다 */
-html body, html body *:not(i):not([class*="fa-"]):not([class^="fa"]):not(.material-icons) { font-family: "GmarketSans", "Pretendard Variable", "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !important; }
