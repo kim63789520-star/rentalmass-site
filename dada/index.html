@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>김다혜 매니저</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 회색 바탕·흰 카드·파랑 하나 (대표님 화면 취향) · 아래 탭 3개 */
+:root{--bg:#F2F4F6;--card:#fff;--fg:#191F28;--muted:#6B7684;--line:#E5E8EB;--accent:#3182F6;--soft:#E8F3FF;--bad:#E5484D;--nav:62px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:0 0 calc(var(--nav) + 24px + env(safe-area-inset-bottom,0px))}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero{position:relative;background:#fff}
+.hero img{display:block;width:100%;aspect-ratio:4/4.3;object-fit:cover;object-position:top}
+.hero .nm{position:absolute;left:0;right:0;bottom:0;padding:48px 20px 18px;background:linear-gradient(180deg,rgba(25,31,40,0),rgba(25,31,40,.82))}
+.hero b{display:block;color:#fff;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.hero small{color:#D6E4FF;font-size:13.5px}
+.view{display:flex;flex-direction:column;gap:12px;padding-top:12px}
+.card{background:var(--card);border-radius:16px;padding:18px}
+.card h2{font-size:16px;margin:0 0 8px}
+.intro p{margin:0;color:#333D4B}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;border-radius:12px;border:0;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
+.btn.pri{background:var(--accent);color:#fff;grid-column:1/-1}
+.btn.sec{background:var(--soft);color:var(--accent)}
+.btn.kakao{background:#FEE500;color:#191919}
+.btn svg{width:18px;height:18px}
+.list a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line);text-decoration:none}
+.list a:first-child{border-top:0;padding-top:2px}
+.list .t{font-weight:500}
+.list .s{color:var(--muted);font-size:13px}
+.chev{color:var(--muted);flex:none}
+.eyebrow{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.04em}
+.big{font-size:20px;font-weight:700;margin:2px 0 6px;letter-spacing:-.01em}
+.muted{color:var(--muted);font-size:13.5px}
+.tabs2{display:flex;gap:6px;margin-bottom:10px}
+.tabs2 button{flex:1;border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 0;font:inherit;font-size:13.5px;cursor:pointer}
+.tabs2 button[aria-pressed="true"]{background:var(--fg);color:#fff;border-color:var(--fg)}
+.ins{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.ins:first-child{border-top:0}
+.ins b{font-weight:500}
+.ins .go{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ins .go a,.ins .go span{font-size:12.5px;border:1px solid var(--line);border-radius:8px;padding:4px 8px;text-decoration:none;white-space:nowrap}
+.ins .go span{color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted)}
+.foot{font-size:11.5px;color:var(--muted);line-height:1.7;padding-block:18px 8px}
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.nav .in{max-width:520px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);height:var(--nav)}
+.nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;color:var(--muted);text-decoration:none}
+.nav a svg{width:22px;height:22px}
+.nav a[aria-current="page"]{color:var(--accent);font-weight:700}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- 홈 -->
+  <section id="v-home">
+    <div class="hero"><img src="img/profile.jpg" alt="김다혜 매니저"><div class="nm"><small>보험 상담 · 보험금 청구 도움</small><b>김다혜 매니저</b></div></div>
+    <div class="view pad">
+      <div class="card intro">
+        <p>안녕하세요, 김다혜 매니저입니다.<br>보험에 대해 끊임없이 고민하고 공부합니다.<br>오롯이 고객을 위한다는 초심을 지키겠습니다.</p>
+      </div>
+      <div class="card">
+        <div class="acts">
+          <a class="btn pri" href="https://rentalmass.co.kr/bohum/apply/" target="_blank" rel="noopener">보장 점검 상담 신청</a>
+          <a class="btn sec" href="tel:01021657015"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>전화 상담</a>
+          <a class="btn kakao" href="https://open.kakao.com/o/sid0hpSi" target="_blank" rel="noopener">카톡 상담</a>
+        </div>
+      </div>
+      <div class="card">
+        <h2>보험금 청구, 어렵지 않아요</h2>
+        <p class="muted" style="margin:0 0 12px">실손은 병원에서 바로, 다른 보험은 보험사 앱으로. 헷갈리시면 카톡으로 물어보세요.</p>
+        <a class="btn sec" href="#claim" style="width:100%">청구하러 가기</a>
+      </div>
+      <div class="card">
+        <h2>김다혜 매니저 블로그</h2>
+        <div class="list"><a href="https://blog.naver.com/eksql181818" target="_blank" rel="noopener"><span><span class="t">네이버 블로그</span><br><span class="s">보험 정보 글 모음</span></span><span class="chev">›</span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 청구 -->
+  <section id="v-claim" hidden>
+    <div class="view pad" style="padding-top:16px">
+      <div class="card">
+        <div class="eyebrow">실손보험</div>
+        <div class="big">실손은 ‘실손24’로 바로 청구</div>
+        <p class="muted" style="margin:0 0 12px">보험개발원이 운영하는 공식 서비스예요. 병원·약국에서 보험사로 서류가 바로 넘어가 종이 서류가 필요 없어요.</p>
+        <a class="btn pri" id="silson" href="#" target="_blank" rel="noopener">실손24 열기</a>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">보험사별 청구</div>
+        <div class="big">가입한 보험사를 누르세요</div>
+        <div class="tabs2" role="group" aria-label="보험 종류"><button type="button" data-k="손해" aria-pressed="true">손해보험</button><button type="button" data-k="생명" aria-pressed="false">생명보험</button></div>
+        <div id="insList"><p class="note">보험사 공식 청구 경로를 확인하는 중입니다.</p></div>
+        <p class="note" style="margin:10px 0 0">각 보험사 공식 홈페이지·앱으로 연결됩니다. 2026-11 기준.</p>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">어려우시면</div>
+        <div class="big">김다혜 매니저에게 물어보세요</div>
+        <p class="muted" style="margin:0 0 12px">어느 보험에서 받을 수 있는지 헷갈리시면 편하게 연락 주세요.</p>
+        <div class="acts">
+          <a class="btn kakao" href="https://open.kakao.com/o/sid0hpSi" target="_blank" rel="noopener">카톡 상담</a>
+          <a class="btn sec" href="tel:01021657015">전화 상담</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot pad">
+    운영자 김다혜 (보험설계사) · 소속 프라임에셋(주) 위촉 · 손해보험협회 등록번호 20170895070007<br>
+    <a href="https://rentalmass.co.kr/bohum/privacy.html">개인정보처리방침</a>
+  </footer>
+</div>
+
+<nav class="nav" aria-label="메뉴"><div class="in">
+  <a href="#home" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z"/></svg>홈</a>
+  <a href="#claim" data-v="claim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z M14 3v4h4 M10 12h5 M10 16h5"/></svg>청구</a>
+  <a href="https://rentalmass.co.kr/bohum/apply/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>상담 신청</a>
+</div></nav>
+
+<script src="insurers.js"></script>
+<script>
+// 보험사 공식 청구 경로 — 공식 사이트에서 확인한 값만 (insurers.js에서 채움)
+var INSURERS = window.INSURERS || [];
+var SILSON = window.SILSON || null;
+(function () {
+  var views = ["home", "claim"];
+  function go() {
+    var v = location.hash.slice(1); if (views.indexOf(v) < 0) v = "home";
+    views.forEach(function (x) { document.getElementById("v-" + x).hidden = x !== v; });
+    document.querySelectorAll(".nav a[data-v]").forEach(function (a) { a.dataset.v === v ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", go); go();
+
+  var silson = document.getElementById("silson");
+  if (SILSON && SILSON.url) silson.href = SILSON.url; else silson.hidden = true;
+
+  var kind = "손해";
+  function el(tag, attrs, text) { var e = document.createElement(tag); for (var k in attrs || {}) e.setAttribute(k, attrs[k]); if (text) e.textContent = text; return e; }
+  function render() {
+    var box = document.getElementById("insList"); box.replaceChildren();
+    var list = INSURERS.filter(function (i) { return i.kind === kind; });
+    if (!list.length) { box.append(el("p", { class: "note" }, "보험사 공식 청구 경로를 확인하는 중입니다.")); return; }
+    list.forEach(function (i) {
+      var row = el("div", { class: "ins" }), go = el("div", { class: "go" });
+      var nm = el("div", {}); nm.append(el("b", {}, i.name));
+      if (i.app) { nm.append(document.createElement("br")); nm.append(el("small", { class: "note" }, "앱: " + i.app)); }
+      row.append(nm);
+      if (i.web) go.append(el("a", { href: i.web, target: "_blank", rel: "noopener" }, "청구 안내"));
+      if (i.call) go.append(el("a", { href: "tel:" + i.call.replace(/[^0-9]/g, "") }, i.call));
+      row.append(go); box.append(row);
+    });
+  }
+  document.querySelectorAll(".tabs2 button").forEach(function (b) {
+    b.addEventListener("click", function () { kind = b.dataset.k; document.querySelectorAll(".tabs2 button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); }); render(); });
+  });
+  render();
+
+})();
+</script>
+</body>
+</html>
