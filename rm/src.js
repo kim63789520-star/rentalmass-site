@@ -19,11 +19,27 @@
     if (/google\./.test(host)) return "구글";
     if (/daum\.net$|kakao\.com$/.test(host)) return "다음·카카오";
     if (/facebook\.com$|instagram\.com$/.test(host)) return "메타(페북·인스타)";
+    if (/(^|\.)flowitgo\.com$/.test(host)) return "예전 주소(flowitgo)";
     return host;
   }
 
   var now = null;
-  if (q.n_media || q.n_keyword || q.n_query) {
+  if (q.utm_source === "flowitgo") {
+    // 예전 플로우잇고 주소(flowitgo.com · m.flowitgo.com)가 ?utm_source=flowitgo 를 붙여 넘겨준다 (11-27 대표님)
+    now = { how: "예전 주소(flowitgo" + (q.utm_medium ? " " + q.utm_medium : "") + ")", kw: "" };
+    var showOld = function () {
+      if (document.getElementById("rm-old-flow")) return;
+      var d = document.createElement("div");
+      d.id = "rm-old-flow";
+      d.setAttribute("role", "status");
+      d.style.cssText = "position:relative;z-index:9999;background:#1f5fd6;color:#fff;font-size:14px;line-height:1.5;padding:10px 44px 10px 16px;text-align:center;word-break:keep-all";
+      d.innerHTML = '플로우잇고 서비스가 종료되어 렌탈몰라로 안내해 드려요. 렌탈 요금 비교·상담은 여기서 받으실 수 있어요.' +
+        '<button type="button" aria-label="닫기" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:22px;line-height:1;padding:6px 10px;cursor:pointer">×</button>';
+      d.querySelector("button").onclick = function () { d.parentNode.removeChild(d); };
+      document.body.insertBefore(d, document.body.firstChild);
+    };
+    if (document.body) showOld(); else document.addEventListener("DOMContentLoaded", showOld);
+  } else if (q.n_media || q.n_keyword || q.n_query) {
     now = { how: "네이버 광고", kw: q.n_keyword || q.n_query || "", rank: q.n_rank || "" };
   } else if (q.utm_source) {
     now = { how: q.utm_source + (q.utm_medium ? "/" + q.utm_medium : ""), kw: q.utm_term || "", camp: q.utm_campaign || "" };
