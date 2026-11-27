@@ -26,11 +26,12 @@
   // 첫 배너(24시간 자동 접수)는 카톡 링크(build_main.py BANNERS) — 10-30 대표님
   var hero = document.querySelector(".hero");
 
-  // ---- 하단 고정 상담 바(PC, 항상 보임 — 피오렌탈식) 신청 → 중계(텔레그램·상담신청 시트). 번호+동의만 필수
+  // ---- 하단 고정 상담 바(PC, 항상 보임 — 피오렌탈식) 신청 → 중계(텔레그램·상담신청 시트). 이름+번호+동의 필수(11-27)
   var f = document.getElementById("abForm"), msg = document.getElementById("abMsg");
   if (f) f.addEventListener("submit", function (e) {
     e.preventDefault();
     var tel = f.tel.value.trim(), d = tel.replace(/\D/g, ""), name = f.name.value.trim();
+    if (!name) { msg.textContent = "이름을 적어 주세요."; f.name.focus(); return; }  // 11-27 대표님: 이름 필수(상담 현황 정리)
     if (d.length < 10 || d.length > 11 || !/^01/.test(d)) { msg.textContent = "휴대폰 번호를 확인해 주세요."; f.tel.focus(); return; }
     if (!f.ok.checked) { msg.textContent = "개인정보 수집·이용 동의가 필요합니다."; return; }
     var relay = (window.TG || {}).relay;

@@ -93,6 +93,9 @@
     var ok = root.querySelector(".rm-ok");
     // 11-20 대표님: 접수 성공·막힘을 방문기록에 남긴다(번호는 안 남김) — 보람 config.js의 "제출 …"과 같은 꼴
     function vlog(why) { try { if (window.RM_VLOG) window.RM_VLOG("클릭:제출 " + why + " " + location.pathname); } catch (e) {} }
+    // 11-27 대표님: 이름 필수 — 이름이 없으면 상담 현황 정리가 어렵다
+    var nameEl = root.querySelector(".rm-name"), name = nameEl ? nameEl.value.trim() : "";
+    if (nameEl && !name) { vlog("이름없음"); msg.textContent = "이름을 적어 주세요."; nameEl.focus(); return; }
     if (!validTel(tel)) { vlog("번호오류(" + String(tel).replace(/\D/g, "").length + "자리)"); msg.textContent = "휴대폰 번호를 확인해 주세요."; root.querySelector(".rm-tel").focus(); return; }
     // 11-20 대표님: 동의 미체크로 막지 않는다 — 한 번 더 누르는 버튼을 '동의하고 신청하기'로 바꿔 그 클릭을 동의로 받는다(미리 체크 X)
     if (!ok.checked) {
@@ -106,7 +109,7 @@
     }
     msg.textContent = "";
     btn.disabled = true; btn.textContent = "보내는 중…";
-    send($.extend({ tel: tel }, extra())).then(function (r) { vlog("통과"); return onDone(r); }, function () {
+    send($.extend({ tel: tel, name: name }, extra())).then(function (r) { vlog("통과"); return onDone(r); }, function () {
       vlog("전송실패");
       btn.disabled = false; btn.textContent = "상담 신청하기";
       msg.textContent = "전송에 실패했습니다. 잠시 후 다시 시도하시거나 카톡으로 문의해 주세요.";
@@ -139,11 +142,12 @@
       : "";  // 관심 품목 고르기 칸 뺌 — 번호만 (10-30 대표님 "이것도 빼"). 품목은 보던 페이지(ctx)로만 적는다
     sheet.classList.toggle("ap", !!(it && it.Pick));
     if (it && it.Pick) return openApply(it);
-    // 번호 하나만 넣으면 끝 — 이름·통화 시간 칸 뺌 (10-30 대표님 "쉽게 접수할 수 있게")
+    // 이름 + 번호 (10-30엔 번호만이었으나 11-27 대표님 "이름 쓰게 해" — 상담 현황 정리용). 통화 시간 칸은 계속 뺌
     // PC에서 전화 버튼을 누른 경우 — 번호를 크게 보여 주고 바로 아래 번호 남기기 (11-11 대표님: PC 전화 클릭이 그냥 사라짐)
     var call = current.call ? '<div class="rm-call"><span>전화 상담</span><b>' + PHONE + "</b><small>휴대폰으로 거시거나, 아래에 번호를 남겨 주시면 바로 전화드려요</small></div>" : "";
     body.innerHTML = '<h4 id="rm-sheet-t">' + (it ? "이 상품 상담 신청" : "렌탈 상담 신청") + "</h4>" + call + head + (it ? what : "") +
-      '<p class="rm-lbl">휴대폰 번호만 남겨 주세요</p><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000">' +
+      '<p class="rm-lbl">이름과 휴대폰 번호를 남겨 주세요</p><input class="rm-name" type="text" autocomplete="name" enterkeyhint="next" maxlength="20" placeholder="이름" aria-label="이름">' +
+      '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" enterkeyhint="send" maxlength="13" placeholder="010-0000-0000" aria-label="휴대폰 번호">' +
       (it ? "" : what) + AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
       '<button type="button" class="rm-btn">상담 신청하기</button>' +
       '<p class="rm-note">' + FIT + "<br>상담만 받으셔도 돼요. 가입은 원하실 때만.</p>";
@@ -159,8 +163,9 @@
       }, function () { body.innerHTML = doneHTML(); });
     };
     body.querySelector(".rm-tel").onkeydown = function (e) { if (e.key === "Enter") body.querySelector(".rm-btn").click(); };
+    body.querySelector(".rm-name").onkeydown = function (e) { if (e.key === "Enter") { e.preventDefault(); body.querySelector(".rm-tel").focus(); } };
     sheet.classList.add("on");
-    setTimeout(function () { var t = body.querySelector(".rm-tel"); if (t && window.innerWidth > 768) t.focus(); }, 50);
+    setTimeout(function () { var t = body.querySelector(".rm-name"); if (t && window.innerWidth > 768) t.focus(); }, 50);
   }
   // 렌탈 신청서 — 상세 '렌탈 신청 → 기간 고르기' 다음 (10-27 대표님 "보람 신청서처럼 바꿔")
   function openApply(it) {
@@ -169,9 +174,9 @@
       '<div class="rm-ap-prod">' + (it.Img ? '<img src="' + esc(it.Img) + '" alt="">' : "") + "<div><small>" + esc(it.ModelName || "") + "</small>" +
       "<b>" + esc(it.ItemName) + "</b><span>" + esc(it.BrandName) + " · 렌탈기간 " + esc(it.DutyUsePeriod) + "개월</span>" +
       "<span>월 렌탈료 <em>" + won(it.RentalFee) + "원</em></span>" + (it.CardFee ? '<span class="c">카드할인시 <em>' + won(it.CardFee) + "원</em></span>" : "") + "</div></div>" +
-      '<p class="rm-ap-h">고객정보 <small>연락처만 필수</small></p>' +
-      '<div class="rm-ap-f"><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" maxlength="13" placeholder="연락처 (필수)">' +
-      '<input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (선택)">' +
+      '<p class="rm-ap-h">고객정보 <small>이름, 연락처 필수</small></p>' +
+      '<div class="rm-ap-f"><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름 (필수)">' +
+      '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" maxlength="13" placeholder="연락처 (필수)">' +
       '<select class="rm-time w empty" onchange="this.classList.toggle(\'empty\',!this.value)"><option value="">상담 희망 시간 (선택)</option><option>바로 가능</option><option>오전</option><option>오후</option><option>저녁</option></select>' +
       '<input class="rm-addr w" type="text" autocomplete="street-address" maxlength="80" placeholder="설치 주소 (선택)"></div>' +
       AGREE + '<p class="rm-msg" aria-live="polite"></p>' +
@@ -193,11 +198,12 @@
   var mainBar = document.getElementById("main_bar");
   if (mainBar && location.pathname.replace(/index\.html$/, "") === "/") {
     var q = el('<section class="rm-quick" aria-label="간편 상담 신청"><div class="rm-quick-in">' +
-      '<div><h3>어떤 가전 알아보세요? <b>번호만</b> 남겨 주세요</h3>' +
+      '<div><h3>어떤 가전 알아보세요? <b>이름·번호만</b> 남겨 주세요</h3>' +
       '<p class="rm-lead">렌탈사·약정 기간별 월 요금을 담당자가 전화로 안내해 드려요.</p></div>' +
       '<div class="rm-who"><img src="' + PHOTO + '" alt="렌탈 상담 담당 김다혜"><div><b>담당 김다혜</b><span>확인 후 바로 연락드려요</span></div></div>' +
       chips(KINDS, true) +
-      '<form novalidate><input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="휴대폰 번호 (010-0000-0000)" aria-label="휴대폰 번호">' +
+      '<form novalidate><input class="rm-name" type="text" autocomplete="name" maxlength="20" placeholder="이름" aria-label="이름">' +
+      '<input class="rm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="휴대폰 번호 (010-0000-0000)" aria-label="휴대폰 번호">' +
       '<button type="submit" class="rm-btn">상담 신청하기</button>' + AGREE + '<p class="rm-msg" aria-live="polite"></p></form></div></section>');
     mainBar.parentNode.insertBefore(q, mainBar.nextSibling);
     q.querySelector("form").onsubmit = function (e) {
@@ -212,7 +218,7 @@
     var title = document.querySelector("#list .js-listCateTitle");
     if (!title || document.querySelector(".rm-list-bar")) return;
     var ctx = pageContext();
-    var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 번호만 남겨 주세요.<br>" +
+    var bar = el('<div class="rm-list-bar"><div><p><b>' + esc(ctx || "렌탈") + "</b> 고르기 어려우시면 이름·번호만 남겨 주세요.<br>" +
       "렌탈사·기간별 월 요금을 전화로 안내해 드려요.</p>" +
       '<button type="button" class="rm-btn">상담 신청</button></div></div>');
     title.parentNode.insertBefore(bar, title.nextSibling);

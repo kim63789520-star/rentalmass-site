@@ -11,6 +11,7 @@
 .rm-quick .rm-chips { grid-column: 1 / -1; }
 .rm-quick form { grid-column: 1 / -1; display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
 .rm-quick form .rm-tel { flex: 1 1 240px; }
+.rm-quick form .rm-name { flex: 1 1 140px; }
 .rm-quick form .rm-agree { flex-basis: 100%; }
 .rm-who { display: flex; align-items: center; gap: 10px; color: var(--rm-ink); font-size: 14px; }
 .rm-who img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.12); }
@@ -349,4 +350,5 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-call { background: var(--rm-bg); border: 1px solid #ffd9d3; border-radius: 14px; padding: 14px 16px; margin: 0 0 14px; text-align: center; }
 .rm-call span { display: block; color: var(--rm-sub); font-size: 13px; }
 .rm-call b { display: block; color: var(--rm-red); font-size: 28px; font-weight: 800; letter-spacing: 0.5px; margin: 2px 0 4px; user-select: all; }
-.rm-call small { display: block; color: var(--rm-ink); font-size: 13px; line-height: 1.4; }
+.rm-call small { display: block; color: var(--rm-ink); font-size: 13px; line-height: 1.4; }/* 11-27 이름 칸 추가 — 이름·번호 칸 사이 간격 */
+.rm-sheet:not(.ap) .rm-name + .rm-tel { margin-top: 8px !important; }
