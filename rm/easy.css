@@ -352,3 +352,5 @@ html body input.rm-tel:focus, html body input.rm-name:focus { border-color: var(
 .rm-call b { display: block; color: var(--rm-red); font-size: 28px; font-weight: 800; letter-spacing: 0.5px; margin: 2px 0 4px; user-select: all; }
 .rm-call small { display: block; color: var(--rm-ink); font-size: 13px; line-height: 1.4; }/* 11-27 이름 칸 추가 — 이름·번호 칸 사이 간격 */
 .rm-sheet:not(.ap) .rm-name + .rm-tel { margin-top: 8px !important; }
+/* 11-27 원본 reset.min.css 가 입력칸 안내 글씨를 굵기 900으로 — 보통 굵기로 */
+.rm-sheet input::placeholder, .rm-quick input::placeholder, .ab-form input::placeholder { font-family: inherit; font-weight: 400; }
