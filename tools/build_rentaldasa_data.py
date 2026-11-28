@@ -5,12 +5,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 items = json.load(open(os.path.join(ROOT, 'rm/data/items.json'), encoding='utf-8'))
 
 def terms(s):
-    out = []
+    # 렌탈사별로 나눈다 {렌탈사: [[개월, 요금], ...]} — 한 줄에 섞으면 다른 렌탈사 요금이 이 렌탈사 것처럼 보인다
+    # (11-28 대표님 "빌리고 화면 오류 고쳐" — LIM-055A '스마트렌탈' 줄에 현대 60개월 72,100이 붙어 있었다)
+    by = {}
     for row in (s or '').split('"|"'):
         f = row.strip('"').split('"^"')
         if len(f) >= 4 and f[2].isdigit() and f[3].isdigit():
-            out.append([int(f[3]), int(f[2])])
-    return sorted(set(map(tuple, out)), reverse=True)
+            by.setdefault(f[1], set()).add((int(f[3]), int(f[2])))
+    return {co: sorted(v, reverse=True) for co, v in by.items()}
 
 out = []
 for no, it in items.items():
@@ -36,8 +38,22 @@ for no, it in items.items():
             if len(tt) > 1: r['t'] = tt
             out.append(r)
         continue
-    t = terms(it.get('ItemAllianceCardDetail'))
-    if len(t) > 1: o['t'] = [list(x) for x in t]
-    out.append(o)
+    by = terms(it.get('ItemAllianceCardDetail'))
+    own = o['co']
+    cos = ([own] if own in by else []) + sorted((c for c in by if c != own), key=lambda c: min(x[1] for x in by[c]))
+    if not cos:
+        out.append(o)
+        continue
+    for i, co in enumerate(cos):  # 렌탈사마다 한 줄 (첫 줄 = 상품 기본 렌탈사, id 그대로)
+        tl = by[co]
+        if co == own:
+            r = dict(o)
+        else:
+            cheap = min(tl, key=lambda x: x[1])
+            r = dict(o, co=co, m=cheap[1], mo=cheap[0])
+        if i:
+            r.update(id=no + '~' + str(i), it=no)
+        if len(tl) > 1: r['t'] = [list(x) for x in tl]
+        out.append(r)
 json.dump(out, open(os.path.join(ROOT, 'rentaldasa/data.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
 print(len(out), 'items', os.path.getsize(os.path.join(ROOT, 'rentaldasa/data.json')) // 1024, 'KB')
